@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "78055233591",
+    "project_id": "amor-y-conviccion",
+    "storage_bucket": "amor-y-conviccion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78055233591:android:7bdcd411679d3cf23887b2",
+        "android_client_info": {
+          "package_name": "com.example.amor_conviccion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78055233591-a3277hh2jpl9dd1r2rf31bucclgoh2io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASzLpSg-K3diShVzkw-DqTm7cKxlMnrww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78055233591-a3277hh2jpl9dd1r2rf31bucclgoh2io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
