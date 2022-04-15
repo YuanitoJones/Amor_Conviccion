@@ -1,8 +1,13 @@
 import 'dart:math';
 
+import 'package:amor_conviccion/utils/googleSignIn.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +34,19 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+
+        //Configuracion idiomas
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+
+        //Idiomas soportados
+        supportedLocales: const [
+          Locale('en', ''), // English, no country code
+          Locale('es', ''), // Spanish, no country code
+        ],
       home: FutureBuilder(
         future: _fbapp,
         builder: (context, snapshot){
@@ -67,6 +85,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GoogleSignInService googleSignIn = GoogleSignInService();
   int _counter = 0;
 
   void _incrementCounter() {
@@ -84,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -123,6 +143,41 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            //Ejemplo de boton para Iniciar sesion con google
+            /*Positioned(
+                  top: size.height * 0.600,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      try {
+                        await googleSignIn.signInWithGoogle();
+                        /*Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()));*/
+                      } catch (e) {
+                        if (e is FirebaseAuthException) {
+                          debugPrint(e.message!);
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        elevation: 4.0,
+                        padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
+                        alignment: Alignment.centerLeft,
+                        fixedSize: Size(size.width * 0.80, size.height * 0.068),
+                        primary: const Color(0xf0E02626),
+                        textStyle: TextStyle(
+                          fontSize: size.width * 0.058,
+                          fontFamily: 'Sora',
+                          fontWeight: FontWeight.bold,
+                        )),
+                    icon: Icon(FontAwesomeIcons.google,
+                        color: Colors.white, size: size.width * 0.070),
+                    label: Text(
+                      AppLocalizations.of(context)!.helloWorld,
+                    ),
+                  ),
+                ),*/
           ],
         ),
       ),
