@@ -1,7 +1,8 @@
+import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
-import '../utils/authentication.dart';
-import '../widgets/google_sign_in_button.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -57,20 +58,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   ],
                 ),
               ),
-              FutureBuilder(
-                future: Authentication.initializeFirebase(context: context),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return const Text('Error initializing Firebase');
-                  } else if (snapshot.connectionState == ConnectionState.done) {
-                    return const GoogleSignInButton();
-                  }
-                  return const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.orange,
-                    ),
-                  );
-                },
+              ElevatedButton.icon(
+                  onPressed: (){
+                    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                    provider.googleLogin();
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
+                  label: const Text('Sign in with Google'),
               ),
             ],
           ),
