@@ -1,4 +1,7 @@
+import 'package:amor_conviccion/Screens/emailSignInScreen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
+import 'package:amor_conviccion/services/userData.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +60,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ],
                 ),
+              ),
+              ElevatedButton.icon(
+                onPressed: (){
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
+                },
+                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
+                label: const Text('Sign in with Google'),
               ),
               ElevatedButton.icon(
                   onPressed: (){
