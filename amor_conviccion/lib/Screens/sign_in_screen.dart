@@ -61,7 +61,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               ElevatedButton.icon(
-<<<<<<< HEAD
                 onPressed: (){
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
@@ -70,8 +69,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 label: const Text('Log in with Email'),
               ),
               ElevatedButton.icon(
-=======
->>>>>>> parent of 7802e83 (Email Firebase)
                   onPressed: (){
                     final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                     provider.googleLogin();
