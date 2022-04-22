@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.amor_conviccion">
-   <application
+   <application android:usesCleartextTraffic="true"
         android:label="amor_conviccion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

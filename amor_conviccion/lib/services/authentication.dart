@@ -14,7 +14,7 @@ class Authentication extends StatelessWidget {
         if(snapshot.connectionState==ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator(),);
         } else if(snapshot.hasData){
-          return const UserInfoScreen();
+          return UserInfoScreen();
         }else if(snapshot.hasError){
           return const Center(child: Text('Something went wrong'),);
         }else{

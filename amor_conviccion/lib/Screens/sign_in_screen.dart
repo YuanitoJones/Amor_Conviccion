@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import 'emailSignInScreen.dart';
+
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
-
 
 class _SignInScreenState extends State<SignInScreen> {
   @override
@@ -66,8 +68,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
                 },
-                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
-                label: const Text('Sign in with Google'),
+                icon: const FaIcon(FontAwesomeIcons.store, color: Colors.red,),
+                label: const Text('Log in with Email'),
               ),
               ElevatedButton.icon(
                   onPressed: (){
@@ -75,7 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     provider.googleLogin();
                   },
                   icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
-                  label: const Text('Sign in with Google'),
+                  label: const Text('Log in with Google'),
               ),
             ],
           ),

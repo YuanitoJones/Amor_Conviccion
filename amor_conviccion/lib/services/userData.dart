@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class EmailSignInProvider{
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -8,7 +9,7 @@ class EmailSignInProvider{
   //SIGN UP METHOD
   Future signUp({required String email, required String password, required String name}) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -33,9 +34,5 @@ class EmailSignInProvider{
   //SIGN OUT METHOD
   Future signOut() async {
     await _auth.signOut();
-
-    if (kDebugMode) {
-      print('sign out');
-    }
   }
 }

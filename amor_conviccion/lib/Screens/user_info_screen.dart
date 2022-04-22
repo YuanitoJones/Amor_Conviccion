@@ -143,26 +143,36 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../services/userData.dart';
+
+
 class UserInfoScreen extends StatelessWidget{
-  const UserInfoScreen({Key? key}) : super(key: key);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser!;
+  UserInfoScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    WidgetsFlutterBinding.ensureInitialized();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Logged in'),
         centerTitle: true,
         actions: [
           TextButton(child: const Text('Logout'),
-          onPressed: (){
-            final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-            provider.signOutFromGoogle();
-          },
-          )
+            onPressed: (){
+              if (_auth.currentUser?.providerData[0].providerId ==
+                  "google.com") {
+                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.signOutFromGoogle();
+              }else{
+                EmailSignInProvider _email = EmailSignInProvider();
+                _email.signOut();
+              }
+            },
+          ),
         ],
       ),
       body: Container(
@@ -175,20 +185,18 @@ class UserInfoScreen extends StatelessWidget{
             style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 32,),
-            CircleAvatar(
+            /*CircleAvatar(
               radius: 40,
               backgroundImage: NetworkImage(user.photoURL!),
-            ),
-            const SizedBox(height: 8,),
+            ),*/
             Text('Name: ' + user.displayName!,
-            style: const TextStyle(color: Colors.white, fontSize: 16),),
+              style: const TextStyle(color: Colors.white, fontSize: 16),),
             const SizedBox(height: 8,),
-            Text('Name: ' + user.email!,
-              style: const TextStyle(color: Colors.white, fontSize: 16),)
+            Text('Email: ' + user.email!,
+              style: const TextStyle(color: Colors.white, fontSize: 16),),
           ],
         ),
       ),
     );
   }
-  
 }
