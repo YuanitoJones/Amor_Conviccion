@@ -1,7 +1,4 @@
-import 'package:amor_conviccion/Screens/emailSignInScreen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
-import 'package:amor_conviccion/services/userData.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -64,6 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               ElevatedButton.icon(
+<<<<<<< HEAD
                 onPressed: (){
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
@@ -72,6 +70,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 label: const Text('Log in with Email'),
               ),
               ElevatedButton.icon(
+=======
+>>>>>>> parent of 7802e83 (Email Firebase)
                   onPressed: (){
                     final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                     provider.googleLogin();
