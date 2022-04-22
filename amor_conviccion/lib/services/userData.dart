@@ -1,6 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 class EmailSignInProvider{
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -32,7 +30,8 @@ class EmailSignInProvider{
   }
 
   //SIGN OUT METHOD
-  Future signOut() async {
+  Future<void>signOut() async {
     await _auth.signOut();
+    FirebaseAuth.instance.signOut();
   }
 }

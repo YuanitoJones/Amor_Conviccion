@@ -141,12 +141,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 }*/
 
+import 'package:amor_conviccion/Screens/sign_in_screen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../services/userData.dart';
+
 
 
 class UserInfoScreen extends StatelessWidget{
@@ -165,11 +167,12 @@ class UserInfoScreen extends StatelessWidget{
             onPressed: (){
               if (_auth.currentUser?.providerData[0].providerId ==
                   "google.com") {
-                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.signOutFromGoogle();
+
               }else{
                 EmailSignInProvider _email = EmailSignInProvider();
                 _email.signOut();
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => const SignInScreen()));
               }
             },
           ),
@@ -189,8 +192,9 @@ class UserInfoScreen extends StatelessWidget{
               radius: 40,
               backgroundImage: NetworkImage(user.photoURL!),
             ),*/
-            Text('Name: ' + user.displayName!,
+            Text('UID: ' + user.uid,
               style: const TextStyle(color: Colors.white, fontSize: 16),),
+
             const SizedBox(height: 8,),
             Text('Email: ' + user.email!,
               style: const TextStyle(color: Colors.white, fontSize: 16),),
