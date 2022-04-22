@@ -11,8 +11,8 @@ class EmailSignInProvider{
         email: email,
         password: password,
       );
-      User? updateUser = FirebaseAuth.instance.currentUser;
-      updateUser!.updateDisplayName(name);
+      final updateUser = FirebaseAuth.instance.currentUser;
+      updateUser?.updateDisplayName(name);
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
