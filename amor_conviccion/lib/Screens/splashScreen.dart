@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:amor_conviccion/services/authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -53,7 +51,7 @@ class _SplashScreen extends State<SplashScreen> {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                      'assets/logos/firebase_logo.png'),
+                      'assets/logos/advertencia.png'),
                   fit: BoxFit.cover)),
         );
       }),
