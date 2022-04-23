@@ -2,7 +2,10 @@
 class Assets {
   Assets._();
 
+  static const String backgroundSplash = 'assets/background/splash.png';
+  static const String backgroundStandard = 'assets/background/standard.png';
   static const String logosAdvertencia = 'assets/logos/advertencia.png';
+  static const String logosCircularLogo = 'assets/logos/circular_logo.png';
   static const String logosFirebaseLogo = 'assets/logos/firebase_logo.png';
   static const String logosGoogleLogo = 'assets/logos/google_logo.png';
   static const String logosLogo = 'assets/logos/logo.png';

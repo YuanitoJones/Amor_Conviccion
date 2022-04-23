@@ -29,29 +29,14 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      //Configuracion idiomas
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      //Idiomas soportados
-      supportedLocales: const [
-        Locale('en', ''), // English, no country code
-        Locale('es', ''), // Spanish, no country code
-      ],
-      debugShowCheckedModeBanner: false,
-      home: Builder(builder: (context) {
+    return Scaffold(
+      body: Builder(builder: (context) {
         Size size = MediaQuery.of(context).size;
         return Container(
-          height: size.height,
-          width: double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                      'assets/logos/advertencia.png'),
+                      'assets/background/splash.png'),
                   fit: BoxFit.cover)),
         );
       }),
