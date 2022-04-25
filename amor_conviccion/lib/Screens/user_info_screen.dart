@@ -158,26 +158,6 @@ class UserInfoScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Logged in'),
-        centerTitle: true,
-        actions: [
-          TextButton(child: const Text('Logout'),
-            onPressed: (){
-              if (_auth.currentUser?.providerData[0].providerId ==
-                  "google.com") {
-                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.signOutFromGoogle();
-              }else{
-                EmailSignInProvider _email = EmailSignInProvider();
-                _email.signOut();
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => const SignInScreen()));
-              }
-            },
-          ),
-        ],
-      ),
       body: Container(
         alignment: Alignment.center,
         color: Colors.blueGrey.shade900,
@@ -188,10 +168,7 @@ class UserInfoScreen extends StatelessWidget{
             style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 32,),
-            /*CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(user.photoURL!),
-            ),*/
+            avatar(),
             Text('UID: ' + user.uid,
               style: const TextStyle(color: Colors.white, fontSize: 16),),
             const SizedBox(height: 8,),
@@ -200,6 +177,16 @@ class UserInfoScreen extends StatelessWidget{
           ],
         ),
       ),
+    );
+  }
+
+  Widget avatar(){
+    bool flag = (user.photoURL) != null? true:false;
+    return CircleAvatar(
+      minRadius: 40,
+      maxRadius: 60,
+      backgroundColor: Colors.yellow,
+      backgroundImage: (flag)? NetworkImage(user.photoURL!) : const NetworkImage('https://www.woolha.com/media/2020/03/eevee.png'),
     );
   }
 }
