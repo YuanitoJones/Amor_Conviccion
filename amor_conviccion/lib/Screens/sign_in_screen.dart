@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/Screens/email_login_screen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -62,8 +63,9 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               ElevatedButton.icon(
                 onPressed: (){
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context)=>const EmailLogin())
+                  );
                 },
                 icon: const FaIcon(FontAwesomeIcons.store, color: Colors.red,),
                 label: const Text('Log in with Email'),
@@ -75,6 +77,15 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
                   label: const Text('Log in with Google'),
+              ),
+              Text('Or'),
+              ElevatedButton.icon(
+                onPressed: (){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
+                },
+                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
+                label: const Text('Sign up'),
               ),
             ],
           ),
