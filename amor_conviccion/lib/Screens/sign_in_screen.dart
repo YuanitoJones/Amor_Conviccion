@@ -18,14 +18,15 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
             left: 16.0,
             right: 16.0,
-            bottom: 20.0,
+            bottom: 40.0,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -39,23 +40,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/logos/firebase_logo.png',
-                        height: 160,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'FlutterFire',
-                      style: TextStyle(
-                        color: Colors.orange,
-                        fontSize: 40,
-                      ),
-                    ),
-                    const Text(
-                      'Authentication',
-                      style: TextStyle(
-                        color: Colors.orange,
-                        fontSize: 40,
+                        'assets/logos/advertencia.png',
+                        height: size.width*0.65,
                       ),
                     ),
                   ],
@@ -63,29 +49,73 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               ElevatedButton.icon(
                 onPressed: (){
+                  final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.googleLogin();
+                },
+                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.white,),
+                label: const Text('Login con Google'),
+                style: ElevatedButton.styleFrom(
+                    elevation: 4.0,
+                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
+                    primary: Colors.red,
+                    textStyle: TextStyle(
+                      fontSize: size.width * 0.058,
+                      fontFamily: 'Sora',
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              SizedBox(height: size.height*0.06,),
+              ElevatedButton(
+                child: const Center(
+                  child: Text('Login Con correo',
+                    style: TextStyle(
+                      color: Colors.black
+                    ),
+                  ),
+                ),
+
+                onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context)=>const EmailLogin())
                   );
                 },
-                icon: const FaIcon(FontAwesomeIcons.store, color: Colors.red,),
-                label: const Text('Log in with Email'),
+                style: ElevatedButton.styleFrom(
+                    elevation: 4.0,
+                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
+                    primary: Colors.yellow,
+                    textStyle: TextStyle(
+                      fontSize: size.width * 0.058,
+                      fontFamily: 'Sora',
+                      fontWeight: FontWeight.bold,
+                    )),
               ),
-              ElevatedButton.icon(
-                  onPressed: (){
-                    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                    provider.googleLogin();
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
-                  label: const Text('Log in with Google'),
+              SizedBox(height: size.height*0.015,),
+              const Text('O',
+                style: TextStyle(
+                    color: Colors.black
+                ),
               ),
-              Text('Or'),
-              ElevatedButton.icon(
+              SizedBox(height: size.height*0.015,),
+              ElevatedButton(
+                child: const Center(
+                  child: Text('Registrate con correo',
+                    style: TextStyle(
+                        color: Colors.black),
+                  ),
+                ),
                 onPressed: (){
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
                 },
-                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
-                label: const Text('Sign up'),
+                style: ElevatedButton.styleFrom(
+                    elevation: 4.0,
+                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
+                    primary: Colors.yellow,
+                    textStyle: TextStyle(
+                      fontSize: size.width * 0.058,
+                      fontFamily: 'Sora',
+                      fontWeight: FontWeight.bold,
+                    )),
               ),
             ],
           ),

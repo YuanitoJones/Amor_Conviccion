@@ -65,7 +65,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                             validator: (email) =>
                             email != null && !EmailValidator.validate(email)
-                            ? 'Enter a valid Email' : null,
+                            ? 'Ingresa un correo válido' : null,
                             maxLength: 50,
                             controller: txt1Controller,
                             style: const TextStyle(
@@ -75,7 +75,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                               counterText: "",
                               filled: true,
                               fillColor: Color.fromRGBO(242, 242, 242, 1),
-                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Email'),
+                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Correo'),
                             )),
                       ),
                     ),
@@ -90,7 +90,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             validator: (value) =>
                             value != null && value.length < 6
-                                ? 'Enter a valid Email' : null,
+                                ? 'Contraseña debe contener al menos 6 caracteres' : null,
                             maxLength: 20,
                             controller: txt2Controller,
                             style: const TextStyle(
@@ -100,7 +100,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                               counterText: "",
                               filled: true,
                               fillColor: Color.fromRGBO(242, 242, 242, 1),
-                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Password'),
+                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Contraseña'),
                             )),
                       ),
                     ),
@@ -124,7 +124,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                               counterText: "",
                               filled: true,
                               fillColor: Color.fromRGBO(242, 242, 242, 1),
-                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Name'),
+                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Nombre'),
                             )),
                       ),
                     ),
@@ -132,19 +132,22 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                       height: size.height * 0.1,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        registerUser();
-                      },
-                      child: const Text(/*AppLocalizations.of(context)!.nextStep*/'Sign up'),
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
-                          primary: btnEnabled ? const Color(0xf036A138) : Colors.grey,
-                          elevation: 4.0,
-                          textStyle: TextStyle(
+                        onPressed: () {
+                          registerUser();
+                        },
+                        child: Text(/*AppLocalizations.of(context)!.nextStep*/'Registrarse',
+                          style: TextStyle(
                             fontSize: size.width * 0.058,
                             fontFamily: 'Sora',
                             fontWeight: FontWeight.bold,
-                          )),
+                            color: Colors.black,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
+                          primary: Colors.yellow,
+                          elevation: 4.0,
+                        )
                     ),
                   ]
               ),
