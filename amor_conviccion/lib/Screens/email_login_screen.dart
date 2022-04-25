@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'homePage.dart';
+
 
 class EmailLogin extends StatefulWidget{
   const EmailLogin({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
       var foo = await es.signIn(email: txt1Controller.text, password: txt2Controller.text);
       if (foo==null){
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => UserInfoScreen()));
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       }
     } catch (e) {
       if (e is FirebaseAuthException) {

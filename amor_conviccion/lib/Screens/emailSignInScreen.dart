@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/Screens/user_info_screen.dart';
+import 'package:amor_conviccion/Screens/homePage.dart';
 import 'package:amor_conviccion/services/userData.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +32,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
     try {
       await es.signUp(email: txt1Controller.text, password: txt2Controller.text, name: txt3Controller.text);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => UserInfoScreen()));
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
     } catch (e) {
       if (e is FirebaseAuthException) {
         debugPrint(e.message!);
