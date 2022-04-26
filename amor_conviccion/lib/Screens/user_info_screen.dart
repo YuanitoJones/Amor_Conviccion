@@ -143,6 +143,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
 import 'package:amor_conviccion/Screens/sign_in_screen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
+import 'package:amor_conviccion/widgets/avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -168,7 +169,7 @@ class UserInfoScreen extends StatelessWidget{
             style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 32,),
-            avatar(),
+            Avatar(),
             Text('UID: ' + user.uid,
               style: const TextStyle(color: Colors.white, fontSize: 16),),
             const SizedBox(height: 8,),
@@ -180,13 +181,4 @@ class UserInfoScreen extends StatelessWidget{
     );
   }
 
-  Widget avatar(){
-    bool flag = (user.photoURL) != null? true:false;
-    return CircleAvatar(
-      minRadius: 40,
-      maxRadius: 60,
-      backgroundColor: Colors.yellow,
-      backgroundImage: (flag)? NetworkImage(user.photoURL!) : const NetworkImage('https://www.woolha.com/media/2020/03/eevee.png'),
-    );
-  }
 }

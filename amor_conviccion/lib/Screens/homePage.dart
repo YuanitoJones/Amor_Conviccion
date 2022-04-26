@@ -26,7 +26,7 @@ class _HomePage extends State<HomePage>{
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     const MainLessons(),
-    const LeaderBoard(),
+    LeaderBoard(),
     UserInfoScreen(),
   ];
   void _onItemTapped(int index) {
