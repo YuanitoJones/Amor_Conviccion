@@ -31,7 +31,6 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -40,8 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/logos/advertencia.png',
-                        height: size.width*0.65,
+                        'assets/logos/logo.png',
                       ),
                     ),
                   ],
