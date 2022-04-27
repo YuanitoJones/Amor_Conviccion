@@ -42,12 +42,12 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                   style: TextStyle(
                                       color: Colors.pink,
                                       fontSize: 30.0,
-                                      fontWeight: FontWeight.bold))
+                                      fontWeight: FontWeight.bold)
+                              )
                             ]
                         )
                     ),
                   ),
-
                   const Padding(
                     padding: EdgeInsets.only(left: 15.0),
                     child: Text(
@@ -59,7 +59,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                       child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection('puntuacion')
-                              .where('puntos', isGreaterThan: '0')
+                              .where('puntos', isGreaterThanOrEqualTo: 0)
                               .orderBy('puntos', descending: true)
                               .snapshots(),
                           builder: (context, snapshot) {
@@ -74,20 +74,19 @@ class _LeaderBoardState extends State<LeaderBoard> {
                             else{
                               var documents = (snapshot.data!).docs;
                               if(documents != null){
-                                print ((snapshot.data!).docs);
+                                print (documents[0].get('nombre'));
                               }
                               i = 0;
                               return ListView.builder(
                                   itemCount: documents.length,
                                   itemBuilder: (context, index) {
-                                    DocumentSnapshot ds = documents[index];
                                     print(index);
                                     if (index >= 1) {
                                       print('Greater than 1');
-                                      if (ds[index]
-                                          .data['puntos'] ==
-                                          ds[index - 1]
-                                              .data['puntos']) {
+                                      if (documents[index]
+                                          .get('puntos') ==
+                                          documents[index - 1]
+                                              .get('puntos')) {
                                         print('Igual');
                                       } else {
                                         i++;
@@ -141,7 +140,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                             alignment: Alignment
                                                                 .centerLeft,
                                                             child: Text(
-                                                              ds[index].data['nombre'],
+                                                              documents[index].get('nombre'),
                                                               style: const TextStyle(
                                                                   color: Colors
                                                                       .deepPurple,
@@ -150,7 +149,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                       .w500),
                                                               maxLines: 6,
                                                             )),
-                                                        Text("Points: " + ds[index].data['puntos'].toString()),
+                                                        Text("Points: " + documents[index].get('puntos').toString()),
                                                       ],
                                                     ),
                                                   ),

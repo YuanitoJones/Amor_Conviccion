@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class EmailSignInProvider{
@@ -13,6 +14,7 @@ class EmailSignInProvider{
       );
       final updateUser = FirebaseAuth.instance.currentUser;
       updateUser?.updateDisplayName(name);
+      await DatabaseService(uid: user.uid).updateUserData(name, email, 0);
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
