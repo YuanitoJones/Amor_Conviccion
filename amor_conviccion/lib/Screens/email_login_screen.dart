@@ -1,4 +1,3 @@
-import 'package:amor_conviccion/Screens/user_info_screen.dart';
 import 'package:amor_conviccion/services/userData.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';

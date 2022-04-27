@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import '../Screens/user_info_screen.dart';
 import 'database.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {

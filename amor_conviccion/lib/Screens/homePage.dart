@@ -3,7 +3,6 @@ import 'package:amor_conviccion/Screens/lessons_main_screen.dart';
 import 'package:amor_conviccion/Screens/sign_in_screen.dart';
 import 'package:amor_conviccion/Screens/user_info_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

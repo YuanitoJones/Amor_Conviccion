@@ -1,7 +1,5 @@
 import 'package:amor_conviccion/services/database.dart';
-import 'package:amor_conviccion/services/storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:amor_conviccion/services/storage_service.dart';
 
 class EmailSignInProvider{
   final FirebaseAuth _auth = FirebaseAuth.instance;
