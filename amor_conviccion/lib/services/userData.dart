@@ -1,5 +1,7 @@
 import 'package:amor_conviccion/services/database.dart';
+import 'package:amor_conviccion/services/storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:amor_conviccion/services/storage_service.dart';
 
 class EmailSignInProvider{
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,7 +16,7 @@ class EmailSignInProvider{
       );
       final updateUser = FirebaseAuth.instance.currentUser;
       updateUser?.updateDisplayName(name);
-      await DatabaseService(uid: user.uid).updateUserData(name, email, 0);
+      await DatabaseService(uid: user.uid).updateUserData(name, email, 0, 'https://www.woolha.com/media/2020/03/eevee.png');
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;

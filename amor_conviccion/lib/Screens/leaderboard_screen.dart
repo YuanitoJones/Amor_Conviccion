@@ -118,12 +118,19 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                 children: <Widget>[
                                                   Padding(
                                                     padding: const EdgeInsets.only(
-                                                        top: 10.0, left: 15.0),
+                                                        top: 7.0, left: 15.0, bottom: 7.0),
                                                     child: Row(
                                                       children: <Widget>[
                                                         CircleAvatar(
-                                                            child: Avatar(),
-                                                        ),
+                                                            child: Container(
+                                                                decoration: BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                    image: DecorationImage(
+                                                                        image: NetworkImage(documents[index]
+                                                                            .get('imagen')),
+                                                                        fit: BoxFit
+                                                                            .fill)))),
                                                       ],
                                                     ),
                                                   ),

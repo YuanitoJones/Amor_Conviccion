@@ -5,11 +5,12 @@ class DatabaseService{
   DatabaseService({ required this.uid });
   final CollectionReference puntuacion = FirebaseFirestore.instance.collection('puntuacion');
 
-  Future updateUserData(String name, String email, int points) async {
+  Future updateUserData(String name, String email, int points, String url) async {
     return await puntuacion.doc(uid).set({
       'nombre': name,
       'correo': email,
-      'puntos': points
+      'puntos': points,
+      'imagen': url
     });
   }
 
