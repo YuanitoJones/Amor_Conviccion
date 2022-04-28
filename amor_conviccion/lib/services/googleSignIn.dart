@@ -6,14 +6,11 @@ import 'database.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
-  GoogleSignInAccount? _user;
 
-  GoogleSignInAccount get user => _user!;
 
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) return;
-    _user = googleUser;
 
     final googleAuth = await googleUser.authentication;
 
@@ -25,7 +22,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
     final uid = user!.uid;
-    await DatabaseService(uid: uid).updateUserData(_user!.displayName.toString(), _user!.email, 0, user!.photoURL.toString());
+    await DatabaseService(uid: uid).updateUserData(user.displayName.toString(), user.email.toString(), 0, user!.photoURL.toString());
     notifyListeners();
   }
 
