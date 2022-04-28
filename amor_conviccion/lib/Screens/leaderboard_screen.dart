@@ -9,6 +9,8 @@ class LeaderBoard extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
+
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   int i = 0;

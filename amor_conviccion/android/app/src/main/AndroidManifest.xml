@@ -2,7 +2,7 @@
     package="com.example.amor_conviccion">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application android:usesCleartextTraffic="true"
-        android:label="amor_conviccion"
+        android:label="Amor y Conviccion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

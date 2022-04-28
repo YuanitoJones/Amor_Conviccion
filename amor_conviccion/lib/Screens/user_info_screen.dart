@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/widgets/UploadPhoto.dart';
 import 'package:amor_conviccion/widgets/avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,10 @@ class UserInfoScreen extends StatelessWidget{
             const SizedBox(height: 8,),
             Text('Email: ' + user.email!,
               style: const TextStyle(color: Colors.white, fontSize: 16),),
+            const Upload(),
           ],
         ),
       ),
     );
   }
-
 }

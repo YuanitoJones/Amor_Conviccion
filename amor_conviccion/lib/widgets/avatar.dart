@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Avatar extends StatelessWidget{
   final user = FirebaseAuth.instance.currentUser!;
   Widget avatar(){
+    user.reload();
     bool flag = (user.photoURL) != null? true:false;
     return CircleAvatar(
       minRadius: 40,
@@ -18,5 +19,4 @@ class Avatar extends StatelessWidget{
   Widget build(BuildContext context) {
     return avatar();
   }
-
 }
