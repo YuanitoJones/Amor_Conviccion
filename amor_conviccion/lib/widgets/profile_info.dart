@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Avatar extends StatelessWidget{
+class ProfileInfo extends StatelessWidget{
   final user = FirebaseAuth.instance.currentUser!;
   Widget avatar(){
     user.reload();
@@ -29,17 +29,18 @@ class Avatar extends StatelessWidget{
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index){
-                  return CircleAvatar(
-                    radius: 70,
-                    backgroundColor: Colors.yellow,
-                    child: ClipOval(
-                      child: (flag)? Image.network(documents[index].get('imagen'), fit: BoxFit.fill, width: 140, height: 140,) : Image.network('https://www.woolha.com/media/2020/03/eevee.png'),
-                    ),
+                  return Column(
+                    children: <Widget>[
+                      Text('UID: ' + user.uid,
+                        style: const TextStyle(color: Colors.white, fontSize: 16),),
+                      const SizedBox(height: 8,),
+                      Text('Email: ' + user.email!,
+                        style: const TextStyle(color: Colors.white, fontSize: 16),),
+                    ],
                   );
-
                 });
           }
-    });
+        });
   }
 
   @override

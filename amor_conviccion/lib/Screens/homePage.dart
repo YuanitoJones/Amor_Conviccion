@@ -2,6 +2,7 @@ import 'package:amor_conviccion/Screens/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/lessons_main_screen.dart';
 import 'package:amor_conviccion/Screens/sign_in_screen.dart';
 import 'package:amor_conviccion/Screens/user_info_screen.dart';
+import 'package:amor_conviccion/services/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,8 +57,7 @@ class _HomePage extends State<HomePage>{
               }else{
                 EmailSignInProvider _email = EmailSignInProvider();
                 _email.signOut();
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => const SignInScreen()));
+                const Authentication();
               }
             },
           ),

@@ -13,7 +13,6 @@ class Upload extends StatefulWidget{
 }
 
 class _Upload extends State<Upload>{
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _user = FirebaseAuth.instance.currentUser!;
   Storage storage = Storage();
   @override
@@ -33,23 +32,22 @@ class _Upload extends State<Upload>{
             return;
           }
           final path = result.files.single.path;
-          final filename = result.files.single.name;
           await storage.uploadFile(path!, _user.uid);
-          changePicture();
+          await changePicture();
         },
         child: (
             const Text('Upload File')),
         );
   }
 
-  changePicture() async{
+  Future changePicture() async{
     var ref = FirebaseStorage.instance.ref().child(_user.uid);
     String url = (await ref.getDownloadURL()).toString();
     var collection = FirebaseFirestore.instance.collection('puntuacion');
     collection.doc(_user.uid).update({'imagen': url})
-    .then((value) => print('Successful'))
+    .then((value) => _user.updatePhotoURL(url))
     .catchError((error)=> print('Failed: $error'));
-    _user.updatePhotoURL(url);
+
   }
 
 }

@@ -1,5 +1,6 @@
 import 'package:amor_conviccion/widgets/UploadPhoto.dart';
 import 'package:amor_conviccion/widgets/avatar.dart';
+import 'package:amor_conviccion/widgets/profile_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,7 @@ class UserInfoScreen extends StatelessWidget{
             ),
             const SizedBox(height: 32,),
             Avatar(),
-            Text('UID: ' + user.uid,
-              style: const TextStyle(color: Colors.white, fontSize: 16),),
-            const SizedBox(height: 8,),
-            Text('Email: ' + user.email!,
-              style: const TextStyle(color: Colors.white, fontSize: 16),),
+            ProfileInfo(),
             const Upload(),
           ],
         ),
