@@ -32,7 +32,7 @@ class _Upload extends State<Upload>{
             return;
           }
           final path = result.files.single.path;
-          await storage.uploadFile(path!, _user.uid);
+          await storage.uploadFile(path!, 'Profile/'+_user.uid);
           await changePicture();
         },
         child: (
@@ -41,7 +41,7 @@ class _Upload extends State<Upload>{
   }
 
   Future changePicture() async{
-    var ref = FirebaseStorage.instance.ref().child(_user.uid);
+    var ref = FirebaseStorage.instance.ref().child('Profile/'+_user.uid);
     String url = (await ref.getDownloadURL()).toString();
     var collection = FirebaseFirestore.instance.collection('puntuacion');
     collection.doc(_user.uid).update({'imagen': url})
