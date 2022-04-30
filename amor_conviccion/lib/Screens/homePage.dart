@@ -16,10 +16,7 @@ class HomePage extends StatefulWidget{
 
   @override
   _HomePage createState() => _HomePage();
-
-
 }
-
 class _HomePage extends State<HomePage>{
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
@@ -63,10 +60,9 @@ class _HomePage extends State<HomePage>{
           ),
         ],
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blueAccent,
         selectedFontSize: size.width*0.04,
         selectedIconTheme: const IconThemeData(color: Colors.amberAccent),

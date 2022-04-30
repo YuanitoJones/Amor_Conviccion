@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Avatar extends StatelessWidget{
+class UserPoints extends StatelessWidget{
   final user = FirebaseAuth.instance.currentUser!;
-  Widget avatar(){
-    user.reload();
-    bool flag = (user.photoURL) != null? true:false;
+
+  UserPoints({Key? key}) : super(key: key);
+  Widget userPoints(Size size){
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('puntuacion')
@@ -14,35 +14,35 @@ class Avatar extends StatelessWidget{
             .snapshots(),
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: const CircularProgressIndicator(),);
+            return const Center(child: CircularProgressIndicator(),);
           }
           else if(snapshot.hasError){
-            return Text('Algo salio mal');
+            return Text('Algo salvo mal',
+            style: TextStyle(
+              fontSize: size.height*0.025,
+              color: const Color.fromARGB(181, 0, 0, 0),
+            ),);
           }
           else{
             var documents = (snapshot.data!).docs;
-            if(documents != null){
-              print (documents[0].get('nombre'));
-            }
             return ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index){
-                  return CircleAvatar(
-                    radius: 70,
-                    backgroundColor: Colors.yellow,
-                    child: ClipOval(
-                      child: (flag)? Image.network(documents[index].get('imagen'), fit: BoxFit.fill, width: 140, height: 140,) : Image.network('https://www.woolha.com/media/2020/03/eevee.png'),
-                    ),
+                  return Column(
+                    children: <Widget>[
+                      Text((documents[index].get('puntos').toString()),
+                        style: const TextStyle(color: Colors.black54, fontSize: 30, fontWeight: FontWeight.bold),),
+                    ],
                   );
                 });
           }
-    });
+        });
   }
-
   @override
   Widget build(BuildContext context) {
-    return avatar();
+    Size size = MediaQuery.of(context).size;
+    return userPoints(size);
   }
 }
