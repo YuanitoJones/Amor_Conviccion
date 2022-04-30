@@ -54,7 +54,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                               Row(
                                 children: <Widget>[
                                   SizedBox(
-                                      width: size.width*0.15,
+                                      width: size.width*0.2,
                                       child: UserPoints()
                                   ),
                                   SizedBox(
