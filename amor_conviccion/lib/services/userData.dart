@@ -33,7 +33,6 @@ class EmailSignInProvider{
 
   //SIGN OUT METHOD
   Future<void>signOut() async {
-    await _auth.signOut();
-    FirebaseAuth.instance.signOut();
+    await FirebaseAuth.instance.signOut();
   }
 }

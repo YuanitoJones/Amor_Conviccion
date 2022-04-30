@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class Avatar extends StatelessWidget{
   final user = FirebaseAuth.instance.currentUser!;
   Widget avatar(){
-    user.reload();
-    bool flag = (user.photoURL) != null? true:false;
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('puntuacion')
@@ -33,7 +31,7 @@ class Avatar extends StatelessWidget{
                     radius: 70,
                     backgroundColor: Colors.yellow,
                     child: ClipOval(
-                      child: (flag)? Image.network(documents[index].get('imagen'), fit: BoxFit.fill, width: 140, height: 140,) : Image.network('https://www.woolha.com/media/2020/03/eevee.png'),
+                      child: Image.network(documents[index].get('imagen'), fit: BoxFit.fill, width: 140, height: 140,)
                     ),
                   );
                 });
