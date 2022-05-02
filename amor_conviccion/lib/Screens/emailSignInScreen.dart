@@ -1,4 +1,5 @@
 import 'package:amor_conviccion/Screens/homePage.dart';
+import 'package:amor_conviccion/services/authentication.dart';
 import 'package:amor_conviccion/services/userData.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +35,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
       then((result){
         if (result == null){
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const HomePage()));
+              context, MaterialPageRoute(builder: (context) => const Authentication()));
         }else{
           showDialog(
               barrierDismissible: false,

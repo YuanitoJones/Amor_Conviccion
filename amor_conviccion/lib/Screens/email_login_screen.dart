@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/services/authentication.dart';
 import 'package:amor_conviccion/services/userData.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,34 +31,36 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     try {
-      var foo = await es.signIn(email: txt1Controller.text, password: txt2Controller.text);
-      if (foo==null){
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }else{
-        showDialog(
-            barrierDismissible: false,
-            context: context, builder: (context){
-          return AlertDialog(
-            title: Text('Algo salio mal'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text('Correo y/o contraseña incorrectos'),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    child: Text('Aceptar'),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
+      await es.signIn(email: txt1Controller.text, password: txt2Controller.text)
+      .then((result){
+        if (result==null){
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const Authentication()));
+        }else{
+          showDialog(
+              barrierDismissible: false,
+              context: context, builder: (context){
+            return AlertDialog(
+              title: Text('Algo salio mal'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const Text('Correo y/o contraseña incorrectos'),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      child: Text('Aceptar'),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        });
-      }
+                ],
+              ),
+            );
+          });
+        }
+      });
     } catch (e) {
       if (e is FirebaseAuthException) {
         debugPrint(e.message!);

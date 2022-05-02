@@ -54,7 +54,6 @@ class _HomePage extends State<HomePage>{
               }else{
                 EmailSignInProvider _email = EmailSignInProvider();
                 _email.signOut();
-                const Authentication();
               }
             },
           ),
