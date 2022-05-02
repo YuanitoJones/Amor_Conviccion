@@ -21,10 +21,18 @@ class _Profile_Info extends State<ProfileInfo> {
   TextEditingController txt2Controller = TextEditingController();
 
   void editableTextFields(){
+    final _auth = FirebaseAuth.instance;
     if(widget.actionbutton){
       setState(() {
+        if (_auth.currentUser?.providerData[0].providerId ==
+            "google.com") {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('No es posible editar correo'),
+            duration: Duration(milliseconds: 2500),));
+        }else{
+          widget.emailfield = !widget.emailfield;
+        }
         widget.namefield = !widget.namefield;
-        widget.emailfield = !widget.emailfield;
         widget.actionbutton = !widget.actionbutton;
       });
     }else{
@@ -35,6 +43,11 @@ class _Profile_Info extends State<ProfileInfo> {
       service.updateProfile(txt1Controller.text, txt2Controller.text);
       setState(() {
         loading = !loading;
+        widget.namefield = !widget.namefield;
+        widget.actionbutton = !widget.actionbutton;
+        if(widget.emailfield == false){
+          widget.emailfield = !widget.emailfield;
+        }
       });
     }
   }
@@ -122,7 +135,7 @@ class _Profile_Info extends State<ProfileInfo> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: TextFormField(
-                              readOnly: widget.namefield,
+                              readOnly: widget.emailfield,
                               controller: txt2Controller..text = documents[0].get('correo'),
                               decoration: InputDecoration(
                                 fillColor: Colors.white,

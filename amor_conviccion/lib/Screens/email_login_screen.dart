@@ -34,6 +34,29 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
       if (foo==null){
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }else{
+        showDialog(
+            barrierDismissible: false,
+            context: context, builder: (context){
+          return AlertDialog(
+            title: Text('Algo salio mal'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Text('Correo y/o contraseña incorrectos'),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    child: Text('Aceptar'),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
       }
     } catch (e) {
       if (e is FirebaseAuthException) {

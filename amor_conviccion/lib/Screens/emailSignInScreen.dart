@@ -30,9 +30,36 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     try {
-      await es.signUp(email: txt1Controller.text, password: txt2Controller.text, name: txt3Controller.text);
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+      await es.signUp(email: txt1Controller.text, password: txt2Controller.text, name: txt3Controller.text).
+      then((result){
+        if (result == null){
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const HomePage()));
+        }else{
+          showDialog(
+              barrierDismissible: false,
+              context: context, builder: (context){
+                return AlertDialog(
+                  title: Text('Algo salio mal'),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('Es posible que el correo ya se encuentre registrado'),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          child: Text('Aceptar'),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            },
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+          });
+        }
+      });
     } catch (e) {
       if (e is FirebaseAuthException) {
         debugPrint(e.message!);
