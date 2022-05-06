@@ -14,7 +14,7 @@ class _MainLessons extends State<MainLessons> {
         children: [
           Container(
             // Espacio extra de arriba
-            // color: Colors.green,
+            color: Colors.green,
             height: size.height * 0.025,
           ),
           Container(
@@ -23,7 +23,7 @@ class _MainLessons extends State<MainLessons> {
             child: Row(
               children: [
                 Container(
-                  // color: Colors.red,
+                  color: Colors.red,
                   width: size.width * 0.5,
                   height: size.height * 0.2,
                   child: Image.asset(
@@ -31,7 +31,7 @@ class _MainLessons extends State<MainLessons> {
                   ),
                 ),
                 Container(
-                  // color: Colors.purple,
+                  color: Colors.purple,
                   width: size.width * 0.5,
                   height: size.height * 0.2,
                   child: Column(
@@ -57,18 +57,27 @@ class _MainLessons extends State<MainLessons> {
               ],
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: size.height * 0.5882,
-            // color: Colors.yellow,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                BotonLeccion('Drogodependencia', 'Bloque #1'),
-                BotonLeccion('Drogodependencia', 'Bloque #2'),
-                BotonLeccion('Drogodependencia', 'Bloque #3'),
-              ],
-            ),
+          // Container(
+          //   width: double.infinity,
+          //   // height: size.height * 0.5882,
+          //   height: size.height * 0.55,
+          //   color: Colors.yellow,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       BotonLeccion('Drogodependencia', 'Bloque #1'),
+          //       BotonLeccion('Drogodependencia', 'Bloque #2'),
+          //       BotonLeccion('Drogodependencia', 'Bloque #3'),
+          //     ],
+          //   ),
+          // ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              BotonLeccion('Drogodependencia', 'Bloque #1'),
+              BotonLeccion('Drogodependencia', 'Bloque #2'),
+              BotonLeccion('Drogodependencia', 'Bloque #3'),
+            ],
           ),
         ],
       ),
@@ -78,8 +87,8 @@ class _MainLessons extends State<MainLessons> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-      home: main(size),
+    return Scaffold(
+      body: main(size),
     );
   }
 }
@@ -94,7 +103,6 @@ class BotonLeccion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 60, right: 60),
-      width: double.infinity,
       child: RaisedButton(
         padding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
