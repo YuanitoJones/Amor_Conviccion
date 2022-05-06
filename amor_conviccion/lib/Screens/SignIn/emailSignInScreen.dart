@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/Screens/homePage.dart';
+import 'package:amor_conviccion/Screens/HomePage/homePage.dart';
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:amor_conviccion/services/userData.dart';
 import 'package:email_validator/email_validator.dart';
