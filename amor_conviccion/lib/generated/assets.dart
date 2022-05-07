@@ -12,5 +12,6 @@ class Assets {
   static const String logosGoogleLogo = 'assets/logos/google_logo.png';
   static const String logosLogo = 'assets/logos/logo.png';
   static const String logosPentagono = 'assets/logos/pentagono.png';
+  static const String videosMeeting   = 'assets/videos/prueba.mp4';
 
 }
