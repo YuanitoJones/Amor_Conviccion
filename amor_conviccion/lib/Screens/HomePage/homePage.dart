@@ -10,19 +10,19 @@ import 'package:provider/provider.dart';
 import '../../services/googleSignIn.dart';
 import '../../services/userData.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
 
   @override
   _HomePage createState() => _HomePage();
 }
-class _HomePage extends State<HomePage>{
+
+class _HomePage extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    const MainLessons(),
+    MainLessons(),
     LeaderBoard(),
     UserInfoScreen(),
   ];
@@ -32,8 +32,7 @@ class _HomePage extends State<HomePage>{
     });
   }
 
-
-  Widget main(size){
+  Widget main(size) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
@@ -41,17 +40,20 @@ class _HomePage extends State<HomePage>{
         title: const Text('El Pentágono'),
         centerTitle: true,
         actions: [
-          TextButton(child: const Text('Logout',
-            style: TextStyle(
-              color: Colors.black,
+          TextButton(
+            child: const Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
-          ),
-            onPressed: (){
+            onPressed: () {
               if (_auth.currentUser?.providerData[0].providerId ==
                   "google.com") {
-                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.signOutFromGoogle();
-              }else{
+              } else {
                 EmailSignInProvider _email = EmailSignInProvider();
                 _email.signOut();
               }
@@ -63,7 +65,7 @@ class _HomePage extends State<HomePage>{
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blueAccent,
-        selectedFontSize: size.width*0.04,
+        selectedFontSize: size.width * 0.04,
         selectedIconTheme: const IconThemeData(color: Colors.amberAccent),
         selectedItemColor: Colors.yellow[800],
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -95,5 +97,3 @@ class _HomePage extends State<HomePage>{
     );
   }
 }
-
-  
