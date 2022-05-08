@@ -232,7 +232,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: VideoPlayerScreen(),
+        home: SplashScreen(),
       ),
     );
   }
