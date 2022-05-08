@@ -53,7 +53,9 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
-        Navigator.pop(context);
+        Timer(Duration(seconds: 1), (){
+          Navigator.of(context).pop();
+        });
       }
     });
   }

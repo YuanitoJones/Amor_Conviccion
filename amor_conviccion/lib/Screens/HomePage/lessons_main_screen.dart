@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainLessons extends StatefulWidget {
@@ -70,7 +71,10 @@ class _MainLessons extends State<MainLessons> {
               ],
             ),
             child: TextButton(
-              onPressed: null,
+              onPressed: (){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => LessonSelectionScreen()));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -198,8 +202,6 @@ class _MainLessons extends State<MainLessons> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-      home: main(size),
-    );
+    return main(size);
   }
 }
