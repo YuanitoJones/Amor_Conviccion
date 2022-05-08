@@ -194,6 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
+import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
 import 'package:amor_conviccion/Screens/splashScreen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -230,7 +231,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: const SplashScreen(),
+        home: LessonSelectionScreen(),
       ),
     );
   }
