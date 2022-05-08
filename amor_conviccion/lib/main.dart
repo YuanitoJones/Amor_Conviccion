@@ -194,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
+import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/Screens/splashScreen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -202,6 +202,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 import 'Screens/SignIn/sign_in_screen.dart';
 
@@ -231,7 +232,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: const SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }
