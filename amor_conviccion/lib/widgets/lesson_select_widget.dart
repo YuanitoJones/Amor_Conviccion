@@ -2,12 +2,14 @@ import 'package:amor_conviccion/Screens/HomePage/homePage.dart';
 import 'package:amor_conviccion/Screens/HomePage/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/Screens/SignIn/sign_in_screen.dart';
+import 'package:amor_conviccion/services/authentication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LessonSelect extends StatefulWidget{
-  const LessonSelect(this.texto, this.flag,{Key? key, }) : super(key: key);
+  const LessonSelect(this.texto, this.flag, this.lesson, {Key? key, }) : super(key: key);
 
+  final int lesson;
   final String texto;
   final bool flag;
   @override
@@ -18,46 +20,73 @@ class LessonSelect extends StatefulWidget{
 class _LessonSelect extends State<LessonSelect>{
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Stack(
+      children: [
+        Container(
       width: 110,
       height: 110,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          elevation: 8.0,
-          shadowColor: Colors.black.withOpacity(1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(90),
+                elevation: 8.0,
+                shadowColor: Colors.black.withOpacity(1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(90),
 
-            side: (widget.flag)? BorderSide(color: Colors.green, width: 4): BorderSide(color: Colors.red, width: 4),
+                  side: (widget.flag)? BorderSide(color: Colors.green, width: 3): BorderSide(color: Colors.red, width: 3),
+                ),
+                primary: Colors.white
+            ),
+            child: Lessonicon(widget.texto),
+            onPressed: (){
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => (widget.texto=='Imagen')? const HomePage()
+                  : (widget.texto=='Lectura')? const SignInScreen()
+                  : (widget.texto == 'Video')? const VideoPlayerScreen()
+                  : const Authentication()));
+            },
           ),
-          primary: Colors.white
+    ),
+    Positioned(
+        child: buildEditIcon(Colors.blue),
+          top: 0,
+          right: 0,
         ),
-        child: Lessonicon(widget.texto),
-        onPressed: (){
-          if(widget.texto=='Imagen'){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const HomePage()));
-          }else if(widget.texto == 'Lectura'){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const SignInScreen()));
-          }else if(widget.texto == 'Video'){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const VideoPlayerScreen()));
-          }
-        },
-      ),
+      ],
     );
 
   }
   Icon Lessonicon(String texto){
     if(widget.texto=='Imagen'){
-      return Icon(Icons.book, size: 70, color: Colors.blue,);
+      return Icon(Icons.book, size: 60, color: Colors.blue,);
     }else if(widget.texto == 'Lectura'){
-      return Icon(Icons.account_circle, size: 70, color: Colors.blue,);
+      return Icon(Icons.account_circle, size: 60, color: Colors.blue,);
     }else if(widget.texto == 'Video'){
-      return Icon(Icons.video_call_rounded, size: 70, color: Colors.blue,);
+      return Icon(Icons.video_call_rounded, size: 60, color: Colors.blue,);
     }else{
-      return Icon(Icons.dangerous, size: 70, color: Colors.blue,);
+      return Icon(Icons.dangerous, size: 60, color: Colors.blue,);
     }
   }
+
+
+  Widget buildEditIcon(Color color)=> buildCircle(
+      child: buildCircle(
+          child: Text(widget.lesson.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11),),
+          all: 12,
+          color: color),
+      all: 3,
+      color: (widget.flag)? Colors.green : Colors.red,);
+
+
+
+  Widget buildCircle({
+  required Widget child,
+    required double all,
+    required Color color
+}) => ClipOval(
+    child: Container(
+      padding: EdgeInsets.all(all),
+      color: color,
+      child: child,
+    ),
+  );
 }
