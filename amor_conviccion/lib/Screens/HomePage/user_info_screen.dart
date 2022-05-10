@@ -35,50 +35,54 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                         Column(
                           children: <Widget>[
                             SizedBox(height: size.height*0.08,),
-                            Container(
+                            SizedBox(
                                 width: size.width * 0.6,
-                                height: size.height * 0.2,
+                                height: size.height * 0.23,
                                 child: Avatar()
                             ),
-                            Upload(),
+                            const Upload(),
                           ],
                         ),
-                        Container(
+                        SizedBox(
                           width: size.width * 0.4,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, size.height*0.03, 0, 0),
-                                child: Text(
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
                                   'Puntos',
                                   style: TextStyle(
                                       fontSize: size.height * 0.035,
                                       fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                      width: size.width*0.2,
-                                      child: UserPoints()
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SizedBox(
+                                          width: size.width*0.2,
+                                          child: UserPoints()
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(0, size.height*0.035, 0, 0),
+                                        child: SizedBox(
+                                          width: size.width*0.06,
+                                          child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: size.width*0.06,
-                                    child: Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
-                                  )
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       ],
                     ),
                   ),
-                  Container(
-                    child: ProfileInfo(),
-                  ),
+                  ProfileInfo(),
                   ElevatedButton(
                       onPressed: (){
                         if (_auth.currentUser?.providerData[0].providerId ==
@@ -90,7 +94,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                           _email.signOut();
                         }
                       },
-                      child: Text('logout'))
+                      child: const Text('logout'))
                 ],
               ),
             ],
