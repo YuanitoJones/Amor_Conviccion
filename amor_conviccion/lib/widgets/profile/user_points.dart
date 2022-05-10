@@ -30,12 +30,12 @@ class UserPoints extends StatelessWidget{
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index){
-                  return Column(
-                    children: <Widget>[
-                      Text((documents[index].get('puntos').toString()),
-                        style: const TextStyle(color: Colors.black54, fontSize: 30, fontWeight: FontWeight.bold),),
-                    ],
-                  );
+                  return Text((documents[index].get('puntos').toString()),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.black54,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),);
                 });
           }
         });

@@ -58,14 +58,14 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     SizedBox(
                                         width: size.width*0.2,
                                         child: UserPoints()
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.fromLTRB(0, size.height*0.040, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                                       child: SizedBox(
                                         width: size.width*0.07,
                                         child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
