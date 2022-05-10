@@ -77,12 +77,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                 print (documents[0].get('nombre'));
                               }
                               i = 0;
-                              int places =10;
-                              if(documents.length<10){
-                                places = documents.length;
-                              }
                               return ListView.builder(
-                                  itemCount: places,
+                                  itemCount: documents.length,
                                   itemBuilder: (context, index) {
                                     print(index);
                                     if (index >= 1) {

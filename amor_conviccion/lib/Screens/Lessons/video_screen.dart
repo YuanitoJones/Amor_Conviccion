@@ -1,12 +1,9 @@
 import 'dart:async';
 
-import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
-
-import '../../services/authentication.dart';
 
 class VideoPlayerScreen extends StatefulWidget{
   const VideoPlayerScreen({Key? key}) : super(key: key);
@@ -57,7 +54,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
         Timer(Duration(seconds: 1), (){
-          Navigator.pop(context);
+          Navigator.of(context).pop();
         });
       }
     });
