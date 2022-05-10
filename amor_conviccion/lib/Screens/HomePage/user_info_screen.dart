@@ -46,7 +46,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                         SizedBox(
                           width: size.width * 0.4,
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
+                            padding: EdgeInsets.fromLTRB(0, size.width*0.08, size.width*0.07, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +66,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                           child: UserPoints()
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.fromLTRB(0, size.height*0.035, 0, 0),
+                                        padding: EdgeInsets.fromLTRB(0, size.height*0.041, 0, 0),
                                         child: SizedBox(
                                           width: size.width*0.06,
                                           child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),

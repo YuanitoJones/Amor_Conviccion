@@ -79,7 +79,7 @@ class _Profile_Info extends State<ProfileInfo> {
                   itemCount: 1,
                   itemBuilder: (context, index) {
                     return Container(
-                      padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
+                      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                       child: Column(
                         children: <Widget>[
                           Container(

@@ -21,7 +21,7 @@ class _QuestionField extends State<QuestionField>{
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, size.width*0.06, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, size.width*0.11, 0, 0),
       child: Center(
           child: GestureDetector(
             onTap: () {
