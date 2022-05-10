@@ -37,28 +37,6 @@ class _HomePage extends State<HomePage>{
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('El Pentágono'),
-        centerTitle: true,
-        actions: [
-          TextButton(child: const Text('Logout',
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-            onPressed: (){
-              if (_auth.currentUser?.providerData[0].providerId ==
-                  "google.com") {
-                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.signOutFromGoogle();
-              }else{
-                EmailSignInProvider _email = EmailSignInProvider();
-                _email.signOut();
-              }
-            },
-          ),
-        ],
-      ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
