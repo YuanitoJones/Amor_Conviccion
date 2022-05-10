@@ -34,7 +34,7 @@ class UserPoints extends StatelessWidget{
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black54,
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold),);
                 });
           }

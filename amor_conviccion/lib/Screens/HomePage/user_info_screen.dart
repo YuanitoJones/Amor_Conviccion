@@ -70,7 +70,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                                       child: SizedBox(
-                                        width: size.width*0.07,
+                                        width: size.width*0.065,
                                         child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
                                       ),
                                     )
