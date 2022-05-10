@@ -41,7 +41,7 @@ class _LessonSelect extends State<LessonSelect>{
             onPressed: (){
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => (widget.texto=='Imagen')? const HomePage()
-                  : (widget.texto=='Lectura')? const CuestionarioScreen()
+                  : (widget.texto=='Lectura')? CuestionarioScreen()
                   : (widget.texto == 'Video')? const VideoPlayerScreen()
                   : const Authentication()));
             },
@@ -71,10 +71,10 @@ class _LessonSelect extends State<LessonSelect>{
 
   Widget buildEditIcon(Color color)=> buildCircle(
       child: buildCircle(
-          child: Text(widget.lesson.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11),),
+          child: Text(widget.lesson.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),),
           all: 12,
           color: color),
-      all: 3,
+      all: 1.5,
       color: (widget.flag)? Colors.green : Colors.red,);
 
 

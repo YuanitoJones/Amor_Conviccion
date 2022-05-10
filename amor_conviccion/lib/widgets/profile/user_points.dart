@@ -7,11 +7,11 @@ class UserPoints extends StatelessWidget{
 
   UserPoints({Key? key}) : super(key: key);
   Widget userPoints(Size size){
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
+    return FutureBuilder<QuerySnapshot>(
+        future: FirebaseFirestore.instance
             .collection('puntuacion')
             .where('correo', isEqualTo: user.email)
-            .snapshots(),
+            .get(),
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator(),);

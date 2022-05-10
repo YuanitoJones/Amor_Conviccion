@@ -1,8 +1,8 @@
 import 'package:amor_conviccion/services/userData.dart';
-import 'package:amor_conviccion/widgets/UploadPhoto.dart';
-import 'package:amor_conviccion/widgets/avatar.dart';
-import 'package:amor_conviccion/widgets/profile_info.dart';
-import 'package:amor_conviccion/widgets/user_points.dart';
+import 'package:amor_conviccion/widgets/profile/UploadPhoto.dart';
+import 'package:amor_conviccion/widgets/profile/avatar.dart';
+import 'package:amor_conviccion/widgets/profile/profile_info.dart';
+import 'package:amor_conviccion/widgets/profile/user_points.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +31,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                   SizedBox(
                     width: double.infinity,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: <Widget>[
@@ -43,13 +44,12 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                             const Upload(),
                           ],
                         ),
-                        SizedBox(
+                        Container(
                           width: size.width * 0.4,
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, size.width*0.08, size.width*0.07, 0),
+                            padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
                                   'Puntos',
@@ -57,23 +57,21 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                       fontSize: size.height * 0.035,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      SizedBox(
-                                          width: size.width*0.2,
-                                          child: UserPoints()
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    SizedBox(
+                                        width: size.width*0.2,
+                                        child: UserPoints()
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(0, size.height*0.040, 0, 0),
+                                      child: SizedBox(
+                                        width: size.width*0.07,
+                                        child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.fromLTRB(0, size.height*0.041, 0, 0),
-                                        child: SizedBox(
-                                          width: size.width*0.06,
-                                          child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
                               ],
                             ),
@@ -83,6 +81,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                     ),
                   ),
                   ProfileInfo(),
+                  SizedBox(height: size.height*0.02,),
                   ElevatedButton(
                       onPressed: (){
                         if (_auth.currentUser?.providerData[0].providerId ==

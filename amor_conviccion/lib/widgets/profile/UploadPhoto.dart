@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/services/UploadPicture.dart';
+import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/services/storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';

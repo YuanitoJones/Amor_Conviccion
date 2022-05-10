@@ -19,9 +19,6 @@ class Avatar extends StatelessWidget{
           }
           else{
             var documents = (snapshot.data!).docs;
-            if(documents != null){
-              print (documents[0].get('nombre'));
-            }
             return ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,

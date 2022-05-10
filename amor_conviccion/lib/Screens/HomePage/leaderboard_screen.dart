@@ -9,10 +9,6 @@ class LeaderBoard extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
-
-
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   int i = 0;
   Color my = Colors.brown, checkMyColor = Colors.white;
 
@@ -56,12 +52,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
                     ),
                   ),
                   Flexible(
-                      child: StreamBuilder<QuerySnapshot>(
-                          stream: FirebaseFirestore.instance
-                              .collection('puntuacion')
+                      child: FutureBuilder<QuerySnapshot>(
+                          future: FirebaseFirestore.instance.collection('puntuacion')
                               .where('puntos', isGreaterThanOrEqualTo: 0)
-                              .orderBy('puntos', descending: true)
-                              .snapshots(),
+                          .orderBy('puntos', descending: true)
+                              .get(),
                           builder: (context, snapshot) {
                             if (snapshot.hasError){
                               return Text('Algo salio mal');
@@ -73,9 +68,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                             }
                             else{
                               var documents = (snapshot.data!).docs;
-                              if(documents != null){
-                                print (documents[0].get('nombre'));
-                              }
                               i = 0;
                               int places =10;
                               if(documents.length<10){
@@ -86,17 +78,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                   itemBuilder: (context, index) {
                                     print(index);
                                     if (index >= 1) {
-                                      print('Greater than 1');
-                                      if (documents[index]
-                                          .get('puntos') ==
-                                          documents[index - 1]
-                                              .get('puntos')) {
-                                        print('Igual');
-                                      } else {
+                                      if (documents[index].get('puntos') != documents[index - 1].get('puntos')) {
                                         i++;
                                       }
                                     }
-
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5.0, vertical: 5.0),
@@ -134,7 +119,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                         image: NetworkImage(documents[index]
                                                                             .get('imagen')),
                                                                         fit: BoxFit
-                                                                            .fill)))),
+                                                                            .fill)
+                                                                )
+                                                            )
+                                                        ),
                                                       ],
                                                     ),
                                                   ),

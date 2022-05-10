@@ -1,13 +1,17 @@
 import 'dart:async';
 
+import 'package:amor_conviccion/widgets/questionaire/fail_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/question%20_field_widget.dart';
+import 'package:amor_conviccion/widgets/questionaire/success_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CuestionarioScreen extends StatefulWidget{
-  const CuestionarioScreen({Key? key}) : super(key: key);
+  CuestionarioScreen({Key? key}) : super(key: key);
 
   _CuestionarioScreen createState() => _CuestionarioScreen();
+
+  int puntos = 0;
 }
 
 class _CuestionarioScreen extends State<CuestionarioScreen>{
@@ -57,23 +61,41 @@ class _CuestionarioScreen extends State<CuestionarioScreen>{
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            QuestionField(flag, map1[0]),
-            QuestionField(flag, map1[1]),
-            QuestionField(flag, map1[2]),
-            QuestionField(flag, map1[3]),
-            QuestionField(flag, map1[4]),
-            QuestionField(flag, map1[5]),
-            QuestionField(flag, map1[6]),
-            QuestionField(flag, map1[7]),
-            QuestionField(flag, map1[8]),
+            QuestionField(flag, map1[0], 2, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[1], 1, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[2], 2, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[3], 1, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[4], 3, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[5], 2, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[6], 1, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[7], 3, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+            QuestionField(flag, map1[8], 2, answersCallBack: (val) => setState(
+                    () => widget.puntos += val),),
+
+            ElevatedButton(
+                onPressed: () => results(widget.puntos),
+                child: Text('Terminar'))
           ],
         ),
       )
     );
+  }
+  void results(int points){
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen()
+        : FailScreen()));
   }
 }

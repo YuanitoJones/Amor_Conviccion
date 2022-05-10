@@ -14,3 +14,12 @@ class ChangePicture{
         .catchError((error)=> print('Failed: $error'));
   }
 }
+
+class UpdatePoints{
+  Future updatepoints(int points) async{
+    final _user = FirebaseAuth.instance.currentUser!;
+    var collection = FirebaseFirestore.instance.collection('puntuacion');
+    collection.doc(_user.uid).update({'puntos': points})
+        .catchError((error)=> print('Failed: $error'));
+  }
+}
