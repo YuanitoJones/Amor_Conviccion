@@ -51,17 +51,20 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Text(
-                                  'Puntos',
-                                  style: TextStyle(
-                                      fontSize: size.height * 0.035,
-                                      fontWeight: FontWeight.bold),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(size.width*0.04, 0, 0, 0),
+                                  child: Text(
+                                    'Puntos',
+                                    style: TextStyle(
+                                        fontSize: size.height * 0.035,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     SizedBox(
-                                        width: size.width*0.2,
+                                        width: size.width*0.15,
                                         child: UserPoints()
                                     ),
                                     Padding(
