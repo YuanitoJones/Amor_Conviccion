@@ -19,7 +19,9 @@ class UpdatePoints{
   Future updatepoints(int points) async{
     final _user = FirebaseAuth.instance.currentUser!;
     var collection = FirebaseFirestore.instance.collection('puntuacion');
-    collection.doc(_user.uid).update({'puntos': points})
-        .catchError((error)=> print('Failed: $error'));
+    FirebaseFirestore.instance.collection('puntuacion').doc(_user.uid).get().then((DocumentSnapshot document){
+      collection.doc(_user.uid).update({'puntos': document['puntos'] + points})
+          .catchError((error)=> print('Failed: $error'));
+    });
   }
 }

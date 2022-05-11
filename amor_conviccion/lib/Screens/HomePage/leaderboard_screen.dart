@@ -76,7 +76,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               return ListView.builder(
                                   itemCount: places,
                                   itemBuilder: (context, index) {
-                                    print(index);
                                     if (index >= 1) {
                                       if (documents[index].get('puntos') != documents[index - 1].get('puntos')) {
                                         i++;

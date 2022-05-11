@@ -95,7 +95,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen>{
   }
   void results(int points){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen()
+        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen('Lectura')
         : FailScreen()));
   }
 }
