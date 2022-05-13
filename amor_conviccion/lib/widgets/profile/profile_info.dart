@@ -52,6 +52,7 @@ class _Profile_Info extends State<ProfileInfo> {
     }
   }
   final user = FirebaseAuth.instance.currentUser!;
+  late bool edit = true;
     @override
     Widget build(BuildContext context) {
       Size size = MediaQuery.of(context).size;
@@ -87,6 +88,7 @@ class _Profile_Info extends State<ProfileInfo> {
                             child: const Text('Nombre',
                             style: TextStyle(
                               fontSize: 20,
+                              fontFamily: 'Comfortaa',
                               fontWeight: FontWeight.bold,
                             ),),
                           ),
@@ -100,6 +102,9 @@ class _Profile_Info extends State<ProfileInfo> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: TextFormField(
+                              style: TextStyle(
+                                fontFamily: 'Comfortaa'
+                              ),
                               readOnly: widget.namefield,
                               controller: txt1Controller..text = documents[index].get('nombre'),
                               decoration: InputDecoration(
@@ -122,6 +127,7 @@ class _Profile_Info extends State<ProfileInfo> {
                             child: const Text('Correo',
                               style: TextStyle(
                                 fontSize: 20,
+                                fontFamily: 'Comfortaa',
                                 fontWeight: FontWeight.bold,
                               ),),
                           ),
@@ -135,6 +141,9 @@ class _Profile_Info extends State<ProfileInfo> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: TextFormField(
+                              style: TextStyle(
+                                fontFamily: 'Comfortaa'
+                              ),
                               readOnly: widget.emailfield,
                               controller: txt2Controller..text = documents[0].get('correo'),
                               decoration: InputDecoration(
@@ -155,11 +164,17 @@ class _Profile_Info extends State<ProfileInfo> {
                           Container(
                             child: loading? ElevatedButton(
                               onPressed: editableTextFields,
-                              child: (widget.actionbutton)? const Text('Editar Perfil'): const Text('Guardar'),
+                              child: (widget.actionbutton)? const Text('Editar Perfil',
+                              style: TextStyle(
+                                color: Colors.white
+                              ),): const Text('Guardar', style: TextStyle(
+                                color: Colors.black
+                              ),),
                               style: ElevatedButton.styleFrom(
                                   fixedSize:Size(size.width*0.75, size.height*0.07),
-                                  primary: Colors.red,
-                                  textStyle:const TextStyle(
+                                  primary: (widget.actionbutton)? Colors.red : Colors.amber,
+                                  textStyle: const TextStyle(
+                                    fontFamily: 'Comfortaa',
                                       fontSize: 15
                                   )
                               ),

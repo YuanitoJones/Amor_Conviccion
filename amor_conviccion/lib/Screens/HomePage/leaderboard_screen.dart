@@ -140,6 +140,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                             child: Text(
                                                               documents[index].get('nombre'),
                                                               style: const TextStyle(
+                                                                fontFamily: 'Comfortaa',
                                                                   color: Colors
                                                                       .deepPurple,
                                                                   fontWeight:
@@ -147,7 +148,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                       .w500),
                                                               maxLines: 6,
                                                             )),
-                                                        Text("Points: " + documents[index].get('puntos').toString()),
+                                                        Text("Points: " + documents[index].get('puntos').toString(),style: TextStyle(fontFamily: 'Comfortaa'),),
                                                       ],
                                                     ),
                                                   ),

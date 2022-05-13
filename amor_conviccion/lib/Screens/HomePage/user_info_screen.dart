@@ -56,6 +56,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                   child: Text(
                                     'Puntos',
                                     style: TextStyle(
+                                        fontFamily: 'Comfortaa',
                                         fontSize: size.height * 0.035,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -96,7 +97,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                           _email.signOut();
                         }
                       },
-                      child: const Text('logout'))
+                      child: const Text('logout', style: TextStyle(fontFamily: 'Comfortaa'),))
                 ],
               ),
             ],

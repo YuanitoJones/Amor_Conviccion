@@ -32,6 +32,7 @@ class _Upload extends State<Upload>{
             const SnackBar(
               content: Text('No file selected',
               style: TextStyle(
+                fontFamily: 'Comfortaa',
                 fontSize: 50
               ),),
             ),

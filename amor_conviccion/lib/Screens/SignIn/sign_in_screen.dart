@@ -44,31 +44,44 @@ class _SignInScreenState extends State<SignInScreen> {
                   ],
                 ),
               ),
-              ElevatedButton.icon(
+              ElevatedButton(
                 onPressed: (){
                   final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                   provider.googleLogin();
                 },
-                icon: const FaIcon(FontAwesomeIcons.google, color: Colors.white,),
-                label: const Text('Login con Google'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    FaIcon(FontAwesomeIcons.google, color: Colors.white,),
+                    Text('Login con Google',style: TextStyle(
+                      fontFamily: 'Comfortaa'
+                    ),),
+                  ],
+                ),
                 style: ElevatedButton.styleFrom(
                     elevation: 4.0,
-                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
+                    fixedSize: Size(size.width * 0.80, size.height * 0.090),
                     primary: Colors.red,
                     textStyle: TextStyle(
-                      fontSize: size.width * 0.058,
-                      fontFamily: 'Sora',
+                      fontSize: size.width * 0.05,
                       fontWeight: FontWeight.bold,
                     )),
               ),
               SizedBox(height: size.height*0.06,),
               ElevatedButton(
-                child: const Center(
-                  child: Text('Login Con correo',
-                    style: TextStyle(
-                      color: Colors.black
-                    ),
-                  ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      FaIcon(FontAwesomeIcons.envelope, color: Colors.white,),
+                      Text('Login con correo',
+                        style: TextStyle(
+                            fontFamily: 'Comfortaa',
+                            color: Colors.black
+                        ),
+                      ),
+                    ],
+                  )
                 ),
 
                 onPressed: (){
@@ -78,42 +91,37 @@ class _SignInScreenState extends State<SignInScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                     elevation: 4.0,
-                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
+                    fixedSize: Size(size.width * 0.80, size.height * 0.085),
                     primary: Colors.yellow,
                     textStyle: TextStyle(
-                      fontSize: size.width * 0.058,
+                      fontSize: size.width * 0.05,
                       fontFamily: 'Sora',
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              SizedBox(height: size.height*0.015,),
-              const Text('O',
-                style: TextStyle(
-                    color: Colors.black
-                ),
-              ),
-              SizedBox(height: size.height*0.015,),
-              ElevatedButton(
-                child: const Center(
-                  child: Text('Registrate con correo',
-                    style: TextStyle(
-                        color: Colors.black),
+              SizedBox(height: size.height*0.03,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('No tienes una cuenta?',style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Comfortaa'
+                  ),),
+                  TextButton(
+                    child: const Center(
+                      child: Text('Registrate aqui!', style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Comfortaa'
+                      ),
+                      ),
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
+                    },
                   ),
-                ),
-                onPressed: (){
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
-                },
-                style: ElevatedButton.styleFrom(
-                    elevation: 4.0,
-                    fixedSize: Size(size.width * 0.70, size.height * 0.068),
-                    primary: Colors.yellow,
-                    textStyle: TextStyle(
-                      fontSize: size.width * 0.058,
-                      fontFamily: 'Sora',
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
+                ],
+              )
             ],
           ),
         ),
