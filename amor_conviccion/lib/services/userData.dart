@@ -14,7 +14,7 @@ class EmailSignInProvider{
       );
       final updateUser = FirebaseAuth.instance.currentUser;
       updateUser?.updateDisplayName(name);
-      await DatabaseService(uid: user.uid).updateUserData(name, email, 0, 'https://www.woolha.com/media/2020/03/eevee.png');
+      await DatabaseService(uid: user.uid, email: email).updateUserData(name, email, 0, 'https://www.woolha.com/media/2020/03/eevee.png');
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;

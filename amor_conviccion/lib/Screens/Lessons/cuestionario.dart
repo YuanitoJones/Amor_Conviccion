@@ -7,11 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CuestionarioScreen extends StatefulWidget{
-  CuestionarioScreen({Key? key}) : super(key: key);
+  CuestionarioScreen(this.completed, {Key? key}) : super(key: key);
 
   _CuestionarioScreen createState() => _CuestionarioScreen();
 
   int puntos = 0;
+  final bool completed;
 }
 
 class _CuestionarioScreen extends State<CuestionarioScreen>{
@@ -95,7 +96,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen>{
   }
   void results(int points){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen('Lectura')
+        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen('Lectura', widget.completed)
         : FailScreen()));
   }
 }

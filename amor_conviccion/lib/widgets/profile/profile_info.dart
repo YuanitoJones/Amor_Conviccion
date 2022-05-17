@@ -36,7 +36,7 @@ class _Profile_Info extends State<ProfileInfo> {
         widget.actionbutton = !widget.actionbutton;
       });
     }else{
-      DatabaseService service = DatabaseService(uid: user.uid);
+      DatabaseService service = DatabaseService(uid: user.uid, email: user.email.toString());
       setState(() {
         loading = !loading;
       });

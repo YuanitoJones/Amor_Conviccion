@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import '../../services/authentication.dart';
 
 class SuccessScreen extends StatefulWidget{
-  const SuccessScreen(this. name, {Key? key}) : super(key: key);
+  const SuccessScreen(this. name, this.flag,{Key? key}) : super(key: key);
 
   final String name;
+  final bool flag;
   @override
   _SuccessScreen createState() => _SuccessScreen();
 }
 
 class _SuccessScreen extends State<SuccessScreen>{
-
+  late bool flag = widget.flag;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +37,13 @@ class _SuccessScreen extends State<SuccessScreen>{
         }else if(snapshot.hasError){
           return const Text('Algio salio mal');
         }else{
-          update.updatepoints(snapshot.data!.docs[0].get('puntos'));
           return GestureDetector(
             onTap: (){
+              if(!flag){
+                update.updatepoints(snapshot.data!.docs[0].get('puntos'));
+                UpdateLesson lesson = UpdateLesson();
+                lesson.updateCompleted('Lectura');
+              }
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => const Authentication()));
             },
@@ -46,7 +51,8 @@ class _SuccessScreen extends State<SuccessScreen>{
               color: Colors.lightGreen,
                 height: size.height,
                 width: size.width,
-                child: Center(child: Text('Felicidades!\nAprobaste el curso y has obtenido ${snapshot.data!.docs[0].get('puntos')} puntos\nToca para continuar'))),
+                child: (flag)? Center(child: Text('El curso ya se habia completdo anteriormente, ya no se asiganarán puntos.\nToca para continuar')) : Center(
+                    child: Text('Felicidades!\nAprobaste el curso y has obtenido ${snapshot.data!.docs[0].get('puntos')} puntos\nToca para continuar'))),
           );
         }
         });

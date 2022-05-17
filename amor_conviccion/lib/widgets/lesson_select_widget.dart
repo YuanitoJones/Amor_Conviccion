@@ -24,16 +24,16 @@ class _LessonSelect extends State<LessonSelect>{
     return Stack(
       children: [
         Container(
-      width: 110,
-      height: 110,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
+          width: 110,
+          height: 110,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
                 elevation: 8.0,
                 shadowColor: Colors.black.withOpacity(1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90),
 
-                  side: (widget.flag)? BorderSide(color: Colors.green, width: 3): BorderSide(color: Colors.red, width: 3),
+                  side: (widget.flag)? const BorderSide(color: Colors.green, width: 3): const BorderSide(color: Colors.red, width: 3),
                 ),
                 primary: Colors.white
             ),
@@ -41,7 +41,7 @@ class _LessonSelect extends State<LessonSelect>{
             onPressed: (){
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => (widget.texto=='Imagen')? const HomePage()
-                  : (widget.texto=='Lectura')? CuestionarioScreen()
+                  : (widget.texto=='Lectura')? CuestionarioScreen(widget.flag)
                   : (widget.texto == 'Video')? const VideoPlayerScreen()
                   : const Authentication()));
             },
@@ -58,20 +58,20 @@ class _LessonSelect extends State<LessonSelect>{
   }
   Icon Lessonicon(String texto){
     if(widget.texto=='Imagen'){
-      return Icon(Icons.book, size: 60, color: Colors.blue,);
+      return const Icon(Icons.book, size: 60, color: Colors.blue,);
     }else if(widget.texto == 'Lectura'){
-      return Icon(Icons.account_circle, size: 60, color: Colors.blue,);
+      return const Icon(Icons.account_circle, size: 60, color: Colors.blue,);
     }else if(widget.texto == 'Video'){
-      return Icon(Icons.video_call_rounded, size: 60, color: Colors.blue,);
+      return const Icon(Icons.video_call_rounded, size: 60, color: Colors.blue,);
     }else{
-      return Icon(Icons.dangerous, size: 60, color: Colors.blue,);
+      return const Icon(Icons.dangerous, size: 60, color: Colors.blue,);
     }
   }
 
 
   Widget buildEditIcon(Color color)=> buildCircle(
       child: buildCircle(
-          child: Text(widget.lesson.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),),
+          child: Text(widget.lesson.toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 10),),
           all: 12,
           color: color),
       all: 1.5,

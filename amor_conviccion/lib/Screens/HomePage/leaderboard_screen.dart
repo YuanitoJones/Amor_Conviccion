@@ -14,7 +14,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
 
   @override
   Widget build(BuildContext context) {
-    var r = const TextStyle(color: Colors.purpleAccent, fontSize: 34);
+    var r = const TextStyle(color: Colors.black, fontSize: 30);
+    var q = const TextStyle(color: Colors.black, fontSize: 22);
     return Stack(
       children: <Widget>[
         Scaffold(
@@ -73,107 +74,106 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               if(documents.length<10){
                                 places = documents.length;
                               }
-                              return ListView.builder(
-                                  itemCount: places,
-                                  itemBuilder: (context, index) {
-                                    if (index >= 1) {
-                                      if (documents[index].get('puntos') != documents[index - 1].get('puntos')) {
-                                        i++;
-                                      }
-                                    }
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5.0, vertical: 5.0),
-                                      child: InkWell(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: i == 0
-                                                      ? Colors.amber
-                                                      : i == 1
-                                                      ? Colors.grey
-                                                      : i == 2
-                                                      ? Colors.brown
-                                                      : Colors.white,
-                                                  width: 3.0,
-                                                  style: BorderStyle.solid),
-                                              borderRadius:
-                                              BorderRadius.circular(5.0)),
-                                          width: MediaQuery.of(context).size.width,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Row(
+                              return Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(width: 2, color: Colors.grey.withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: ListView.builder(
+                                      itemCount: places,
+                                      itemBuilder: (context, index) {
+                                        if (index >= 1) {
+                                          if (documents[index].get('puntos') != documents[index - 1].get('puntos')) {
+                                            i++;
+                                          }
+                                        }
+                                        return Padding(
+                                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
+                                          child: InkWell(
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context).size.width,
+                                              child: Column(
                                                 children: <Widget>[
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        top: 7.0, left: 10.0, bottom: 7.0),
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        CircleAvatar(
-                                                            child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    image: DecorationImage(
-                                                                        image: NetworkImage(documents[index]
-                                                                            .get('imagen')),
-                                                                        fit: BoxFit
-                                                                            .fill)
+                                                  Row(
+                                                    children: <Widget>[
+                                                      i == 0
+                                                          ? Text("🥇", style: r)
+                                                          : i == 1
+                                                          ? Text(
+                                                        "🥈",
+                                                        style: r,
+                                                      )
+                                                          : i == 2
+                                                          ? Text(
+                                                        "🥉",
+                                                        style: r,
+                                                      )
+                                                          : Padding(padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.025, 0, MediaQuery.of(context).size.width*0.025, 0),
+                                                          child: Text(
+                                                            (index + 1).toString(),
+                                                            style: q,
+                                                          ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(
+                                                            top: 7.0, left: 10.0, bottom: 7.0),
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            CircleAvatar(
+                                                                child: Container(
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        image: DecorationImage(
+                                                                            image: NetworkImage(documents[index]
+                                                                                .get('imagen')),
+                                                                            fit: BoxFit
+                                                                                .fill)
+                                                                    )
                                                                 )
-                                                            )
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(
+                                                            left: 20.0, top: 10.0),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment.center,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment.start,
+                                                          children: <Widget>[
+                                                            Container(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Text(
+                                                                  documents[index].get('nombre'),
+                                                                  style: const TextStyle(
+                                                                      fontFamily: 'Comfortaa',
+                                                                      color: Colors
+                                                                          .deepPurple,
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                                  maxLines: 6,
+                                                                )),
+                                                            Text("Points: " + documents[index].get('puntos').toString(),style: TextStyle(fontFamily: 'Comfortaa'),),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 20.0, top: 10.0),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: <Widget>[
-                                                        Container(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                              documents[index].get('nombre'),
-                                                              style: const TextStyle(
-                                                                fontFamily: 'Comfortaa',
-                                                                  color: Colors
-                                                                      .deepPurple,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                              maxLines: 6,
-                                                            )),
-                                                        Text("Points: " + documents[index].get('puntos').toString(),style: TextStyle(fontFamily: 'Comfortaa'),),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Flexible(child: Container()),
-                                                  i == 0
-                                                      ? Text("🥇", style: r)
-                                                      : i == 1
-                                                      ? Text(
-                                                    "🥈",
-                                                    style: r,
-                                                  )
-                                                      : i == 2
-                                                      ? Text(
-                                                    "🥉",
-                                                    style: r,
-                                                  )
-                                                      : const Text(''),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    );
-                                  });
+                                        );
+                                      }),
+                                ),
+                              );
                             }
                           }))
                 ],

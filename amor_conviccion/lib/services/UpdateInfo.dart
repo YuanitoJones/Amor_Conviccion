@@ -25,3 +25,15 @@ class UpdatePoints{
     });
   }
 }
+
+class UpdateLesson{
+  Future updateCompleted(String lesson) async{
+    var collection = FirebaseFirestore.instance.collection('Lecciones');
+    FirebaseFirestore.instance.collection('Lecciones').doc(lesson).get()
+    .then((DocumentSnapshot doc){
+      collection.doc(lesson).update(({'Completado' : true}))
+      .catchError((error)=> print('Failed: $error'));
+    });
+  }
+  
+}

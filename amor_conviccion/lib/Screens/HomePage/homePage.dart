@@ -3,6 +3,7 @@ import 'package:amor_conviccion/Screens/HomePage/lessons_main_screen.dart';
 import 'package:amor_conviccion/Screens/SignIn/sign_in_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/user_info_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,6 @@ class _HomePage extends State<HomePage>{
 
 
   Widget main(size){
-    final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),

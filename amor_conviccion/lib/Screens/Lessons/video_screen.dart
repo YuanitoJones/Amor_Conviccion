@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
+import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,6 +58,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
         Timer(Duration(seconds: 1), (){
+          UpdateLesson lesson = UpdateLesson();
+          lesson.updateCompleted('video');
           Navigator.pop(context);
         });
       }
