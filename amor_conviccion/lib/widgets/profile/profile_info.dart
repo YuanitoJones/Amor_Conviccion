@@ -11,6 +11,10 @@ class ProfileInfo extends StatefulWidget{
   bool emailfield = true;
   bool actionbutton = true;
 
+  ProfileInfo({Key? key, required this.nombre, required this.correo}) : super(key: key);
+
+  final String correo, nombre;
+
   @override
   State<StatefulWidget> createState() => _Profile_Info();
 }
@@ -60,131 +64,109 @@ class _Profile_Info extends State<ProfileInfo> {
     }
 
     Widget main(Size size) {
-      return StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('puntuacion')
-              .where('correo', isEqualTo: user.email)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator(),);
-            }
-            else if (snapshot.hasError) {
-              return const Text('Algo salio mal');
-            }
-            else {
-              var documents = (snapshot.data!).docs;
-              return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            child: const Text('Nombre',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Comfortaa',
-                              fontWeight: FontWeight.bold,
-                            ),),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: TextFormField(
-                              style: TextStyle(
-                                fontFamily: 'Comfortaa'
-                              ),
-                              readOnly: widget.namefield,
-                              controller: txt1Controller..text = documents[index].get('nombre'),
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0,),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
-                                    width: 3.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: size.height*0.015,),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            child: const Text('Correo',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Comfortaa',
-                                fontWeight: FontWeight.bold,
-                              ),),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: TextFormField(
-                              style: TextStyle(
-                                fontFamily: 'Comfortaa'
-                              ),
-                              readOnly: widget.emailfield,
-                              controller: txt2Controller..text = documents[0].get('correo'),
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0,),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
-                                    width: 3.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: size.height*0.06,),
-                          Container(
-                            child: loading? ElevatedButton(
-                              onPressed: editableTextFields,
-                              child: (widget.actionbutton)? const Text('Editar Perfil',
-                              style: TextStyle(
-                                color: Colors.white
-                              ),): const Text('Guardar', style: TextStyle(
-                                color: Colors.black
-                              ),),
-                              style: ElevatedButton.styleFrom(
-                                  fixedSize:Size(size.width*0.75, size.height*0.07),
-                                  primary: (widget.actionbutton)? Colors.red : Colors.amber,
-                                  textStyle: const TextStyle(
-                                    fontFamily: 'Comfortaa',
-                                      fontSize: 15
-                                  )
-                              ),
-                            ) : const Center(child: CircularProgressIndicator(),),
-                          )
-                        ],
-                      ),
-                    );
-                  });
-            }
-          });
+      return Container(
+        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: const Text('Nombre',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Comfortaa',
+                  fontWeight: FontWeight.bold,
+                ),),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 3,
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: TextFormField(
+                style: TextStyle(
+                    fontFamily: 'Comfortaa'
+                ),
+                readOnly: widget.namefield,
+                controller: txt1Controller..text = widget.nombre,
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0,),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: const BorderSide(
+                      color: Colors.white,
+                      width: 3.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: size.height*0.015,),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: const Text('Correo',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Comfortaa',
+                  fontWeight: FontWeight.bold,
+                ),),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 3,
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: TextFormField(
+                style: TextStyle(
+                    fontFamily: 'Comfortaa'
+                ),
+                readOnly: widget.emailfield,
+                controller: txt2Controller..text = widget.correo,
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0,),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: const BorderSide(
+                      color: Colors.white,
+                      width: 3.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: size.height*0.06,),
+            Container(
+              child: loading? ElevatedButton(
+                onPressed: editableTextFields,
+                child: (widget.actionbutton)? const Text('Editar Perfil',
+                  style: TextStyle(
+                      color: Colors.white
+                  ),): const Text('Guardar', style: TextStyle(
+                    color: Colors.black
+                ),),
+                style: ElevatedButton.styleFrom(
+                    fixedSize:Size(size.width*0.75, size.height*0.07),
+                    primary: (widget.actionbutton)? Colors.red : Colors.amber,
+                    textStyle: const TextStyle(
+                        fontFamily: 'Comfortaa',
+                        fontSize: 15
+                    )
+                ),
+              ) : const Center(child: CircularProgressIndicator(),),
+            )
+          ],
+        ),
+      );
     }
 }

@@ -3,6 +3,7 @@ import 'package:amor_conviccion/widgets/profile/UploadPhoto.dart';
 import 'package:amor_conviccion/widgets/profile/avatar.dart';
 import 'package:amor_conviccion/widgets/profile/profile_info.dart';
 import 'package:amor_conviccion/widgets/profile/user_points.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,87 +23,101 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
   Widget build(BuildContext context)  {
     WidgetsFlutterBinding.ensureInitialized();
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: <Widget>[
-                            SizedBox(height: size.height*0.08,),
-                            SizedBox(
-                                width: size.width * 0.6,
-                                height: size.height * 0.23,
-                                child: Avatar()
-                            ),
-                            const Upload(),
-                          ],
-                        ),
-                        Container(
-                          width: size.width * 0.4,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('puntuacion')
+        .where('correo', isEqualTo: user.email)
+        .snapshots(),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(child: CircularProgressIndicator());
+          }
+          else if(snapshot.hasError){
+            return const Center(child: Text('Oops, parece que hubo un error, intentelo de nuevo mas tarde'),);
+          }
+          else{
+            var documents = (snapshot.data!).docs;
+            return Scaffold(
+              body: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(size.width*0.04, 0, 0, 0),
-                                  child: Text(
-                                    'Puntos',
-                                    style: TextStyle(
-                                        fontFamily: 'Comfortaa',
-                                        fontSize: size.height * 0.035,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                Column(
                                   children: <Widget>[
+                                    SizedBox(height: size.height*0.08,),
                                     SizedBox(
-                                        width: size.width*0.15,
-                                        child: UserPoints()
+                                        width: size.width * 0.6,
+                                        height: size.height * 0.2,
+                                        child: Avatar(photourl: documents[0].get('imagen'))
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                                      child: SizedBox(
-                                        width: size.width*0.065,
-                                        child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
-                                      ),
-                                    )
+                                    const Upload(),
                                   ],
                                 ),
+                                Container(
+                                  width: size.width * 0.4,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(size.width*0.05, 0, 0, 0),
+                                          child: Text(
+                                            'Puntos',
+                                            style: TextStyle(
+                                                fontFamily: 'Comfortaa',
+                                                fontSize: size.height * 0.035,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            SizedBox(
+                                                width: size.width*0.15,
+                                                child: UserPoints(points: documents[0].get('puntos'))
+                                            ),
+                                            SizedBox(
+                                              width: size.width*0.065,
+                                              child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  ProfileInfo(),
-                  SizedBox(height: size.height*0.02,),
-                  ElevatedButton(
-                      onPressed: (){
-                        if (_auth.currentUser?.providerData[0].providerId ==
-                            "google.com") {
-                          final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                          provider.signOutFromGoogle();
-                        }else{
-                          EmailSignInProvider _email = EmailSignInProvider();
-                          _email.signOut();
-                        }
-                      },
-                      child: const Text('logout', style: TextStyle(fontFamily: 'Comfortaa'),))
-                ],
+                          SizedBox(height: size.height*0.035,),
+                          ProfileInfo(nombre: documents[0].get('nombre'), correo: documents[0].get('correo')),
+                          SizedBox(height: size.height*0.02,),
+                          ElevatedButton(
+                              onPressed: (){
+                                if (_auth.currentUser?.providerData[0].providerId ==
+                                    "google.com") {
+                                  final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                                  provider.signOutFromGoogle();
+                                }else{
+                                  EmailSignInProvider _email = EmailSignInProvider();
+                                  _email.signOut();
+                                }
+                                },
+                              child: const Text('logout', style: TextStyle(fontFamily: 'Comfortaa'),))
+                        ],
+                      ),
+                    ],
+                  )
               ),
-            ],
-          )
-        ),
-    );
+            );
+          }
+        }
+        );
   }
 }
