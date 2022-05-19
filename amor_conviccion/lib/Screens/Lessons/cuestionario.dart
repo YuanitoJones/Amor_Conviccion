@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:amor_conviccion/widgets/questionaire/fail_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/question%20_field_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/success_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CuestionarioScreen extends StatefulWidget{
@@ -17,12 +14,11 @@ class CuestionarioScreen extends StatefulWidget{
 
 class _CuestionarioScreen extends State<CuestionarioScreen>{
 
-
   Map<int, List> map1 = {
     0: ['1.- ¿De dónde viene la palabra adicto?',
-      'De griego \“Pistis\”',
-      'Del latín \“Addictus\”',
-      'De latín \“Vitium\”'],
+      'De griego "Pistis"',
+      'Del latín "Addictus"',
+      'De latín "Vitium"'],
     1: ['2.- Menciona los 4 tipos de consumo.',
       'Experimental, ocasional, habitual, crónico compulsivo.',
       'A diario, frecuente, de vez en cuando, ocasional.',
@@ -56,47 +52,57 @@ class _CuestionarioScreen extends State<CuestionarioScreen>{
       'Bebedor agresivo, bebedor alegre, bebedor conversador, bebedor tranquilo.']
   };
 
+  late var answers=[0,0,0,0,0,0,0,0,0];
   late bool flag = true;
-
-  late int question =1;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            QuestionField(flag, map1[0], 2, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[1], 1, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[2], 2, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[3], 1, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[4], 3, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[5], 2, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[6], 1, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[7], 3, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
-            QuestionField(flag, map1[8], 2, answersCallBack: (val) => setState(
-                    () => widget.puntos += val),),
+        child: SafeArea(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Pon a prueba tu conocimiento!',
+                    style: TextStyle(
+                        fontFamily: 'Comfortaa',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+                QuestionField(flag, map1[0], 2, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[0] = val),),
+                QuestionField(flag, map1[1], 1, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[1] = val),),
+                QuestionField(flag, map1[2], 2, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[2] = val),),
+                QuestionField(flag, map1[3], 1, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[3] = val),),
+                QuestionField(flag, map1[4], 3, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[4] = val),),
+                QuestionField(flag, map1[5], 2, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[5] = val),),
+                QuestionField(flag, map1[6], 1, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[6] = val),),
+                QuestionField(flag, map1[7], 3, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[7] = val),),
+                QuestionField(flag, map1[8], 2, answersCallBack: (val) => setState(
+                        () => widget.puntos += val),answers: (val)=> setState(()=> answers[8] = val),),
 
-            ElevatedButton(
-                onPressed: () => results(widget.puntos),
-                child: Text('Terminar'))
-          ],
+                ElevatedButton(
+                    onPressed: () => results(widget.puntos),
+                    child: const Text('Terminar'))
+              ],
+            ),
         ),
       )
     );
   }
   void results(int points){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen('Lectura', widget.completed)
+        context, MaterialPageRoute(builder: (context) => (points >= 6)? SuccessScreen('Lectura', widget.completed, answers)
         : FailScreen()));
   }
 }

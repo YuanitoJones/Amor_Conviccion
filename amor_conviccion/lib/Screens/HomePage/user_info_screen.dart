@@ -49,10 +49,10 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                               children: [
                                 Column(
                                   children: <Widget>[
-                                    SizedBox(height: size.height*0.08,),
+                                    SizedBox(height: size.height*0.09,),
                                     SizedBox(
-                                        width: size.width * 0.6,
-                                        height: size.height * 0.2,
+                                        width: size.width * 0.45,
+                                        height: size.height * 0.16,
                                         child: Avatar(photourl: documents[0].get('imagen'))
                                     ),
                                     const Upload(),
@@ -71,7 +71,7 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
                                             'Puntos',
                                             style: TextStyle(
                                                 fontFamily: 'Comfortaa',
-                                                fontSize: size.height * 0.035,
+                                                fontSize: size.height * 0.028,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),

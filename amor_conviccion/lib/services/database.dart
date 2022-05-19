@@ -14,8 +14,18 @@ class DatabaseService{
         'cuestionario' : {
           'nombre' : 'cuestionario',
           'completado' : false,
-          'puntos' : 0,
-          'respuestas' : {'0':0,'1':0,'2':0},
+          'puntos' : 10,
+          'respuestas' : {
+            '0':0,
+            '1':0,
+            '2':0,
+            '3':0,
+            '4':0,
+            '5':0,
+            '6':0,
+            '7':0,
+            '8':0,
+          },
         },
         'video' :{
           'nombre': 'video',

@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import '../../services/authentication.dart';
 
 class SuccessScreen extends StatefulWidget{
-  const SuccessScreen(this. name, this.flag,{Key? key}) : super(key: key);
+  const SuccessScreen(this. name, this.flag, this.answers,{Key? key}) : super(key: key);
 
   final String name;
   final bool flag;
+  final List answers;
   @override
   _SuccessScreen createState() => _SuccessScreen();
 }
@@ -42,7 +43,7 @@ class _SuccessScreen extends State<SuccessScreen>{
               if(!flag){
                 update.updatepoints(snapshot.data!.docs[0].get('puntos'));
                 UpdateLesson lesson = UpdateLesson();
-                lesson.updateCompleted('Lectura');
+                lesson.updateLessonCompleted('Lectura', widget.answers);
               }
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => const Authentication()));
