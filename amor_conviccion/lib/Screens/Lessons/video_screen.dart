@@ -19,7 +19,7 @@ class VideoPlayerScreen extends StatefulWidget{
 
 class _VideoPlayerScreen extends State<VideoPlayerScreen> {
 
-  final asset = 'assets/videos/prueba.mp4';
+  final asset = 'assets/videos/verdad_dolor.mp4';
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
   @override
@@ -57,11 +57,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
-        Timer(Duration(seconds: 1), (){
-          UpdateLesson lesson = UpdateLesson();
-          lesson.updateCompleted('video');
-          Navigator.pop(context);
-        });
+        UpdateLesson lesson = UpdateLesson();
+        lesson.updateCompleted('video');
       }
     });
   }

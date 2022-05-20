@@ -5,13 +5,13 @@ class Assets {
   static const String IconsNotoHeartsuit = 'assets/Icons/noto_heartsuit.png';
   static const String backgroundSplash = 'assets/background/splash.png';
   static const String backgroundStandard = 'assets/background/standard.png';
-  static const String fontsComfortaaRegular = 'assets/fonts/Comfortaa-Regular.ttf';
+  static const String fontsComfortaaRegular = 'assets/fonts/ComfortaaRegular.ttf';
   static const String logosAdvertencia = 'assets/logos/advertencia.png';
   static const String logosCircularLogo = 'assets/logos/circular_logo.png';
   static const String logosFirebaseLogo = 'assets/logos/firebase_logo.png';
   static const String logosGoogleLogo = 'assets/logos/google_logo.png';
   static const String logosLogo = 'assets/logos/logo.png';
   static const String logosPentagono = 'assets/logos/pentagono.png';
-  static const String videosMeeting   = 'assets/videos/prueba.mp4';
+  static const String videosVerdadDolor = 'assets/videos/verdad_dolor.mp4';
 
 }

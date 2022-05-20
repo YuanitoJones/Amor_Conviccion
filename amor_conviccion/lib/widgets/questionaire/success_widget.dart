@@ -45,8 +45,8 @@ class _SuccessScreen extends State<SuccessScreen>{
                 UpdateLesson lesson = UpdateLesson();
                 lesson.updateLessonCompleted('Lectura', widget.answers);
               }
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => const Authentication()));
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: Container(
               color: Colors.lightGreen,

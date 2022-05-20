@@ -67,7 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              SizedBox(height: size.height*0.06,),
+              SizedBox(height: size.height*0.03,),
               ElevatedButton(
                 child: Center(
                   child: Row(
@@ -99,7 +99,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              SizedBox(height: size.height*0.03,),
+              SizedBox(height: size.height*0.015,),
+              Divider(thickness: 1, color: Colors.black,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
