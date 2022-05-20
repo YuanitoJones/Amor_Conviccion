@@ -97,6 +97,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                             maxLength: 50,
                             controller: txt1Controller,
                             style: const TextStyle(
+                              fontFamily: 'Comfortaa',
                               fontSize: 20,
                             ),
                             decoration: const InputDecoration(
@@ -123,6 +124,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                             controller: txt2Controller,
                             style: const TextStyle(
                               fontSize: 20,
+                              fontFamily: 'Comfortaa'
                             ),
                             decoration: const InputDecoration(
                               counterText: "",
@@ -147,6 +149,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                             controller: txt3Controller,
                             style: const TextStyle(
                               fontSize: 20,
+                              fontFamily: 'Comfortaa'
                             ),
                             decoration: const InputDecoration(
                               counterText: "",
@@ -166,7 +169,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                         child: Text(/*AppLocalizations.of(context)!.nextStep*/'Registrarse',
                           style: TextStyle(
                             fontSize: size.width * 0.058,
-                            fontFamily: 'Sora',
+                            fontFamily: 'Comfortaa',
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),

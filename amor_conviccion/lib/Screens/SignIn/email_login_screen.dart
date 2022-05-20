@@ -99,6 +99,7 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                             controller: txt1Controller,
                             style: const TextStyle(
                               fontSize: 20,
+                              fontFamily: 'Comfortaa'
                             ),
                             decoration: const InputDecoration(
                               counterText: "",
@@ -124,6 +125,7 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                             controller: txt2Controller,
                             style: const TextStyle(
                               fontSize: 20,
+                              fontFamily: 'Comfortaa'
                             ),
                             decoration: const InputDecoration(
                               counterText: "",
@@ -143,7 +145,7 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                       child: Text(/*AppLocalizations.of(context)!.nextStep*/'Iniciar sesión',
                         style: TextStyle(
                           fontSize: size.width * 0.058,
-                          fontFamily: 'Sora',
+                          fontFamily: 'Comfortaa',
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),

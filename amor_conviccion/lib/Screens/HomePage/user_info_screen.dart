@@ -1,9 +1,14 @@
-import 'package:amor_conviccion/widgets/UploadPhoto.dart';
-import 'package:amor_conviccion/widgets/avatar.dart';
-import 'package:amor_conviccion/widgets/profile_info.dart';
-import 'package:amor_conviccion/widgets/user_points.dart';
+import 'package:amor_conviccion/services/userData.dart';
+import 'package:amor_conviccion/widgets/profile/UploadPhoto.dart';
+import 'package:amor_conviccion/widgets/profile/avatar.dart';
+import 'package:amor_conviccion/widgets/profile/profile_info.dart';
+import 'package:amor_conviccion/widgets/profile/user_points.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/googleSignIn.dart';
 
 class UserInfoScreen extends StatefulWidget{
   const UserInfoScreen({Key? key}) : super(key: key);
@@ -12,71 +17,107 @@ class UserInfoScreen extends StatefulWidget{
 }
 
 class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderStateMixin{
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context)  {
     WidgetsFlutterBinding.ensureInitialized();
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Column(
-                          children: <Widget>[
-                            SizedBox(height: size.height*0.025,),
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                width: size.width * 0.6,
-                                height: size.height * 0.2,
-                                child: Avatar()
-                            ),
-                            Upload(),
-                          ],
-                        ),
-                        Container(
-                          width: size.width * 0.4,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Puntos',
-                                style: TextStyle(
-                                    fontSize: size.height * 0.035,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                      width: size.width*0.2,
-                                      child: UserPoints()
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('puntuacion')
+        .where('correo', isEqualTo: user.email)
+        .snapshots(),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(child: CircularProgressIndicator());
+          }
+          else if(snapshot.hasError){
+            return const Center(child: Text('Oops, parece que hubo un error, intentelo de nuevo mas tarde'),);
+          }
+          else{
+            var documents = (snapshot.data!).docs;
+            return Scaffold(
+              body: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: <Widget>[
+                                    SizedBox(height: size.height*0.09,),
+                                    SizedBox(
+                                        width: size.width * 0.45,
+                                        height: size.height * 0.16,
+                                        child: Avatar(photourl: documents[0].get('imagen'))
+                                    ),
+                                    const Upload(),
+                                  ],
+                                ),
+                                Container(
+                                  width: size.width * 0.4,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, 0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(size.width*0.05, 0, 0, 0),
+                                          child: Text(
+                                            'Puntos',
+                                            style: TextStyle(
+                                                fontFamily: 'Comfortaa',
+                                                fontSize: size.height * 0.028,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            SizedBox(
+                                                width: size.width*0.15,
+                                                child: UserPoints(points: documents[0].get('puntos'))
+                                            ),
+                                            SizedBox(
+                                              width: size.width*0.065,
+                                              child: const Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    width: size.width*0.06,
-                                    child: Image(image: AssetImage('assets/Icons/noto_heartsuit.png'),),
-                                  )
-                                ],
-                              ),
-                            ],
+                                )
+                              ],
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: ProfileInfo(),
-                  ),
-                ],
+                          SizedBox(height: size.height*0.035,),
+                          ProfileInfo(nombre: documents[0].get('nombre'), correo: documents[0].get('correo')),
+                          SizedBox(height: size.height*0.02,),
+                          ElevatedButton(
+                              onPressed: (){
+                                if (_auth.currentUser?.providerData[0].providerId ==
+                                    "google.com") {
+                                  final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                                  provider.signOutFromGoogle();
+                                }else{
+                                  EmailSignInProvider _email = EmailSignInProvider();
+                                  _email.signOut();
+                                }
+                                },
+                              child: const Text('logout', style: TextStyle(fontFamily: 'Comfortaa'),))
+                        ],
+                      ),
+                    ],
+                  )
               ),
-            ],
-          )
-        ),
-    );
+            );
+          }
+        }
+        );
   }
 }
