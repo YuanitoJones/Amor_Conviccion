@@ -49,6 +49,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                   provider.googleLogin();
                 },
+                style: ElevatedButton.styleFrom(
+                    elevation: 4.0,
+                    fixedSize: Size(size.width * 0.80, size.height * 0.090),
+                    primary: Colors.red,
+                    textStyle: TextStyle(
+                      fontSize: size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                    )),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
@@ -58,32 +66,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    elevation: 4.0,
-                    fixedSize: Size(size.width * 0.80, size.height * 0.090),
-                    primary: Colors.red,
-                    textStyle: TextStyle(
-                      fontSize: size.width * 0.05,
-                      fontWeight: FontWeight.bold,
-                    )),
               ),
               SizedBox(height: size.height*0.03,),
               ElevatedButton(
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      FaIcon(FontAwesomeIcons.envelope, color: Colors.white,),
-                      Text('Login con correo',
-                        style: TextStyle(
-                            fontFamily: 'Comfortaa',
-                            color: Colors.black
-                        ),
-                      ),
-                    ],
-                  )
-                ),
-
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context)=>const EmailLogin())
@@ -98,9 +83,23 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontFamily: 'Sora',
                       fontWeight: FontWeight.bold,
                     )),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      FaIcon(FontAwesomeIcons.envelope, color: Colors.white,),
+                      Text('Login con correo',
+                        style: TextStyle(
+                            fontFamily: 'Comfortaa',
+                            color: Colors.black
+                        ),
+                      ),
+                    ],
+                  )
+                ),
               ),
               SizedBox(height: size.height*0.015,),
-              Divider(thickness: 1, color: Colors.black,),
+              const Divider(thickness: 1, color: Colors.black,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
