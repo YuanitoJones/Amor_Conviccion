@@ -1,5 +1,6 @@
 import 'package:amor_conviccion/utils/cuestionarios.dart';
-import 'package:amor_conviccion/widgets/lines/unir_lineas.dart';
+import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
+import 'package:amor_conviccion/widgets/questionaire/lines/unir_lineas.dart';
 import 'package:amor_conviccion/widgets/questionaire/fail_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/question%20_field_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/success_widget.dart';
@@ -38,15 +39,24 @@ class _LineLessonScreen extends State<LineLessonScreen>{
                     ),
                   ),
                 ),
+                LinesScreen(bloque.liderazgo[0], 1,
+                  answersCallBack: (val) => setState(() => widget.puntos += val),
+                  answers: (val)=> setState(()=> answers[0] = val),),
+                Divider(color: Colors.yellow[700], indent: 10, thickness: 3,),
                 LinesScreen(bloque.liderazgo[1], 2,
                   answersCallBack: (val) => setState(() => widget.puntos += val),
-                  answers: (val)=> setState(()=> answers[0] = val),),
+                  answers: (val)=> setState(()=> answers[1] = val),),
+                Divider(color: Colors.yellow[700], indent: 10, thickness: 3,),
                 LinesScreen(bloque.liderazgo[2], 1,
                   answersCallBack: (val) => setState(() => widget.puntos += val),
-                  answers: (val)=> setState(()=> answers[0] = val),),
+                  answers: (val)=> setState(()=> answers[2] = val),),
+                Divider(color: Colors.yellow[700], indent: 10, thickness: 3,),
                 LinesScreen(bloque.liderazgo[3], 3,
                   answersCallBack: (val) => setState(() => widget.puntos += val),
-                  answers: (val)=> setState(()=> answers[0] = val),),
+                  answers: (val)=> setState(()=> answers[2] = val),),
+                Divider(color: Colors.yellow[700], indent: 10, thickness: 3,),
+                WriteAnswer(true, bloque.liderazgo[4]),
+                WriteAnswer(false, bloque.liderazgo[5]),
                 ElevatedButton(
                     onPressed: () => results(widget.puntos),
                     child: const Text('Terminar'))

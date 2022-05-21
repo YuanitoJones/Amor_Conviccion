@@ -46,13 +46,26 @@ class CuestionarioBloque{
       'Cuidar de las personas',
       'Crear identidad, vision y cultura',
       'Ayudar a los que necesitan'],
-    2 : ['¿Cuál es el mensaje central de la historia del basquetbolista Irving Magic Jhonson?',
+    2: ['¿Cuál es el mensaje central de la historia del basquetbolista Irving Magic Jhonson?',
       'La influencia',
       'La voluntad',
       'El caracter'],
     3: ['¿Cual es el mensaje central de la historia de Butch O\'Hare',
       'La voluntad',
       'El esfuerzo',
-      'El caracter']
+      'El caracter'],
+    4: ['¿Cual es la conducta que tienes que cambiar hoy para mejorar como padre de familia?'],
+    5: ['En una escala del 1 al 10, ¿Cómo calificas al liderazgo como cualidad en tu vida?']
+  };
+
+  Map<int, List> liderazgo2 = {
+    0: ['Como padre o madre de familia escribe la misión y visión de tu hogar.',
+    'Mision',
+    'Vision'],
+    1: ['Cita a tu hijo/a y hazle las siguientes preguntas y escribe su respuesta. Cuando tengas mi edad, ¿Te gustaría ser como yo?',
+      'Si',
+      'No',
+      'No lo se'],
+    2: ['¿Por qué lo consideras así?']
   };
 }

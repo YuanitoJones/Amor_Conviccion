@@ -5,7 +5,7 @@ import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/Screens/SignIn/sign_in_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
-import 'package:amor_conviccion/widgets/lines/unir_lineas.dart';
+import 'package:amor_conviccion/widgets/questionaire/lines/unir_lineas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

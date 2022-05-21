@@ -46,8 +46,10 @@ class _LineScreen extends State<LinesScreen>{
       child: Container(
         key: globalkey,
         width: size.width,
-        height: 420,
-        color: Colors.red.shade100,
+        height: 350,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
         //Create canvas
         child: CustomPaint(
           foregroundPainter: Painter3(start_offset, end_offset),
@@ -73,7 +75,11 @@ class _LineScreen extends State<LinesScreen>{
           feedback: Container(
             width: 150,
             height: 80,
-            decoration: const BoxDecoration(color: Colors.lightGreen),
+            color: Colors.red,
+            child: const Center(child: Text('Respuesta', style: TextStyle(
+              fontSize: 10,
+              color: Colors.white
+            ),),),
           ),
           //Calculates the coordinate center point of the current box when you start dragging
           onDragStarted: () {
@@ -86,9 +92,15 @@ class _LineScreen extends State<LinesScreen>{
           child: Container(
             key: key1,
             width: 150,
-            height: 80,
-            decoration: const BoxDecoration(color: Colors.pink),
-            child: Center(child: Text(question)),
+            height: 120,
+            decoration: BoxDecoration(
+              border: Border.all(width: 3, color: Colors.blue),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Center(child: Text(question, style: const TextStyle(
+              fontSize: 15,
+              fontFamily: 'Comfortaa',
+            ),),),
           ),
         ),
 
@@ -96,24 +108,33 @@ class _LineScreen extends State<LinesScreen>{
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            DragTarget(
-              builder: (context, c, r) => Container(
-                key: key2,
-                width: 130,
-                height: 100,
-                decoration: const BoxDecoration(color: Colors.green),
-                child: Center(child: Text(opc1)),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 10),
+              child: DragTarget(
+                builder: (context, c, r) => Container(
+                  key: key2,
+                  width: 130,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF282828),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Center(child: Text(opc1, style: const TextStyle(
+                    fontFamily: 'Comfortaa',
+                    color: Colors.white,
+                  ),),),
+                ),
+                //Get the coordinate center point of the current box after receiving the data
+                onAccept: (_) {
+                  var box = key2.currentContext!.findRenderObject() as RenderBox;
+                  var x = box.localToGlobal(Offset.zero).dx - box.size.width* 0.1;
+                  var y = box.localToGlobal(Offset.zero).dy - globalY + box.size.height*0.5;
+                  end_offset.value = Offset(x, y);
+                  setState(() {
+                    result(0, widget.points);
+                  });
+                },
               ),
-              //Get the coordinate center point of the current box after receiving the data
-              onAccept: (_) {
-                var box = key2.currentContext!.findRenderObject() as RenderBox;
-                var x = box.localToGlobal(Offset.zero).dx - box.size.width* 0.1;
-                var y = box.localToGlobal(Offset.zero).dy - globalY + box.size.height*0.5;
-                end_offset.value = Offset(x, y);
-                setState(() {
-                  result(1, widget.points);
-                });
-              },
             ),
             const SizedBox(
               height: 50,
@@ -122,9 +143,15 @@ class _LineScreen extends State<LinesScreen>{
               builder: (context, c, r) => Container(
                 key: key3,
                 width: 130,
-                height: 100,
-                decoration: const BoxDecoration(color: Colors.green),
-                child: Center(child: Text(opc2)),
+                height: 80,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF282828),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Center(child: Text(opc2, style: const TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Colors.white,
+                ),)),
               ),
               onAccept: (_) {
                 var box = key3.currentContext!.findRenderObject() as RenderBox;
@@ -141,9 +168,15 @@ class _LineScreen extends State<LinesScreen>{
               builder: (context, c, r) => Container(
                 key: key4,
                 width: 130,
-                height: 100,
-                decoration: const BoxDecoration(color: Colors.green),
-                child: Center(child: Text(opc3)),
+                height: 80,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF282828),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Center(child: Text(opc3, style: const TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Colors.white,
+                ),)),
               ),
               onAccept: (_) {
                 var box = key4.currentContext!.findRenderObject() as RenderBox;
@@ -151,7 +184,7 @@ class _LineScreen extends State<LinesScreen>{
                 var y = box.localToGlobal(Offset.zero).dy - globalY + box.size.height*0.5;
                 end_offset.value = Offset(x, y);
                 setState(() {
-                  result(1, widget.points);
+                  result(2, widget.points);
                 });
               },
             ),
@@ -183,7 +216,7 @@ class _LineScreen extends State<LinesScreen>{
       case 0:
         if(points==1){
           widget.answersCallBack(1);
-          widget.answers(2);
+          widget.answers(1);
           first=false;
         }
         break;
@@ -197,7 +230,7 @@ class _LineScreen extends State<LinesScreen>{
       case 2:
         if(points==3){
           widget.answersCallBack(1);
-          widget.answers(2);
+          widget.answers(3);
           first=false;
         }
         break;

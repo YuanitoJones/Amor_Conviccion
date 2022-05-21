@@ -18,7 +18,9 @@ class Painter3 extends CustomPainter {
 
     //Draw line
     canvas.clipRect(Offset.zero & size);
-    canvas.drawLine(_start.value, _end.value, _paint);
+    if(_end.value != const Offset(0.0, 0.0)){
+      canvas.drawLine(_start.value, _end.value, _paint);
+    }
   }
 
   @override
