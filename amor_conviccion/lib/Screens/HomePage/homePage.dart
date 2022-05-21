@@ -38,29 +38,41 @@ class _HomePage extends State<HomePage>{
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.blueAccent,
-        selectedFontSize: size.width*0.04,
-        selectedIconTheme: const IconThemeData(color: Colors.amberAccent),
-        selectedItemColor: Colors.yellow[800],
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Lecciones',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.flag_rounded),
-            label: 'Marcador',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Perfil',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black54,
+                blurRadius: 2,
+            )
+          ],
+        ),
+        child: BottomNavigationBar(
+          elevation: 10,
+          type: BottomNavigationBarType.shifting,
+          selectedFontSize: size.width*0.04,
+          selectedIconTheme: IconThemeData(color: Colors.yellow[800]),
+          unselectedIconTheme: const IconThemeData(color: Colors.grey),
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.yellow[800],
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Lecciones',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.flag_rounded),
+              label: 'Marcador',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              label: 'Perfil',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

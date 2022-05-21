@@ -12,22 +12,22 @@ class QuestionField extends StatefulWidget{
   const QuestionField(this.flag, this.questions, this.points,
       {
         Key? key,
-        required this.answersCallBack,
-        required this.answers,
+        required this.answersCallBack,//Representa la puntuacion de la leccion
+        required this.answers, //Retorna numero con respuesta
       })
       : super(key: key);
 
-  final bool flag;
-  final int points;
-  final List? questions;
+  final bool flag;// Para diferencia entre estado de container
+  final int points;// representa la opcion correcta
+  final List? questions;//Lista de pregunta e incisos
   @override
   _QuestionField createState() => _QuestionField();
 }
 
 class _QuestionField extends State<QuestionField>{
-  bool first=true;
+  bool first=true;//Bandera que indica si ya se ha seleccionado una opcion
   late bool flag = widget.flag;
-  late double height1 = 220;
+  late double height1 = 220;//Tamaño inicial de contenedor
   late String question = widget.questions![0], opc1 = widget.questions![1],
   opc2 = widget.questions![2], opc3 = widget.questions![3];
   late List answers = [0,0,0];

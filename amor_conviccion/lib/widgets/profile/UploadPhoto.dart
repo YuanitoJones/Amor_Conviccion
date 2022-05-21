@@ -51,7 +51,7 @@ class _Upload extends State<Upload>{
       },
       child: (
           const Text('Cambiar foto de perfil',
-          style: TextStyle(fontSize: 15),)),
+          style: TextStyle(fontSize: 15, color: Colors.white),)),
     ) : Center(child: CircularProgressIndicator(),);
   }
 }

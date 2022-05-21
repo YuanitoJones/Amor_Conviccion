@@ -67,12 +67,13 @@ class _Profile_Info extends State<ProfileInfo> {
       return Container(
         padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(10),
               child: const Text('Nombre',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 28,
                   fontFamily: 'Comfortaa',
                   fontWeight: FontWeight.bold,
                 ),),
@@ -87,7 +88,7 @@ class _Profile_Info extends State<ProfileInfo> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'Comfortaa'
                 ),
                 readOnly: widget.namefield,
@@ -111,7 +112,7 @@ class _Profile_Info extends State<ProfileInfo> {
               padding: const EdgeInsets.all(10),
               child: const Text('Correo',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 28,
                   fontFamily: 'Comfortaa',
                   fontWeight: FontWeight.bold,
                 ),),
@@ -126,12 +127,14 @@ class _Profile_Info extends State<ProfileInfo> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'Comfortaa'
                 ),
                 readOnly: widget.emailfield,
                 controller: txt2Controller..text = widget.correo,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25)),
                   fillColor: Colors.white,
                   filled: true,
                   contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0,),
@@ -147,14 +150,9 @@ class _Profile_Info extends State<ProfileInfo> {
             ),
             SizedBox(height: size.height*0.06,),
             Container(
+              alignment: Alignment.center,
               child: loading? ElevatedButton(
                 onPressed: editableTextFields,
-                child: (widget.actionbutton)? const Text('Editar Perfil',
-                  style: TextStyle(
-                      color: Colors.white
-                  ),): const Text('Guardar', style: TextStyle(
-                    color: Colors.black
-                ),),
                 style: ElevatedButton.styleFrom(
                     fixedSize:Size(size.width*0.75, size.height*0.07),
                     primary: (widget.actionbutton)? Colors.red : Colors.amber,
@@ -163,6 +161,12 @@ class _Profile_Info extends State<ProfileInfo> {
                         fontSize: 15
                     )
                 ),
+                child: (widget.actionbutton)? const Text('Editar Perfil',
+                  style: TextStyle(
+                      color: Colors.white
+                  ),): const Text('Guardar', style: TextStyle(
+                    color: Colors.black
+                ),),
               ) : const Center(child: CircularProgressIndicator(),),
             )
           ],

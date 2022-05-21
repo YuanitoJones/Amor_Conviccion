@@ -50,7 +50,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   provider.googleLogin();
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: 4.0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    shadowColor: Colors.black,
+                    elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.090),
                     primary: Colors.red,
                     textStyle: TextStyle(
@@ -67,7 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: size.height*0.03,),
+              SizedBox(height: size.height*0.04,),
               ElevatedButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
@@ -75,7 +77,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: 4.0,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    shadowColor: Colors.black,
+                    elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.085),
                     primary: Colors.yellow,
                     textStyle: TextStyle(

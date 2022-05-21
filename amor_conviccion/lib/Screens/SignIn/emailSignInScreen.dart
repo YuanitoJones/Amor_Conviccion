@@ -18,6 +18,7 @@ class EmailSignIn extends StatefulWidget{
 }
 
 class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixin{
+  late bool flag = true;
   var btnEnabled = true;
   TextEditingController txt1Controller = TextEditingController();
   TextEditingController txt2Controller = TextEditingController();
@@ -41,7 +42,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
               barrierDismissible: false,
               context: context, builder: (context){
                 return AlertDialog(
-                  title: Text('Algo salio mal'),
+                  title: const Text('Algo salio mal'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -49,7 +50,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          child: Text('Aceptar'),
+                          child: const Text('Aceptar'),
                           onPressed: () async {
                             Navigator.pop(context);
                             },
@@ -100,10 +101,12 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                               fontFamily: 'Comfortaa',
                               fontSize: 20,
                             ),
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25)),
                               counterText: "",
                               filled: true,
-                              fillColor: Color.fromRGBO(242, 242, 242, 1),
+                              fillColor: const Color.fromRGBO(242, 242, 242, 1),
                               hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Correo'),
                             )),
                       ),
@@ -115,23 +118,46 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                       width: size.width*0.72,
                       child:  Material(
                         type: MaterialType.transparency,
-                        child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            validator: (value) =>
-                            value != null && value.length < 6
-                                ? 'Contraseña debe contener al menos 6 caracteres' : null,
-                            maxLength: 20,
-                            controller: txt2Controller,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Comfortaa'
+                        child: Stack(
+                          children: [
+                            TextFormField(
+                                obscureText: flag,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                validator: (value) =>
+                                value != null && value.length < 6
+                                    ? 'Debe contener al menos 6 caracteres' : null,
+                                maxLength: 20,
+                                controller: txt2Controller,
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Comfortaa'
+                                ),
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  counterText: "",
+                                  filled: true,
+                                  fillColor: const Color.fromRGBO(242, 242, 242, 1),
+                                  hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Contraseña'),
+                                )),
+                            Positioned(
+                              right: 10,
+                              top: 6,
+                              child: ElevatedButton(
+                                onPressed: (){
+                                  flag = !flag;
+                                  setState(() {});
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                  primary: const Color.fromRGBO(242, 242, 242, 1),
+                                ),
+                                child: const Icon(Icons.remove_red_eye_outlined, color: Colors.black),
+                              ),
                             ),
-                            decoration: const InputDecoration(
-                              counterText: "",
-                              filled: true,
-                              fillColor: Color.fromRGBO(242, 242, 242, 1),
-                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Contraseña'),
-                            )),
+                          ],
+                        )
                       ),
                     ),
                     SizedBox(
@@ -151,10 +177,12 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                               fontSize: 20,
                               fontFamily: 'Comfortaa'
                             ),
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25)),
                               counterText: "",
                               filled: true,
-                              fillColor: Color.fromRGBO(242, 242, 242, 1),
+                              fillColor: const Color.fromRGBO(242, 242, 242, 1),
                               hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Nombre'),
                             )),
                       ),
@@ -166,6 +194,12 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                         onPressed: () {
                           registerUser();
                         },
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                          primary: Colors.yellow,
+                          elevation: 4.0,
+                        ),
                         child: Text(/*AppLocalizations.of(context)!.nextStep*/'Registrarse',
                           style: TextStyle(
                             fontSize: size.width * 0.058,
@@ -173,11 +207,6 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
-                          primary: Colors.yellow,
-                          elevation: 4.0,
                         )
                     ),
                   ]
@@ -193,7 +222,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
+        /*debugShowCheckedModeBanner: false,
 
         //Configuracion idiomas
         localizationsDelegates: const [
@@ -206,7 +235,7 @@ class _EmailSignIn extends State<EmailSignIn> with SingleTickerProviderStateMixi
         supportedLocales: const [
           Locale('en', ''), // English, no country code
           Locale('es', ''), // Spanish, no country code
-        ],
+        ],*/
         home: Builder(builder: (context) {
           return main(size);
         }

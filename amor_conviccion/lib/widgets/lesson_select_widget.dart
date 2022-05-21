@@ -1,9 +1,11 @@
 import 'package:amor_conviccion/Screens/HomePage/homePage.dart';
 import 'package:amor_conviccion/Screens/HomePage/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/Screens/SignIn/sign_in_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
+import 'package:amor_conviccion/widgets/lines/unir_lineas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +43,7 @@ class _LessonSelect extends State<LessonSelect>{
             onPressed: (){
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => (widget.texto=='Imagen')? const HomePage()
-                  : (widget.texto=='Lectura')? CuestionarioScreen(widget.flag)
+                  : (widget.texto=='Lectura')? LineLessonScreen(widget.flag)
                   : (widget.texto == 'Video')? const VideoPlayerScreen()
                   : const Authentication()));
             },

@@ -14,42 +14,44 @@ class _LeaderBoardState extends State<LeaderBoard> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     var r = const TextStyle(color: Colors.black, fontSize: 30);
     var q = const TextStyle(color: Colors.black, fontSize: 22);
     return Stack(
       children: <Widget>[
-        Scaffold(
-            body: Container(
+        Container(
+          width: double.infinity,
+          height: size.height*0.35,
+          decoration: const BoxDecoration(
+            color: Colors.blue,
+              borderRadius: BorderRadius.all(Radius.circular(10))
+          ),
+        ),
+        Positioned(
+            child: Container(
               margin: const EdgeInsets.only(top: 65.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     margin: const EdgeInsets.only(left: 15.0, top: 10.0),
-                    child: RichText(
-                        text: const TextSpan(
-                            text: "Leader",
-                            style: TextStyle(
-                                color: Colors.deepPurple,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold),
-                            children: [
-                              TextSpan(
-                                  text: " Board",
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold)
-                              )
-                            ]
-                        )
-                    ),
+                    child: const Text('Tabla de lideres', style: TextStyle(
+                      fontFamily: 'Comfortaa',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      color: Colors.white
+                    ),)
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.only(left: 15.0, top: 15.0),
                     child: Text(
-                      'Global Rank Board: ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'Tablero de clasificacion ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        fontFamily: 'Comfortaa',
+                        color: Colors.white
+                      ),
                     ),
                   ),
                   Flexible(
@@ -78,7 +80,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    border: Border.all(width: 2, color: Colors.grey.withOpacity(0.3)),
+                                    color: Colors.white,
+                                    border: Border.all(width: 4, color: Colors.yellow.shade600),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: ListView.builder(
@@ -160,7 +163,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                           .w500),
                                                                   maxLines: 6,
                                                                 )),
-                                                            Text("Points: " + documents[index].get('puntos').toString(),style: TextStyle(fontFamily: 'Comfortaa'),),
+                                                            Text("Puntos: " + documents[index].get('puntos').toString(),style: TextStyle(fontFamily: 'Comfortaa'),),
                                                           ],
                                                         ),
                                                       ),

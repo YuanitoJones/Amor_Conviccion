@@ -40,6 +40,14 @@ class _UserInfoScreen extends State<UserInfoScreen> with SingleTickerProviderSta
               body: SingleChildScrollView(
                   child: Stack(
                     children: [
+                      Container(
+                        width: double.infinity,
+                        height: size.height*0.35,
+                        decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(10))
+                        ),
+                      ),
                       Column(
                         children: [
                           SizedBox(

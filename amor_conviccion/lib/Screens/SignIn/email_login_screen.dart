@@ -19,6 +19,7 @@ class EmailLogin extends StatefulWidget{
 
 
 class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
+  late bool flag = true;
   var btnEnabled = true;
   TextEditingController txt1Controller = TextEditingController();
   TextEditingController txt2Controller = TextEditingController();
@@ -98,13 +99,15 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                             maxLength: 50,
                             controller: txt1Controller,
                             style: const TextStyle(
+                              fontFamily: 'Comfortaa',
                               fontSize: 20,
-                              fontFamily: 'Comfortaa'
                             ),
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25)),
                               counterText: "",
                               filled: true,
-                              fillColor: Color.fromRGBO(242, 242, 242, 1),
+                              fillColor: const Color.fromRGBO(242, 242, 242, 1),
                               hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Correo'),
                             )),
                       ),
@@ -115,24 +118,47 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                     SizedBox(
                       width: size.width*0.72,
                       child:  Material(
-                        type: MaterialType.transparency,
-                        child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            validator: (value) =>
-                            value != null && value.length < 6
-                                ? 'Contraseña debe contener al menos 6 caracteres' : null,
-                            maxLength: 20,
-                            controller: txt2Controller,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Comfortaa'
-                            ),
-                            decoration: const InputDecoration(
-                              counterText: "",
-                              filled: true,
-                              fillColor: Color.fromRGBO(242, 242, 242, 1),
-                              hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Contraseña'),
-                            )),
+                          type: MaterialType.transparency,
+                          child: Stack(
+                            children: [
+                              TextFormField(
+                                  obscureText: flag,
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  validator: (value) =>
+                                  value != null && value.length < 6
+                                      ? 'Debe contener al menos 6 caracteres' : null,
+                                  maxLength: 20,
+                                  controller: txt2Controller,
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Comfortaa'
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25)),
+                                    counterText: "",
+                                    filled: true,
+                                    fillColor: const Color.fromRGBO(242, 242, 242, 1),
+                                    hintText: (/*AppLocalizations.of(context)!.lastName).toString()*/'Contraseña'),
+                                  )),
+                              Positioned(
+                                right: 10,
+                                top: 6,
+                                child: ElevatedButton(
+                                  onPressed: (){
+                                    flag = !flag;
+                                    setState(() {});
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                    primary: const Color.fromRGBO(242, 242, 242, 1),
+                                  ),
+                                  child: const Icon(Icons.remove_red_eye_outlined, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          )
                       ),
                     ),
                     SizedBox(
@@ -142,6 +168,12 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                       onPressed: () {
                         login();
                       },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        primary: Colors.yellow,
+                          elevation: 4.0,
+                      ),
                       child: Text(/*AppLocalizations.of(context)!.nextStep*/'Iniciar sesión',
                         style: TextStyle(
                           fontSize: size.width * 0.058,
@@ -149,11 +181,6 @@ class _EmailLogin extends State<EmailLogin> with SingleTickerProviderStateMixin{
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: Size(size.width * 0.50, size.height * 0.07),
-                          primary: Colors.yellow,
-                          elevation: 4.0,
                       )
                     ),
                   ]

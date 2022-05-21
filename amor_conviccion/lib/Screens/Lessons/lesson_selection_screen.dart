@@ -45,10 +45,10 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
                             Column(
                               children: [
                                 LessonSelect(documents[0].get('nombre'), documents[0].get('Completado'),1),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                                   child: Text(
-                                    'Lectura',
+                                    documents[0].get('nombre'),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Comfortaa',
@@ -67,10 +67,10 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
                                       padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                                       child: LessonSelect(documents[1].get('nombre'), documents[1].get('Completado'),2),
                                     ),
-                                    const Padding(
+                                    Padding(
                                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                                       child: Text(
-                                        'Cuestionario',
+                                        documents[1].get('nombre'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'Comfortaa',
@@ -86,11 +86,11 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
                                       padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                                       child: LessonSelect(documents[2].get('nombre'), documents[2].get('Completado'),3),
                                     ),
-                                    const Padding(
+                                    Padding(
                                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                                       child: Text(
-                                        'Video',
-                                        style: TextStyle(
+                                        documents[2].get('nombre'),
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'Comfortaa',
                                           fontSize: 20,
@@ -100,7 +100,26 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
                                   ],
                                 ),
                               ],
-                            )
+                            ),
+                            /*Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                                  child: LessonSelect(documents[3].get('nombre'), documents[3].get('Completado'),4),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  child: Text(
+                                    documents[3].get('nombre'),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Comfortaa',
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),*/
                           ],
                         );
                       }
