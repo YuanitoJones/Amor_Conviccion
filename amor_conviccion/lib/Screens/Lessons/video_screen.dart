@@ -10,7 +10,10 @@ import 'package:video_player/video_player.dart';
 import '../../services/authentication.dart';
 
 class VideoPlayerScreen extends StatefulWidget{
-  const VideoPlayerScreen({Key? key}) : super(key: key);
+  const VideoPlayerScreen(this.bloque, this.nombre, {Key? key}) : super(key: key);
+
+  final int bloque;
+  final String nombre;
 
   @override
   State<StatefulWidget> createState() => _VideoPlayerScreen();
@@ -58,7 +61,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
         UpdateLesson lesson = UpdateLesson();
-        lesson.updateCompleted('video');
+        lesson.updateVideoCompleted(widget.bloque, widget.nombre);
       }
     });
   }

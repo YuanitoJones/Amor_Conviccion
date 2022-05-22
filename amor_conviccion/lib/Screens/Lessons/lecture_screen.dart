@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:amor_conviccion/utils/lecturas.dart';
 import 'package:flutter/material.dart';
 
 class LectureScreen extends StatefulWidget {
@@ -10,32 +11,8 @@ class LectureScreen extends StatefulWidget {
 }
 
 class _LectureScreenState extends State<LectureScreen> {
-  Map<int, List> mapLectura = {
-    0: [
-      '1/3',
-      'Peter Pan, el niño que no quiere crecer, tiene el poder de volar y vive '
-          'en una isla mágica. Pero es un apasionado de los cuentos que Mary '
-          'Darling relata a sus hijos al acostarlos, aspu que por las noches acude '
-          'a su cada de Londres. Durante una de sus visitas nocturnas pierde su '
-          'sombra y cuando Wendy, la hija de Mary, se la cose a los pies, el chico '
-          'la invita a volar al País de Nunca Jamás.',
-      'Imagen',
-      'Siguiente',
-    ],
-    1: [
-      '2/3',
-      'Lectura #2',
-      'Imagen #2',
-      'Siguiente',
-    ],
-    2: [
-      '3/3',
-      'Lectura #3',
-      'Imagen #3',
-      'Terminar',
-    ],
-  };
 
+  MapLectura bloque = MapLectura();
   late List? lectura;
   late int contador = 0;
 
@@ -43,7 +20,7 @@ class _LectureScreenState extends State<LectureScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    lectura = mapLectura[contador];
+    lectura = bloque.Drogodependencia[contador];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -176,7 +153,7 @@ class _LectureScreenState extends State<LectureScreen> {
                 ),
                 onPressed: () {
                   contador = contador + 1;
-                  lectura = mapLectura[contador];
+                  lectura = bloque.Drogodependencia[contador];
                   setState(() {});
                 },
                 child: Text(

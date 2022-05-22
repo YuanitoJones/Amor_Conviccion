@@ -1,15 +1,7 @@
 import 'package:amor_conviccion/Screens/HomePage/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/lessons_main_screen.dart';
-import 'package:amor_conviccion/Screens/SignIn/sign_in_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/user_info_screen.dart';
-import 'package:amor_conviccion/services/authentication.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../services/googleSignIn.dart';
-import '../../services/userData.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +15,7 @@ class _HomePage extends State<HomePage>{
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    const MainLessons(),
+    MainLessons(),
     LeaderBoard(),
     UserInfoScreen(),
   ];
@@ -35,7 +27,6 @@ class _HomePage extends State<HomePage>{
 
 
   Widget main(size){
-    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(

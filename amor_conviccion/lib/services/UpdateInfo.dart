@@ -28,14 +28,36 @@ class UpdatePoints{
 
 class UpdateLesson{
 
-  Future updateCompleted(String lesson) async{
+  Future updateVideoCompleted(int bloque, String lesson) async{
     var user = FirebaseAuth.instance.currentUser;
+    var collectionr = FirebaseFirestore.instance.collection('Lecciones1');
+    switch(bloque){
+      case 1:
+        collectionr.doc(user!.email).get().then((DocumentSnapshot doc){
+          collectionr.doc(user.email).update(({
+            'Drogodependencia.video.completado' : true
+          }))
+              .catchError((error)=> print('Failed: $error'));
+        });
+        break;
+      case 2:
+        collectionr.doc(user!.email).get().then((DocumentSnapshot doc){
+          collectionr.doc(user.email).update(({
+            'Liderazgo.video.completado' : true
+          }))
+              .catchError((error)=> print('Failed: $error'));
+        });
+        break;
+    }
+
+
+    /*var user = FirebaseAuth.instance.currentUser;
     var collection = FirebaseFirestore.instance.collection('Lecciones');
     FirebaseFirestore.instance.collection('Lecciones').doc(lesson).get()
         .then((DocumentSnapshot doc){
       collection.doc(lesson).update(({'Completado' : true}))
           .catchError((error)=> print('Failed: $error'));
-    });
+    });*/
   }
   Future updateLessonCompleted(String lesson, List answers) async{
     var user = FirebaseAuth.instance.currentUser;
