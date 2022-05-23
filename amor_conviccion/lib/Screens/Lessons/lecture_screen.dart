@@ -1,17 +1,21 @@
 import 'dart:ui';
 
+import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/utils/lecturas.dart';
 import 'package:flutter/material.dart';
 
 class LectureScreen extends StatefulWidget {
-  const LectureScreen({Key? key}) : super(key: key);
+  const LectureScreen(this.bloque, this.nombre, this.flag, {Key? key})
+      : super(key: key);
 
+  final bool flag;
+  final String nombre;
+  final int bloque;
   @override
   State<LectureScreen> createState() => _LectureScreenState();
 }
 
 class _LectureScreenState extends State<LectureScreen> {
-
   MapLectura bloque = MapLectura();
   late List? lectura;
   late int contador = 0;
@@ -152,9 +156,26 @@ class _LectureScreenState extends State<LectureScreen> {
                   elevation: 4,
                 ),
                 onPressed: () {
-                  contador = contador + 1;
-                  lectura = bloque.Drogodependencia[contador];
-                  setState(() {});
+                  if (contador != 2) {
+                    contador = contador + 1;
+                    lectura = bloque.Drogodependencia[contador];
+                    setState(() {});
+                  } else {
+                    if (!widget.flag) {
+                      UpdateLesson lesson = UpdateLesson();
+                      switch (widget.bloque) {
+                        case 1:
+                          lesson.updateLectureCompleted(
+                              'Drogodependencia', widget.nombre);
+                          break;
+                        case 2:
+                          lesson.updateLectureCompleted(
+                              'Liderazgo', widget.nombre);
+                          break;
+                      }
+                    }
+                    Navigator.pop(context);
+                  }
                 },
                 child: Text(
                   lectura![3],

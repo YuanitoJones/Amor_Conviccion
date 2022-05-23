@@ -1,27 +1,22 @@
-import 'dart:async';
-
-import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
 import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../services/authentication.dart';
+class VideoPlayerScreen extends StatefulWidget {
+  const VideoPlayerScreen(this.bloque, this.nombre, this.flag, {Key? key})
+      : super(key: key);
 
-class VideoPlayerScreen extends StatefulWidget{
-  const VideoPlayerScreen(this.bloque, this.nombre, {Key? key}) : super(key: key);
-
-  final int bloque;
-  final String nombre;
+  final int bloque; //Bloque de lecciones
+  final String nombre; //Nombre de leccion
+  final bool flag; //Leccion completada
 
   @override
   State<StatefulWidget> createState() => _VideoPlayerScreen();
-
 }
 
 class _VideoPlayerScreen extends State<VideoPlayerScreen> {
-
   final asset = 'assets/videos/verdad_dolor.mp4';
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
@@ -60,11 +55,20 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
-        UpdateLesson lesson = UpdateLesson();
-        lesson.updateVideoCompleted(widget.bloque, widget.nombre);
+        if (!widget.flag) {
+          UpdateLesson lesson = UpdateLesson();
+          switch (widget.bloque) {
+            case 1:
+              lesson.updateVideoCompleted('Drogodependencia', widget.nombre);
+              break;
+            case 2:
+              lesson.updateVideoCompleted('Liderazgo', widget.nombre);
+          }
+        }
       }
     });
   }
+
   @override
   void dispose() {
     _videoPlayerController.dispose();
@@ -77,6 +81,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     ]);
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

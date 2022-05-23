@@ -1,32 +1,54 @@
 import 'package:amor_conviccion/widgets/lesson_select_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LessonSelectionScreen extends StatefulWidget{
-  const LessonSelectionScreen(this.map, this.bloque, {Key? key}) : super(key: key);
+class LessonSelectionScreen extends StatefulWidget {
+  const LessonSelectionScreen(this.bloque, {Key? key}) : super(key: key);
 
-  final map;
   final bloque;
+  final lessonNumber = 0;
   @override
-  _LessonSelectionScreen createState() =>_LessonSelectionScreen();
-
+  _LessonSelectionScreen createState() => _LessonSelectionScreen();
 }
 
-class _LessonSelectionScreen extends State<LessonSelectionScreen>{
-  late var info = lessonSelect();
-  late int lessonNumber=0;
+class _LessonSelectionScreen extends State<LessonSelectionScreen> {
+  late int lessonNumber = widget.lessonNumber;
+  final _user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Column(
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('Lecciones1')
+            .where('uid', isEqualTo: _user!.uid)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Opps! Algo salio mal'),
+            );
+          } else {
+            lessonNumber = 0;
+            var document = snapshot.data!.docs[0];
+            var info = lessonSelect(document);
+            return Column(
               children: <Widget>[
-                Padding(padding: const EdgeInsets.all(50),
-                  child: Center(child: Text(info['nombre'].toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
+                Padding(
+                  padding: const EdgeInsets.all(50),
+                  child: Center(
+                    child: Text(
+                      info['nombre'].toString(),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 Column(
@@ -34,39 +56,49 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Createlessons('video'),
-                        Createlessons('lectura'),
+                        Createlessons(info, 'video'),
+                        Createlessons(info, 'lectura'),
                       ],
                     ),
                     const Padding(
                       padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                      child: Divider(thickness: 3, indent: 15, color: Colors.black,),
+                      child: Divider(
+                        thickness: 2,
+                        indent: 15,
+                        color: Colors.black,
+                      ),
                     ),
                     AbsorbPointer(
                       absorbing: false,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Createlessons('cuestionario'),
-                          Createlessons('cuestionario2'),
+                          Createlessons(info, 'cuestionario'),
+                          Createlessons(info, 'cuestionario 2'),
                         ],
                       ),
                     ),
                   ],
                 ),
               ],
-            )
-        )
-    );
+            );
+          }
+        },
+      ),
+    ));
   }
 
-  Widget Createlessons(String leccion){
-    try{
+  Widget Createlessons(var info, String leccion) {
+    try {
       lessonNumber++;
-      setState((){});
       return Column(
         children: [
-          LessonSelect(widget.bloque, info[leccion]['nombre'], info[leccion]['completado'],lessonNumber),
+          LessonSelect(
+              info[leccion]['puntos'],
+              widget.bloque,
+              info[leccion]['nombre'],
+              info[leccion]['completado'],
+              lessonNumber),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
@@ -80,17 +112,17 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen>{
           ),
         ],
       );
-    }catch(NoSuchMethodError){
+    } catch (NoSuchMethodError) {
       return Container();
     }
   }
 
-  lessonSelect() {
-    switch(widget.bloque){
+  lessonSelect(var document) {
+    switch (widget.bloque) {
       case 1:
-        return widget.map['Drogodependencia'];
+        return document['Drogodependencia'];
       case 2:
-        return widget.map['Liderazgo'];
+        return document['Liderazgo'];
     }
   }
 }
