@@ -33,6 +33,8 @@ class _LineScreen extends State<LinesScreen> {
   late double globalY = 0;
 
   bool first = true;
+  bool flag =
+      false; //Flag para saber si ya se encuentra seleccionada una opcion
   late String question = widget.questions![0],
       opc1 = widget.questions![1],
       opc2 = widget.questions![2],
@@ -72,19 +74,11 @@ class _LineScreen extends State<LinesScreen> {
         Draggable(
           data: 1,
           //Drag feedback
-          feedback: Container(
-            width: 150,
-            height: 80,
-            color: Colors.red,
-            child: const Center(
-              child: Text(
-                'Respuesta',
-                style: TextStyle(fontSize: 10, color: Colors.white),
-              ),
-            ),
-          ),
+          feedback: Container(),
           //Calculates the coordinate center point of the current box when you start dragging
           onDragStarted: () {
+            flag = false;
+            result(-1, -1);
             _getOffset(globalkey);
             var box = key1.currentContext!.findRenderObject() as RenderBox;
             var x = box.localToGlobal(Offset.zero).dx + box.size.width;
@@ -92,6 +86,18 @@ class _LineScreen extends State<LinesScreen> {
                 globalY +
                 box.size.height * 0.5;
             start_offset.value = Offset(x, y);
+          },
+          onDragEnd: (touch) {
+            if (!flag) {
+              end_offset = ValueNotifier(Offset.zero);
+            }
+            setState(() {});
+          },
+          onDragUpdate: (touch) {
+            var x = touch.globalPosition.dx;
+            var y = touch.globalPosition.dy - globalY;
+            end_offset.value = Offset(x, y);
+            setState(() {});
           },
           child: Container(
             key: key1,
@@ -125,21 +131,24 @@ class _LineScreen extends State<LinesScreen> {
                   width: 130,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF282828),
-                    borderRadius: BorderRadius.circular(8.0),
+                    border:
+                        Border.all(width: 3, color: const Color(0xFFFF7E27)),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: Center(
                     child: Text(
                       opc1,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: 'Comfortaa',
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                 ),
                 //Get the coordinate center point of the current box after receiving the data
                 onAccept: (_) {
+                  flag = true;
                   var box =
                       key2.currentContext!.findRenderObject() as RenderBox;
                   var x =
@@ -163,19 +172,21 @@ class _LineScreen extends State<LinesScreen> {
                 width: 130,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF282828),
-                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: Center(
                     child: Text(
                   opc2,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: 'Comfortaa',
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 )),
               ),
               onAccept: (_) {
+                flag = true;
                 var box = key3.currentContext!.findRenderObject() as RenderBox;
                 var x =
                     box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
@@ -197,19 +208,19 @@ class _LineScreen extends State<LinesScreen> {
                 width: 130,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF282828),
-                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: Center(
                     child: Text(
                   opc3,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: Colors.white,
-                  ),
+                      fontFamily: 'Comfortaa', color: Colors.black),
                 )),
               ),
               onAccept: (_) {
+                flag = true;
                 var box = key4.currentContext!.findRenderObject() as RenderBox;
                 var x =
                     box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
@@ -265,6 +276,9 @@ class _LineScreen extends State<LinesScreen> {
         }
         break;
       default:
+        (first)
+            ? {widget.answersCallBack(0)}
+            : {widget.answersCallBack(-1), first = true};
         break;
     }
   }

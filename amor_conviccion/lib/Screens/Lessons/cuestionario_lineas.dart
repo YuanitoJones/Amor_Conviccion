@@ -103,8 +103,27 @@ class _LineLessonScreen extends State<LineLessonScreen> {
               bloque.liderazgo[5],
               answers: (val) => setState(() => answers[5] = val),
             ),
-            ElevatedButton(
-                onPressed: () => results(puntos), child: const Text('Terminar'))
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                child: ElevatedButton(
+                  onPressed: () => results(puntos),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        const Text('Siquiente'),
+                        Icon(Icons.arrow_forward_rounded)
+                      ]),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
@@ -118,6 +137,6 @@ class _LineLessonScreen extends State<LineLessonScreen> {
             builder: (context) => (points >= 3)
                 ? SuccessScreen(widget.bloque, widget.nombre, widget.completed,
                     answers, widget.puntosl)
-                : FailScreen()));
+                : FailScreen(widget.puntosl)));
   }
 }

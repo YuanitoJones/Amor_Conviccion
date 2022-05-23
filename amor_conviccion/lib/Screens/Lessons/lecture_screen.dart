@@ -29,7 +29,7 @@ class _LectureScreenState extends State<LectureScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(38, 70, 83, 1.0),
+        backgroundColor: const Color(0xFF42ADE2),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(25), //-------------------------------------
@@ -130,7 +130,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   Opacity(
                       opacity: 0.2,
                       child: Image.asset(
-                        'assets/logos/peter pan.png',
+                        'assets/logos/peterpan.png',
                         color: Colors.black,
                         height: 200,
                       )),
@@ -138,7 +138,7 @@ class _LectureScreenState extends State<LectureScreen> {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                       child: Image.asset(
-                        'assets/logos/peter pan.png',
+                        'assets/logos/peterpan.png',
                         height: 200,
                       ),
                     ),
@@ -152,7 +152,7 @@ class _LectureScreenState extends State<LectureScreen> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(231, 111, 81, 1.0),
+                  primary: const Color(0xFFFF7E27),
                   elevation: 4,
                 ),
                 onPressed: () {

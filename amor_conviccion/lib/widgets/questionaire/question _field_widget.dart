@@ -54,7 +54,7 @@ class _QuestionField extends State<QuestionField> {
             decoration: (flag)
                 ? const BoxDecoration()
                 : BoxDecoration(
-                    color: const Color(0xFFee4a4a),
+                    color: const Color(0xFF42ADE2),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
             child: Wrap(
@@ -90,7 +90,7 @@ class _QuestionField extends State<QuestionField> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       primary: (answers[0] == 1)
-                                          ? const Color(0xFFee4a4a)
+                                          ? const Color(0xFF42ADE2)
                                           : const Color(0xFF282828)),
                                   onPressed: () =>
                                       changesize(size, 0, widget.points),
@@ -111,7 +111,7 @@ class _QuestionField extends State<QuestionField> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       primary: (answers[1] == 1)
-                                          ? const Color(0xFFee4a4a)
+                                          ? const Color(0xFF42ADE2)
                                           : const Color(0xFF282828)),
                                   onPressed: () =>
                                       changesize(size, 1, widget.points),
@@ -130,7 +130,7 @@ class _QuestionField extends State<QuestionField> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: (answers[2] == 1)
-                                        ? const Color(0xFFee4a4a)
+                                        ? const Color(0xFF42ADE2)
                                         : const Color(0xFF282828)),
                                 onPressed: () =>
                                     changesize(size, 2, widget.points),

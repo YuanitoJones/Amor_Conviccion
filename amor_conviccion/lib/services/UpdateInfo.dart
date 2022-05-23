@@ -62,16 +62,16 @@ class UpdateLesson {
           collectionr
               .doc(user!.email)
               .update(({
-                'Drogodependencia.${lesson}.completado': true,
-                'Drogodependencia.${lesson}.respuestas.1': answers[0],
-                'Drogodependencia.${lesson}.respuestas.2': answers[1],
-                'Drogodependencia.${lesson}.respuestas.3': answers[2],
-                'Drogodependencia.${lesson}.respuestas.4': answers[3],
-                'Drogodependencia.${lesson}.respuestas.5': answers[4],
-                'Drogodependencia.${lesson}.respuestas.6': answers[5],
-                'Drogodependencia.${lesson}.respuestas.7': answers[6],
-                'Drogodependencia.${lesson}.respuestas.8': answers[7],
-                'Drogodependencia.${lesson}.respuestas.9': answers[8],
+                'Drogodependencia.$lesson.completado': true,
+                'Drogodependencia.$lesson.respuestas.1': answers[0],
+                'Drogodependencia.$lesson.respuestas.2': answers[1],
+                'Drogodependencia.$lesson.respuestas.3': answers[2],
+                'Drogodependencia.$lesson.respuestas.4': answers[3],
+                'Drogodependencia.$lesson.respuestas.5': answers[4],
+                'Drogodependencia.$lesson.respuestas.6': answers[5],
+                'Drogodependencia.$lesson.respuestas.7': answers[6],
+                'Drogodependencia.$lesson.respuestas.8': answers[7],
+                'Drogodependencia.$lesson.respuestas.9': answers[8],
               }))
               .catchError((error) => print('Failed: $error'));
         });
@@ -82,10 +82,10 @@ class UpdateLesson {
             collectionr
                 .doc(user!.email)
                 .update(({
-                  'Liderazgo.${lesson}.completado': true,
-                  'Liderazgo.${lesson}.respuestas.1': answers[0],
-                  'Liderazgo.${lesson}.respuestas.2': answers[1],
-                  'Liderazgo.${lesson}.respuestas.3': answers[2],
+                  'Liderazgo.$lesson.completado': true,
+                  'Liderazgo.$lesson.respuestas.1': answers[0],
+                  'Liderazgo.$lesson.respuestas.2': answers[1],
+                  'Liderazgo.$lesson.respuestas.3': answers[2],
                 }))
                 .catchError((error) => print('Failed: $error'));
           });
@@ -94,13 +94,13 @@ class UpdateLesson {
             collectionr
                 .doc(user!.email)
                 .update(({
-                  'Liderazgo.${lesson}.completado': true,
-                  'Liderazgo.${lesson}.respuestas.1': answers[0],
-                  'Liderazgo.${lesson}.respuestas.2': answers[1],
-                  'Liderazgo.${lesson}.respuestas.3': answers[2],
-                  'Liderazgo.${lesson}.respuestas.4': answers[3],
-                  'Liderazgo.${lesson}.respuestas.5': answers[4],
-                  'Liderazgo.${lesson}.respuestas.6': answers[5],
+                  'Liderazgo.$lesson.completado': true,
+                  'Liderazgo.$lesson.respuestas.1': answers[0],
+                  'Liderazgo.$lesson.respuestas.2': answers[1],
+                  'Liderazgo.$lesson.respuestas.3': answers[2],
+                  'Liderazgo.$lesson.respuestas.4': answers[3],
+                  'Liderazgo.$lesson.respuestas.5': answers[4],
+                  'Liderazgo.$lesson.respuestas.6': answers[5],
                 }))
                 .catchError((error) => print('Failed: $error'));
           });

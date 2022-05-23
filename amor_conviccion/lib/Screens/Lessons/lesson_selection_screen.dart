@@ -65,7 +65,7 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                       child: Divider(
                         thickness: 2,
                         indent: 15,
-                        color: Colors.black,
+                        color: Color(0xFFC9C9C9),
                       ),
                     ),
                     AbsorbPointer(

@@ -116,9 +116,24 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                           setState(() => widget.puntos += val),
                       answers: (val) => setState(() => answers[8] = val),
                     ),
-                    ElevatedButton(
-                        onPressed: () => results(widget.puntos),
-                        child: const Text('Terminar'))
+                    SizedBox(
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                        child: ElevatedButton(
+                          onPressed: () => results(widget.puntos),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                const Text('Siquiente'),
+                                Icon(Icons.arrow_forward_rounded)
+                              ]),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 )
               : Column(
@@ -148,9 +163,24 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       mapa[2],
                       answers: (val) => setState(() => answers2[2] = val),
                     ),
-                    ElevatedButton(
-                        onPressed: () => results(widget.puntos),
-                        child: const Text('Terminar'))
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                        child: ElevatedButton(
+                          onPressed: () => results(widget.puntos),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                const Text('Siquiente'),
+                                Icon(Icons.arrow_forward_rounded)
+                              ]),
+                        ),
+                      ),
+                    )
                   ],
                 )),
     ));
@@ -165,7 +195,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                 builder: (context) => (points >= 6)
                     ? SuccessScreen(widget.bloque, widget.nombre,
                         widget.completed, answers, widget.puntosl)
-                    : FailScreen()));
+                    : FailScreen(widget.puntosl)));
         break;
       case 2:
         Navigator.push(

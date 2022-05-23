@@ -3,12 +3,11 @@ import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'emailSignInScreen.dart';
 
+import 'emailSignInScreen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
-
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -45,12 +44,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: (){
-                  final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                onPressed: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
                   provider.googleLogin();
                 },
                 style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
                     shadowColor: Colors.black,
                     elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.090),
@@ -62,66 +63,83 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
-                    FaIcon(FontAwesomeIcons.google, color: Colors.white,),
-                    Text('Login con Google',style: TextStyle(
-                      fontFamily: 'Comfortaa'
-                    ),),
+                    FaIcon(
+                      FontAwesomeIcons.google,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'Login con Google',
+                      style: TextStyle(fontFamily: 'Comfortaa'),
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: size.height*0.04,),
+              SizedBox(
+                height: size.height * 0.04,
+              ),
               ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context)=>const EmailLogin())
-                  );
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EmailLogin()));
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
                     shadowColor: Colors.black,
                     elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.085),
-                    primary: Colors.yellow,
+                    primary: Color(0xFFFF7E27),
                     textStyle: TextStyle(
                       fontSize: size.width * 0.05,
                       fontFamily: 'Sora',
                       fontWeight: FontWeight.bold,
                     )),
                 child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      FaIcon(FontAwesomeIcons.envelope, color: Colors.white,),
-                      Text('Login con correo',
-                        style: TextStyle(
-                            fontFamily: 'Comfortaa',
-                            color: Colors.black
-                        ),
-                      ),
-                    ],
-                  )
-                ),
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    FaIcon(
+                      FontAwesomeIcons.envelope,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'Login con correo',
+                      style: TextStyle(fontFamily: 'Comfortaa'),
+                    ),
+                  ],
+                )),
               ),
-              SizedBox(height: size.height*0.015,),
-              const Divider(thickness: 1, color: Colors.black,),
+              SizedBox(
+                height: size.height * 0.015,
+              ),
+              const Divider(
+                thickness: 1,
+                color: Colors.black,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('No tienes una cuenta?',style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Comfortaa'
-                  ),),
+                  const Text(
+                    'No tienes una cuenta?',
+                    style:
+                        TextStyle(color: Colors.black, fontFamily: 'Comfortaa'),
+                  ),
                   TextButton(
                     child: const Center(
-                      child: Text('Registrate aqui!', style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Comfortaa'
-                      ),
+                      child: Text(
+                        'Registrate aqui!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Comfortaa'),
                       ),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => const EmailSignIn()));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const EmailSignIn()));
                     },
                   ),
                 ],

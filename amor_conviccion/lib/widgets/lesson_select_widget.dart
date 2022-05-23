@@ -33,15 +33,25 @@ class _LessonSelect extends State<LessonSelect> {
         Container(
           width: 110,
           height: 110,
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(50.0),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: (widget.flag) ? Color(0xFF428BC1) : Color(0xFFEE4A4A),
+                  spreadRadius: 3,
+                  blurRadius: 10,
+                )
+              ]),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 elevation: 8.0,
-                shadowColor: Colors.black.withOpacity(1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90),
-                  side: (widget.flag)
-                      ? const BorderSide(color: Colors.green, width: 3)
-                      : const BorderSide(color: Colors.red, width: 3),
+                  //side: (widget.flag)
+                  // ? const BorderSide(color: Colors.green, width: 3)
+                  // : const BorderSide(color: Colors.red, width: 3),
                 ),
                 primary: Colors.white),
             child: Lessonicon(widget.texto),
@@ -69,7 +79,7 @@ class _LessonSelect extends State<LessonSelect> {
           ),
         ),
         Positioned(
-          child: buildEditIcon(Colors.blue),
+          child: buildEditIcon(Color(0xFF42ADE2)),
           top: 0,
           right: 0,
         ),
@@ -112,16 +122,13 @@ class _LessonSelect extends State<LessonSelect> {
   }
 
   Widget buildEditIcon(Color color) => buildCircle(
-        child: buildCircle(
-            child: Text(
-              widget.lesson.toString(),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
-            ),
-            all: 12,
-            color: color),
-        all: 1.5,
-        color: (widget.flag) ? Colors.green : Colors.red,
-      );
+      child: Text(
+        widget.lesson.toString(),
+        style: const TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
+      ),
+      all: 15,
+      color: const Color(0xFF42ADE2));
 
   Widget buildCircle(
           {required Widget child, required double all, required Color color}) =>
