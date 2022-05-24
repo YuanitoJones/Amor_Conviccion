@@ -31,6 +31,9 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2" />
+            android:value="2"/>
+       <meta-data
+               android:name="firebase_performance_logcat_enabled"
+               android:value="true"/>
     </application>
 </manifest>
