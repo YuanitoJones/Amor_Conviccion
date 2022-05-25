@@ -169,21 +169,28 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                               .start,
                                                       children: <Widget>[
                                                         Container(
+                                                            width: size.width *
+                                                                0.5,
                                                             alignment: Alignment
                                                                 .centerLeft,
-                                                            child: Text(
-                                                              documents[index]
-                                                                  .get(
-                                                                      'nombre'),
-                                                              style: const TextStyle(
-                                                                  fontFamily:
-                                                                      'Comfortaa',
-                                                                  color: Colors
-                                                                      .deepPurple,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                              maxLines: 6,
+                                                            child: Row(
+                                                              children: [
+                                                                Flexible(
+                                                                  child: Text(
+                                                                    documents[
+                                                                            index]
+                                                                        .get(
+                                                                            'nombre'),
+                                                                    style: const TextStyle(
+                                                                        fontFamily:
+                                                                            'Comfortaa',
+                                                                        color: Colors
+                                                                            .deepPurple,
+                                                                        fontWeight:
+                                                                            FontWeight.w500),
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             )),
                                                         Text(
                                                           "Puntos: " +
