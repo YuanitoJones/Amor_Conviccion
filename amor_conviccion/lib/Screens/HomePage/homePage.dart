@@ -3,17 +3,17 @@ import 'package:amor_conviccion/Screens/HomePage/lessons_main_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/user_info_screen.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
 
   @override
   _HomePage createState() => _HomePage();
 }
-class _HomePage extends State<HomePage>{
+
+class _HomePage extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     MainLessons(),
     LeaderBoard(),
@@ -25,23 +25,22 @@ class _HomePage extends State<HomePage>{
     });
   }
 
-
-  Widget main(size){
+  Widget main(size) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.black54,
-                blurRadius: 2,
+              color: Colors.black54,
+              blurRadius: 2,
             )
           ],
         ),
         child: BottomNavigationBar(
           elevation: 10,
           type: BottomNavigationBarType.shifting,
-          selectedFontSize: size.width*0.04,
+          selectedFontSize: size.width * 0.05,
           selectedIconTheme: IconThemeData(color: Colors.yellow[800]),
           unselectedIconTheme: const IconThemeData(color: Colors.grey),
           unselectedItemColor: Colors.grey,
@@ -76,5 +75,3 @@ class _HomePage extends State<HomePage>{
     );
   }
 }
-
-  

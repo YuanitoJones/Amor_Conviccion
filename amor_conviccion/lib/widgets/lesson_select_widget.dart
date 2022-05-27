@@ -28,25 +28,26 @@ class LessonSelect extends StatefulWidget {
 class _LessonSelect extends State<LessonSelect> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Container(
-          width: 110,
-          height: 110,
+          width: size.width * 0.3,
+          height: size.width * 0.3,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(
                 Radius.circular(50.0),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: (widget.flag) ? Color(0xFF428BC1) : Color(0xFFEE4A4A),
+                  color: (widget.flag) ? Color(0xFF5cb85c) : Color(0xFFEE4A4A),
                   spreadRadius: 3,
                   blurRadius: 10,
                 )
               ]),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                elevation: 8.0,
+                elevation: size.width * 0.015,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90),
                   //side: (widget.flag)
@@ -54,7 +55,7 @@ class _LessonSelect extends State<LessonSelect> {
                   // : const BorderSide(color: Colors.red, width: 3),
                 ),
                 primary: Colors.white),
-            child: Lessonicon(widget.texto),
+            child: Lessonicon(size, widget.texto),
             onPressed: () {
               Navigator.push(
                   context,
@@ -79,7 +80,7 @@ class _LessonSelect extends State<LessonSelect> {
           ),
         ),
         Positioned(
-          child: buildEditIcon(Color(0xFF42ADE2)),
+          child: buildEditIcon(Color(0xFF42ADE2), size),
           top: 0,
           right: 0,
         ),
@@ -87,47 +88,44 @@ class _LessonSelect extends State<LessonSelect> {
     );
   }
 
-  Icon Lessonicon(String texto) {
+  Icon Lessonicon(Size size, String texto) {
     if (widget.texto == 'lectura') {
-      return const Icon(
+      return Icon(
         Icons.book,
-        size: 60,
+        size: size.width * 0.17,
         color: Colors.blue,
       );
-    } else if (widget.texto == 'cuestionario') {
-      return const Icon(
+    } else if (widget.texto == 'cuestionario' ||
+        widget.texto == 'cuestionario 2') {
+      return Icon(
         Icons.account_circle,
-        size: 60,
-        color: Colors.blue,
-      );
-    } else if (widget.texto == 'cuestionario 2') {
-      return const Icon(
-        Icons.account_circle,
-        size: 60,
+        size: size.width * 0.2,
         color: Colors.blue,
       );
     } else if (widget.texto == 'video') {
-      return const Icon(
+      return Icon(
         Icons.video_call_rounded,
-        size: 60,
+        size: size.width * 0.2,
         color: Colors.blue,
       );
     } else {
-      return const Icon(
+      return Icon(
         Icons.dangerous,
-        size: 60,
+        size: size.width * 0.2,
         color: Colors.blue,
       );
     }
   }
 
-  Widget buildEditIcon(Color color) => buildCircle(
+  Widget buildEditIcon(Color color, Size size) => buildCircle(
       child: Text(
         widget.lesson.toString(),
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: size.width * 0.033,
+            color: Colors.white),
       ),
-      all: 15,
+      all: size.width * 0.036,
       color: const Color(0xFF42ADE2));
 
   Widget buildCircle(

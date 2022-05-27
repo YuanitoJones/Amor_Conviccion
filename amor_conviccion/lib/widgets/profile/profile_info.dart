@@ -70,20 +70,20 @@ class _Profile_Info extends State<ProfileInfo> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: size.height * 0.02,
+            height: size.height * 0.01,
           ),
           Container(
-            padding: const EdgeInsets.all(10),
-            child: const Text(
+            padding: EdgeInsets.all(size.height * 0.01),
+            child: Text(
               'Nombre',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: size.width * 0.07,
                 fontFamily: 'Comfortaa',
               ),
             ),
           ),
           SizedBox(
-            height: size.height * 0.01,
+            height: size.height * 0.0015,
           ),
           Container(
             decoration: BoxDecoration(
@@ -101,11 +101,11 @@ class _Profile_Info extends State<ProfileInfo> {
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                contentPadding: const EdgeInsets.fromLTRB(
-                  20.0,
-                  10.0,
-                  20.0,
-                  10.0,
+                contentPadding: EdgeInsets.fromLTRB(
+                  size.width * 0.05,
+                  size.height * 0.01,
+                  size.width * 0.05,
+                  size.height * 0.01,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
@@ -121,17 +121,17 @@ class _Profile_Info extends State<ProfileInfo> {
             height: size.height * 0.015,
           ),
           Container(
-            padding: const EdgeInsets.all(10),
-            child: const Text(
+            padding: EdgeInsets.all(size.height * 0.01),
+            child: Text(
               'Correo',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: size.width * 0.07,
                 fontFamily: 'Comfortaa',
               ),
             ),
           ),
           SizedBox(
-            height: size.height * 0.01,
+            height: size.height * 0.0015,
           ),
           Container(
             decoration: BoxDecoration(
@@ -166,7 +166,7 @@ class _Profile_Info extends State<ProfileInfo> {
             ),
           ),
           SizedBox(
-            height: size.height * 0.06,
+            height: size.height * 0.03,
           ),
           Container(
             alignment: Alignment.center,
@@ -178,8 +178,9 @@ class _Profile_Info extends State<ProfileInfo> {
                         primary: (widget.actionbutton)
                             ? const Color(0xFFFF7E27)
                             : Colors.amber,
-                        textStyle: const TextStyle(
-                            fontFamily: 'Comfortaa', fontSize: 15)),
+                        textStyle: TextStyle(
+                            fontFamily: 'Comfortaa',
+                            fontSize: size.width * 0.05)),
                     child: (widget.actionbutton)
                         ? const Text(
                             'Editar Perfil',

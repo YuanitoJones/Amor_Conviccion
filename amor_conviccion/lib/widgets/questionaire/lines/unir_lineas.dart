@@ -48,7 +48,7 @@ class _LineScreen extends State<LinesScreen> {
       child: Container(
         key: globalkey,
         width: size.width,
-        height: 350,
+        height: size.height * 0.5,
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
@@ -57,7 +57,7 @@ class _LineScreen extends State<LinesScreen> {
           foregroundPainter: Painter3(start_offset, end_offset),
           child: Column(
             children: [
-              _buildItems(),
+              _buildItems(size),
             ],
           ),
         ),
@@ -66,7 +66,7 @@ class _LineScreen extends State<LinesScreen> {
   }
 
   //Create content
-  Row _buildItems() {
+  Row _buildItems(Size size) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -101,8 +101,8 @@ class _LineScreen extends State<LinesScreen> {
           },
           child: Container(
             key: key1,
-            width: 150,
-            height: 120,
+            width: size.width * 0.4,
+            height: size.height * 0.17,
             decoration: BoxDecoration(
               border: Border.all(width: 3, color: Colors.blue),
               borderRadius: BorderRadius.circular(8.0),
@@ -110,8 +110,8 @@ class _LineScreen extends State<LinesScreen> {
             child: Center(
               child: Text(
                 question,
-                style: const TextStyle(
-                  fontSize: 15,
+                style: TextStyle(
+                  fontSize: size.width * 0.04,
                   fontFamily: 'Comfortaa',
                 ),
               ),
@@ -128,8 +128,8 @@ class _LineScreen extends State<LinesScreen> {
               child: DragTarget(
                 builder: (context, c, r) => Container(
                   key: key2,
-                  width: 130,
-                  height: 80,
+                  width: size.width * 0.35,
+                  height: size.height * 0.11,
                   decoration: BoxDecoration(
                     border:
                         Border.all(width: 3, color: const Color(0xFFFF7E27)),
@@ -139,9 +139,10 @@ class _LineScreen extends State<LinesScreen> {
                     child: Text(
                       opc1,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Comfortaa',
                         color: Colors.black,
+                        fontSize: size.width * 0.04,
                       ),
                     ),
                   ),
@@ -163,14 +164,14 @@ class _LineScreen extends State<LinesScreen> {
                 },
               ),
             ),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: size.height * 0.05,
             ),
             DragTarget(
               builder: (context, c, r) => Container(
                 key: key3,
-                width: 130,
-                height: 80,
+                width: size.width * 0.35,
+                height: size.height * 0.11,
                 decoration: BoxDecoration(
                   border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
                   borderRadius: BorderRadius.circular(30.0),
@@ -179,9 +180,10 @@ class _LineScreen extends State<LinesScreen> {
                     child: Text(
                   opc2,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Comfortaa',
                     color: Colors.black,
+                    fontSize: size.width * 0.04,
                   ),
                 )),
               ),
@@ -199,14 +201,14 @@ class _LineScreen extends State<LinesScreen> {
                 });
               },
             ),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: size.height * 0.05,
             ),
             DragTarget(
               builder: (context, c, r) => Container(
                 key: key4,
-                width: 130,
-                height: 80,
+                width: size.width * 0.35,
+                height: size.height * 0.11,
                 decoration: BoxDecoration(
                   border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
                   borderRadius: BorderRadius.circular(30.0),
@@ -215,8 +217,11 @@ class _LineScreen extends State<LinesScreen> {
                     child: Text(
                   opc3,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontFamily: 'Comfortaa', color: Colors.black),
+                  style: TextStyle(
+                    fontFamily: 'Comfortaa',
+                    color: Colors.black,
+                    fontSize: size.width * 0.04,
+                  ),
                 )),
               ),
               onAccept: (_) {

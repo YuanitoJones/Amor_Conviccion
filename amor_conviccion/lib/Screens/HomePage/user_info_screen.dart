@@ -122,7 +122,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                           nombre: documents[0].get('nombre'),
                           correo: documents[0].get('correo')),
                       SizedBox(
-                        height: size.height * 0.04,
+                        height: size.height * 0.02,
                       ),
                       Container(
                         color: const Color(0xFF42ADE2),

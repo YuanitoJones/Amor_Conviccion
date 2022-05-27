@@ -121,18 +121,21 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'No tienes una cuenta?',
-                    style:
-                        TextStyle(color: Colors.black, fontFamily: 'Comfortaa'),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Comfortaa',
+                        fontSize: size.width * 0.04),
                   ),
                   TextButton(
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Registrate aqui!',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Comfortaa'),
+                            fontFamily: 'Comfortaa',
+                            fontSize: size.width * 0.04),
                       ),
                     ),
                     onPressed: () {
@@ -143,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

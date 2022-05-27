@@ -37,16 +37,14 @@ class MainLessons extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: 150,
-                        height: 150,
+                        width: size.width * 0.35,
+                        height: size.height * 0.25,
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           child: ClipOval(
                               child: Image.asset(
                             'assets/logos/pentagono.png',
                             fit: BoxFit.fill,
-                            width: 140,
-                            height: 140,
                           )),
                         ),
                       ),

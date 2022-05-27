@@ -49,9 +49,10 @@ class _LectureScreenState extends State<LectureScreen> {
             onPressed: null,
             child: Text(
               lectura![0],
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: 19, //------------------------------------------------
+                fontSize: size.width *
+                    0.055, //------------------------------------------------
               ),
             ),
           ),
@@ -66,12 +67,13 @@ class _LectureScreenState extends State<LectureScreen> {
               // -------------------------------------------- Titulo y subtitulo
               margin: const EdgeInsets.only(bottom: 20), //---------------------
               child: Column(
-                children: const [
+                children: [
                   Text(
                     'Peter Pan',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 30, //------------------------------------------
+                      fontSize: size.width *
+                          0.08, //------------------------------------------
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Comfortaa',
                     ),
@@ -80,8 +82,8 @@ class _LectureScreenState extends State<LectureScreen> {
                     'Lectura',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize:
-                          20, //------------------------------------------------
+                      fontSize: size.width *
+                          0.06, //------------------------------------------------
                       fontStyle: FontStyle.italic,
                       fontFamily: 'Comfortaa',
                     ),
@@ -91,10 +93,13 @@ class _LectureScreenState extends State<LectureScreen> {
             ),
             Container(
               // ------------------------------------------------------- Lectura
-              margin: const EdgeInsets.only(bottom: 20), //---------------------
-              padding: const EdgeInsets.all(20), //-----------------------------
+              margin: EdgeInsets.only(
+                  bottom: size.height * 0.03), //---------------------
+              padding: EdgeInsets.all(
+                  size.height * 0.03), //-----------------------------
               width: size.width,
-              height: 250, //---------------------------------------------------
+              height: size.height *
+                  0.4, //---------------------------------------------------
               decoration: BoxDecoration(
                 color: const Color.fromRGBO(233, 196, 106, 1.0),
                 borderRadius: BorderRadius.circular(25), //---------------------
@@ -106,11 +111,13 @@ class _LectureScreenState extends State<LectureScreen> {
                   ),
                 ],
               ),
-              child: Text(
-                lectura![1],
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Comfortaa',
+              child: Center(
+                child: Text(
+                  lectura![1],
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Comfortaa',
+                  ),
                 ),
               ),
             ),
@@ -132,14 +139,14 @@ class _LectureScreenState extends State<LectureScreen> {
                       child: Image.asset(
                         'assets/logos/peterpan.png',
                         color: Colors.black,
-                        height: 200,
+                        height: size.height * 0.1,
                       )),
                   ClipRect(
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                       child: Image.asset(
                         'assets/logos/peterpan.png',
-                        height: 200,
+                        height: size.height * 0.1,
                       ),
                     ),
                   )

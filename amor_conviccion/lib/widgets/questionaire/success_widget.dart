@@ -57,7 +57,8 @@ class _SuccessScreen extends State<SuccessScreen> {
           child: Center(
             child: Text(
               (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
-              style: const TextStyle(fontFamily: 'Comfortaa', fontSize: 40),
+              style: TextStyle(
+                  fontFamily: 'Comfortaa', fontSize: size.width * 0.1),
             ),
           ),
         ),
@@ -65,9 +66,10 @@ class _SuccessScreen extends State<SuccessScreen> {
           height: size.height * 0.1,
         ),
         (!flag)
-            ? const Text(
+            ? Text(
                 '¡Ganaste!',
-                style: TextStyle(fontFamily: 'Comfortaa', fontSize: 35),
+                style: TextStyle(
+                    fontFamily: 'Comfortaa', fontSize: size.width * 0.07),
               )
             : Container(),
         SizedBox(
@@ -81,12 +83,13 @@ class _SuccessScreen extends State<SuccessScreen> {
                 children: [
                   Text(
                     widget.puntos.toString(),
-                    style:
-                        const TextStyle(fontFamily: 'Comfortaa', fontSize: 40),
+                    style: TextStyle(
+                        fontFamily: 'Comfortaa', fontSize: size.width * 0.1),
                   ),
-                  const Text(
+                  Text(
                     'Puntos de amor',
-                    style: TextStyle(fontFamily: 'Comfortaa', fontSize: 15),
+                    style: TextStyle(
+                        fontFamily: 'Comfortaa', fontSize: size.width * 0.04),
                   ),
                 ],
               ),
@@ -100,9 +103,10 @@ class _SuccessScreen extends State<SuccessScreen> {
         SizedBox(
           height: size.height * 0.25,
         ),
-        const Text(
+        Text(
           'Toca para continuar',
-          style: TextStyle(fontFamily: 'Comfortaa', fontSize: 30),
+          style:
+              TextStyle(fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
         ),
       ],
     ));

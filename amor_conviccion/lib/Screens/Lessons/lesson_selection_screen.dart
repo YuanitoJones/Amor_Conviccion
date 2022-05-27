@@ -17,78 +17,101 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
   final _user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('Lecciones1')
-            .where('uid', isEqualTo: _user!.uid)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('Opps! Algo salio mal'),
-            );
-          } else {
-            lessonNumber = 0;
-            var document = snapshot.data!.docs[0];
-            var info = lessonSelect(document);
-            return Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Center(
-                    child: Text(
-                      info['nombre'].toString(),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: size.height * 0.2,
+            decoration: const BoxDecoration(
+              color: Color(0xFF42ADE2),
+            ),
+          ),
+          SafeArea(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Lecciones1')
+                  .where('uid', isEqualTo: _user!.uid)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return const Center(
+                    child: Text('Opps! Algo salio mal'),
+                  );
+                } else {
+                  lessonNumber = 0;
+                  var document = snapshot.data!.docs[0];
+                  var info = lessonSelect(document);
+                  return Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(size.width * 0.1),
+                        child: Center(
+                          child: Text(
+                            info['nombre'].toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: size.width * 0.08,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Createlessons(info, 'video'),
-                        Createlessons(info, 'lectura'),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                      child: Divider(
-                        thickness: 2,
-                        indent: 15,
-                        color: Color(0xFFC9C9C9),
+                      SizedBox(
+                        height: size.height * 0.1,
                       ),
-                    ),
-                    AbsorbPointer(
-                      absorbing: false,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      Column(
                         children: [
-                          Createlessons(info, 'cuestionario'),
-                          Createlessons(info, 'cuestionario 2'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Createlessons(size, info, 'video'),
+                              Createlessons(size, info, 'lectura'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                            child: Divider(
+                              thickness: 2,
+                              indent: 15,
+                              color: Color(0xFFC9C9C9),
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                          AbsorbPointer(
+                            absorbing: false,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Createlessons(size, info, 'cuestionario'),
+                                Createlessons(size, info, 'cuestionario 2'),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }
-        },
+                    ],
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 
-  Widget Createlessons(var info, String leccion) {
+  Widget Createlessons(Size size, var info, String leccion) {
     try {
       lessonNumber++;
       return Column(
@@ -103,16 +126,16 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
               info[leccion]['nombre'].toString(),
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Comfortaa',
-                fontSize: 20,
+                fontSize: size.width * 0.05,
               ),
             ),
           ),
         ],
       );
-    } catch (NoSuchMethodError) {
+    } on NoSuchMethodError {
       return Container();
     }
   }

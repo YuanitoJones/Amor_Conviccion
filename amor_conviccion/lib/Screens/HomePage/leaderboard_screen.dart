@@ -16,8 +16,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    var r = const TextStyle(color: Colors.black, fontSize: 30);
-    var q = const TextStyle(color: Colors.black, fontSize: 22);
+    var r = TextStyle(color: Colors.black, fontSize: size.width * 0.07);
+    var q = TextStyle(
+        color: Colors.black,
+        fontSize: size.width * 0.045,
+        fontFamily: 'Comfortaa');
     return Stack(
       children: <Widget>[
         Container(
@@ -34,23 +37,26 @@ class _LeaderBoardState extends State<LeaderBoard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                  margin: const EdgeInsets.only(left: 15.0, top: 10.0),
-                  child: const Text(
+                  margin: EdgeInsets.only(
+                      left: size.width * 0.05, top: size.height * 0.005),
+                  child: Text(
                     'Tabla de lideres',
                     style: TextStyle(
                         fontFamily: 'Comfortaa',
                         fontWeight: FontWeight.bold,
-                        fontSize: 26,
+                        fontSize: size.width * 0.08,
                         color: Colors.white),
                   )),
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0, top: 15.0),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.05, top: size.height * 0.03),
                 child: Text(
                   'Tablero de clasificacion ',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Comfortaa',
-                      color: Colors.white),
+                      color: Colors.white,
+                      fontSize: size.width * 0.04),
                 ),
               ),
               Flexible(
@@ -62,7 +68,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                           .get(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
-                          return Text('Algo salio mal');
+                          return const Text('Algo salio mal');
                         } else if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
@@ -76,7 +82,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                             places = documents.length;
                           }
                           return Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
+                            padding: const EdgeInsets.fromLTRB(15, 30, 15, 10),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -94,8 +100,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                       }
                                     }
                                     return Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(5, 0, 5, 5),
+                                      padding: EdgeInsets.fromLTRB(
+                                          size.width * 0.008,
+                                          0,
+                                          size.width * 0.008,
+                                          size.height * 0.02),
                                       child: InkWell(
                                         child: SizedBox(
                                           width:
@@ -137,7 +146,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            top: 7.0,
                                                             left: 10.0,
                                                             bottom: 7.0),
                                                     child: Row(
@@ -156,10 +164,9 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                     ),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 20.0,
-                                                            top: 10.0),
+                                                    padding: EdgeInsets.only(
+                                                      left: size.width * 0.035,
+                                                    ),
                                                     child: Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -197,7 +204,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                               documents[index]
                                                                   .get('puntos')
                                                                   .toString(),
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontFamily:
                                                                   'Comfortaa'),
                                                         ),

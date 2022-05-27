@@ -28,6 +28,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -45,6 +46,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       ),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[0],
                       2,
@@ -53,6 +55,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[0] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[1],
                       1,
@@ -61,6 +64,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[1] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[2],
                       2,
@@ -69,6 +73,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[2] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[3],
                       1,
@@ -77,6 +82,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[3] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[4],
                       3,
@@ -85,6 +91,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[4] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[5],
                       2,
@@ -93,6 +100,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[5] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[6],
                       1,
@@ -101,6 +109,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[6] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[7],
                       3,
@@ -109,6 +118,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[7] = val),
                     ),
                     QuestionField(
+                      size,
                       flag,
                       mapa[8],
                       2,

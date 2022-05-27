@@ -38,7 +38,8 @@ class FailScreen extends StatelessWidget {
           child: Center(
             child: Text(
               '¡Hey, mejor suerte la próxima vez!',
-              style: const TextStyle(fontFamily: 'Comfortaa', fontSize: 30),
+              style: TextStyle(
+                  fontFamily: 'Comfortaa', fontSize: size.width * 0.08),
             ),
           ),
         ),
@@ -47,9 +48,10 @@ class FailScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(20.0),
-          child: const Text(
+          child: Text(
             'No has acertdo lo suficiente para continuar :(',
-            style: TextStyle(fontFamily: 'Comfortaa', fontSize: 20),
+            style: TextStyle(
+                fontFamily: 'Comfortaa', fontSize: size.width * 0.053),
           ),
         ),
         SizedBox(
@@ -64,9 +66,10 @@ class FailScreen extends StatelessWidget {
         SizedBox(
           height: size.height * 0.15,
         ),
-        const Text(
+        Text(
           'Toca para continuar',
-          style: TextStyle(fontFamily: 'Comfortaa', fontSize: 30),
+          style:
+              TextStyle(fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
         ),
       ],
     ));

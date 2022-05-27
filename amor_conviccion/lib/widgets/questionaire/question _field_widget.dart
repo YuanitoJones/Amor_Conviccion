@@ -8,6 +8,7 @@ class QuestionField extends StatefulWidget {
   final answerlist answers;
 
   const QuestionField(
+    this.size,
     this.flag,
     this.questions,
     this.points, {
@@ -16,6 +17,7 @@ class QuestionField extends StatefulWidget {
     required this.answers, //Retorna numero con respuesta
   }) : super(key: key);
 
+  final Size size;
   final bool flag; // Para diferencia entre estado de container
   final int points; // representa la opcion correcta
   final List? questions; //Lista de pregunta e incisos
@@ -26,7 +28,8 @@ class QuestionField extends StatefulWidget {
 class _QuestionField extends State<QuestionField> {
   bool first = true; //Bandera que indica si ya se ha seleccionado una opcion
   late bool flag = widget.flag;
-  late double height1 = 220; //Tamaño inicial de contenedor
+  late double height1 =
+      widget.size.height * 0.345; //Tamaño inicial de contenedor
   late String question = widget.questions![0],
       opc1 = widget.questions![1],
       opc2 = widget.questions![2],
@@ -64,8 +67,9 @@ class _QuestionField extends State<QuestionField> {
                   child: (flag)
                       ? Text(
                           question,
-                          style: const TextStyle(
-                              fontSize: 16, fontFamily: 'Comfortaa'),
+                          style: TextStyle(
+                              fontSize: size.width * 0.041,
+                              fontFamily: 'Comfortaa'),
                         )
                       : Center(
                           child: Text(
@@ -84,8 +88,8 @@ class _QuestionField extends State<QuestionField> {
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                             child: SizedBox(
                               height: (answers[0] == 1)
-                                  ? size.height * 0.07
-                                  : size.height * 0.055,
+                                  ? size.height * 0.075
+                                  : size.height * 0.07,
                               width: size.width,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
@@ -96,8 +100,9 @@ class _QuestionField extends State<QuestionField> {
                                       changesize(size, 0, widget.points),
                                   child: Text(
                                     opc1,
-                                    style: const TextStyle(
-                                        fontFamily: 'Comfortaa'),
+                                    style: TextStyle(
+                                        fontFamily: 'Comfortaa',
+                                        fontSize: size.width * 0.0356),
                                   )),
                             ),
                           ),
@@ -105,8 +110,8 @@ class _QuestionField extends State<QuestionField> {
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                             child: SizedBox(
                               height: (answers[1] == 1)
-                                  ? size.height * 0.07
-                                  : size.height * 0.055,
+                                  ? size.height * 0.075
+                                  : size.height * 0.07,
                               width: size.width,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
@@ -117,15 +122,16 @@ class _QuestionField extends State<QuestionField> {
                                       changesize(size, 1, widget.points),
                                   child: Text(
                                     opc2,
-                                    style: const TextStyle(
-                                        fontFamily: 'Comfortaa'),
+                                    style: TextStyle(
+                                        fontFamily: 'Comfortaa',
+                                        fontSize: size.width * 0.0356),
                                   )),
                             ),
                           ),
                           SizedBox(
                             height: (answers[2] == 1)
-                                ? size.height * 0.07
-                                : size.height * 0.055,
+                                ? size.height * 0.075
+                                : size.height * 0.07,
                             width: size.width,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -136,8 +142,9 @@ class _QuestionField extends State<QuestionField> {
                                     changesize(size, 2, widget.points),
                                 child: Text(
                                   opc3,
-                                  style:
-                                      const TextStyle(fontFamily: 'Comfortaa'),
+                                  style: TextStyle(
+                                      fontFamily: 'Comfortaa',
+                                      fontSize: size.width * 0.0356),
                                 )),
                           ),
                         ],
@@ -151,7 +158,7 @@ class _QuestionField extends State<QuestionField> {
 
   void changesize(Size size, int opc, int points) async {
     flag = !flag;
-    (flag) ? height1 = size.height * 0.3 : height1 = size.width * 0.18;
+    (flag) ? height1 = size.height * 0.345 : height1 = size.width * 0.17;
     (first)
         ? {widget.answersCallBack(0)}
         : {widget.answersCallBack(-1), first = true};
