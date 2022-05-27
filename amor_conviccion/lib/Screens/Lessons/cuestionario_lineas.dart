@@ -34,6 +34,7 @@ class _LineLessonScreen extends State<LineLessonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -107,9 +108,10 @@ class _LineLessonScreen extends State<LineLessonScreen> {
               height: 20,
             ),
             SizedBox(
-              height: 50,
+              height: size.height * 0.08,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                padding: EdgeInsets.fromLTRB(
+                    size.width * 0.25, 0, size.width * 0.25, 0),
                 child: ElevatedButton(
                   onPressed: () => results(puntos),
                   child: Row(

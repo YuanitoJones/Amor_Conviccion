@@ -127,9 +127,10 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       answers: (val) => setState(() => answers[8] = val),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: size.height * 0.08,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.25, 0, size.width * 0.25, 0),
                         child: ElevatedButton(
                           onPressed: () => results(widget.puntos),
                           child: Row(
