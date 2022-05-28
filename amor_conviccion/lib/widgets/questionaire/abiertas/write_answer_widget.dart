@@ -5,13 +5,13 @@ typedef answercallback = void Function(String val);
 class WriteAnswer extends StatefulWidget {
   final answercallback answers;
 
-  const WriteAnswer(this.option, this.pregunta,
+  const WriteAnswer(this.option, this.pregunta, this.textEditingController,
       {Key? key, required this.answers})
       : super(key: key);
 
   final bool option; //Saber si escribira texto o numeros
   final List? pregunta; //Pregunta de la leccion
-
+  final textEditingController;
   @override
   _WriteAnswer createState() => _WriteAnswer();
 }
@@ -21,6 +21,7 @@ class _WriteAnswer extends State<WriteAnswer> {
   late List? pregunta = widget.pregunta;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -28,23 +29,28 @@ class _WriteAnswer extends State<WriteAnswer> {
           children: [
             Text(
               pregunta![0],
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Comfortaa',
-                fontSize: 18,
+                fontSize: size.width * 0.045,
               ),
             ),
-            const SizedBox(
-              height: 15,
+            SizedBox(
+              height: size.height * 0.02,
             ),
             (option)
                 ? TextFormField(
                     onChanged: (texto) {
                       widget.answers(texto);
                     },
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Comfortaa',
-                      fontSize: 20,
+                      fontSize: size.width * 0.045,
                     ),
+                    controller: widget.textEditingController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) => value != null && value.length < 1
+                        ? 'No debe estar vacio'
+                        : null,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25)),
@@ -58,16 +64,20 @@ class _WriteAnswer extends State<WriteAnswer> {
                     maxLines: 5,
                   )
                 : SizedBox(
-                    width: 60,
+                    width: size.width * 0.15,
                     child: TextFormField(
                         onChanged: (texto) {
                           widget.answers(texto);
                         },
                         maxLength: 2,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        controller: widget.textEditingController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) =>
+                            value != null && value.length < 1 ? '' : null,
+                        style: TextStyle(
                           fontFamily: 'Comfortaa',
-                          fontSize: 20,
+                          fontSize: size.width * 0.045,
                         ),
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(

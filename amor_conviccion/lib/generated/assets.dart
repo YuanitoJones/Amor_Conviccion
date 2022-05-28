@@ -2,12 +2,14 @@
 class Assets {
   Assets._();
 
-  static const String IconsDrogodependencia = 'assets/Icons/drogodependencia.png';
+  static const String IconsDrogodependencia =
+      'assets/Icons/drogodependencia.png';
   static const String IconsMochila = 'assets/Icons/mochila.png';
   static const String IconsNotoHeartsuit = 'assets/Icons/noto_heartsuit.png';
   static const String backgroundSplash = 'assets/background/splash.png';
   static const String backgroundStandard = 'assets/background/standard.png';
-  static const String fontsComfortaaRegular = 'assets/fonts/ComfortaaRegular.ttf';
+  static const String fontsComfortaaRegular =
+      'assets/fonts/ComfortaaRegular.ttf';
   static const String logosAdvertencia = 'assets/logos/advertencia.png';
   static const String logosCircularLogo = 'assets/logos/circular_logo.png';
   static const String logosFirebaseLogo = 'assets/logos/firebase_logo.png';
@@ -15,11 +17,10 @@ class Assets {
   static const String logosLogo = 'assets/logos/logo.png';
   static const String logosPentagono = 'assets/logos/pentagono.png';
   static const String logosPeterpan = 'assets/logos/peterpan.png';
-  static const String videosVerdadDolor = 'assets/videos/verdad_dolor.mp4';
-  static const String videosVideo0 = 'assets/videos/video0.mp4';
   static const String videosVideo1 = 'assets/videos/video1.mp4';
   static const String videosVideo10 = 'assets/videos/video10.mp4';
   static const String videosVideo11 = 'assets/videos/video11.mp4';
+  static const String videosVideo12 = 'assets/videos/video12.mp4';
   static const String videosVideo2 = 'assets/videos/video2.mp4';
   static const String videosVideo3 = 'assets/videos/video3.mp4';
   static const String videosVideo4 = 'assets/videos/video4.mp4';
@@ -28,5 +29,4 @@ class Assets {
   static const String videosVideo7 = 'assets/videos/video7.mp4';
   static const String videosVideo8 = 'assets/videos/video8.mp4';
   static const String videosVideo9 = 'assets/videos/video9.mp4';
-
 }

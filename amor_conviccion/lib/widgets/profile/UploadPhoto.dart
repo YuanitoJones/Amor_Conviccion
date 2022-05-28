@@ -23,10 +23,8 @@ class _Upload extends State<Upload> {
     return loading
         ? TextButton(
             onPressed: () async {
-              final result = await FilePicker.platform.pickFiles(
-                allowMultiple: false,
-                type: FileType.any,
-              );
+              final result = await FilePicker.platform
+                  .pickFiles(allowMultiple: false, type: FileType.image);
               if (result == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

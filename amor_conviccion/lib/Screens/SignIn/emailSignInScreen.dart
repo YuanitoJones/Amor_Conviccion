@@ -15,6 +15,20 @@ class EmailSignIn extends StatefulWidget {
 
 class _EmailSignIn extends State<EmailSignIn>
     with SingleTickerProviderStateMixin {
+  @override
+  void initstate() {
+    super.initState();
+    txt1Controller.addListener((onListen));
+  }
+
+  @override
+  void dispose() {
+    txt1Controller.removeListener((onListen));
+    super.dispose();
+  }
+
+  void onListen() => setState(() {});
+
   late bool flag = true;
   var btnEnabled = true;
   TextEditingController txt1Controller = TextEditingController();
@@ -48,7 +62,7 @@ class _EmailSignIn extends State<EmailSignIn>
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const Text(
-                          'Es posible que el correo ya se encuentre registrado'),
+                          'Verifique sus datos e intentelo de nuevo, es posible que ya se encuentre registrado'),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -93,6 +107,7 @@ class _EmailSignIn extends State<EmailSignIn>
                   child: Material(
                     type: MaterialType.transparency,
                     child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (email) =>
                             email != null && !EmailValidator.validate(email)
@@ -100,11 +115,22 @@ class _EmailSignIn extends State<EmailSignIn>
                                 : null,
                         maxLength: 50,
                         controller: txt1Controller,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Comfortaa',
-                          fontSize: 18,
+                          fontSize: size.width * 0.045,
                         ),
                         decoration: InputDecoration(
+                          suffixIcon: txt1Controller.text.isEmpty
+                              ? Container(
+                                  width: 0,
+                                )
+                              : IconButton(
+                                  icon: Icon(Icons.close),
+                                  onPressed: () {
+                                    txt1Controller.clear();
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                  }),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25)),
                           counterText: "",
@@ -134,8 +160,9 @@ class _EmailSignIn extends State<EmailSignIn>
                                       : null,
                               maxLength: 20,
                               controller: txt2Controller,
-                              style: const TextStyle(
-                                  fontSize: 18, fontFamily: 'Comfortaa'),
+                              style: TextStyle(
+                                  fontSize: size.width * 0.045,
+                                  fontFamily: 'Comfortaa'),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25)),
@@ -175,14 +202,19 @@ class _EmailSignIn extends State<EmailSignIn>
                   child: Material(
                     type: MaterialType.transparency,
                     child: TextFormField(
-                        maxLength: 20,
+                        maxLength: 50,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) => value != null && value.length < 3
+                            ? 'Nombre de minimo 3 caracteres'
+                            : null,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.allow(
                               RegExp("[a-zA-Z ]")),
                         ],
                         controller: txt3Controller,
-                        style: const TextStyle(
-                            fontSize: 18, fontFamily: 'Comfortaa'),
+                        style: TextStyle(
+                            fontSize: size.width * 0.045,
+                            fontFamily: 'Comfortaa'),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25)),

@@ -96,9 +96,9 @@ class _EmailLogin extends State<EmailLogin>
                                 : null,
                         maxLength: 50,
                         controller: txt1Controller,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Comfortaa',
-                          fontSize: 18,
+                          fontSize: size.width * 0.045,
                         ),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -130,8 +130,9 @@ class _EmailLogin extends State<EmailLogin>
                                       : null,
                               maxLength: 20,
                               controller: txt2Controller,
-                              style: const TextStyle(
-                                  fontSize: 18, fontFamily: 'Comfortaa'),
+                              style: TextStyle(
+                                  fontSize: size.width * 0.045,
+                                  fontFamily: 'Comfortaa'),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25)),

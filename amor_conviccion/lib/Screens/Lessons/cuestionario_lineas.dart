@@ -24,6 +24,11 @@ class LineLessonScreen extends StatefulWidget {
 class _LineLessonScreen extends State<LineLessonScreen> {
   CuestionarioBloque bloque = CuestionarioBloque();
 
+  TextEditingController txt1Controller = TextEditingController();
+  TextEditingController txt2Controller = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
   late var answers = ['', '', '', '', '', '', ''];
   late bool flag = true;
   @override
@@ -94,37 +99,54 @@ class _LineLessonScreen extends State<LineLessonScreen> {
               indent: 10,
               thickness: 3,
             ),
-            WriteAnswer(
-              true,
-              bloque.liderazgo[4],
-              answers: (val) => setState(() => answers[4] = val),
-            ),
-            WriteAnswer(
-              false,
-              bloque.liderazgo[5],
-              answers: (val) => setState(() => answers[5] = val),
-            ),
+            Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    WriteAnswer(
+                      true,
+                      bloque.liderazgo[4],
+                      txt1Controller,
+                      answers: (val) => setState(() => answers[4] = val),
+                    ),
+                    WriteAnswer(
+                      false,
+                      bloque.liderazgo[5],
+                      txt2Controller,
+                      answers: (val) => setState(() => answers[5] = val),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.065,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.25, 0, size.width * 0.25, 0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              results(puntos);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Favor de llenar los campos obligatorios')));
+                            }
+                          },
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                const Text('Siquiente'),
+                                Icon(Icons.arrow_forward_rounded)
+                              ]),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
             SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: size.height * 0.08,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(
-                    size.width * 0.25, 0, size.width * 0.25, 0),
-                child: ElevatedButton(
-                  onPressed: () => results(puntos),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        const Text('Siquiente'),
-                        Icon(Icons.arrow_forward_rounded)
-                      ]),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
+              height: size.height * 0.03,
             ),
           ],
         ),

@@ -22,6 +22,12 @@ class CuestionarioScreen extends StatefulWidget {
 class _CuestionarioScreen extends State<CuestionarioScreen> {
   late var mapa = cuestionariobloque();
 
+  TextEditingController txt1Controller = TextEditingController();
+  TextEditingController txt2Controller = TextEditingController();
+  TextEditingController txt3Controller = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
   late var answers = ['', '', '', '', '', '', '', '', ''];
   late var answers2 = ['', '', ''];
   late bool flag = true;
@@ -32,122 +38,124 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
-          child: (widget.bloque == 1)
-              ? Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Pon a prueba tu conocimiento!',
-                        style: TextStyle(
-                            fontFamily: 'Comfortaa',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+        child: (widget.bloque == 1)
+            ? Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Pon a prueba tu conocimiento!',
+                      style: TextStyle(
+                          fontFamily: 'Comfortaa',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[0],
+                    2,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[0] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[1],
+                    1,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[1] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[2],
+                    2,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[2] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[3],
+                    1,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[3] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[4],
+                    3,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[4] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[5],
+                    2,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[5] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[6],
+                    1,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[6] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[7],
+                    3,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[7] = val),
+                  ),
+                  QuestionField(
+                    size,
+                    flag,
+                    mapa[8],
+                    2,
+                    answersCallBack: (val) =>
+                        setState(() => widget.puntos += val),
+                    answers: (val) => setState(() => answers[8] = val),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.065,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          size.width * 0.25, 0, size.width * 0.25, 0),
+                      child: ElevatedButton(
+                        onPressed: () => results(widget.puntos),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              const Text('Siquiente'),
+                              Icon(Icons.arrow_forward_rounded)
+                            ]),
                       ),
                     ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[0],
-                      2,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[0] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[1],
-                      1,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[1] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[2],
-                      2,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[2] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[3],
-                      1,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[3] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[4],
-                      3,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[4] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[5],
-                      2,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[5] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[6],
-                      1,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[6] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[7],
-                      3,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[7] = val),
-                    ),
-                    QuestionField(
-                      size,
-                      flag,
-                      mapa[8],
-                      2,
-                      answersCallBack: (val) =>
-                          setState(() => widget.puntos += val),
-                      answers: (val) => setState(() => answers[8] = val),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.08,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            size.width * 0.25, 0, size.width * 0.25, 0),
-                        child: ElevatedButton(
-                          onPressed: () => results(widget.puntos),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                const Text('Siquiente'),
-                                Icon(Icons.arrow_forward_rounded)
-                              ]),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                )
-              : Column(
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              )
+            : Form(
+                key: _formKey,
+                child: Column(
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(8.0),
@@ -162,27 +170,40 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                     WriteAnswer(
                       true,
                       mapa[0],
+                      txt1Controller,
                       answers: (val) => setState(() => answers2[0] = val),
                     ),
                     WriteAnswer(
                       true,
                       mapa[1],
+                      txt2Controller,
                       answers: (val) => setState(() => answers2[1] = val),
                     ),
                     WriteAnswer(
                       true,
                       mapa[2],
+                      txt3Controller,
                       answers: (val) => setState(() => answers2[2] = val),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: size.height * 0.05,
                     ),
                     SizedBox(
-                      height: 50,
+                      height: size.height * 0.07,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.25, 0, size.width * 0.25, 0),
                         child: ElevatedButton(
-                          onPressed: () => results(widget.puntos),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              results(widget.puntos);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Favor de llenar los campos obligatorios')));
+                            }
+                          },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
@@ -194,6 +215,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                     )
                   ],
                 )),
+      ),
     ));
   }
 
