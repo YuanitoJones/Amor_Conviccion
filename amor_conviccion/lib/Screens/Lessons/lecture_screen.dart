@@ -69,12 +69,11 @@ class _LectureScreenState extends State<LectureScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Peter Pan',
+                    'Que significa ser adicto',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: size.width *
                           0.08, //------------------------------------------
-                      fontWeight: FontWeight.bold,
                       fontFamily: 'Comfortaa',
                     ),
                   ),
@@ -99,7 +98,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   size.height * 0.03), //-----------------------------
               width: size.width,
               height: size.height *
-                  0.4, //---------------------------------------------------
+                  0.35, //---------------------------------------------------
               decoration: BoxDecoration(
                 color: const Color.fromRGBO(233, 196, 106, 1.0),
                 borderRadius: BorderRadius.circular(25), //---------------------
@@ -136,17 +135,17 @@ class _LectureScreenState extends State<LectureScreen> {
                   // ),
                   Opacity(
                       opacity: 0.2,
-                      child: Image.asset(
-                        'assets/logos/peterpan.png',
+                      child: Image.network(
+                        lectura![2],
                         color: Colors.black,
-                        height: size.height * 0.1,
+                        height: size.height * 0.2,
                       )),
                   ClipRect(
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                      child: Image.asset(
-                        'assets/logos/peterpan.png',
-                        height: size.height * 0.1,
+                      child: Image.network(
+                        lectura![2],
+                        height: size.height * 0.2,
                       ),
                     ),
                   )
@@ -155,8 +154,8 @@ class _LectureScreenState extends State<LectureScreen> {
             ),
             SizedBox(
               // ----------------------------------------------- Boton Siguiente
-              width: 200,
-              height: 50,
+              width: size.width * 0.5,
+              height: size.height * 0.065,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFFFF7E27),
