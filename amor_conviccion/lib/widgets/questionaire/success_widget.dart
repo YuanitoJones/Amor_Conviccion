@@ -18,10 +18,10 @@ class SuccessScreen extends StatefulWidget {
 
 class _SuccessScreen extends State<SuccessScreen> {
   late bool flag = widget.flag;
+  UpdatePoints update = UpdatePoints();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    UpdatePoints update = UpdatePoints();
     return Scaffold(
       body: Stack(
         children: [
@@ -50,65 +50,79 @@ class _SuccessScreen extends State<SuccessScreen> {
 
   Widget updatepoints(Size size, int bloque, String name) {
     return SafeArea(
-        child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
-            child: Text(
-              (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
-              style: TextStyle(
-                  fontFamily: 'Comfortaa', fontSize: size.width * 0.1),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.1,
-        ),
-        (!flag)
-            ? Text(
-                '¡Ganaste!',
-                style: TextStyle(
-                    fontFamily: 'Comfortaa', fontSize: size.width * 0.07),
-              )
-            : Container(),
-        SizedBox(
-          height: size.height * 0.1,
-        ),
-        Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      child: GestureDetector(
+          onTap: () {
+            if (!flag) {
+              update.updatepoints(widget.puntos);
+              UpdateLesson lesson = UpdateLesson();
+              lesson.updateLessonCompleted(
+                  widget.bloque, widget.nombre, widget.answers);
+            }
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          child: Column(
             children: [
-              Column(
-                children: [
-                  Text(
-                    widget.puntos.toString(),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
                     style: TextStyle(
                         fontFamily: 'Comfortaa', fontSize: size.width * 0.1),
                   ),
-                  Text(
-                    'Puntos de amor',
-                    style: TextStyle(
-                        fontFamily: 'Comfortaa', fontSize: size.width * 0.04),
-                  ),
-                ],
+                ),
               ),
-              Container(
-                width: size.width * 0.22,
-                child: Image.asset('assets/Icons/noto_heartsuit.png'),
+              SizedBox(
+                height: size.height * 0.1,
+              ),
+              (!flag)
+                  ? Text(
+                      '¡Ganaste!',
+                      style: TextStyle(
+                          fontFamily: 'Comfortaa', fontSize: size.width * 0.07),
+                    )
+                  : Container(),
+              SizedBox(
+                height: size.height * 0.1,
+              ),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          widget.puntos.toString(),
+                          style: TextStyle(
+                              fontFamily: 'Comfortaa',
+                              fontSize: size.width * 0.1),
+                        ),
+                        Text(
+                          'Puntos de amor',
+                          style: TextStyle(
+                              fontFamily: 'Comfortaa',
+                              fontSize: size.width * 0.04),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      width: size.width * 0.22,
+                      child: Image.asset('assets/Icons/noto_heartsuit.png'),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.25,
+              ),
+              Text(
+                'Toca para continuar',
+                style: TextStyle(
+                    fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
               ),
             ],
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.25,
-        ),
-        Text(
-          'Toca para continuar',
-          style:
-              TextStyle(fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
-        ),
-      ],
-    ));
+          )),
+    );
   }
 }
