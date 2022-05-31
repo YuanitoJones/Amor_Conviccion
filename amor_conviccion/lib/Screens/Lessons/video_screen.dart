@@ -29,6 +29,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
       _videoPlayerController3,
       _videoPlayerController4;
 
+  CarouselController carouselController = CarouselController();
+
   @override
   initState() {
     super.initState();
@@ -51,7 +53,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
         ],
         videoPlayerController: _videoPlayerController,
         aspectRatio: 2 / 3,
-        autoInitialize: false,
+        autoInitialize: true,
         autoPlay: false,
         showControls: true);
 
@@ -75,7 +77,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
         ],
         videoPlayerController: _videoPlayerController2,
         aspectRatio: 2 / 3,
-        autoInitialize: false,
+        autoInitialize: true,
         autoPlay: false,
         showControls: true);
 
@@ -99,7 +101,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
         ],
         videoPlayerController: _videoPlayerController3,
         aspectRatio: 2 / 3,
-        autoInitialize: false,
+        autoInitialize: true,
         autoPlay: false,
         showControls: true);
 
@@ -123,7 +125,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
         ],
         videoPlayerController: _videoPlayerController4,
         aspectRatio: 2 / 3,
-        autoInitialize: false,
+        autoInitialize: true,
         autoPlay: false,
         showControls: true);
 
@@ -167,25 +169,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                 height: size.height * 0.8,
                 child: Stack(
                   children: [
-                    Positioned(
-                      top: size.height * 0.4,
-                      right: 0,
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: size.height * 0.03,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    Positioned(
-                      top: size.height * 0.4,
-                      left: 0,
-                      child: Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: size.height * 0.03,
-                        color: Colors.black54,
-                      ),
-                    ),
                     CarouselSlider(
+                      carouselController: carouselController,
                       items: [
                         Chewie(controller: _chewieController),
                         Chewie(controller: _chewieController2),
@@ -198,7 +183,51 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                           initialPage: 0,
                           enlargeCenterPage: true,
                           viewportFraction: 0.9),
-                    )
+                    ),
+                    Positioned(
+                      top: size.height * 0.4,
+                      right: size.width * 0.02,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: ClipOval(
+                          child: Container(
+                            color: Colors.black54,
+                            child: IconButton(
+                              onPressed: () {
+                                // Use the controller to change the current page
+                                carouselController.nextPage();
+                              },
+                              icon: Icon(
+                                Icons.arrow_forward_rounded,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: size.height * 0.4,
+                      left: size.width * 0.02,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: ClipOval(
+                          child: Container(
+                            color: Colors.black54,
+                            child: IconButton(
+                              onPressed: () {
+                                // Use the controller to change the current page
+                                carouselController.previousPage();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_rounded,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 )),
             SizedBox(
