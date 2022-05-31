@@ -17,14 +17,21 @@ class LectureScreen extends StatefulWidget {
 
 class _LectureScreenState extends State<LectureScreen> {
   MapLectura bloque = MapLectura();
-  late List? lectura;
+  late Map lectura;
   late int contador = 0;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    lectura = bloque.Drogodependencia[contador];
+    switch (widget.bloque) {
+      case 1:
+        lectura = bloque.Drogodependencia;
+        break;
+      case 2:
+        lectura = bloque.Liderazgo;
+    }
+    late List? pagina = lectura[contador];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -48,7 +55,7 @@ class _LectureScreenState extends State<LectureScreen> {
           TextButton(
             onPressed: null,
             child: Text(
-              lectura![0],
+              pagina![0],
               style: TextStyle(
                 color: Colors.white,
                 fontSize: size.width *
@@ -69,7 +76,7 @@ class _LectureScreenState extends State<LectureScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Que significa ser adicto',
+                    pagina[1],
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: size.width *
@@ -111,11 +118,19 @@ class _LectureScreenState extends State<LectureScreen> {
                 ],
               ),
               child: Center(
-                child: Text(
-                  lectura![1],
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Comfortaa',
+                child: RawScrollbar(
+                  thumbVisibility: true,
+                  thumbColor: const Color(0xFF42ADE2),
+                  thickness: 2,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      pagina[2],
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Comfortaa',
+                        fontSize: size.width * 0.045,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -136,7 +151,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   Opacity(
                       opacity: 0.2,
                       child: Image.network(
-                        lectura![2],
+                        pagina[3],
                         color: Colors.black,
                         height: size.height * 0.2,
                       )),
@@ -144,7 +159,7 @@ class _LectureScreenState extends State<LectureScreen> {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                       child: Image.network(
-                        lectura![2],
+                        pagina[3],
                         height: size.height * 0.2,
                       ),
                     ),
@@ -162,9 +177,10 @@ class _LectureScreenState extends State<LectureScreen> {
                   elevation: 4,
                 ),
                 onPressed: () {
-                  if (contador != 2) {
-                    contador = contador + 1;
-                    lectura = bloque.Drogodependencia[contador];
+                  //Seccion dinamica de las lecturas
+                  if (contador != lectura.length - 1) {
+                    contador++;
+                    pagina = lectura[contador];
                     setState(() {});
                   } else {
                     if (!widget.flag) {
@@ -184,7 +200,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   }
                 },
                 child: Text(
-                  lectura![3],
+                  pagina![4],
                   style: const TextStyle(
                     fontFamily: 'Comfortaa',
                     fontSize: 15,
