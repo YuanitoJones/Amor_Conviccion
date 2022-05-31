@@ -80,9 +80,9 @@ class MainLessons extends StatelessWidget {
                       ),
                       // Bloque #1
                       margin: EdgeInsets.fromLTRB(
-                        size.width * 0.15,
+                        size.width * 0.1,
                         size.height * 0.03,
-                        size.width * 0.15,
+                        size.width * 0.1,
                         0,
                       ),
                       child: ElevatedButton(
@@ -145,9 +145,9 @@ class MainLessons extends StatelessWidget {
                       ),
                       // Bloque #1
                       margin: EdgeInsets.fromLTRB(
-                        size.width * 0.15,
+                        size.width * 0.1,
                         size.height * 0.03,
-                        size.width * 0.15,
+                        size.width * 0.1,
                         0,
                       ),
                       child: ElevatedButton(
@@ -203,44 +203,56 @@ class MainLessons extends StatelessWidget {
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 4, color: const Color(0xFFFF7E27)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                       // Bloque #3
                       margin: EdgeInsets.fromLTRB(
-                        size.width * 0.15,
+                        size.width * 0.1,
                         size.height * 0.03,
-                        size.width * 0.15,
+                        size.width * 0.1,
                         0,
                       ),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
                           // -----------------------------------------------------------
                           // Modificar el size.width para el top y bottom en el padding.
                           // -----------------------------------------------------------
                           padding: EdgeInsets.fromLTRB(
                             0,
-                            size.width * 0.04,
+                            size.width * 0.08,
                             0,
-                            size.width * 0.04,
+                            size.width * 0.08,
                           ),
-                          onPrimary: Colors.black,
+                          onPrimary: Colors.black54,
                           // -------------------------------------------------------
                           // El borde redondeado esta con un valor estatico.
                           // -------------------------------------------------------
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: null,
+                        onPressed: () =>
+                            null /*Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LessonSelectionScreen(2)))*/
+                        ,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(
-                              Icons.book,
-                              size: size.width * .125,
-                            ),
+                            Container(
+                                height: size.height * 0.07,
+                                child: Image.asset(
+                                    'assets/Icons/noto_heartsuit.png')),
                             Column(
                               children: [
                                 Text(
-                                  'Lección',
+                                  'Leccion 3',
                                   style: TextStyle(
                                     fontSize: size.width * 0.05,
                                     fontWeight: FontWeight.bold,
@@ -248,6 +260,142 @@ class MainLessons extends StatelessWidget {
                                 ),
                                 Text(
                                   'Bloque #3',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.035,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 4, color: const Color(0xFFFF7E27)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      // Bloque #1
+                      margin: EdgeInsets.fromLTRB(
+                        size.width * 0.1,
+                        size.height * 0.03,
+                        size.width * 0.1,
+                        0,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          // -----------------------------------------------------------
+                          // Modificar el size.width para el top y bottom en el padding.
+                          // -----------------------------------------------------------
+                          padding: EdgeInsets.fromLTRB(
+                            0,
+                            size.width * 0.08,
+                            0,
+                            size.width * 0.08,
+                          ),
+                          onPrimary: Colors.black54,
+                          // -------------------------------------------------------
+                          // El borde redondeado esta con un valor estatico.
+                          // -------------------------------------------------------
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        onPressed: () =>
+                            null /*Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LessonSelectionScreen(2)))*/
+                        ,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                                height: size.height * 0.07,
+                                child: Image.asset(
+                                    'assets/Icons/noto_heartsuit.png')),
+                            Column(
+                              children: [
+                                Text(
+                                  'Leccion 4',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Bloque #4',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.035,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 4, color: const Color(0xFFFF7E27)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      // Bloque #1
+                      margin: EdgeInsets.fromLTRB(
+                        size.width * 0.1,
+                        size.height * 0.03,
+                        size.width * 0.1,
+                        0,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          // -----------------------------------------------------------
+                          // Modificar el size.width para el top y bottom en el padding.
+                          // -----------------------------------------------------------
+                          padding: EdgeInsets.fromLTRB(
+                            0,
+                            size.width * 0.08,
+                            0,
+                            size.width * 0.08,
+                          ),
+                          onPrimary: Colors.black54,
+                          // -------------------------------------------------------
+                          // El borde redondeado esta con un valor estatico.
+                          // -------------------------------------------------------
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        onPressed: () =>
+                            null /*Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LessonSelectionScreen(2)))*/
+                        ,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                                height: size.height * 0.07,
+                                child: Image.asset(
+                                    'assets/Icons/noto_heartsuit.png')),
+                            Column(
+                              children: [
+                                Text(
+                                  'Leccion 5',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Bloque #5',
                                   style: TextStyle(
                                     fontSize: size.width * 0.035,
                                   ),
