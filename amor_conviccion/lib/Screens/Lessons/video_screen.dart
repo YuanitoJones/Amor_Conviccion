@@ -166,63 +166,60 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
         child: Column(
           children: [
             SizedBox(
+              height: size.height * 0.02,
+            ),
+            SizedBox(
                 height: size.height * 0.8,
                 child: Stack(
                   children: [
-                    CarouselSlider(
-                      carouselController: carouselController,
-                      items: [
-                        Chewie(controller: _chewieController),
-                        Chewie(controller: _chewieController2),
-                        Chewie(controller: _chewieController3),
-                        Chewie(controller: _chewieController4),
-                      ],
-                      options: CarouselOptions(
-                          aspectRatio: 2 / 3,
-                          enableInfiniteScroll: false,
-                          initialPage: 0,
-                          enlargeCenterPage: true,
-                          viewportFraction: 0.9),
+                    Center(
+                      child: CarouselSlider(
+                        carouselController: carouselController,
+                        items: [
+                          Chewie(controller: _chewieController),
+                          Chewie(controller: _chewieController2),
+                          Chewie(controller: _chewieController3),
+                          Chewie(controller: _chewieController4),
+                        ],
+                        options: CarouselOptions(
+                            aspectRatio: 2 / 3,
+                            enableInfiniteScroll: false,
+                            initialPage: 0,
+                            enlargeCenterPage: true,
+                            viewportFraction: 0.95),
+                      ),
                     ),
-                    Positioned(
-                      top: size.height * 0.4,
-                      right: size.width * 0.02,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: ClipOval(
-                          child: Container(
-                            color: Colors.black54,
-                            child: IconButton(
-                              onPressed: () {
-                                // Use the controller to change the current page
-                                carouselController.nextPage();
-                              },
-                              icon: Icon(
-                                Icons.arrow_forward_rounded,
-                                color: Colors.white,
-                              ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ClipOval(
+                        child: Container(
+                          color: Colors.black54,
+                          child: IconButton(
+                            onPressed: () {
+                              // Use the controller to change the current page
+                              carouselController.nextPage();
+                            },
+                            icon: Icon(
+                              Icons.arrow_forward_rounded,
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: size.height * 0.4,
-                      left: size.width * 0.02,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: ClipOval(
-                          child: Container(
-                            color: Colors.black54,
-                            child: IconButton(
-                              onPressed: () {
-                                // Use the controller to change the current page
-                                carouselController.previousPage();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: Colors.white,
-                              ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: ClipOval(
+                        child: Container(
+                          color: Colors.black54,
+                          child: IconButton(
+                            onPressed: () {
+                              // Use the controller to change the current page
+                              carouselController.previousPage();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_rounded,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -230,59 +227,31 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                     ),
                   ],
                 )),
-            SizedBox(
-              height: size.height * 0.05,
-            ),
-            SizedBox(
-              height: size.height * 0.08,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  /*ElevatedButton(
-                    onPressed: () {
-                      if (cont == 1) {
-                        Navigator.pop(context);
-                      } else {
-                        cont--;
-                      }
-                      setState(() {});
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Icon(Icons.arrow_back_rounded),
-                          const Text('Anterior'),
-                        ]),
-                  ),*/
-                  Container(
-                    height: size.height * 0.07,
-                    width: size.width * 0.4,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        UpdateLesson lesson = UpdateLesson();
-                        if (!widget.flag) {
-                          switch (widget.bloque) {
-                            case 1:
-                              lesson.updateVideoCompleted(
-                                  'Drogodependencia', widget.nombre);
-                              break;
-                            case 2:
-                              lesson.updateVideoCompleted(
-                                  'Liderazgo', widget.nombre);
-                              break;
-                          }
-                        }
-                        Navigator.pop(context);
-                      },
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            const Text('Siquiente'),
-                            Icon(Icons.arrow_forward_rounded)
-                          ]),
-                    ),
-                  ),
-                ],
+            Container(
+              height: size.height * 0.07,
+              width: size.width * 0.4,
+              child: ElevatedButton(
+                onPressed: () {
+                  UpdateLesson lesson = UpdateLesson();
+                  if (!widget.flag) {
+                    switch (widget.bloque) {
+                      case 1:
+                        lesson.updateVideoCompleted(
+                            'Drogodependencia', widget.nombre);
+                        break;
+                      case 2:
+                        lesson.updateVideoCompleted('Liderazgo', widget.nombre);
+                        break;
+                    }
+                  }
+                  Navigator.pop(context);
+                },
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      const Text('Siquiente'),
+                      Icon(Icons.arrow_forward_rounded)
+                    ]),
               ),
             )
           ],
