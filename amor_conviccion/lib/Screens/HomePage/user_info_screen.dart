@@ -137,9 +137,8 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                       listen: false);
                               provider.signOutFromGoogle();
                             } else {
-                              EmailSignInProvider _email =
-                                  EmailSignInProvider();
-                              _email.signOut();
+                              EmailSignInProvider email = EmailSignInProvider();
+                              email.signOut();
                             }
                           },
                           icon: const Icon(Icons.logout),

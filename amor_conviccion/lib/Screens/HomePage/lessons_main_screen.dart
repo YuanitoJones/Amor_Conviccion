@@ -1,16 +1,8 @@
 import 'package:amor_conviccion/Screens/Lessons/lesson_selection_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MainLessons extends StatelessWidget {
-  MainLessons({Key? key}) : super(key: key);
-
-  final _user = FirebaseAuth.instance.currentUser;
-  late final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-      .collection('Lecciones1')
-      .doc(_user!.email)
-      .snapshots() as Stream<QuerySnapshot<Object?>>;
+  const MainLessons({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,7 +28,7 @@ class MainLessons extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
+                      SizedBox(
                         width: size.width * 0.35,
                         height: size.height * 0.25,
                         child: CircleAvatar(
@@ -109,11 +101,11 @@ class MainLessons extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    LessonSelectionScreen(1))),
+                                    const LessonSelectionScreen(1))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.08,
                                 child: Image.asset(
                                     'assets/Icons/drogodependencia.png')),
@@ -174,11 +166,11 @@ class MainLessons extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    LessonSelectionScreen(2))),
+                                    const LessonSelectionScreen(2))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.07,
                                 child: Image.asset('assets/Icons/mochila.png')),
                             Column(
@@ -235,8 +227,8 @@ class MainLessons extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () =>
-                            null /*Navigator.push(
+                        onPressed:
+                            () {} /*Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
@@ -245,7 +237,7 @@ class MainLessons extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.07,
                                 child: Image.asset(
                                     'assets/Icons/noto_heartsuit.png')),
@@ -303,8 +295,8 @@ class MainLessons extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () =>
-                            null /*Navigator.push(
+                        onPressed:
+                            () {} /*Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
@@ -313,7 +305,7 @@ class MainLessons extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.07,
                                 child: Image.asset(
                                     'assets/Icons/noto_heartsuit.png')),
@@ -371,8 +363,8 @@ class MainLessons extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () =>
-                            null /*Navigator.push(
+                        onPressed:
+                            () {} /*Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
@@ -381,7 +373,7 @@ class MainLessons extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.07,
                                 child: Image.asset(
                                     'assets/Icons/noto_heartsuit.png')),

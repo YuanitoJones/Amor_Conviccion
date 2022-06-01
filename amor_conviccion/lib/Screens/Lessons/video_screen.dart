@@ -199,7 +199,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                               // Use the controller to change the current page
                               carouselController.nextPage();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_forward_rounded,
                               color: Colors.white,
                             ),
@@ -217,7 +217,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                               // Use the controller to change the current page
                               carouselController.previousPage();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_back_rounded,
                               color: Colors.white,
                             ),
@@ -227,7 +227,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                     ),
                   ],
                 )),
-            Container(
+            SizedBox(
               height: size.height * 0.07,
               width: size.width * 0.4,
               child: ElevatedButton(
@@ -248,8 +248,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                 },
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      const Text('Siquiente'),
+                    children: const <Widget>[
+                      Text('Siquiente'),
                       Icon(Icons.arrow_forward_rounded)
                     ]),
               ),

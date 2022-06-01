@@ -200,10 +200,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                               ],
                                                             )),
                                                         Text(
-                                                          "Puntos: " +
-                                                              documents[index]
-                                                                  .get('puntos')
-                                                                  .toString(),
+                                                          "Puntos: ${documents[index].get('puntos')}",
                                                           style: const TextStyle(
                                                               fontFamily:
                                                                   'Comfortaa'),

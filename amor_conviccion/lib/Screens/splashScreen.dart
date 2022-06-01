@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:flutter/material.dart';
 
@@ -18,27 +19,23 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   void valoresIniciales() async {
-
-      Timer(const Duration(seconds: 2), () {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const Authentication()));
-      });
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const Authentication()));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(builder: (context) {
-        Size size = MediaQuery.of(context).size;
         return Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(
-                      'assets/background/splash.png'),
+                  image: AssetImage('assets/background/splash.png'),
                   fit: BoxFit.cover)),
         );
       }),
     );
   }
 }
-

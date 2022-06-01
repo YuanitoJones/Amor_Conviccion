@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LessonSelectionScreen extends StatefulWidget {
   const LessonSelectionScreen(this.bloque, {Key? key}) : super(key: key);
 
-  final bloque;
+  final int bloque;
   final lessonNumber = 0;
   @override
   _LessonSelectionScreen createState() => _LessonSelectionScreen();
@@ -70,8 +70,8 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Createlessons(size, info, 'video'),
-                              Createlessons(size, info, 'lectura'),
+                              createLessons(size, info, 'video'),
+                              createLessons(size, info, 'lectura'),
                             ],
                           ),
                           SizedBox(
@@ -93,8 +93,8 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Createlessons(size, info, 'cuestionario'),
-                                Createlessons(size, info, 'cuestionario 2'),
+                                createLessons(size, info, 'cuestionario'),
+                                createLessons(size, info, 'cuestionario 2'),
                               ],
                             ),
                           ),
@@ -111,7 +111,7 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
     );
   }
 
-  Widget Createlessons(Size size, var info, String leccion) {
+  Widget createLessons(Size size, var info, String leccion) {
     try {
       lessonNumber++;
       return Column(

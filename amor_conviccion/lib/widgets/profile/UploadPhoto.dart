@@ -53,7 +53,7 @@ class _Upload extends State<Upload> {
                   TextStyle(fontSize: size.width * 0.045, color: Colors.white),
             )),
           )
-        : Center(
+        : const Center(
             child: CircularProgressIndicator(),
           );
   }

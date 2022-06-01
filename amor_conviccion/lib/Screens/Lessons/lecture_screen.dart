@@ -44,9 +44,7 @@ class _LectureScreenState extends State<LectureScreen> {
         ),
         leading: IconButton(
           splashRadius: 28, //--------------------------------------------------
-          onPressed: () {
-            print(lectura.toString());
-          },
+          onPressed: () {},
           icon: const Icon(
             Icons.keyboard_backspace_rounded,
           ),
@@ -121,7 +119,7 @@ class _LectureScreenState extends State<LectureScreen> {
                 child: RawScrollbar(
                   thumbVisibility: true,
                   thumbColor: const Color(0xFF42ADE2),
-                  thickness: 2,
+                  thickness: 1.5,
                   child: SingleChildScrollView(
                     child: Text(
                       pagina[2],

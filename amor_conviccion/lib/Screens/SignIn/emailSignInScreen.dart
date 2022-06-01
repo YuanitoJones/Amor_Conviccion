@@ -15,7 +15,6 @@ class EmailSignIn extends StatefulWidget {
 
 class _EmailSignIn extends State<EmailSignIn>
     with SingleTickerProviderStateMixin {
-  @override
   void initstate() {
     super.initState();
     txt1Controller.addListener((onListen));
@@ -125,7 +124,7 @@ class _EmailSignIn extends State<EmailSignIn>
                                   width: 0,
                                 )
                               : IconButton(
-                                  icon: Icon(Icons.close),
+                                  icon: const Icon(Icons.close),
                                   onPressed: () {
                                     txt1Controller.clear();
                                     FocusManager.instance.primaryFocus

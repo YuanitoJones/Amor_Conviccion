@@ -12,12 +12,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    MainLessons(),
-    LeaderBoard(),
-    UserInfoScreen(),
+    const MainLessons(),
+    const LeaderBoard(),
+    const UserInfoScreen(),
   ];
   void _onItemTapped(int index) {
     setState(() {

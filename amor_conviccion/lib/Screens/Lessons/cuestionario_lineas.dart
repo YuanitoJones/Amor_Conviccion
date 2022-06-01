@@ -9,10 +9,11 @@ import '../../widgets/questionaire/success_widget.dart';
 int puntos = 0; //calificacion inicial
 
 class LineLessonScreen extends StatefulWidget {
-  LineLessonScreen(this.bloque, this.nombre, this.completed, this.puntosl,
+  const LineLessonScreen(this.bloque, this.nombre, this.completed, this.puntosl,
       {Key? key})
       : super(key: key);
 
+  @override
   _LineLessonScreen createState() => _LineLessonScreen();
 
   final int bloque; //Bloque de la leccion
@@ -45,14 +46,27 @@ class _LineLessonScreen extends State<LineLessonScreen> {
       child: SafeArea(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Completa los siguientes ejercicios!',
                 style: TextStyle(
                     fontFamily: 'Comfortaa',
-                    fontSize: 20,
+                    fontSize: size.width * 0.05,
                     fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.005,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Une con una linea los recuadros azules con la respuesta correcta del recuadro  rojo!',
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  fontSize: size.width * 0.045,
+                ),
               ),
             ),
             LinesScreen(
@@ -116,7 +130,7 @@ class _LineLessonScreen extends State<LineLessonScreen> {
                       answers: (val) => setState(() => answers[5] = val),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: size.height * 0.04,
                     ),
                     SizedBox(
                       height: size.height * 0.065,
@@ -136,8 +150,8 @@ class _LineLessonScreen extends State<LineLessonScreen> {
                           },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                const Text('Siquiente'),
+                              children: const <Widget>[
+                                Text('Siquiente'),
                                 Icon(Icons.arrow_forward_rounded)
                               ]),
                         ),

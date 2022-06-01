@@ -10,6 +10,7 @@ class CuestionarioScreen extends StatefulWidget {
       {Key? key})
       : super(key: key);
 
+  @override
   _CuestionarioScreen createState() => _CuestionarioScreen();
 
   int puntos = 0; //Puntuacion de evalacion inicial
@@ -141,15 +142,15 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                         onPressed: () => results(widget.puntos),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              const Text('Siquiente'),
+                            children: const <Widget>[
+                              Text('Siquiente'),
                               Icon(Icons.arrow_forward_rounded)
                             ]),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: size.height * 0.05,
                   ),
                 ],
               )
@@ -206,8 +207,8 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                           },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                const Text('Siquiente'),
+                              children: const <Widget>[
+                                Text('Siquiente'),
                                 Icon(Icons.arrow_forward_rounded)
                               ]),
                         ),

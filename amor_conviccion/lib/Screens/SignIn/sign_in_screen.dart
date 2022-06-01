@@ -90,7 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     shadowColor: Colors.black,
                     elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.085),
-                    primary: Color(0xFFFF7E27),
+                    primary: const Color(0xFFFF7E27),
                     textStyle: TextStyle(
                       fontSize: size.width * 0.05,
                       fontFamily: 'Sora',

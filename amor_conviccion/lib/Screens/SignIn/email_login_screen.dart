@@ -40,7 +40,7 @@ class _EmailLogin extends State<EmailLogin>
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text('Algo salio mal'),
+                  title: const Text('Algo salio mal'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -48,7 +48,7 @@ class _EmailLogin extends State<EmailLogin>
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          child: Text('Aceptar'),
+                          child: const Text('Aceptar'),
                           onPressed: () async {
                             Navigator.pop(context);
                           },
