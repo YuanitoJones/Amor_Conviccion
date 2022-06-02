@@ -230,7 +230,14 @@ class _EmailSignIn extends State<EmailSignIn>
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      registerUser();
+                      if (_formKey.currentState!.validate()) {
+                        registerUser();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Favor de llenar todos los campos')));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(size.width * 0.60, size.height * 0.07),

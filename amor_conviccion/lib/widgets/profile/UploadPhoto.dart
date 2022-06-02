@@ -1,8 +1,8 @@
 import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/services/storage_service.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 bool loading = true;
 
@@ -23,8 +23,11 @@ class _Upload extends State<Upload> {
     return loading
         ? TextButton(
             onPressed: () async {
-              final result = await FilePicker.platform
-                  .pickFiles(allowMultiple: false, type: FileType.image);
+              var result = await ImagePicker().pickImage(
+                  source: ImageSource.gallery,
+                  maxHeight: 400,
+                  maxWidth: 400,
+                  imageQuality: 60);
               if (result == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -40,8 +43,8 @@ class _Upload extends State<Upload> {
               setState(() {
                 loading = !loading;
               });
-              final path = result.files.single.path;
-              await storage.uploadFile(path!, 'Profile/' + _user.uid);
+              final path = result.path;
+              await storage.uploadFile(path, 'Profile/${_user.uid}');
               await changePicture.changeProfilePicture();
               setState(() {
                 loading = !loading;
