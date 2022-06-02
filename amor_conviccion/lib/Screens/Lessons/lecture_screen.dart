@@ -44,14 +44,22 @@ class _LectureScreenState extends State<LectureScreen> {
         ),
         leading: IconButton(
           splashRadius: 28, //--------------------------------------------------
-          onPressed: () {},
+          onPressed: () {
+            if (contador != 0) {
+              contador--;
+              pagina = lectura[contador];
+              setState(() {});
+            } else {
+              Navigator.pop(context);
+            }
+          },
           icon: const Icon(
             Icons.keyboard_backspace_rounded,
           ),
         ),
         actions: [
           TextButton(
-            onPressed: null,
+            onPressed: () => {},
             child: Text(
               pagina![0],
               style: TextStyle(
@@ -74,7 +82,7 @@ class _LectureScreenState extends State<LectureScreen> {
               child: Column(
                 children: [
                   Text(
-                    pagina[1],
+                    pagina![1],
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: size.width *
@@ -122,7 +130,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   thickness: 1.5,
                   child: SingleChildScrollView(
                     child: Text(
-                      pagina[2],
+                      pagina![2],
                       style: TextStyle(
                         color: Colors.black,
                         fontFamily: 'Comfortaa',
@@ -149,7 +157,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   Opacity(
                       opacity: 0.2,
                       child: Image.network(
-                        pagina[3],
+                        pagina![3],
                         color: Colors.black,
                         height: size.height * 0.2,
                       )),
@@ -157,7 +165,7 @@ class _LectureScreenState extends State<LectureScreen> {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                       child: Image.network(
-                        pagina[3],
+                        pagina![3],
                         height: size.height * 0.2,
                       ),
                     ),
@@ -165,47 +173,83 @@ class _LectureScreenState extends State<LectureScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              // ----------------------------------------------- Boton Siguiente
-              width: size.width * 0.5,
-              height: size.height * 0.065,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFFF7E27),
-                  elevation: 4,
-                ),
-                onPressed: () {
-                  //Seccion dinamica de las lecturas
-                  if (contador != lectura.length - 1) {
-                    contador++;
-                    pagina = lectura[contador];
-                    setState(() {});
-                  } else {
-                    if (!widget.flag) {
-                      UpdateLesson lesson = UpdateLesson();
-                      switch (widget.bloque) {
-                        case 1:
-                          lesson.updateLectureCompleted(
-                              'Drogodependencia', widget.nombre);
-                          break;
-                        case 2:
-                          lesson.updateLectureCompleted(
-                              'Liderazgo', widget.nombre);
-                          break;
-                      }
-                    }
-                    Navigator.pop(context);
-                  }
-                },
-                child: Text(
-                  pagina![4],
-                  style: const TextStyle(
-                    fontFamily: 'Comfortaa',
-                    fontSize: 15,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                (contador != 0)
+                    ? SizedBox(
+                        // ----------------------------------------------- Boton Siguiente
+                        width: size.width * 0.35,
+                        height: size.height * 0.065,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: const Color(0xFFFF7E27),
+                            elevation: 4,
+                          ),
+                          onPressed: () {
+                            //Seccion dinamica de las lecturas
+                            if (contador != 0) {
+                              contador--;
+                              pagina = lectura[contador];
+                              setState(() {});
+                            }
+                          },
+                          child: const Text(
+                            'Atrás',
+                            style: TextStyle(
+                              fontFamily: 'Comfortaa',
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                Padding(
+                  padding: EdgeInsets.only(left: size.width * 0.06),
+                  child: SizedBox(
+                    // ----------------------------------------------- Boton Siguiente
+                    width: size.width * 0.35,
+                    height: size.height * 0.065,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color(0xFFFF7E27),
+                        elevation: 4,
+                      ),
+                      onPressed: () {
+                        //Seccion dinamica de las lecturas
+                        if (contador != lectura.length - 1) {
+                          contador++;
+                          pagina = lectura[contador];
+                          setState(() {});
+                        } else {
+                          if (!widget.flag) {
+                            UpdateLesson lesson = UpdateLesson();
+                            switch (widget.bloque) {
+                              case 1:
+                                lesson.updateLectureCompleted(
+                                    'Drogodependencia', widget.nombre);
+                                break;
+                              case 2:
+                                lesson.updateLectureCompleted(
+                                    'Liderazgo', widget.nombre);
+                                break;
+                            }
+                          }
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text(
+                        pagina![4],
+                        style: const TextStyle(
+                          fontFamily: 'Comfortaa',
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
+              ],
+            )
           ],
         ),
       ),
