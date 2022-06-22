@@ -1,11 +1,10 @@
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:amor_conviccion/services/userData.dart';
-import 'package:email_validator/email_validator.dart';
+import 'package:amor_conviccion/widgets/infoTextFields/emailTextField.dart';
+import 'package:amor_conviccion/widgets/infoTextFields/passTextField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class EmailLogin extends StatefulWidget {
   const EmailLogin({Key? key}) : super(key: key);
@@ -16,8 +15,6 @@ class EmailLogin extends StatefulWidget {
 
 class _EmailLogin extends State<EmailLogin>
     with SingleTickerProviderStateMixin {
-  late bool flag = true;
-  var btnEnabled = true;
   TextEditingController txt1Controller = TextEditingController();
   TextEditingController txt2Controller = TextEditingController();
 
@@ -86,83 +83,14 @@ class _EmailLogin extends State<EmailLogin>
                 ),
                 SizedBox(
                   width: size.width * 0.72,
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: (email) =>
-                            email != null && !EmailValidator.validate(email)
-                                ? 'Ingresa un correo válido'
-                                : null,
-                        maxLength: 50,
-                        controller: txt1Controller,
-                        style: TextStyle(
-                          fontFamily: 'Comfortaa',
-                          fontSize: size.width * 0.045,
-                        ),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25)),
-                          counterText: "",
-                          filled: true,
-                          fillColor: const Color.fromRGBO(242, 242, 242, 1),
-                          hintText:
-                              (/*AppLocalizations.of(context)!.lastName).toString()*/ 'Correo'),
-                        )),
-                  ),
+                  child: EmailTextField(txt1Controller),
                 ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
                 SizedBox(
                   width: size.width * 0.72,
-                  child: Material(
-                      type: MaterialType.transparency,
-                      child: Stack(
-                        children: [
-                          TextFormField(
-                              obscureText: flag,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              validator: (value) =>
-                                  value != null && value.length < 6
-                                      ? 'Debe contener al menos 6 caracteres'
-                                      : null,
-                              maxLength: 20,
-                              controller: txt2Controller,
-                              style: TextStyle(
-                                  fontSize: size.width * 0.045,
-                                  fontFamily: 'Comfortaa'),
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25)),
-                                counterText: "",
-                                filled: true,
-                                fillColor:
-                                    const Color.fromRGBO(242, 242, 242, 1),
-                                hintText:
-                                    (/*AppLocalizations.of(context)!.lastName).toString()*/ 'Contraseña'),
-                              )),
-                          Positioned(
-                            right: 10,
-                            top: 6,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                flag = !flag;
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30)),
-                                primary: const Color.fromRGBO(242, 242, 242, 1),
-                              ),
-                              child: const Icon(Icons.remove_red_eye_outlined,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      )),
+                  child: PassTextField(txt2Controller),
                 ),
                 SizedBox(
                   height: size.height * 0.03,
@@ -203,23 +131,8 @@ class _EmailLogin extends State<EmailLogin>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-
-        //Configuracion idiomas
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        //Idiomas soportados
-        supportedLocales: const [
-          Locale('en', ''), // English, no country code
-          Locale('es', ''), // Spanish, no country code
-        ],
-        home: Builder(builder: (context) {
-          return main(size);
-        }));
+    return MaterialApp(home: Builder(builder: (context) {
+      return main(size);
+    }));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:amor_conviccion/services/UpdateInfo.dart';
+import 'package:amor_conviccion/widgets/video/chewie_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
@@ -18,12 +18,8 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class _VideoPlayerScreen extends State<VideoPlayerScreen> {
-  late int cont = (widget.bloque == 1) ? 1 : 4;
+  late int cont = (widget.bloque == 1) ? 1 : 5;
   late String asset = 'assets/videos/video$cont.mp4';
-  late ChewieController _chewieController,
-      _chewieController2,
-      _chewieController3,
-      _chewieController4;
   late VideoPlayerController _videoPlayerController,
       _videoPlayerController2,
       _videoPlayerController3,
@@ -44,102 +40,6 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     cont++;
     asset = 'assets/videos/video$cont.mp4';
     _videoPlayerController4 = VideoPlayerController.asset(asset);
-    //chewie1
-    _chewieController = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
-          DeviceOrientation.portraitUp,
-        ],
-        videoPlayerController: _videoPlayerController,
-        aspectRatio: 2 / 3,
-        autoInitialize: true,
-        autoPlay: false,
-        showControls: true);
-
-    _chewieController.addListener(() {
-      if (_chewieController.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      }
-    });
-    //chewie 2
-    _chewieController2 = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
-          DeviceOrientation.portraitUp,
-        ],
-        videoPlayerController: _videoPlayerController2,
-        aspectRatio: 2 / 3,
-        autoInitialize: true,
-        autoPlay: false,
-        showControls: true);
-
-    _chewieController2.addListener(() {
-      if (_chewieController2.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      }
-    });
-    //chewie 3
-    _chewieController3 = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
-          DeviceOrientation.portraitUp,
-        ],
-        videoPlayerController: _videoPlayerController3,
-        aspectRatio: 2 / 3,
-        autoInitialize: true,
-        autoPlay: false,
-        showControls: true);
-
-    _chewieController3.addListener(() {
-      if (_chewieController3.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      }
-    });
-    //chewie 4
-    _chewieController4 = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
-          DeviceOrientation.portraitUp,
-        ],
-        videoPlayerController: _videoPlayerController4,
-        aspectRatio: 2 / 3,
-        autoInitialize: true,
-        autoPlay: false,
-        showControls: true);
-
-    _chewieController4.addListener(() {
-      if (_chewieController4.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
-      }
-    });
   }
 
   @override
@@ -148,10 +48,6 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     _videoPlayerController2.dispose();
     _videoPlayerController3.dispose();
     _videoPlayerController4.dispose();
-    _chewieController.dispose();
-    _chewieController2.dispose();
-    _chewieController3.dispose();
-    _chewieController4.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -176,10 +72,10 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                       child: CarouselSlider(
                         carouselController: carouselController,
                         items: [
-                          Chewie(controller: _chewieController),
-                          Chewie(controller: _chewieController2),
-                          Chewie(controller: _chewieController3),
-                          Chewie(controller: _chewieController4),
+                          ChewieWidget(_videoPlayerController),
+                          ChewieWidget(_videoPlayerController2),
+                          ChewieWidget(_videoPlayerController3),
+                          ChewieWidget(_videoPlayerController4),
                         ],
                         options: CarouselOptions(
                             aspectRatio: 2 / 3,
