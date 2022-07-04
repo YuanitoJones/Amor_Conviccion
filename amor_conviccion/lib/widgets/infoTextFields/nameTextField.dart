@@ -26,8 +26,7 @@ class _NametextField extends State<NameTextField> {
             FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
           ],
           controller: widget.txtcontroller,
-          style:
-              TextStyle(fontSize: size.width * 0.045, fontFamily: 'Comfortaa'),
+          style: TextStyle(fontSize: size.width * 0.045),
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
             counterText: "",

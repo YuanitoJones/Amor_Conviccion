@@ -1,15 +1,14 @@
-import 'package:amor_conviccion/Screens/splashScreen.dart';
+import 'package:amor_conviccion/Screens/Lessons/Mensaje_Intimo/option_screen.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-Future main() async{
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]
-  );
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   try {
     await Firebase.initializeApp();
   } catch (e) {
@@ -28,10 +27,11 @@ class MyApp extends StatelessWidget {
         title: 'FlutterFire Samples',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          fontFamily: 'Comfortaa',
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: const SplashScreen(),
+        home: OptionScreen(),
       ),
     );
   }

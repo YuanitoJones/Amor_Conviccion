@@ -4,8 +4,12 @@ class Assets {
 
   static const String IconsDrogodependencia =
       'assets/Icons/drogodependencia.png';
+  static const String IconsMadreHija = 'assets/Icons/madre_hija.jpg';
+  static const String IconsMano = 'assets/Icons/mano.png';
   static const String IconsMochila = 'assets/Icons/mochila.png';
   static const String IconsNotoHeartsuit = 'assets/Icons/noto_heartsuit.png';
+  static const String IconsPadreHijo = 'assets/Icons/padre_hijo.jpg';
+  static const String IconsPadresHijos = 'assets/Icons/padres_hijos.jpg';
   static const String backgroundSplash = 'assets/background/splash.png';
   static const String backgroundStandard = 'assets/background/standard.png';
   static const String fontsComfortaaRegular =

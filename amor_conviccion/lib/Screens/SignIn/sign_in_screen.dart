@@ -69,7 +69,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Text(
                       'Login con Google',
-                      style: TextStyle(fontFamily: 'Comfortaa'),
                     ),
                   ],
                 ),
@@ -106,7 +105,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Text(
                       'Login con correo',
-                      style: TextStyle(fontFamily: 'Comfortaa'),
                     ),
                   ],
                 )),
@@ -124,9 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Text(
                     'No tienes una cuenta?',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Comfortaa',
-                        fontSize: size.width * 0.04),
+                        color: Colors.black, fontSize: size.width * 0.04),
                   ),
                   TextButton(
                     child: Center(
@@ -134,7 +130,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         'Registrate aqui!',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Comfortaa',
                             fontSize: size.width * 0.04),
                       ),
                     ),

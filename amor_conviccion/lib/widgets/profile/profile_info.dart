@@ -78,7 +78,6 @@ class _Profile_Info extends State<ProfileInfo> {
               'Nombre',
               style: TextStyle(
                 fontSize: size.width * 0.07,
-                fontFamily: 'Comfortaa',
               ),
             ),
           ),
@@ -95,7 +94,6 @@ class _Profile_Info extends State<ProfileInfo> {
               borderRadius: BorderRadius.circular(5.0),
             ),
             child: TextFormField(
-              style: const TextStyle(fontFamily: 'Comfortaa'),
               readOnly: widget.namefield,
               controller: txt1Controller..text = widget.nombre,
               decoration: InputDecoration(
@@ -126,7 +124,6 @@ class _Profile_Info extends State<ProfileInfo> {
               'Correo',
               style: TextStyle(
                 fontSize: size.width * 0.07,
-                fontFamily: 'Comfortaa',
               ),
             ),
           ),
@@ -143,7 +140,6 @@ class _Profile_Info extends State<ProfileInfo> {
               borderRadius: BorderRadius.circular(5.0),
             ),
             child: TextFormField(
-              style: const TextStyle(fontFamily: 'Comfortaa'),
               readOnly: widget.emailfield,
               controller: txt2Controller..text = widget.correo,
               decoration: InputDecoration(
@@ -178,9 +174,7 @@ class _Profile_Info extends State<ProfileInfo> {
                         primary: (widget.actionbutton)
                             ? const Color(0xFFFF7E27)
                             : Colors.amber,
-                        textStyle: TextStyle(
-                            fontFamily: 'Comfortaa',
-                            fontSize: size.width * 0.05)),
+                        textStyle: TextStyle(fontSize: size.width * 0.05)),
                     child: (widget.actionbutton)
                         ? const Text(
                             'Editar Perfil',
