@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
-    const MainLessons(),
+    MainLessons(),
     const LeaderBoard(),
     const UserInfoScreen(),
   ];

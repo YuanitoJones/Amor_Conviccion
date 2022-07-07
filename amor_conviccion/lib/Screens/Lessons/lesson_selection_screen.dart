@@ -98,6 +98,26 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                               ],
                             ),
                           ),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                            child: Divider(
+                              thickness: 2,
+                              indent: 15,
+                              color: Color(0xFFC9C9C9),
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                          AbsorbPointer(
+                            absorbing: false,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                createLessons(size, info, 'mensaje'),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -136,6 +156,7 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
         ],
       );
     } on NoSuchMethodError {
+      lessonNumber--;
       return Container();
     }
   }
@@ -146,6 +167,8 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
         return document['Drogodependencia'];
       case 2:
         return document['Liderazgo'];
+      case 3:
+        return document['Intimidad'];
     }
   }
 }

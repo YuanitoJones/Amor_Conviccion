@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/Screens/Lessons/Mensaje_Intimo/option_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario/cuestionario.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
@@ -75,7 +76,9 @@ class _LessonSelect extends State<LessonSelect> {
                                           widget.texto,
                                           widget.flag,
                                           widget.puntos)
-                                      : const Authentication()));
+                                      : (widget.texto == 'mensaje')
+                                          ? OptionScreen()
+                                          : const Authentication()));
             },
           ),
         ),
@@ -106,6 +109,12 @@ class _LessonSelect extends State<LessonSelect> {
       return Icon(
         Icons.video_call_rounded,
         size: size.width * 0.2,
+        color: Colors.blue,
+      );
+    } else if (widget.texto == 'mensaje') {
+      return Icon(
+        Icons.message,
+        size: size.width * 0.15,
         color: Colors.blue,
       );
     } else {
