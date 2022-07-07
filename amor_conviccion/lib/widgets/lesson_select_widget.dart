@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/Screens/Lessons/cuestionario.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionario/cuestionario.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
