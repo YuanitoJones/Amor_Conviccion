@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: const SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }

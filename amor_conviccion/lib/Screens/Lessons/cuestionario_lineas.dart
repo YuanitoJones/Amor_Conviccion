@@ -9,13 +9,15 @@ import '../../widgets/questionaire/success_widget.dart';
 int puntos = 0; //calificacion inicial
 
 class LineLessonScreen extends StatefulWidget {
-  const LineLessonScreen(this.bloque, this.nombre, this.completed, this.puntosl,
+  const LineLessonScreen(
+      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
       {Key? key})
       : super(key: key);
 
   @override
   _LineLessonScreen createState() => _LineLessonScreen();
 
+  final String nombloq;
   final int bloque; //Bloque de la leccion
   final String nombre; //Nombre de la leccion
   final bool completed;
@@ -173,8 +175,8 @@ class _LineLessonScreen extends State<LineLessonScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => (points >= 3)
-                ? SuccessScreen(widget.bloque, widget.nombre, widget.completed,
-                    answers, widget.puntosl)
+                ? SuccessScreen(widget.nombloq, widget.bloque, widget.nombre,
+                    widget.completed, answers, widget.puntosl)
                 : FailScreen(widget.puntosl)));
   }
 }

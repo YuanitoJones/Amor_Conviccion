@@ -82,9 +82,21 @@ class DatabaseService {
         'nombre': 'Intimidad',
         'mensaje': {
           'puntos': 0,
-          'nombre': 'video',
+          'nombre': 'mensaje',
           'completado': false,
-        }
+        },
+        'cuestionario': {
+          'nombre': 'cuestionario',
+          'completado': false,
+          'puntos': 5,
+          'respuestas': {
+            '1': '0',
+            '2': '0',
+            '3': '0',
+            '4': '0',
+            '5': '0',
+          },
+        },
       }
     });
     return await puntuacion.doc(uid).set({

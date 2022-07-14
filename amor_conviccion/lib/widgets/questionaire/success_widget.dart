@@ -1,12 +1,15 @@
 import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/authentication.dart';
+
 class SuccessScreen extends StatefulWidget {
-  const SuccessScreen(
-      this.bloque, this.nombre, this.flag, this.answers, this.puntos,
+  const SuccessScreen(this.nombloq, this.bloque, this.nombre, this.flag,
+      this.answers, this.puntos,
       {Key? key})
       : super(key: key);
 
+  final String nombloq; //Nombre del bloque
   final int bloque; //Bloque de la leccion
   final String nombre; //Nombre de la leccion
   final bool flag; // Ya completo el curso anteriormente
@@ -30,11 +33,13 @@ class _SuccessScreen extends State<SuccessScreen> {
               if (!flag) {
                 update.updatepoints(widget.puntos);
                 UpdateLesson lesson = UpdateLesson();
-                lesson.updateLessonCompleted(
-                    widget.bloque, widget.nombre, widget.answers);
+                lesson.updateLessonCompleted(widget.nombloq, widget.bloque,
+                    widget.nombre, widget.answers);
               }
-              Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Authentication()));
             },
             child: Container(
               width: size.width,
@@ -56,10 +61,12 @@ class _SuccessScreen extends State<SuccessScreen> {
               update.updatepoints(widget.puntos);
               UpdateLesson lesson = UpdateLesson();
               lesson.updateLessonCompleted(
-                  widget.bloque, widget.nombre, widget.answers);
+                  widget.nombloq, widget.bloque, widget.nombre, widget.answers);
             }
-            Navigator.pop(context);
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const Authentication()));
           },
           child: Column(
             children: [

@@ -5,13 +5,16 @@ import '../../../widgets/questionaire/question _field_widget.dart';
 import '../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq1 extends StatefulWidget {
-  CuestBloq1(this.bloque, this.nombre, this.completed, this.puntosl, {Key? key})
+  CuestBloq1(
+      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
+      {Key? key})
       : super(key: key);
 
   @override
-  _CuestBloq1 createState() => _CuestBloq1();
+  State<CuestBloq1> createState() => _CuestBloq1();
 
   int puntos = 0; //Puntuacion de evalacion inicial
+  final String nombloq; //Nombre del bloque
   final int bloque; //Bloque de ejercicio
   final String nombre; //Nombre de la leccion
   final bool completed; //Se ha completado antes la leccion (otorga puntos o no)
@@ -41,84 +44,22 @@ class _CuestBloq1 extends State<CuestBloq1> {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        QuestionField(
-          size,
-          flag,
-          mapa[0],
-          qanswers[0],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[0] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[1],
-          qanswers[1],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[1] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[2],
-          qanswers[2],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[2] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[3],
-          qanswers[3],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[3] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[4],
-          qanswers[4],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[4] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[5],
-          qanswers[5],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[5] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[6],
-          qanswers[6],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[6] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[7],
-          qanswers[7],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[7] = val),
-        ),
-        QuestionField(
-          size,
-          flag,
-          mapa[8],
-          qanswers[8],
-          answersCallBack: (val) => setState(() => widget.puntos += val),
-          answers: (val) => setState(() => answers[8] = val),
-        ),
+        for (int i = 0; i < 9; i++)
+          QuestionField(
+            size,
+            flag,
+            mapa[i],
+            qanswers[i],
+            answersCallBack: (val) => setState(() => widget.puntos += val),
+            answers: (val) => setState(() => answers[i] = val),
+          ),
         Padding(
           padding: EdgeInsets.only(bottom: size.height * 0.03),
           child: ResultButton().RBUtton(
               size,
               result(widget.puntos),
               context,
+              widget.nombloq,
               widget.bloque,
               widget.nombre,
               widget.completed,

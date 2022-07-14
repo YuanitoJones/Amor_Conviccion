@@ -146,14 +146,6 @@ class _LectureScreenState extends State<LectureScreen> {
               margin: const EdgeInsets.only(bottom: 20), //---------------------
               child: Stack(
                 children: [
-                  // Image.asset(
-                  //   'assets/logos/peter pan.png',
-                  //   height: 200, //------------------------------------------
-                  // ),
-                  // Image.asset(
-                  //   'assets/logos/peter pan.png',
-                  //   height: 200, //------------------------------------------
-                  // ),
                   Opacity(
                       opacity: 0.2,
                       child: Image.network(
@@ -226,11 +218,11 @@ class _LectureScreenState extends State<LectureScreen> {
                             UpdateLesson lesson = UpdateLesson();
                             switch (widget.bloque) {
                               case 1:
-                                lesson.updateLectureCompleted(
+                                lesson.updateCompleted(
                                     'Drogodependencia', widget.nombre);
                                 break;
                               case 2:
-                                lesson.updateLectureCompleted(
+                                lesson.updateCompleted(
                                     'Liderazgo', widget.nombre);
                                 break;
                             }

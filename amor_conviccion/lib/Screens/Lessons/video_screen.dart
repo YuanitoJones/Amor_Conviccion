@@ -132,11 +132,11 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                   if (!widget.flag) {
                     switch (widget.bloque) {
                       case 1:
-                        lesson.updateVideoCompleted(
+                        lesson.updateCompleted(
                             'Drogodependencia', widget.nombre);
                         break;
                       case 2:
-                        lesson.updateVideoCompleted('Liderazgo', widget.nombre);
+                        lesson.updateCompleted('Liderazgo', widget.nombre);
                         break;
                     }
                   }

@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'fail_widget.dart';
 
 class ResultButton {
-  Widget RBUtton(Size size, bool resul, BuildContext context, int bloque,
-      String nombre, bool completed, List answers, int puntosl) {
+  Widget RBUtton(Size size, bool resul, BuildContext context, String nombloq,
+      int bloque, String nombre, bool completed, List answers, int puntosl) {
     return SizedBox(
       height: size.height * 0.065,
       child: Padding(
         padding:
             EdgeInsets.fromLTRB(size.width * 0.25, 0, size.width * 0.25, 0),
         child: ElevatedButton(
-          onPressed: () => results(
-              resul, context, bloque, nombre, completed, answers, puntosl),
+          onPressed: () => results(resul, context, nombloq, bloque, nombre,
+              completed, answers, puntosl),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const <Widget>[
@@ -25,13 +25,14 @@ class ResultButton {
     );
   }
 
-  void results(bool resul, BuildContext context, int bloque, String nombre,
-      bool completed, List answers, int puntosl) {
+  void results(bool resul, BuildContext context, String nombloq, int bloque,
+      String nombre, bool completed, List answers, int puntosl) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => (resul)
-                ? SuccessScreen(bloque, nombre, completed, answers, puntosl)
+                ? SuccessScreen(
+                    nombloq, bloque, nombre, completed, answers, puntosl)
                 : FailScreen(puntosl)));
   }
 }

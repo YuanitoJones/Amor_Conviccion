@@ -34,6 +34,7 @@ dependencies:
   carousel_slider: ^4.1.1
   image_picker: ^0.8.5+3
   share_plus: ^4.0.10
+  group_radio_button: ^1.2.0
 
   cupertino_icons: ^1.0.4
 

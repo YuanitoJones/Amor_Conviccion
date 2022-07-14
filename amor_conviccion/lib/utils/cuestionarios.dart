@@ -103,4 +103,12 @@ class CuestionarioBloque {
     ],
     2: ['¿Por qué lo consideras así?']
   };
+
+  List<String> intimidad = [
+    'Mantener comunicacion diaria con ellos',
+    'Interesarme por lo que hacen',
+    'Acompañarlos en sus actividades cuando sea posible',
+    'Tratar de estar siempre informado sobre lo que piensan y hacen',
+    'Otro. Explique'
+  ];
 }

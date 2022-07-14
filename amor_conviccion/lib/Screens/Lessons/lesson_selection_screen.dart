@@ -4,17 +4,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LessonSelectionScreen extends StatefulWidget {
-  const LessonSelectionScreen(this.bloque, {Key? key}) : super(key: key);
+  const LessonSelectionScreen(this.bloque, this.nombloq, {Key? key})
+      : super(key: key);
 
-  final int bloque;
-  final lessonNumber = 0;
+  final String nombloq; //Nombre del bloque
+  final int bloque; //Bloque de informacion
+  final lessonNumber = 0; //Numeracion de lecciones
+
   @override
-  _LessonSelectionScreen createState() => _LessonSelectionScreen();
+  State<LessonSelectionScreen> createState() => _LessonSelectionScreen();
 }
 
 class _LessonSelectionScreen extends State<LessonSelectionScreen> {
   late int lessonNumber = widget.lessonNumber;
   final _user = FirebaseAuth.instance.currentUser;
+
+  List<String> lesson = [
+    'video',
+    'lectura',
+    'cuestionario',
+    'cuestionario 2',
+    'mensaje',
+  ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,7 +55,6 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                     child: Text('Opps! Algo salio mal'),
                   );
                 } else {
-                  lessonNumber = 0;
                   var document = snapshot.data!.docs[0];
                   var info = lessonSelect(document);
                   return Column(
@@ -65,60 +75,39 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                       SizedBox(
                         height: size.height * 0.1,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              createLessons(size, info, 'video'),
-                              createLessons(size, info, 'lectura'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                            child: Divider(
-                              thickness: 2,
-                              indent: 15,
-                              color: Color(0xFFC9C9C9),
-                            ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          AbsorbPointer(
-                            absorbing: false,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createLessons(size, info, 'cuestionario'),
-                                createLessons(size, info, 'cuestionario 2'),
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                            child: Divider(
-                              thickness: 2,
-                              indent: 15,
-                              color: Color(0xFFC9C9C9),
-                            ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          AbsorbPointer(
-                            absorbing: false,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createLessons(size, info, 'mensaje'),
-                              ],
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        height: size.height * 0.7,
+                        child: ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (builder, index) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      if (index % 2 == 0)
+                                        createLessons(
+                                            size, info, lesson[index]),
+                                      if (index % 2 == 0 &&
+                                          index + 1 != lesson.length)
+                                        createLessons(
+                                            size, info, lesson[index + 1]),
+                                    ],
+                                  ),
+                                  if (index % 2 == 0)
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                      child: Divider(
+                                        thickness: 2,
+                                        indent: 15,
+                                        color: Color(0xFFC9C9C9),
+                                      ),
+                                    ),
+                                ],
+                              );
+                            }),
                       ),
                     ],
                   );
@@ -138,6 +127,7 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
         children: [
           LessonSelect(
               info[leccion]['puntos'],
+              widget.nombloq,
               widget.bloque,
               info[leccion]['nombre'],
               info[leccion]['completado'],

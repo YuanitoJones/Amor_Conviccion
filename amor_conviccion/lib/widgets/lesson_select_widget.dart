@@ -4,12 +4,12 @@ import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LessonSelect extends StatefulWidget {
   const LessonSelect(
     this.puntos,
+    this.nombloq,
     this.bloque,
     this.texto,
     this.flag,
@@ -18,12 +18,14 @@ class LessonSelect extends StatefulWidget {
   }) : super(key: key);
 
   final int puntos; //Puntos que asigna la leccion
+  final String nombloq; //Nombre del bloque
   final int bloque; //Bloque de lecciones
   final int lesson; //Numero de leccion
   final String texto; //Nombre de leccion
   final bool flag; //completado de la leccion
+
   @override
-  _LessonSelect createState() => _LessonSelect();
+  State<LessonSelect> createState() => _LessonSelect();
 }
 
 class _LessonSelect extends State<LessonSelect> {
@@ -41,7 +43,9 @@ class _LessonSelect extends State<LessonSelect> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: (widget.flag) ? Color(0xFF5cb85c) : Color(0xFFEE4A4A),
+                  color: (widget.flag)
+                      ? const Color(0xFF5cb85c)
+                      : const Color(0xFFEE4A4A),
                   spreadRadius: 3,
                   blurRadius: 10,
                 )
@@ -56,7 +60,7 @@ class _LessonSelect extends State<LessonSelect> {
                   // : const BorderSide(color: Colors.red, width: 3),
                 ),
                 primary: Colors.white),
-            child: Lessonicon(size, widget.texto),
+            child: lessonIcon(size, widget.texto),
             onPressed: () {
               Navigator.push(
                   context,
@@ -65,33 +69,38 @@ class _LessonSelect extends State<LessonSelect> {
                           ? LectureScreen(
                               widget.bloque, widget.texto, widget.flag)
                           : (widget.texto == 'cuestionario')
-                              ? CuestionarioScreen(widget.bloque, widget.texto,
-                                  widget.flag, widget.puntos)
+                              ? CuestionarioScreen(
+                                  widget.nombloq,
+                                  widget.bloque,
+                                  widget.texto,
+                                  widget.flag,
+                                  widget.puntos)
                               : (widget.texto == 'video')
                                   ? VideoPlayerScreen(
                                       widget.bloque, widget.texto, widget.flag)
                                   : (widget.texto == 'cuestionario 2')
                                       ? LineLessonScreen(
+                                          widget.nombloq,
                                           widget.bloque,
                                           widget.texto,
                                           widget.flag,
                                           widget.puntos)
                                       : (widget.texto == 'mensaje')
-                                          ? OptionScreen()
+                                          ? const OptionScreen()
                                           : const Authentication()));
             },
           ),
         ),
         Positioned(
-          child: buildEditIcon(Color(0xFF42ADE2), size),
           top: 0,
           right: 0,
+          child: buildEditIcon(const Color(0xFF42ADE2), size),
         ),
       ],
     );
   }
 
-  Icon Lessonicon(Size size, String texto) {
+  Icon lessonIcon(Size size, String texto) {
     if (widget.texto == 'lectura') {
       return Icon(
         Icons.book,

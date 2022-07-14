@@ -2,6 +2,8 @@ import 'package:amor_conviccion/utils/mensajes_intimidad.dart';
 import 'package:amor_conviccion/widgets/intimidad/mensajes.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/UpdateInfo.dart';
+
 class SendMessage extends StatelessWidget {
   SendMessage(this.opc, {Key? key}) : super(key: key);
 
@@ -46,6 +48,31 @@ class SendMessage extends StatelessWidget {
                 pagina = textos[index];
                 return Mensajes(index, pagina);
               },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: size.height * 0.03),
+            child: SizedBox(
+              height: size.height * 0.065,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                    size.width * 0.25, 0, size.width * 0.25, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    UpdateLesson lesson = UpdateLesson();
+                    lesson.updateCompleted('Intimidad', 'mensaje');
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const <Widget>[
+                        Text('Siquiente'),
+                        Icon(Icons.arrow_forward_rounded)
+                      ]),
+                ),
+              ),
             ),
           ),
         ],
