@@ -1,6 +1,6 @@
 import 'package:amor_conviccion/Screens/Lessons/Mensaje_Intimo/option_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario/cuestionario.dart';
-import 'package:amor_conviccion/Screens/Lessons/cuestionario_lineas.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionario2/cuestionario2.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
@@ -79,7 +79,7 @@ class _LessonSelect extends State<LessonSelect> {
                                   ? VideoPlayerScreen(
                                       widget.bloque, widget.texto, widget.flag)
                                   : (widget.texto == 'cuestionario 2')
-                                      ? LineLessonScreen(
+                                      ? Cuestionario2Screen(
                                           widget.nombloq,
                                           widget.bloque,
                                           widget.texto,

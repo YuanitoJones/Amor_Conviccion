@@ -23,7 +23,7 @@ class CuestBloq2 extends StatefulWidget {
 
 class _CuestBloq2 extends State<CuestBloq2> {
   CuestionarioBloque cuestionario = CuestionarioBloque();
-  late var mapa = cuestionario.liderazgo2;
+  late var lista = cuestionario.liderazgo2;
   late var answers2 = ['', '', ''];
 
   List<TextEditingController> txtcontroller =
@@ -53,7 +53,7 @@ class _CuestBloq2 extends State<CuestBloq2> {
               child: ListView.builder(
                   itemCount: 3,
                   itemBuilder: (context, index) {
-                    return WriteAnswer(true, mapa[index], txtcontroller[index],
+                    return WriteAnswer(true, lista[index], txtcontroller[index],
                         answers: (val) =>
                             setState(() => answers2[index] = val));
                   }),

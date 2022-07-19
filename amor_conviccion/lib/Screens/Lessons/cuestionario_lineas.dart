@@ -121,13 +121,13 @@ class _LineLessonScreen extends State<LineLessonScreen> {
                   children: [
                     WriteAnswer(
                       true,
-                      bloque.liderazgo[4],
+                      bloque.liderazgo[4]![0],
                       txt1Controller,
                       answers: (val) => setState(() => answers[4] = val),
                     ),
                     WriteAnswer(
                       false,
-                      bloque.liderazgo[5],
+                      bloque.liderazgo[5]![0],
                       txt2Controller,
                       answers: (val) => setState(() => answers[5] = val),
                     ),

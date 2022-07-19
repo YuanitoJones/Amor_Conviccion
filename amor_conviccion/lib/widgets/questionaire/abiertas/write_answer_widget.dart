@@ -10,7 +10,7 @@ class WriteAnswer extends StatefulWidget {
       : super(key: key);
 
   final bool option; //Saber si escribira texto o numeros
-  final List? pregunta; //Pregunta de la leccion
+  final String pregunta; //Pregunta de la leccion
   final textEditingController;
   @override
   _WriteAnswer createState() => _WriteAnswer();
@@ -18,7 +18,7 @@ class WriteAnswer extends StatefulWidget {
 
 class _WriteAnswer extends State<WriteAnswer> {
   late bool option = widget.option;
-  late List? pregunta = widget.pregunta;
+  late String pregunta = widget.pregunta;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +28,7 @@ class _WriteAnswer extends State<WriteAnswer> {
         child: Column(
           children: [
             Text(
-              pregunta![0],
+              pregunta,
               style: TextStyle(
                 fontFamily: 'Comfortaa',
                 fontSize: size.width * 0.045,

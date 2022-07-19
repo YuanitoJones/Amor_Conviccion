@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 class ChangePicture {
   Future changeProfilePicture() async {
     final user = FirebaseAuth.instance.currentUser!;
-    var ref = FirebaseStorage.instance.ref().child('Profile/' + user.uid);
+    var ref = FirebaseStorage.instance.ref().child('Profile/${user.uid}');
     String url = (await ref.getDownloadURL()).toString();
     var collection = FirebaseFirestore.instance.collection('puntuacion');
     collection
@@ -52,22 +52,10 @@ class UpdateLesson {
       collectionr
           .doc(user!.email)
           .update(({
-            '${nombloq}.${lesson}.completado': true,
+            '$nombloq.$lesson.completado': true,
             for (int i = 0; i < answers.length; i++)
               '$nombloq.$lesson.respuestas.${i + 1}': answers[i]
           }))
-          .catchError((error) => print('Failed: $error'));
-    });
-
-    var collection = FirebaseFirestore.instance.collection('Lecciones');
-    FirebaseFirestore.instance
-        .collection('Lecciones')
-        .doc(lesson)
-        .get()
-        .then((DocumentSnapshot doc) {
-      collection
-          .doc(lesson)
-          .update(({'Completado': true}))
           .catchError((error) => print('Failed: $error'));
     });
   }

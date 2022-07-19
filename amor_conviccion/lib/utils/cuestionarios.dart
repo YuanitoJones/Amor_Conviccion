@@ -89,20 +89,11 @@ class CuestionarioBloque {
     ]
   };
 
-  Map<int, List> liderazgo2 = {
-    0: [
-      'Como padre o madre de familia escribe la misión y visión de tu hogar.',
-      'Mision',
-      'Vision'
-    ],
-    1: [
-      'Cita a tu hijo/a y hazle las siguientes preguntas y escribe su respuesta. Cuando tengas mi edad, ¿Te gustaría ser como yo?',
-      'Si',
-      'No',
-      'No lo se'
-    ],
-    2: ['¿Por qué lo consideras así?']
-  };
+  List<String> liderazgo2 = [
+    'Como padre o madre de familia escribe la misión y visión de tu hogar.',
+    'Cita a tu hijo/a y hazle las siguientes preguntas y escribe su respuesta. Cuando tengas mi edad, ¿Te gustaría ser como yo?',
+    '¿Por qué lo consideras así?'
+  ];
 
   List<String> intimidad = [
     'Mantener comunicacion diaria con ellos',
@@ -110,5 +101,10 @@ class CuestionarioBloque {
     'Acompañarlos en sus actividades cuando sea posible',
     'Tratar de estar siempre informado sobre lo que piensan y hacen',
     'Otro. Explique'
+  ];
+
+  List<String> intimidad2 = [
+    '¿Qué enseñanza te deja el vídeo del pequeño chango?',
+    '¿Qué estrategias utilizarían para supervisar mejor a sus hijos?'
   ];
 }

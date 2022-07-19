@@ -97,7 +97,13 @@ class DatabaseService {
             '5': '0',
           },
         },
-      }
+        'cuestionario 2': {
+          'nombre': 'cuestionario 2',
+          'completado': false,
+          'puntos': 1,
+          'respuestas': {'1': '0', '2': '0'}
+        }
+      },
     });
     return await puntuacion.doc(uid).set({
       'nombre': name,

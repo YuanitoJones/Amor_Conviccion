@@ -10,6 +10,7 @@ class Assets {
   static const String IconsNotoHeartsuit = 'assets/Icons/noto_heartsuit.png';
   static const String IconsPadreHijo = 'assets/Icons/padre_hijo.jpg';
   static const String IconsPadresHijos = 'assets/Icons/padres_hijos.jpg';
+  static const String IconsPequenoChango = 'assets/Icons/pequeno_chango.png';
   static const String backgroundSplash = 'assets/background/splash.png';
   static const String backgroundStandard = 'assets/background/standard.png';
   static const String fontsComfortaaRegular =
