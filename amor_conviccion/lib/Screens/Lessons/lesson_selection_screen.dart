@@ -9,14 +9,14 @@ class LessonSelectionScreen extends StatefulWidget {
 
   final String nombloq; //Nombre del bloque
   final int bloque; //Bloque de informacion
-  final lessonNumber = 0; //Numeracion de lecciones
+  //final lessonNumber = 0; //Numeracion de lecciones
 
   @override
   State<LessonSelectionScreen> createState() => _LessonSelectionScreen();
 }
 
 class _LessonSelectionScreen extends State<LessonSelectionScreen> {
-  late int lessonNumber = widget.lessonNumber;
+  late int lessonNumber;
   final _user = FirebaseAuth.instance.currentUser;
 
   List<String> lesson = [
@@ -26,6 +26,13 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
     'cuestionario 2',
     'mensaje',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    lessonNumber = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

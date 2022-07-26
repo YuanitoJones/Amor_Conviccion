@@ -8,7 +8,7 @@ class SplashScreen extends StatefulWidget {
     Key? key,
   }) : super(key: key);
   @override
-  _SplashScreen createState() => _SplashScreen();
+  State<SplashScreen> createState() => _SplashScreen();
 }
 
 class _SplashScreen extends State<SplashScreen> {

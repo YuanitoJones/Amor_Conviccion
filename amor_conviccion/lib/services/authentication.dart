@@ -8,20 +8,23 @@ class Authentication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    resizeToAvoidBottomInset: false,
-    body: StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot){
-        if(snapshot.connectionState==ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator(),);
-        } else if(snapshot.hasData){
-          return const HomePage();
-        }else if(snapshot.hasError){
-          return const Center(child: Text('Something went wrong'),);
-        }else{
-          return const SignInScreen();
-        }
-      },
-    ),
-  );
+      resizeToAvoidBottomInset: false,
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
+            return const HomePage();
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Something went wrong'),
+            );
+          } else {
+            return const SignInScreen();
+          }
+        },
+      ));
 }

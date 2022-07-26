@@ -4,6 +4,8 @@ import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/utils/lecturas.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/authentication.dart';
+
 class LectureScreen extends StatefulWidget {
   const LectureScreen(this.bloque, this.nombre, this.flag, {Key? key})
       : super(key: key);
@@ -228,6 +230,12 @@ class _LectureScreenState extends State<LectureScreen> {
                             }
                           }
                           Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Authentication()));
                         }
                       },
                       child: Text(

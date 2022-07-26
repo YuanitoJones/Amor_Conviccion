@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/authentication.dart';
+
 class FailScreen extends StatelessWidget {
   const FailScreen(this.puntos, {Key? key}) : super(key: key);
 
@@ -10,12 +12,17 @@ class FailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
+        body: SafeArea(
+      child: Stack(
         children: [
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Authentication()));
             },
             child: Container(
               width: size.width,
@@ -23,20 +30,7 @@ class FailScreen extends StatelessWidget {
               color: const Color(0xFFFFFFFF),
             ),
           ),
-          updatepoints(size, context),
-        ],
-      ),
-    );
-  }
-
-  Widget updatepoints(Size size, BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-          child: Column(
+          Column(
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -77,7 +71,9 @@ class FailScreen extends StatelessWidget {
                     fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
               ),
             ],
-          )),
-    );
+          ),
+        ],
+      ),
+    ));
   }
 }

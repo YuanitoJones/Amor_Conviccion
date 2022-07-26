@@ -63,6 +63,8 @@ class _SuccessScreen extends State<SuccessScreen> {
               lesson.updateLessonCompleted(
                   widget.nombloq, widget.bloque, widget.nombre, widget.answers);
             }
+            Navigator.pop(context);
+            Navigator.pop(context);
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

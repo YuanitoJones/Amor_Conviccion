@@ -23,6 +23,7 @@ class Cuestionario2Screen extends StatefulWidget {
 class _Cuestionario2Screen extends State<Cuestionario2Screen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
