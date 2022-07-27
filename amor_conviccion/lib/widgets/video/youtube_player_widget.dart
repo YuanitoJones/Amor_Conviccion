@@ -35,11 +35,42 @@ class _YtPlayer extends State<YtPlayer> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: YoutubePlayerBuilder(
-            player: YoutubePlayer(
-              controller: _controller,
-              liveUIColor: Colors.amber,
-            ),
-            builder: (context, player) => player));
+      body: YoutubePlayerBuilder(
+          player: YoutubePlayer(
+            controller: _controller,
+          ),
+          builder: (context, player) {
+            return OrientationBuilder(builder: (context, orientation) {
+              if (orientation == Orientation.landscape) {
+                return player;
+              } else {
+                return Column(
+                  children: [
+                    player,
+                    SizedBox(
+                      height: size.height * 0.1,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.065,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.25, 0, size.width * 0.25, 0),
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const <Widget>[
+                                Text('Terminar'),
+                                Icon(Icons.arrow_forward_rounded)
+                              ]),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }
+            });
+          }),
+    );
   }
 }

@@ -107,4 +107,85 @@ class CuestionarioBloque {
     '¿Qué enseñanza te deja el vídeo del pequeño chango?',
     '¿Qué estrategias utilizarían para supervisar mejor a sus hijos?'
   ];
+
+  Map<String, dynamic> anomia = {
+    'Melancólico': {
+      'Fortalezas': [
+        'Dotado',
+        'Analítico',
+        'Estratega',
+        'Abnegado',
+        'Trabajador',
+        'Auto-disciplinado'
+      ],
+      'Debilidades': [
+        'Auto-centrado',
+        'Propenso a persecución',
+        'Vengativo',
+        'Susceptible',
+        'Teórico',
+        'Insociable',
+        'Crítico',
+        'Negatico'
+      ]
+    },
+    'Sanguíneo': {
+      'Fortalezas': [
+        'Expresivo',
+        'Atento',
+        'Cálido y amistoso',
+        'Hablador',
+        'Entusiasta',
+        'Compasivo'
+      ],
+      'Debilidades': [
+        'Indisciplinado inestable',
+        'Improductivo',
+        'Egocéntrico',
+        'Exagerado'
+      ]
+    },
+    'Colérico': {
+      'Fortalezas': [
+        'Voluntarioso',
+        'Independiente',
+        'Visionario',
+        'Práctico',
+        'Productivo',
+        'Decidido',
+        'Líder'
+      ],
+      'Debilidades': [
+        'Frío / no emocional',
+        'Auto suficiente',
+        'Impetuoso',
+        'Egocéntrico',
+        'Dominante',
+        'Rencoroso',
+        'Sarcástico',
+        'Cruel'
+      ]
+    },
+    'Flemático': {
+      'Fortalezas': [
+        'Tranquilo',
+        'Confiable',
+        'Objetivo',
+        'Diplomático',
+        'Eficaz / Organizado',
+        'Práctico / Humorista',
+        'Calmado plácido'
+      ],
+      'Debilidades': [
+        'Sin motivación',
+        'Moroso',
+        'Egoísta',
+        'Mezquino',
+        'Auto - protector',
+        'Indeciso',
+        'Cobarde',
+        'Ansioso'
+      ]
+    }
+  };
 }

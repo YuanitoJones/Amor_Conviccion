@@ -6,7 +6,7 @@ typedef intCallBack = void Function(int val);
 typedef answerlist = void Function(String val);
 
 class LinesScreen extends StatefulWidget {
-  const LinesScreen(this.questions, this.points,
+  const LinesScreen(this.questions, this.points, this.anyAnswer,
       {required this.answersCallBack, //Puntos de la leccion
       required this.answers, //Retorna respuesta enviada
       Key? key})
@@ -14,8 +14,9 @@ class LinesScreen extends StatefulWidget {
 
   final intCallBack answersCallBack;
   final answerlist answers;
-  final List? questions; //Lista de pregunta es incisos
+  final List? questions; //Lista de pregunta e incisos
   final int points; //Representa la opcion correcta
+  final bool anyAnswer; //Acepta cualquier respuesta
 
   @override
   _LineScreen createState() => _LineScreen();
@@ -25,20 +26,14 @@ class _LineScreen extends State<LinesScreen> {
   var start_offset = ValueNotifier(Offset.zero);
   var end_offset = ValueNotifier(Offset.zero);
 
-  var key1 = GlobalKey();
-  var key2 = GlobalKey();
-  var key3 = GlobalKey();
-  var key4 = GlobalKey();
-  var globalkey = GlobalKey();
+  var key = List.generate(5, (index) => GlobalKey());
+
   late double globalY = 0;
 
-  bool first = true;
+  bool first =
+      true; // Flag para saber si es el primer inciso enviado (evita ue puntuacion baje de 0)
   bool flag =
       false; //Flag para saber si ya se encuentra seleccionada una opcion
-  late String question = widget.questions![0],
-      opc1 = widget.questions![1],
-      opc2 = widget.questions![2],
-      opc3 = widget.questions![3];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +41,7 @@ class _LineScreen extends State<LinesScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: Container(
-        key: globalkey,
+        key: key[0],
         width: size.width,
         height: size.height * 0.5,
         decoration: const BoxDecoration(
@@ -79,8 +74,8 @@ class _LineScreen extends State<LinesScreen> {
           onDragStarted: () {
             flag = false;
             result(-1, -1);
-            _getOffset(globalkey);
-            var box = key1.currentContext!.findRenderObject() as RenderBox;
+            _getOffset(key[0]);
+            var box = key[1].currentContext!.findRenderObject() as RenderBox;
             var x = box.localToGlobal(Offset.zero).dx + box.size.width;
             var y = box.localToGlobal(Offset.zero).dy -
                 globalY +
@@ -100,7 +95,7 @@ class _LineScreen extends State<LinesScreen> {
             setState(() {});
           },
           child: Container(
-            key: key1,
+            key: key[1],
             width: size.width * 0.4,
             height: size.height * 0.17,
             decoration: BoxDecoration(
@@ -109,7 +104,7 @@ class _LineScreen extends State<LinesScreen> {
             ),
             child: Center(
               child: Text(
-                question,
+                widget.questions![0],
                 style: TextStyle(
                   fontSize: size.width * 0.04,
                   fontFamily: 'Comfortaa',
@@ -119,15 +114,13 @@ class _LineScreen extends State<LinesScreen> {
           ),
         ),
 
-        //Dragtarget is the right column
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          for (int i = 0; i < (widget.questions!.length - 1); i++)
             Padding(
-              padding: const EdgeInsets.only(top: 10, right: 10),
+              padding: const EdgeInsets.only(top: 20, right: 10, bottom: 20),
               child: DragTarget(
                 builder: (context, c, r) => Container(
-                  key: key2,
+                  key: key[i + 2],
                   width: size.width * 0.35,
                   height: size.height * 0.11,
                   decoration: BoxDecoration(
@@ -137,7 +130,7 @@ class _LineScreen extends State<LinesScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      opc1,
+                      widget.questions![i + 1],
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
@@ -150,8 +143,8 @@ class _LineScreen extends State<LinesScreen> {
                 //Get the coordinate center point of the current box after receiving the data
                 onAccept: (_) {
                   flag = true;
-                  var box =
-                      key2.currentContext!.findRenderObject() as RenderBox;
+                  var box = key[i + 2].currentContext!.findRenderObject()
+                      as RenderBox;
                   var x =
                       box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
                   var y = box.localToGlobal(Offset.zero).dy -
@@ -159,87 +152,13 @@ class _LineScreen extends State<LinesScreen> {
                       box.size.height * 0.5;
                   end_offset.value = Offset(x, y);
                   setState(() {
-                    result(0, widget.points);
+                    result(i, widget.points);
                   });
                 },
               ),
             ),
-            SizedBox(
-              height: size.height * 0.05,
-            ),
-            DragTarget(
-              builder: (context, c, r) => Container(
-                key: key3,
-                width: size.width * 0.35,
-                height: size.height * 0.11,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Center(
-                    child: Text(
-                  opc2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                    fontSize: size.width * 0.04,
-                  ),
-                )),
-              ),
-              onAccept: (_) {
-                flag = true;
-                var box = key3.currentContext!.findRenderObject() as RenderBox;
-                var x =
-                    box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
-                var y = box.localToGlobal(Offset.zero).dy -
-                    globalY +
-                    box.size.height * 0.5;
-                end_offset.value = Offset(x, y);
-                setState(() {
-                  result(1, widget.points);
-                });
-              },
-            ),
-            SizedBox(
-              height: size.height * 0.05,
-            ),
-            DragTarget(
-              builder: (context, c, r) => Container(
-                key: key4,
-                width: size.width * 0.35,
-                height: size.height * 0.11,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 3, color: const Color(0xFFFF7E27)),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Center(
-                    child: Text(
-                  opc3,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                    fontSize: size.width * 0.04,
-                  ),
-                )),
-              ),
-              onAccept: (_) {
-                flag = true;
-                var box = key4.currentContext!.findRenderObject() as RenderBox;
-                var x =
-                    box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
-                var y = box.localToGlobal(Offset.zero).dy -
-                    globalY +
-                    box.size.height * 0.5;
-                end_offset.value = Offset(x, y);
-                setState(() {
-                  result(2, widget.points);
-                });
-              },
-            ),
-          ],
-        )
+        ]),
+        //Dragtarget is the right column
       ],
     );
   }

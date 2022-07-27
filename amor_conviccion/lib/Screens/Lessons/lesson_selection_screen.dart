@@ -166,6 +166,8 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
         return document['Liderazgo'];
       case 3:
         return document['Intimidad'];
+      case 4:
+        return document['Anomia'];
     }
   }
 }
