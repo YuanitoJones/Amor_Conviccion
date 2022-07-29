@@ -5,7 +5,7 @@ import 'package:amor_conviccion/widgets/temper_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/questionaire/lines/unir_lineas.dart';
+import '../../../widgets/questionaire/lines/unir_lineas.dart';
 
 class CuestBloq4 extends StatefulWidget {
   const CuestBloq4({Key? key}) : super(key: key);
