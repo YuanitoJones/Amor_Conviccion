@@ -27,20 +27,17 @@ class BotonMensaje extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        switch (opc) {
-          case 1:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SendMessage(1)));
-            break;
-          case 2:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SendMessage(2)));
-            break;
-          case 3:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SendMessage(3)));
-            break;
-        }
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          switch (opc) {
+            case 1:
+              return SendMessage(1);
+            case 2:
+              return SendMessage(2);
+            case 3:
+              return SendMessage(3);
+          }
+          return SendMessage(4);
+        }));
       },
       child: Stack(
         children: [

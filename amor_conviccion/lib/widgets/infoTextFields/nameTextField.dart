@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NameTextField extends StatefulWidget {
+class NameTextField extends StatelessWidget {
   const NameTextField(this.txtcontroller, {Key? key}) : super(key: key);
 
   final TextEditingController txtcontroller;
 
-  @override
-  _NametextField createState() => _NametextField();
-}
-
-class _NametextField extends State<NameTextField> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +20,7 @@ class _NametextField extends State<NameTextField> {
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
           ],
-          controller: widget.txtcontroller,
+          controller: txtcontroller,
           style: TextStyle(fontSize: size.width * 0.045),
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),

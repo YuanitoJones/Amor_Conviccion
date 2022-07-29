@@ -4,14 +4,19 @@ import 'brush.dart';
 
 typedef intCallBack = void Function(int val);
 typedef answerlist = void Function(String val);
+typedef descallback = void Function(String val);
 
 class LinesScreen extends StatefulWidget {
-  const LinesScreen(this.questions, this.points, this.anyAnswer,
+  const LinesScreen(
+      this.description, this.questions, this.points, this.anyAnswer,
       {required this.answersCallBack, //Puntos de la leccion
       required this.answers, //Retorna respuesta enviada
+      required this.descriptioncallback,
       Key? key})
       : super(key: key);
 
+  final bool description; // Mostrar descripcion de campos
+  final descallback descriptioncallback;
   final intCallBack answersCallBack;
   final answerlist answers;
   final List? questions; //Lista de pregunta e incisos
@@ -26,7 +31,8 @@ class _LineScreen extends State<LinesScreen> {
   var start_offset = ValueNotifier(Offset.zero);
   var end_offset = ValueNotifier(Offset.zero);
 
-  var key = List.generate(5, (index) => GlobalKey());
+  late var key =
+      List.generate(widget.questions!.length + 2, (index) => GlobalKey());
 
   late double globalY = 0;
 
@@ -43,7 +49,6 @@ class _LineScreen extends State<LinesScreen> {
       child: Container(
         key: key[0],
         width: size.width,
-        height: size.height * 0.5,
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
@@ -73,7 +78,7 @@ class _LineScreen extends State<LinesScreen> {
           //Calculates the coordinate center point of the current box when you start dragging
           onDragStarted: () {
             flag = false;
-            result(-1, -1);
+            result(-1, -1, '');
             _getOffset(key[0]);
             var box = key[1].currentContext!.findRenderObject() as RenderBox;
             var x = box.localToGlobal(Offset.zero).dx + box.size.width;
@@ -105,10 +110,8 @@ class _LineScreen extends State<LinesScreen> {
             child: Center(
               child: Text(
                 widget.questions![0],
-                style: TextStyle(
-                  fontSize: size.width * 0.04,
-                  fontFamily: 'Comfortaa',
-                ),
+                style:
+                    TextStyle(fontSize: size.width * 0.04, color: Colors.black),
               ),
             ),
           ),
@@ -117,46 +120,55 @@ class _LineScreen extends State<LinesScreen> {
         Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           for (int i = 0; i < (widget.questions!.length - 1); i++)
             Padding(
-              padding: const EdgeInsets.only(top: 20, right: 10, bottom: 20),
-              child: DragTarget(
-                builder: (context, c, r) => Container(
-                  key: key[i + 2],
-                  width: size.width * 0.35,
-                  height: size.height * 0.11,
-                  decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 3, color: const Color(0xFFFF7E27)),
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.questions![i + 1],
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Comfortaa',
-                        color: Colors.black,
-                        fontSize: size.width * 0.04,
+                padding: const EdgeInsets.only(top: 20, right: 10, bottom: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    if (widget.description) {
+                      widget.descriptioncallback(widget.questions![i + 1]);
+                    }
+                  },
+                  child: DragTarget(
+                    builder: (context, c, r) => Container(
+                      key: key[i + 2],
+                      width: size.width * 0.35,
+                      height: size.height * 0.11,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 3, color: const Color(0xFFFF7E27)),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          widget.questions![i + 1],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Comfortaa',
+                            color: Colors.black,
+                            fontSize: size.width * 0.04,
+                          ),
+                        ),
                       ),
                     ),
+                    //Get the coordinate center point of the current box after receiving the data
+                    onAccept: (_) {
+                      flag = true;
+                      var box = key[i + 2].currentContext!.findRenderObject()
+                          as RenderBox;
+                      var x = box.localToGlobal(Offset.zero).dx -
+                          box.size.width * 0.1;
+                      var y = box.localToGlobal(Offset.zero).dy -
+                          globalY +
+                          box.size.height * 0.5;
+                      end_offset.value = Offset(x, y);
+                      setState(() {
+                        widget.anyAnswer
+                            ? result(
+                                50, widget.points, widget.questions![i + 1])
+                            : result(i, widget.points, '');
+                      });
+                    },
                   ),
-                ),
-                //Get the coordinate center point of the current box after receiving the data
-                onAccept: (_) {
-                  flag = true;
-                  var box = key[i + 2].currentContext!.findRenderObject()
-                      as RenderBox;
-                  var x =
-                      box.localToGlobal(Offset.zero).dx - box.size.width * 0.1;
-                  var y = box.localToGlobal(Offset.zero).dy -
-                      globalY +
-                      box.size.height * 0.5;
-                  end_offset.value = Offset(x, y);
-                  setState(() {
-                    result(i, widget.points);
-                  });
-                },
-              ),
-            ),
+                )),
         ]),
         //Dragtarget is the right column
       ],
@@ -173,7 +185,7 @@ class _LineScreen extends State<LinesScreen> {
     }
   }
 
-  void result(int opc, int points) {
+  void result(int opc, int points, String texto) {
     (first)
         ? {widget.answersCallBack(0)}
         : {widget.answersCallBack(-1), first = true};
@@ -198,6 +210,11 @@ class _LineScreen extends State<LinesScreen> {
           widget.answers('3');
           first = false;
         }
+        break;
+      case 50:
+        widget.answersCallBack(1);
+        widget.answers(texto);
+        first = false;
         break;
       default:
         (first)

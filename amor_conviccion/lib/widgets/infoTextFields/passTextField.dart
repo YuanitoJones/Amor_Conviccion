@@ -6,7 +6,7 @@ class PassTextField extends StatefulWidget {
   final TextEditingController txtcontroller;
 
   @override
-  _PassTextField createState() => _PassTextField();
+  State<PassTextField> createState() => _PassTextField();
 }
 
 class _PassTextField extends State<PassTextField> {
@@ -50,7 +50,7 @@ class _PassTextField extends State<PassTextField> {
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  primary: const Color.fromRGBO(242, 242, 242, 1),
+                  backgroundColor: const Color.fromRGBO(242, 242, 242, 1),
                 ),
                 child: const Icon(Icons.remove_red_eye_outlined,
                     color: Colors.black),

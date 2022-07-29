@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/Screens/splashScreen.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionario/bloque4/bloque4.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           brightness: Brightness.dark,
         ),
-        home: SplashScreen(),
+        home: CuestBloq4(),
       ),
     );
   }

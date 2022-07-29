@@ -72,9 +72,15 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
         for (int i = 0; i < bloque.liderazgo.length - 2; i++)
           Column(
             children: <Widget>[
-              LinesScreen(bloque.liderazgo[i], opc[i], false,
-                  answersCallBack: (val) => setState(() => puntos += val),
-                  answers: (val) => setState(() => answers[0] = val)),
+              LinesScreen(
+                false,
+                bloque.liderazgo[i],
+                opc[i],
+                false,
+                answersCallBack: (val) => setState(() => puntos += val),
+                answers: (val) => setState(() => answers[0] = val),
+                descriptioncallback: (String val) {},
+              ),
               Divider(
                 color: Colors.yellow[700],
                 indent: 10,
