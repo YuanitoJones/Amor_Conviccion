@@ -126,7 +126,7 @@ class CuestionarioBloque {
         'Teórico',
         'Insociable',
         'Crítico',
-        'Negatico'
+        'Negativo'
       ]
     },
     'Sanguíneo': {

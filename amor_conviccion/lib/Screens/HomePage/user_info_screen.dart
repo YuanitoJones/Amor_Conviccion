@@ -66,7 +66,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                     width: size.width * 0.45,
                                     height: size.height * 0.16,
                                     child: Avatar(
-                                        photourl: documents[0].get('imagen'))),
+                                        photourl: documents[1].get('imagen'))),
                                 const Upload(),
                               ],
                             ),
@@ -97,7 +97,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                         SizedBox(
                                             width: size.width * 0.15,
                                             child: UserPoints(
-                                                points: documents[0]
+                                                points: documents[1]
                                                     .get('puntos'))),
                                         SizedBox(
                                           width: size.width * 0.065,

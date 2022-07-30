@@ -104,6 +104,14 @@ class DatabaseService {
           'respuestas': {'1': '0', '2': '0'}
         }
       },
+      'Anomia': {
+        'nombre': 'Anomia',
+        'cuestionario': {
+          'nombre': 'cuestionario',
+          'completado': false,
+          'puntos': 10,
+        }
+      }
     });
     return await puntuacion.doc(uid).set({
       'nombre': name,

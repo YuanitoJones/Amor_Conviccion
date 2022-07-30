@@ -1,6 +1,7 @@
 import 'package:amor_conviccion/Screens/Lessons/cuestionario/bloque1.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario/bloque2.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionario/bloque3.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionario/bloque4.dart';
 import 'package:flutter/material.dart';
 
 class CuestionarioScreen extends StatefulWidget {
@@ -36,7 +37,14 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                       : (widget.bloque == 3)
                           ? CuestBloq3(widget.nombloq, widget.bloque,
                               widget.nombre, widget.completed, widget.puntosl)
-                          : Container()),
+                          : (widget.bloque == 4)
+                              ? CuestBloq4(
+                                  widget.nombloq,
+                                  widget.bloque,
+                                  widget.nombre,
+                                  widget.completed,
+                                  widget.puntosl)
+                              : Container()),
         ));
   }
 }

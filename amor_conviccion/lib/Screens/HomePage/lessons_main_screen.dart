@@ -83,7 +83,6 @@ class MainLessons extends StatelessWidget {
                                 width: 4, color: const Color(0xFFFF7E27)),
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          // Bloque #1
                           margin: EdgeInsets.fromLTRB(
                             size.width * 0.1,
                             size.height * 0.03,

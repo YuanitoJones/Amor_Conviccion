@@ -84,37 +84,32 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                       ),
                       SizedBox(
                         height: size.height * 0.7,
-                        child: ListView.builder(
-                            itemCount: 5,
-                            itemBuilder: (builder, index) {
-                              return Column(
+                        child: Column(
+                          children: <Widget>[
+                            for (int i = 0; i < lesson.length / 2; i += 2)
+                              Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      if (index % 2 == 0)
-                                        createLessons(
-                                            size, info, lesson[index]),
-                                      if (index % 2 == 0 &&
-                                          index + 1 != lesson.length)
-                                        createLessons(
-                                            size, info, lesson[index + 1]),
+                                      createLessons(size, info, lesson[i]),
+                                      createLessons(size, info, lesson[i + 1]),
                                     ],
                                   ),
-                                  if (index % 2 == 0)
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 10, 15, 10),
-                                      child: Divider(
-                                        thickness: 2,
-                                        indent: 15,
-                                        color: Color(0xFFC9C9C9),
-                                      ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                    child: Divider(
+                                      thickness: 2,
+                                      indent: 15,
+                                      color: Color(0xFFC9C9C9),
                                     ),
+                                  ),
                                 ],
-                              );
-                            }),
+                              )
+                          ],
+                        ),
                       ),
                     ],
                   );

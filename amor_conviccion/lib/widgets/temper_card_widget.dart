@@ -48,7 +48,7 @@ class TemperCardWidget extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.045),
+                              fontSize: size.width * 0.05),
                         ),
                         for (int i = 0; i < fortalezas.length; i++)
                           Padding(
@@ -57,7 +57,7 @@ class TemperCardWidget extends StatelessWidget {
                               fortalezas[i].toString(),
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: size.width * 0.035),
+                                  fontSize: size.width * 0.04),
                             ),
                           )
                       ],
@@ -69,7 +69,7 @@ class TemperCardWidget extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.045),
+                              fontSize: size.width * 0.05),
                         ),
                         for (int i = 0; i < debilidades.length; i++)
                           Padding(
@@ -78,7 +78,7 @@ class TemperCardWidget extends StatelessWidget {
                               debilidades[i].toString(),
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: size.width * 0.035),
+                                  fontSize: size.width * 0.04),
                               maxLines: 2,
                             ),
                           )

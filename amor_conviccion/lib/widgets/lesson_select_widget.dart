@@ -59,7 +59,7 @@ class _LessonSelect extends State<LessonSelect> {
                   // ? const BorderSide(color: Colors.green, width: 3)
                   // : const BorderSide(color: Colors.red, width: 3),
                 ),
-                primary: Colors.white),
+                backgroundColor: Colors.white),
             child: lessonIcon(size, widget.texto),
             onPressed: () {
               Navigator.push(
