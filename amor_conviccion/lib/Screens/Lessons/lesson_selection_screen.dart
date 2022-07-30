@@ -9,29 +9,13 @@ class LessonSelectionScreen extends StatefulWidget {
 
   final String nombloq; //Nombre del bloque
   final int bloque; //Bloque de informacion
-  //final lessonNumber = 0; //Numeracion de lecciones
 
   @override
   State<LessonSelectionScreen> createState() => _LessonSelectionScreen();
 }
 
 class _LessonSelectionScreen extends State<LessonSelectionScreen> {
-  late int lessonNumber;
   final _user = FirebaseAuth.instance.currentUser;
-
-  List<String> lesson = [
-    'video',
-    'lectura',
-    'cuestionario',
-    'cuestionario 2',
-    'mensaje',
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    lessonNumber = 0;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +54,7 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                         padding: EdgeInsets.all(size.width * 0.1),
                         child: Center(
                           child: Text(
-                            info['nombre'].toString(),
+                            widget.nombloq,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: size.width * 0.08,
@@ -86,15 +70,18 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
                         height: size.height * 0.7,
                         child: Column(
                           children: <Widget>[
-                            for (int i = 0; i < lesson.length / 2; i += 2)
+                            for (int i = 0; i < info.keys.length; i += 2)
                               Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      createLessons(size, info, lesson[i]),
-                                      createLessons(size, info, lesson[i + 1]),
+                                      createLessons(size, info,
+                                          info.keys.toList()[i], i + 1),
+                                      if (i + 1 < info.keys.length)
+                                        createLessons(size, info,
+                                            info.keys.toList()[i + 1], i + 2),
                                     ],
                                   ),
                                   const Padding(
@@ -122,35 +109,24 @@ class _LessonSelectionScreen extends State<LessonSelectionScreen> {
     );
   }
 
-  Widget createLessons(Size size, var info, String leccion) {
-    try {
-      lessonNumber++;
-      return Column(
-        children: [
-          LessonSelect(
-              info[leccion]['puntos'],
-              widget.nombloq,
-              widget.bloque,
-              info[leccion]['nombre'],
-              info[leccion]['completado'],
-              lessonNumber),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text(
-              info[leccion]['nombre'].toString(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Comfortaa',
-                fontSize: size.width * 0.05,
-              ),
+  Widget createLessons(Size size, var info, String leccion, int lessonNumber) {
+    return Column(
+      children: [
+        LessonSelect(info[leccion]['puntos'], widget.nombloq, widget.bloque,
+            info[leccion]['nombre'], info[leccion]['completado'], lessonNumber),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+          child: Text(
+            info[leccion]['nombre'].toString(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Comfortaa',
+              fontSize: size.width * 0.05,
             ),
           ),
-        ],
-      );
-    } on NoSuchMethodError {
-      lessonNumber--;
-      return Container();
-    }
+        ),
+      ],
+    );
   }
 
   lessonSelect(var document) {

@@ -73,7 +73,7 @@ class TemperCardWidget extends StatelessWidget {
                         ),
                         for (int i = 0; i < debilidades.length; i++)
                           Padding(
-                            padding: EdgeInsets.only(top: size.height * 0.04),
+                            padding: EdgeInsets.only(top: size.height * 0.03),
                             child: Text(
                               debilidades[i].toString(),
                               style: TextStyle(

@@ -45,7 +45,6 @@ class _CuestBloq4 extends State<CuestBloq4> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     List caracter =
         List.generate(bloque.length, (index) => bloque.keys.toList()[index]);
 

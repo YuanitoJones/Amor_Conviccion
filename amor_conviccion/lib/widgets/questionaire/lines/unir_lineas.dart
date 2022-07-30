@@ -72,6 +72,7 @@ class _LineScreen extends State<LinesScreen> {
       children: [
         //Draggable is the left column
         Draggable(
+          key: widget.key,
           data: 1,
           //Drag feedback
           feedback: Container(),
