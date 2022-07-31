@@ -2,23 +2,13 @@ import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:amor_conviccion/widgets/carrousel_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
 import 'package:amor_conviccion/widgets/temper_card_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/questionaire/lines/unir_lineas.dart';
-import '../../../widgets/questionaire/results_button_widget.dart';
+import '../../../../widgets/questionaire/lines/unir_lineas.dart';
+import '../../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq4 extends StatefulWidget {
-  const CuestBloq4(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
-
-  final String nombloq;
-  final int bloque;
-  final String nombre;
-  final bool completed;
-  final int puntosl;
+  const CuestBloq4({Key? key}) : super(key: key);
 
   @override
   State<CuestBloq4> createState() => _CuestBloq4();
@@ -28,8 +18,6 @@ class _CuestBloq4 extends State<CuestBloq4> {
   final Map bloque = CuestionarioBloque().anomia;
 
   TextEditingController textEditingController = TextEditingController();
-
-  bool shouldpop = false;
 
   late String temperAnswer = ''; //Respesta de temperamento para usario
   late int famMember; // Recibe miembros
@@ -91,7 +79,7 @@ class _CuestBloq4 extends State<CuestBloq4> {
                 conheight = 0;
                 flag = false;
               });
-              return shouldpop;
+              return false;
             },
             child: SizedBox(
               height: size.height,
@@ -190,15 +178,7 @@ class _CuestBloq4 extends State<CuestBloq4> {
                                               )),
                                         )
                                       : ResultButton().RBUtton(
-                                          size,
-                                          true,
-                                          context,
-                                          widget.nombloq,
-                                          widget.bloque,
-                                          widget.nombre,
-                                          widget.completed,
-                                          famTemper,
-                                          widget.puntosl)
+                                          size, true, context, famTemper)
                                 ],
                               ),
                               Align(

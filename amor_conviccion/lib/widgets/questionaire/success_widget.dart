@@ -25,113 +25,98 @@ class _SuccessScreen extends State<SuccessScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              if (!flag) {
-                update.updatepoints(widget.puntos);
-                UpdateLesson lesson = UpdateLesson();
-                lesson.updateLessonCompleted(widget.nombloq, widget.bloque,
-                    widget.nombre, widget.answers);
-              }
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const Authentication()));
-            },
-            child: Container(
-              width: size.width,
-              height: size.height,
-              color: const Color(0xFFFFFFFF),
-            ),
-          ),
-          updatepoints(size, widget.bloque, widget.nombre),
-        ],
-      ),
-    );
-  }
-
-  Widget updatepoints(Size size, int bloque, String name) {
     return SafeArea(
-      child: GestureDetector(
-          onTap: () {
-            if (!flag) {
-              update.updatepoints(widget.puntos);
-              UpdateLesson lesson = UpdateLesson();
-              lesson.updateLessonCompleted(
-                  widget.nombloq, widget.bloque, widget.nombre, widget.answers);
-            }
-            Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const Authentication()));
-          },
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Center(
-                  child: Text(
-                    (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
-                    style: TextStyle(
-                        fontFamily: 'Comfortaa', fontSize: size.width * 0.1),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.1,
-              ),
-              (!flag)
-                  ? Text(
-                      '¡Ganaste!',
-                      style: TextStyle(
-                          fontFamily: 'Comfortaa', fontSize: size.width * 0.07),
-                    )
-                  : Container(),
-              SizedBox(
-                height: size.height * 0.1,
-              ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {
+                if (!flag) {
+                  update.updatepoints(widget.puntos);
+                  UpdateLesson lesson = UpdateLesson();
+                  lesson.updateLessonCompleted(widget.nombloq, widget.bloque,
+                      widget.nombre, widget.answers);
+                }
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Authentication()));
+              },
+              child: Container(
+                width: size.width,
+                height: size.height,
+                color: const Color(0xFFFFFFFF),
+                child: Column(
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          widget.puntos.toString(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Center(
+                        child: Text(
+                          (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
                           style: TextStyle(
                               fontFamily: 'Comfortaa',
                               fontSize: size.width * 0.1),
                         ),
-                        Text(
-                          'Puntos de amor',
-                          style: TextStyle(
-                              fontFamily: 'Comfortaa',
-                              fontSize: size.width * 0.04),
-                        ),
-                      ],
+                      ),
                     ),
-                    Container(
-                      width: size.width * 0.22,
-                      child: Image.asset('assets/Icons/noto_heartsuit.png'),
+                    SizedBox(
+                      height: size.height * 0.1,
+                    ),
+                    (!flag)
+                        ? Text(
+                            '¡Ganaste!',
+                            style: TextStyle(
+                                fontFamily: 'Comfortaa',
+                                fontSize: size.width * 0.07),
+                          )
+                        : Container(),
+                    SizedBox(
+                      height: size.height * 0.1,
+                    ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                widget.puntos.toString(),
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    fontSize: size.width * 0.1),
+                              ),
+                              Text(
+                                'Puntos de amor',
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    fontSize: size.width * 0.04),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: size.width * 0.22,
+                            child:
+                                Image.asset('assets/Icons/noto_heartsuit.png'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.25,
+                    ),
+                    Text(
+                      'Toca para continuar',
+                      style: TextStyle(
+                          fontFamily: 'Comfortaa',
+                          fontSize: size.width * 0.075),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.25,
-              ),
-              Text(
-                'Toca para continuar',
-                style: TextStyle(
-                    fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
-              ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,24 +1,16 @@
 import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/questionaire/question _field_widget.dart';
-import '../../../widgets/questionaire/results_button_widget.dart';
+import '../../../../widgets/questionaire/question _field_widget.dart';
+import '../../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq1 extends StatefulWidget {
-  CuestBloq1(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
+  CuestBloq1({Key? key}) : super(key: key);
 
   @override
   State<CuestBloq1> createState() => _CuestBloq1();
 
-  int puntos = 0; //Puntuacion de evalacion inicial
-  final String nombloq; //Nombre del bloque
-  final int bloque; //Bloque de ejercicio
-  final String nombre; //Nombre de la leccion
-  final bool completed; //Se ha completado antes la leccion (otorga puntos o no)
-  final int puntosl; //Puntos que otorga la leccion
+  int puntos = 0; //Puntuacion de evaluacion inicial
 
 }
 
@@ -32,6 +24,7 @@ class _CuestBloq1 extends State<CuestBloq1> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Column(
       children: [
         const Padding(
@@ -55,16 +48,8 @@ class _CuestBloq1 extends State<CuestBloq1> {
           ),
         Padding(
           padding: EdgeInsets.only(bottom: size.height * 0.03),
-          child: ResultButton().RBUtton(
-              size,
-              result(widget.puntos),
-              context,
-              widget.nombloq,
-              widget.bloque,
-              widget.nombre,
-              widget.completed,
-              answers,
-              widget.puntosl),
+          child: ResultButton()
+              .RBUtton(size, result(widget.puntos), context, answers),
         ),
       ],
     );

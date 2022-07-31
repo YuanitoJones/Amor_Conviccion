@@ -1,27 +1,19 @@
+import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/lines/unir_lineas.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/questionaire/fail_widget.dart';
-import '../../../widgets/questionaire/success_widget.dart';
+import '../../../../widgets/questionaire/fail_widget.dart';
+import '../../../../widgets/questionaire/success_widget.dart';
 
 int puntos = 0; //calificacion inicial
 
 class Cuest2Bloq2 extends StatefulWidget {
-  const Cuest2Bloq2(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
+  const Cuest2Bloq2({Key? key}) : super(key: key);
 
   @override
   _Cuest2Bloq2 createState() => _Cuest2Bloq2();
-
-  final String nombloq; //Nombre del bloque
-  final int bloque; //Bloque de la leccion
-  final String nombre; //Nombre de la leccion
-  final bool completed; //Se completo la lecion anteriormente
-  final int puntosl; //puntos que asigna la leccion
 }
 
 class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
@@ -44,6 +36,10 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    final lessonsModel =
+        context.dependOnInheritedWidgetOfExactType<LessonsModel>();
+
     return Column(
       children: [
         Padding(
@@ -115,7 +111,18 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          results(puntos);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => (puntos >= 3)
+                                      ? SuccessScreen(
+                                          lessonsModel!.nombloq,
+                                          lessonsModel.bloque,
+                                          lessonsModel.nombre,
+                                          lessonsModel.completed,
+                                          answers,
+                                          lessonsModel.puntosl)
+                                      : const FailScreen()));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -139,15 +146,5 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
         ),
       ],
     );
-  }
-
-  void results(int points) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => (points >= 3)
-                ? SuccessScreen(widget.nombloq, widget.bloque, widget.nombre,
-                    widget.completed, answers, widget.puntosl)
-                : FailScreen(widget.puntosl)));
   }
 }

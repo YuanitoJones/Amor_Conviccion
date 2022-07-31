@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/cuestionarios.dart';
-import '../../../widgets/questionaire/abiertas/write_answer_widget.dart';
-import '../../../widgets/questionaire/results_button_widget.dart';
+import '../../../../utils/cuestionarios.dart';
+import '../../../../widgets/questionaire/abiertas/write_answer_widget.dart';
+import '../../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq2 extends StatefulWidget {
-  CuestBloq2(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
+  CuestBloq2({Key? key}) : super(key: key);
 
-  int puntos = 0; //Puntuacion de evalacion inicial
-  final String nombloq; //Nombre del bloque
-  final int bloque; //Bloque de ejercicio
-  final String nombre; //Nombre de la leccion
-  final bool completed; //Se ha completado antes la leccion (otorga puntos o no)
-  final int puntosl; //Puntos que otorga la leccion
+  int puntos = 0; //Puntuacion de evaluacion inicial
 
   @override
   _CuestBloq2 createState() => _CuestBloq2();
@@ -61,16 +53,7 @@ class _CuestBloq2 extends State<CuestBloq2> {
             SizedBox(
               height: size.height * 0.05,
             ),
-            ResultButton().RBUtton(
-                size,
-                true,
-                context,
-                widget.nombloq,
-                widget.bloque,
-                widget.nombre,
-                widget.completed,
-                answers2,
-                widget.puntosl),
+            ResultButton().RBUtton(size, true, context, answers2),
           ],
         ));
   }

@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/authentication.dart';
 
 class FailScreen extends StatelessWidget {
-  const FailScreen(this.puntos, {Key? key}) : super(key: key);
-
-  final int puntos; //puntos de la leccion
+  const FailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

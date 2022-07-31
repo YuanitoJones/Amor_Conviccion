@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/cuestionarios.dart';
-import '../../../widgets/questionaire/results_button_widget.dart';
+import '../../../../utils/cuestionarios.dart';
+import '../../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq3 extends StatefulWidget {
-  CuestBloq3(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
+  CuestBloq3({Key? key}) : super(key: key);
 
-  final String nombloq;
-  final int bloque;
-  final String nombre;
-  final bool completed;
-  final int puntosl;
   bool flag = false;
   @override
   State<CuestBloq3> createState() => _CuestBloq3();
@@ -150,16 +142,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
             ),
           ElevatedButton(
               onPressed: () => changepage(), child: const Text('Atrás')),
-          ResultButton().RBUtton(
-              size,
-              true,
-              context,
-              widget.nombloq,
-              widget.bloque,
-              widget.nombre,
-              widget.completed,
-              answers2,
-              widget.puntosl)
+          ResultButton().RBUtton(size, true, context, answers2)
         ],
       ),
     );

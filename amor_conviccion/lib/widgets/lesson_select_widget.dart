@@ -1,10 +1,11 @@
 import 'package:amor_conviccion/Screens/Lessons/Mensaje_Intimo/option_screen.dart';
-import 'package:amor_conviccion/Screens/Lessons/cuestionario/cuestionario.dart';
-import 'package:amor_conviccion/Screens/Lessons/cuestionario2/cuestionario2.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionarios/main_cuestionario.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:flutter/material.dart';
+
+import '../models/lessons_model.dart';
 
 class LessonSelect extends StatefulWidget {
   const LessonSelect(
@@ -62,32 +63,25 @@ class _LessonSelect extends State<LessonSelect> {
                 backgroundColor: Colors.white),
             child: lessonIcon(size, widget.texto),
             onPressed: () {
+              setState(() {
+                print(LessonsModel.of(context)?.nombloq);
+              });
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => (widget.texto == 'lectura')
                           ? LectureScreen(
                               widget.bloque, widget.texto, widget.flag)
-                          : (widget.texto == 'cuestionario')
-                              ? CuestionarioScreen(
-                                  widget.nombloq,
-                                  widget.bloque,
-                                  widget.texto,
-                                  widget.flag,
-                                  widget.puntos)
+                          : (widget.texto == 'cuestionario' ||
+                                  widget.texto == 'cuestionario 2')
+                              ? MainCuestionario(widget.nombloq, widget.bloque,
+                                  widget.texto, widget.flag, widget.puntos)
                               : (widget.texto == 'video')
                                   ? VideoPlayerScreen(
                                       widget.bloque, widget.texto, widget.flag)
-                                  : (widget.texto == 'cuestionario 2')
-                                      ? Cuestionario2Screen(
-                                          widget.nombloq,
-                                          widget.bloque,
-                                          widget.texto,
-                                          widget.flag,
-                                          widget.puntos)
-                                      : (widget.texto == 'mensaje')
-                                          ? const OptionScreen()
-                                          : const Authentication()));
+                                  : (widget.texto == 'mensaje')
+                                      ? const OptionScreen()
+                                      : const Authentication()));
             },
           ),
         ),

@@ -11,11 +11,11 @@ class LessonsModel extends InheritedWidget {
       required Widget child})
       : super(key: key, child: child);
 
-  final String nombloq;
-  final int bloque;
-  final String nombre;
-  final bool completed;
-  final int puntosl;
+  final String nombloq; //Nombre del bloque
+  final int bloque; //Bloque de ejercicio
+  final String nombre; //Nombre de la leccion
+  final bool completed; //Se ha completado antes la leccion (otorga puntos o no)
+  final int puntosl; //Puntos que otorga la leccion
 
   static LessonsModel? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<LessonsModel>();

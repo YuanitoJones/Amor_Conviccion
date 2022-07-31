@@ -3,20 +3,11 @@ import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widge
 import 'package:amor_conviccion/widgets/questionaire/results_button_widget.dart';
 import 'package:amor_conviccion/widgets/video/youtube_player_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Cuest2Bloq3 extends StatefulWidget {
-  Cuest2Bloq3(
-      this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
-      {Key? key})
-      : super(key: key);
+  Cuest2Bloq3({Key? key}) : super(key: key);
 
   bool flag = false;
-  final String nombloq; //Nombre del bloque
-  final int bloque; //Bloque de la leccion
-  final String nombre; //Nombre de la leccion
-  final bool completed; //Se completo la lecion anteriormente
-  final int puntosl; //puntos que asigna la leccion
 
   @override
   State<Cuest2Bloq3> createState() => _Cuest2Bloq3();
@@ -94,16 +85,7 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
                     answers: (val) => setState(() => answers[0] = val)),
                 WriteAnswer(true, preguntas[0], txtcontroller[0],
                     answers: (val) => setState(() => answers[0] = val)),
-                ResultButton().RBUtton(
-                    size,
-                    true,
-                    context,
-                    widget.nombloq,
-                    widget.bloque,
-                    widget.nombre,
-                    widget.completed,
-                    answers,
-                    widget.puntosl),
+                ResultButton().RBUtton(size, true, context, answers),
               ],
             ),
     );
