@@ -31,6 +31,6 @@ class _MainCuestionarioState extends State<MainCuestionario> {
         puntosl: widget.puntosl,
         child: (widget.nombre == 'cuestionario')
             ? CuestionarioScreen()
-            : Cuestionario2Screen());
+            : const Cuestionario2Screen());
   }
 }

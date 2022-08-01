@@ -1,11 +1,12 @@
+import 'package:amor_conviccion/widgets/profile/avatar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class LeaderBoard extends StatefulWidget {
-  const LeaderBoard({Key? key}) : super(key: key);
+  LeaderBoard({Key? key}) : super(key: key);
 
   @override
-  _LeaderBoardState createState() => _LeaderBoardState();
+  State<LeaderBoard> createState() => _LeaderBoardState();
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
@@ -42,7 +43,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   child: Text(
                     'Tabla de lideres',
                     style: TextStyle(
-                        fontFamily: 'Comfortaa',
                         fontWeight: FontWeight.bold,
                         fontSize: size.width * 0.08,
                         color: Colors.white),
@@ -54,7 +54,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   'Tablero de clasificacion ',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Comfortaa',
                       color: Colors.white,
                       fontSize: size.width * 0.04),
                 ),
@@ -148,20 +147,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         const EdgeInsets.only(
                                                             left: 10.0,
                                                             bottom: 7.0),
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        CircleAvatar(
-                                                            child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    image: DecorationImage(
-                                                                        image: NetworkImage(documents[index].get(
-                                                                            'imagen')),
-                                                                        fit: BoxFit
-                                                                            .fill)))),
-                                                      ],
-                                                    ),
+                                                    child: Avatar(
+                                                        photourl:
+                                                            documents[index]
+                                                                .get('imagen')),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
@@ -189,8 +178,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                         .get(
                                                                             'nombre'),
                                                                     style: const TextStyle(
-                                                                        fontFamily:
-                                                                            'Comfortaa',
                                                                         color: Colors
                                                                             .deepPurple,
                                                                         fontWeight:
@@ -201,9 +188,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                             )),
                                                         Text(
                                                           "Puntos: ${documents[index].get('puntos')}",
-                                                          style: const TextStyle(
-                                                              fontFamily:
-                                                                  'Comfortaa'),
                                                         ),
                                                       ],
                                                     ),

@@ -10,13 +10,13 @@ class EmailLogin extends StatefulWidget {
   const EmailLogin({Key? key}) : super(key: key);
 
   @override
-  _EmailLogin createState() => _EmailLogin();
+  State<EmailLogin> createState() => _EmailLogin();
 }
 
 class _EmailLogin extends State<EmailLogin>
     with SingleTickerProviderStateMixin {
-  TextEditingController txt1Controller = TextEditingController();
-  TextEditingController txt2Controller = TextEditingController();
+  List<TextEditingController> txtcontroller =
+      List.generate(2, (index) => TextEditingController());
 
   EmailSignInProvider es = EmailSignInProvider();
   final _formKey = GlobalKey<FormState>();
@@ -26,7 +26,7 @@ class _EmailLogin extends State<EmailLogin>
     await Firebase.initializeApp();
     try {
       await es
-          .signIn(email: txt1Controller.text, password: txt2Controller.text)
+          .signIn(email: txtcontroller[0].text, password: txtcontroller[1].text)
           .then((result) {
         if (result == null) {
           Navigator.pushReplacement(context,
@@ -81,20 +81,20 @@ class _EmailLogin extends State<EmailLogin>
                 SizedBox(
                   height: size.height * 0.1,
                 ),
-                SizedBox(
-                  width: size.width * 0.72,
-                  child: EmailTextField(txt1Controller),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                SizedBox(
-                  width: size.width * 0.72,
-                  child: PassTextField(txt2Controller),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
+                for (int i = 0; i < txtcontroller.length; i++)
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.72,
+                        child: (i == 0)
+                            ? EmailTextField(txtcontroller[i])
+                            : PassTextField(txtcontroller[i]),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                    ],
+                  ),
                 ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -110,14 +110,13 @@ class _EmailLogin extends State<EmailLogin>
                       fixedSize: Size(size.width * 0.60, size.height * 0.07),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      primary: const Color(0xFFFF7E27),
+                      backgroundColor: const Color(0xFFFF7E27),
                       elevation: 4.0,
                     ),
                     child: Text(
-                      /*AppLocalizations.of(context)!.nextStep*/ 'Iniciar sesión',
+                      'Iniciar sesión',
                       style: TextStyle(
                         fontSize: size.width * 0.058,
-                        fontFamily: 'Comfortaa',
                       ),
                     )),
               ]),

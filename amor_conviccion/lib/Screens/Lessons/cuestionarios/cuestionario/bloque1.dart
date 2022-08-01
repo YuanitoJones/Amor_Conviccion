@@ -18,8 +18,8 @@ class _CuestBloq1 extends State<CuestBloq1> {
   CuestionarioBloque cuestionario = CuestionarioBloque();
   late var mapa = cuestionario.drogodependencia;
   late bool flag = true;
-  late var answers = ['', '', '', '', '', '', '', '', ''];
-  late var qanswers = [2, 1, 2, 1, 3, 2, 1, 3, 2];
+  final List<int> qanswers = [2, 1, 2, 1, 3, 2, 1, 3, 2];
+  late List<String> answers = List.generate(qanswers.length, (index) => '');
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,12 @@ class _CuestBloq1 extends State<CuestBloq1> {
 
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Text(
             'Pon a prueba tu conocimiento!',
             style: TextStyle(
-                fontFamily: 'Comfortaa',
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
+                fontSize: size.width * 0.055, fontWeight: FontWeight.bold),
           ),
         ),
         for (int i = 0; i < 9; i++)

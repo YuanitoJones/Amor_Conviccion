@@ -7,9 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
-  const VideoPlayerScreen(this.bloque, this.nombre, this.flag, {Key? key})
+  const VideoPlayerScreen(this.nombloq, this.bloque, this.nombre, this.flag,
+      {Key? key})
       : super(key: key);
 
+  final String nombloq; // Nombre del bloque
   final int bloque; //Bloque de lecciones
   final String nombre; //Nombre de leccion
   final bool flag; //Leccion completada
@@ -72,15 +74,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                 onPressed: () {
                   UpdateLesson lesson = UpdateLesson();
                   if (!widget.flag) {
-                    switch (widget.bloque) {
-                      case 1:
-                        lesson.updateCompleted(
-                            'Drogodependencia', widget.nombre);
-                        break;
-                      case 2:
-                        lesson.updateCompleted('Liderazgo', widget.nombre);
-                        break;
-                    }
+                    lesson.updateCompleted(widget.nombloq, widget.nombre);
                   }
                   Navigator.pop(context);
                 },

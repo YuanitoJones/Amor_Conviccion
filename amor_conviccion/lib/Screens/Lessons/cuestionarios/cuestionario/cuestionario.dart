@@ -1,7 +1,7 @@
 import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloque1.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloque2.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloque3.dart';
-import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloque4.dart';
+import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloque4/bloque4.dart';
 import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:flutter/material.dart';
 

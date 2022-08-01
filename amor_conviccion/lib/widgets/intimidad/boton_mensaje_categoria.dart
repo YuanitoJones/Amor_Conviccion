@@ -4,6 +4,7 @@ import '../../Screens/Lessons/Mensaje_Intimo/send_message_screen.dart';
 
 class BotonMensaje extends StatelessWidget {
   BotonMensaje(this.opc, {Key? key}) : super(key: key);
+
   final int opc; //opcion seleccionada
 
   late String text; //Texto a mostrar

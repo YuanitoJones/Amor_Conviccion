@@ -41,6 +41,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return (page == 0) ? part1(size) : part2(size);
   }
 
@@ -55,13 +56,12 @@ class _CuestBloq3 extends State<CuestBloq3> {
                 'Escriba por cada dedo de la mano sus prioridades',
                 style: TextStyle(
                     color: Colors.black,
-                    fontFamily: 'Comfortaa',
                     fontSize: size.width * 0.05,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: size.height * 0.7,
+              height: size.height * 0.75,
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
@@ -72,6 +72,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
                           size.width * 0.05,
                           size.height * 0.02),
                       child: TextFormField(
+                        controller: txtcontroller[index],
                         onChanged: (texto) {
                           answers2[index] = texto;
                         },
@@ -94,8 +95,28 @@ class _CuestBloq3 extends State<CuestBloq3> {
                     );
                   }),
             ),
-            ElevatedButton(
-                onPressed: () => changepage(), child: const Text('Siguiente'))
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: SizedBox(
+                width: size.width * 0.4,
+                height: size.height * 0.06,
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        changepage();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Favor de llenar todos los campos')));
+                      }
+                    },
+                    child: Text(
+                      'Siguiente',
+                      style: TextStyle(fontSize: size.width * 0.045),
+                    )),
+              ),
+            )
           ],
         ));
   }
@@ -126,8 +147,8 @@ class _CuestBloq3 extends State<CuestBloq3> {
                         selectedValue = value!;
                         answers2[5] = value;
                         if (value == 'Otro. Explique') {
-                          flag = true;
                           answers2[5] = txtcontroller[5].text;
+                          flag = true;
                         }
                         if (value != 'Otro. Explique') flag = false;
                       }));
@@ -138,11 +159,13 @@ class _CuestBloq3 extends State<CuestBloq3> {
               width: size.width * 0.8,
               child: TextFormField(
                 controller: txtcontroller[5],
+                onChanged: (text) => answers2[5] = text,
               ),
             ),
           ElevatedButton(
               onPressed: () => changepage(), child: const Text('Atrás')),
-          ResultButton().RBUtton(size, true, context, answers2)
+          if (answers2[5] != '')
+            ResultButton().RBUtton(size, true, context, answers2)
         ],
       ),
     );

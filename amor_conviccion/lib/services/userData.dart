@@ -1,20 +1,24 @@
 import 'package:amor_conviccion/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class EmailSignInProvider{
+class EmailSignInProvider {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   get user => _auth.currentUser;
 
   //SIGN UP METHOD
-  Future signUp({required String email, required String password, required String name}) async {
+  Future signUp(
+      {required String email,
+      required String password,
+      required String name}) async {
     try {
-      UserCredential credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       final updateUser = FirebaseAuth.instance.currentUser;
       updateUser?.updateDisplayName(name);
-      await DatabaseService(uid: user.uid, email: email).updateUserData(name, email, 0, 'https://www.woolha.com/media/2020/03/eevee.png');
+      await DatabaseService(uid: user.uid, email: email).updateUserData(
+          name, email, 0, 'https://www.woolha.com/media/2020/03/eevee.png');
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -32,7 +36,7 @@ class EmailSignInProvider{
   }
 
   //SIGN OUT METHOD
-  Future<void>signOut() async {
+  Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     _auth.signOut();
   }

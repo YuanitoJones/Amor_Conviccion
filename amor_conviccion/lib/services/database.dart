@@ -14,100 +14,48 @@ class DatabaseService {
     await leccion.doc(email).set({
       'uid': uid,
       'Drogodependencia': {
-        'nombre': 'Drogodependencia',
         'cuestionario': {
-          'nombre': 'cuestionario',
           'completado': false,
           'puntos': 10,
-          'respuestas': {
-            '1': '0',
-            '2': '0',
-            '3': '0',
-            '4': '0',
-            '5': '0',
-            '6': '0',
-            '7': '0',
-            '8': '0',
-            '9': '0',
-          },
         },
         'video': {
-          'puntos': 0,
-          'nombre': 'video',
           'completado': false,
         },
         'lectura': {
-          'puntos': 0,
-          'nombre': 'lectura',
           'completado': false,
         }
       },
       'Liderazgo': {
-        'nombre': 'Liderazgo',
         'cuestionario': {
           'completado': false,
           'puntos': 15,
-          'nombre': 'cuestionario',
-          'respuestas': {
-            '1': '0',
-            '2': '0',
-            '3': '0',
-          }
         },
         'cuestionario 2': {
           'completado': false,
           'puntos': 5,
-          'nombre': 'cuestionario 2',
-          'respuestas': {
-            '1': '0',
-            '2': '0',
-            '3': '0',
-            '4': '0',
-            '5': '0',
-            '6': '0',
-          }
         },
         'lectura': {
-          'puntos': 0,
-          'nombre': 'lectura',
           'completado': false,
         },
         'video': {
-          'puntos': 0,
-          'nombre': 'video',
           'completado': false,
         },
       },
       'Intimidad': {
-        'nombre': 'Intimidad',
         'mensaje': {
-          'puntos': 0,
-          'nombre': 'mensaje',
           'completado': false,
         },
         'cuestionario': {
-          'nombre': 'cuestionario',
           'completado': false,
           'puntos': 5,
-          'respuestas': {
-            '1': '0',
-            '2': '0',
-            '3': '0',
-            '4': '0',
-            '5': '0',
-          },
         },
         'cuestionario 2': {
-          'nombre': 'cuestionario 2',
           'completado': false,
           'puntos': 1,
-          'respuestas': {'1': '0', '2': '0'}
         }
       },
       'Anomia': {
-        'nombre': 'Anomia',
         'cuestionario': {
-          'nombre': 'cuestionario',
           'completado': false,
           'puntos': 10,
         }

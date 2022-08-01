@@ -4,13 +4,13 @@ import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/utils/lecturas.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/authentication.dart';
-
 class LectureScreen extends StatefulWidget {
-  const LectureScreen(this.bloque, this.nombre, this.flag, {Key? key})
+  const LectureScreen(this.nombloq, this.bloque, this.nombre, this.flag,
+      {Key? key})
       : super(key: key);
 
   final bool flag;
+  final String nombloq;
   final String nombre;
   final int bloque;
   @override
@@ -32,6 +32,7 @@ class _LectureScreenState extends State<LectureScreen> {
         break;
       case 2:
         lectura = bloque.Liderazgo;
+        break;
     }
     late List? pagina = lectura[contador];
 
@@ -89,7 +90,6 @@ class _LectureScreenState extends State<LectureScreen> {
                       color: Colors.black,
                       fontSize: size.width *
                           0.08, //------------------------------------------
-                      fontFamily: 'Comfortaa',
                     ),
                   ),
                   Text(
@@ -99,7 +99,6 @@ class _LectureScreenState extends State<LectureScreen> {
                       fontSize: size.width *
                           0.06, //------------------------------------------------
                       fontStyle: FontStyle.italic,
-                      fontFamily: 'Comfortaa',
                     ),
                   ),
                 ],
@@ -177,7 +176,7 @@ class _LectureScreenState extends State<LectureScreen> {
                         height: size.height * 0.065,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFF7E27),
+                            backgroundColor: const Color(0xFFFF7E27),
                             elevation: 4,
                           ),
                           onPressed: () {
@@ -188,11 +187,10 @@ class _LectureScreenState extends State<LectureScreen> {
                               setState(() {});
                             }
                           },
-                          child: const Text(
+                          child: Text(
                             'Atrás',
                             style: TextStyle(
-                              fontFamily: 'Comfortaa',
-                              fontSize: 15,
+                              fontSize: size.width * 0.045,
                             ),
                           ),
                         ),
@@ -206,7 +204,7 @@ class _LectureScreenState extends State<LectureScreen> {
                     height: size.height * 0.065,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: const Color(0xFFFF7E27),
+                        backgroundColor: const Color(0xFFFF7E27),
                         elevation: 4,
                       ),
                       onPressed: () {
@@ -218,31 +216,17 @@ class _LectureScreenState extends State<LectureScreen> {
                         } else {
                           if (!widget.flag) {
                             UpdateLesson lesson = UpdateLesson();
-                            switch (widget.bloque) {
-                              case 1:
-                                lesson.updateCompleted(
-                                    'Drogodependencia', widget.nombre);
-                                break;
-                              case 2:
-                                lesson.updateCompleted(
-                                    'Liderazgo', widget.nombre);
-                                break;
-                            }
+                            lesson.updateCompleted(
+                                widget.nombloq, widget.nombre);
                           }
                           Navigator.pop(context);
                           Navigator.pop(context);
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const Authentication()));
                         }
                       },
                       child: Text(
                         pagina![4],
-                        style: const TextStyle(
-                          fontFamily: 'Comfortaa',
-                          fontSize: 15,
+                        style: TextStyle(
+                          fontSize: size.width * 0.045,
                         ),
                       ),
                     ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../services/authentication.dart';
-
 class FailScreen extends StatelessWidget {
   const FailScreen({Key? key}) : super(key: key);
 
@@ -16,10 +14,7 @@ class FailScreen extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const Authentication()));
+              Navigator.pop(context);
             },
             child: Container(
               width: size.width,
@@ -34,8 +29,7 @@ class FailScreen extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '¡Hey, mejor suerte la próxima vez!',
-                    style: TextStyle(
-                        fontFamily: 'Comfortaa', fontSize: size.width * 0.08),
+                    style: TextStyle(fontSize: size.width * 0.08),
                   ),
                 ),
               ),
@@ -46,8 +40,7 @@ class FailScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
                   'No has acertdo lo suficiente para continuar :(',
-                  style: TextStyle(
-                      fontFamily: 'Comfortaa', fontSize: size.width * 0.053),
+                  style: TextStyle(fontSize: size.width * 0.053),
                 ),
               ),
               SizedBox(
@@ -64,8 +57,7 @@ class FailScreen extends StatelessWidget {
               ),
               Text(
                 'Toca para continuar',
-                style: TextStyle(
-                    fontFamily: 'Comfortaa', fontSize: size.width * 0.075),
+                style: TextStyle(fontSize: size.width * 0.075),
               ),
             ],
           ),

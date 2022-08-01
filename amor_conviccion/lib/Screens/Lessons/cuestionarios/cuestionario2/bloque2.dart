@@ -13,7 +13,7 @@ class Cuest2Bloq2 extends StatefulWidget {
   const Cuest2Bloq2({Key? key}) : super(key: key);
 
   @override
-  _Cuest2Bloq2 createState() => _Cuest2Bloq2();
+  State<Cuest2Bloq2> createState() => _Cuest2Bloq2();
 }
 
 class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
@@ -24,14 +24,9 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
 
   final _formKey = GlobalKey<FormState>();
 
-  late var answers = ['', '', '', '', '', '', ''];
+  late List<String> answers = List.generate(7, (index) => '');
   late var opc = [1, 2, 1, 3];
   late bool flag = true;
-  @override
-  void dispose() {
-    puntos = 0;
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

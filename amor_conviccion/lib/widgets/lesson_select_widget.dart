@@ -5,8 +5,6 @@ import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:flutter/material.dart';
 
-import '../models/lessons_model.dart';
-
 class LessonSelect extends StatefulWidget {
   const LessonSelect(
     this.puntos,
@@ -56,31 +54,26 @@ class _LessonSelect extends State<LessonSelect> {
                 elevation: size.width * 0.015,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90),
-                  //side: (widget.flag)
-                  // ? const BorderSide(color: Colors.green, width: 3)
-                  // : const BorderSide(color: Colors.red, width: 3),
                 ),
                 backgroundColor: Colors.white),
             child: lessonIcon(size, widget.texto),
             onPressed: () {
-              setState(() {
-                print(LessonsModel.of(context)?.nombloq);
-              });
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => (widget.texto == 'lectura')
-                          ? LectureScreen(
-                              widget.bloque, widget.texto, widget.flag)
+                          ? LectureScreen(widget.nombloq, widget.bloque,
+                              widget.texto, widget.flag)
                           : (widget.texto == 'cuestionario' ||
                                   widget.texto == 'cuestionario 2')
                               ? MainCuestionario(widget.nombloq, widget.bloque,
                                   widget.texto, widget.flag, widget.puntos)
                               : (widget.texto == 'video')
-                                  ? VideoPlayerScreen(
+                                  ? VideoPlayerScreen(widget.nombloq,
                                       widget.bloque, widget.texto, widget.flag)
                                   : (widget.texto == 'mensaje')
-                                      ? const OptionScreen()
+                                      ? OptionScreen(
+                                          widget.nombloq, widget.texto)
                                       : const Authentication()));
             },
           ),
@@ -95,38 +88,19 @@ class _LessonSelect extends State<LessonSelect> {
   }
 
   Icon lessonIcon(Size size, String texto) {
-    if (widget.texto == 'lectura') {
-      return Icon(
-        Icons.book,
-        size: size.width * 0.17,
-        color: Colors.blue,
-      );
-    } else if (widget.texto == 'cuestionario' ||
-        widget.texto == 'cuestionario 2') {
-      return Icon(
-        Icons.account_circle,
-        size: size.width * 0.2,
-        color: Colors.blue,
-      );
-    } else if (widget.texto == 'video') {
-      return Icon(
-        Icons.video_call_rounded,
-        size: size.width * 0.2,
-        color: Colors.blue,
-      );
-    } else if (widget.texto == 'mensaje') {
-      return Icon(
-        Icons.message,
-        size: size.width * 0.15,
-        color: Colors.blue,
-      );
-    } else {
-      return Icon(
-        Icons.dangerous,
-        size: size.width * 0.2,
-        color: Colors.blue,
-      );
-    }
+    return Icon(
+        (widget.texto == 'lectura')
+            ? Icons.book
+            : (widget.texto == 'cuestionario' ||
+                    widget.texto == 'cuestionario 2')
+                ? Icons.account_circle
+                : (widget.texto == 'video')
+                    ? Icons.videocam
+                    : (widget.texto == 'mensaje')
+                        ? Icons.message
+                        : Icons.dangerous,
+        size: size.width * 0.18,
+        color: Colors.blue);
   }
 
   Widget buildEditIcon(Color color, Size size) => buildCircle(

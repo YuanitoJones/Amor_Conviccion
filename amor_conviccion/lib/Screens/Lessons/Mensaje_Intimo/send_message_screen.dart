@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:amor_conviccion/utils/mensajes_intimidad.dart';
 import 'package:amor_conviccion/widgets/intimidad/mensajes.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class SendMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    final lessonsModel =
+        context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
     switch (opc) {
       case 1:
@@ -60,7 +64,8 @@ class SendMessage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     UpdateLesson lesson = UpdateLesson();
-                    lesson.updateCompleted('Intimidad', 'mensaje');
+                    lesson.updateCompleted(
+                        lessonsModel!.nombloq, lessonsModel.nombre);
                     Navigator.pop(context);
                     Navigator.pop(context);
                     Navigator.pop(context);

@@ -10,13 +10,13 @@ class CuestBloq2 extends StatefulWidget {
   int puntos = 0; //Puntuacion de evaluacion inicial
 
   @override
-  _CuestBloq2 createState() => _CuestBloq2();
+  State<CuestBloq2> createState() => _CuestBloq2();
 }
 
 class _CuestBloq2 extends State<CuestBloq2> {
   CuestionarioBloque cuestionario = CuestionarioBloque();
   late var lista = cuestionario.liderazgo2;
-  late var answers2 = ['', '', ''];
+  late List<String> answers = List.generate(3, (index) => '');
 
   List<TextEditingController> txtcontroller =
       List.generate(3, (i) => TextEditingController());
@@ -30,14 +30,12 @@ class _CuestBloq2 extends State<CuestBloq2> {
         key: _formKey,
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'Responde las preguntas',
                 style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                    fontSize: size.width * 0.055, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -46,14 +44,13 @@ class _CuestBloq2 extends State<CuestBloq2> {
                   itemCount: 3,
                   itemBuilder: (context, index) {
                     return WriteAnswer(true, lista[index], txtcontroller[index],
-                        answers: (val) =>
-                            setState(() => answers2[index] = val));
+                        answers: (val) => setState(() => answers[index] = val));
                   }),
             ),
             SizedBox(
               height: size.height * 0.05,
             ),
-            ResultButton().RBUtton(size, true, context, answers2),
+            ResultButton().RBUtton(size, true, context, answers),
           ],
         ));
   }

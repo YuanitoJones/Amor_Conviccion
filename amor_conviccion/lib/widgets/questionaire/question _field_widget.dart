@@ -93,7 +93,7 @@ class _QuestionField extends State<QuestionField> {
                               width: size.width,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      primary: (answers[0] == 1)
+                                      backgroundColor: (answers[0] == 1)
                                           ? const Color(0xFF42ADE2)
                                           : const Color(0xFF282828)),
                                   onPressed: () =>
@@ -115,7 +115,7 @@ class _QuestionField extends State<QuestionField> {
                               width: size.width,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      primary: (answers[1] == 1)
+                                      backgroundColor: (answers[1] == 1)
                                           ? const Color(0xFF42ADE2)
                                           : const Color(0xFF282828)),
                                   onPressed: () =>
@@ -135,7 +135,7 @@ class _QuestionField extends State<QuestionField> {
                             width: size.width,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    primary: (answers[2] == 1)
+                                    backgroundColor: (answers[2] == 1)
                                         ? const Color(0xFF42ADE2)
                                         : const Color(0xFF282828)),
                                 onPressed: () =>
@@ -162,6 +162,7 @@ class _QuestionField extends State<QuestionField> {
     (first)
         ? {widget.answersCallBack(0)}
         : {widget.answersCallBack(-1), first = true};
+
     switch (opc) {
       case 0:
         answers[0] = 1;

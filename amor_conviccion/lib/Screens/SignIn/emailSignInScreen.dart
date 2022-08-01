@@ -12,27 +12,15 @@ class EmailSignIn extends StatefulWidget {
   const EmailSignIn({Key? key}) : super(key: key);
 
   @override
-  _EmailSignIn createState() => _EmailSignIn();
+  State<EmailSignIn> createState() => _EmailSignIn();
 }
 
 class _EmailSignIn extends State<EmailSignIn>
     with SingleTickerProviderStateMixin {
-  void initstate() {
-    super.initState();
-    txt1Controller.addListener((onListen));
-  }
-
-  @override
-  void dispose() {
-    txt1Controller.removeListener((onListen));
-    super.dispose();
-  }
-
   void onListen() => setState(() {});
 
-  TextEditingController txt1Controller = TextEditingController();
-  TextEditingController txt2Controller = TextEditingController();
-  TextEditingController txt3Controller = TextEditingController();
+  List<TextEditingController> txtcontroller =
+      List.generate(3, (index) => TextEditingController());
 
   EmailSignInProvider es = EmailSignInProvider();
   final _formKey = GlobalKey<FormState>();
@@ -43,9 +31,9 @@ class _EmailSignIn extends State<EmailSignIn>
     try {
       await es
           .signUp(
-              email: txt1Controller.text,
-              password: txt2Controller.text,
-              name: txt3Controller.text)
+              email: txtcontroller[0].text,
+              password: txtcontroller[1].text,
+              name: txtcontroller[2].text)
           .then((result) {
         if (result == null) {
           Navigator.pushReplacement(context,
@@ -101,27 +89,22 @@ class _EmailSignIn extends State<EmailSignIn>
                 SizedBox(
                   height: size.height * 0.1,
                 ),
-                SizedBox(
-                  width: size.width * 0.72,
-                  child: EmailTextField(txt1Controller),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                SizedBox(
-                  width: size.width * 0.72,
-                  child: PassTextField(txt2Controller),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                SizedBox(
-                  width: size.width * 0.72,
-                  child: NameTextField(txt3Controller),
-                ),
-                SizedBox(
-                  height: size.height * 0.1,
-                ),
+                for (int i = 0; i < txtcontroller.length; i++)
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.72,
+                        child: (i == 0)
+                            ? EmailTextField(txtcontroller[i])
+                            : (i == 1)
+                                ? PassTextField(txtcontroller[i])
+                                : NameTextField(txtcontroller[i]),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                    ],
+                  ),
                 ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -137,14 +120,13 @@ class _EmailSignIn extends State<EmailSignIn>
                       fixedSize: Size(size.width * 0.60, size.height * 0.07),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      primary: const Color(0xFFFF7E27),
+                      backgroundColor: const Color(0xFFFF7E27),
                       elevation: 4.0,
                     ),
                     child: Text(
                       'Registrarse',
                       style: TextStyle(
                         fontSize: size.width * 0.05,
-                        fontFamily: 'Comfortaa',
                       ),
                     )),
               ]),

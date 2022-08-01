@@ -1,4 +1,4 @@
-import 'package:amor_conviccion/services/userData.dart';
+import 'package:amor_conviccion/widgets/close_session_button.dart';
 import 'package:amor_conviccion/widgets/profile/UploadPhoto.dart';
 import 'package:amor_conviccion/widgets/profile/avatar.dart';
 import 'package:amor_conviccion/widgets/profile/profile_info.dart';
@@ -6,9 +6,6 @@ import 'package:amor_conviccion/widgets/profile/user_points.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../services/googleSignIn.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key}) : super(key: key);
@@ -18,7 +15,6 @@ class UserInfoScreen extends StatefulWidget {
 
 class _UserInfoScreen extends State<UserInfoScreen>
     with SingleTickerProviderStateMixin {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
@@ -39,6 +35,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
             );
           } else {
             var documents = (snapshot.data!).docs;
+            print(documents[0]);
             return Scaffold(
               body: SingleChildScrollView(
                   child: Stack(
@@ -66,7 +63,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                     width: size.width * 0.45,
                                     height: size.height * 0.16,
                                     child: Avatar(
-                                        photourl: documents[1].get('imagen'))),
+                                        photourl: documents[0].get('imagen'))),
                                 const Upload(),
                               ],
                             ),
@@ -85,7 +82,6 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                         'Puntos',
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontFamily: 'Comfortaa',
                                             fontSize: size.height * 0.028,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -97,7 +93,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                         SizedBox(
                                             width: size.width * 0.15,
                                             child: UserPoints(
-                                                points: documents[1]
+                                                points: documents[0]
                                                     .get('puntos'))),
                                         SizedBox(
                                           width: size.width * 0.065,
@@ -128,25 +124,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                         color: const Color(0xFF42ADE2),
                         width: size.width * 0.5,
                         height: size.height * 0.06,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            if (_auth.currentUser?.providerData[0].providerId ==
-                                "google.com") {
-                              final provider =
-                                  Provider.of<GoogleSignInProvider>(context,
-                                      listen: false);
-                              provider.signOutFromGoogle();
-                            } else {
-                              EmailSignInProvider email = EmailSignInProvider();
-                              email.signOut();
-                            }
-                          },
-                          icon: const Icon(Icons.logout),
-                          label: const Text(
-                            'Cerrar sesion',
-                            style: TextStyle(fontFamily: 'Comfortaa'),
-                          ),
-                        ),
+                        child: CloseSessionButton(user),
                       )
                     ],
                   ),

@@ -10,8 +10,10 @@ class UserPoints extends StatelessWidget {
     return Text(
       (points.toString()),
       textAlign: TextAlign.center,
-      style: const TextStyle(
-          color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: size.width * 0.06,
+          fontWeight: FontWeight.bold),
     );
   }
 

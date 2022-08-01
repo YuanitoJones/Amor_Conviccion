@@ -8,14 +8,14 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePage createState() => _HomePage();
+  State<HomePage> createState() => _HomePage();
 }
 
 class _HomePage extends State<HomePage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     MainLessons(),
-    const LeaderBoard(),
+    LeaderBoard(),
     const UserInfoScreen(),
   ];
   void _onItemTapped(int index) {

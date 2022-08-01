@@ -1,9 +1,7 @@
 import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/authentication.dart';
-
-class SuccessScreen extends StatefulWidget {
+class SuccessScreen extends StatelessWidget {
   const SuccessScreen(this.nombloq, this.bloque, this.nombre, this.flag,
       this.answers, this.puntos,
       {Key? key})
@@ -16,15 +14,9 @@ class SuccessScreen extends StatefulWidget {
   final List answers; //Respuestas del usuario
   final int puntos; //puntos del usuario
   @override
-  _SuccessScreen createState() => _SuccessScreen();
-}
-
-class _SuccessScreen extends State<SuccessScreen> {
-  late bool flag = widget.flag;
-  UpdatePoints update = UpdatePoints();
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    UpdatePoints update = UpdatePoints();
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -32,15 +24,14 @@ class _SuccessScreen extends State<SuccessScreen> {
             GestureDetector(
               onTap: () {
                 if (!flag) {
-                  update.updatepoints(widget.puntos);
+                  update.updatepoints(puntos);
                   UpdateLesson lesson = UpdateLesson();
-                  lesson.updateLessonCompleted(widget.nombloq, widget.bloque,
-                      widget.nombre, widget.answers);
+                  lesson.updateLessonCompleted(
+                      nombloq, bloque, nombre, answers);
                 }
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Authentication()));
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
               child: Container(
                 width: size.width,
@@ -53,9 +44,7 @@ class _SuccessScreen extends State<SuccessScreen> {
                       child: Center(
                         child: Text(
                           (!flag) ? '¡Enhorabuena!' : '¡Buen trabajo!',
-                          style: TextStyle(
-                              fontFamily: 'Comfortaa',
-                              fontSize: size.width * 0.1),
+                          style: TextStyle(fontSize: size.width * 0.1),
                         ),
                       ),
                     ),
@@ -65,9 +54,7 @@ class _SuccessScreen extends State<SuccessScreen> {
                     (!flag)
                         ? Text(
                             '¡Ganaste!',
-                            style: TextStyle(
-                                fontFamily: 'Comfortaa',
-                                fontSize: size.width * 0.07),
+                            style: TextStyle(fontSize: size.width * 0.07),
                           )
                         : Container(),
                     SizedBox(
@@ -80,20 +67,16 @@ class _SuccessScreen extends State<SuccessScreen> {
                           Column(
                             children: [
                               Text(
-                                widget.puntos.toString(),
-                                style: TextStyle(
-                                    fontFamily: 'Comfortaa',
-                                    fontSize: size.width * 0.1),
+                                puntos.toString(),
+                                style: TextStyle(fontSize: size.width * 0.1),
                               ),
                               Text(
                                 'Puntos de amor',
-                                style: TextStyle(
-                                    fontFamily: 'Comfortaa',
-                                    fontSize: size.width * 0.04),
+                                style: TextStyle(fontSize: size.width * 0.04),
                               ),
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             width: size.width * 0.22,
                             child:
                                 Image.asset('assets/Icons/noto_heartsuit.png'),
@@ -106,9 +89,7 @@ class _SuccessScreen extends State<SuccessScreen> {
                     ),
                     Text(
                       'Toca para continuar',
-                      style: TextStyle(
-                          fontFamily: 'Comfortaa',
-                          fontSize: size.width * 0.075),
+                      style: TextStyle(fontSize: size.width * 0.075),
                     ),
                   ],
                 ),
