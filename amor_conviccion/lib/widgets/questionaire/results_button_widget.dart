@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'fail_widget.dart';
 
 class ResultButton {
-  Widget RBUtton(Size size, bool resul, BuildContext context, List answers) {
+  Widget RBUtton(Size size, bool resul, BuildContext context, List answers,
+      GlobalKey<FormState>? formKey) {
     final lessonsModel =
         context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
@@ -15,18 +16,27 @@ class ResultButton {
         padding:
             EdgeInsets.fromLTRB(size.width * 0.25, 0, size.width * 0.25, 0),
         child: ElevatedButton(
-          onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => (resul)
-                      ? SuccessScreen(
-                          lessonsModel!.nombloq,
-                          lessonsModel.bloque,
-                          lessonsModel.nombre,
-                          lessonsModel.completed,
-                          answers,
-                          lessonsModel.puntosl)
-                      : const FailScreen())),
+          onPressed: () {
+            if (formKey != null) {
+              if (!formKey.currentState!.validate()) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Favor de llenar los campos obligatorios')));
+                return;
+              }
+            }
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => (resul)
+                        ? SuccessScreen(
+                            lessonsModel!.nombloq,
+                            lessonsModel.bloque,
+                            lessonsModel.nombre,
+                            lessonsModel.completed,
+                            answers,
+                            lessonsModel.puntosl)
+                        : const FailScreen()));
+          },
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const <Widget>[

@@ -50,7 +50,7 @@ class _CuestBloq2 extends State<CuestBloq2> {
             SizedBox(
               height: size.height * 0.05,
             ),
-            ResultButton().RBUtton(size, true, context, answers),
+            ResultButton().RBUtton(size, true, context, answers, null),
           ],
         ));
   }

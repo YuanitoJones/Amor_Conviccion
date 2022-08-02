@@ -107,20 +107,21 @@ class _LessonSelect extends State<LessonSelect> {
       child: Text(
         widget.lesson.toString(),
         style: TextStyle(
+            fontSize: size.width * 0.045,
             fontWeight: FontWeight.bold,
-            fontSize: size.width * 0.033,
             color: Colors.white),
       ),
-      all: size.width * 0.036,
+      all: size.width * 0.1,
       color: const Color(0xFF42ADE2));
 
   Widget buildCircle(
           {required Widget child, required double all, required Color color}) =>
       ClipOval(
         child: Container(
-          padding: EdgeInsets.all(all),
+          width: all,
+          height: all,
           color: color,
-          child: child,
+          child: Center(child: child),
         ),
       );
 }

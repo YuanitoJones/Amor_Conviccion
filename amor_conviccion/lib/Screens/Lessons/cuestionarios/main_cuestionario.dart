@@ -4,12 +4,11 @@ import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:flutter/material.dart';
 
 class MainCuestionario extends StatefulWidget {
-  MainCuestionario(
+  const MainCuestionario(
       this.nombloq, this.bloque, this.nombre, this.completed, this.puntosl,
       {Key? key})
       : super(key: key);
 
-  int puntos = 0; //Puntuacion de evalacion inicial
   final String nombloq; //Nombre del bloque
   final String nombre; //Nombre de la leccion
   final int bloque; //A que bloque perteece
@@ -17,7 +16,7 @@ class MainCuestionario extends StatefulWidget {
   final int puntosl; //Puntos que otorga la leccion
 
   @override
-  _MainCuestionarioState createState() => _MainCuestionarioState();
+  State<MainCuestionario> createState() => _MainCuestionarioState();
 }
 
 class _MainCuestionarioState extends State<MainCuestionario> {
@@ -29,8 +28,9 @@ class _MainCuestionarioState extends State<MainCuestionario> {
         nombre: widget.nombre,
         completed: widget.completed,
         puntosl: widget.puntosl,
-        child: (widget.nombre == 'cuestionario')
-            ? CuestionarioScreen()
-            : const Cuestionario2Screen());
+        child: Scaffold(
+            body: (widget.nombre == 'cuestionario')
+                ? CuestionarioScreen()
+                : const Cuestionario2Screen()));
   }
 }

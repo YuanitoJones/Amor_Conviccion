@@ -188,4 +188,15 @@ class CuestionarioBloque {
       ]
     }
   };
+
+  List<String> amorYPerdon2 = [
+    '¿Qué diferencia existe entre pedir perdón y pedir disculpas?',
+    'En tu familia, ¿cómo practican el perdón?',
+    '¿Qué estrategias usarían en tu familia para reforzar el perdón '
+        'cuando alguien falle?',
+    '¿Qué relación tiene la comunicación con el perdón?',
+    'En una escala del 1 al 10, ¿qué también calificas esta '
+        'cualidad en tu vida?',
+    '¿Qué enseñanza familiar les dejó está sesión?'
+  ];
 }

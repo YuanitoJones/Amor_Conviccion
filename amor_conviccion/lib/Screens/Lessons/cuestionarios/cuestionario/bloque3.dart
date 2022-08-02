@@ -165,7 +165,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
           ElevatedButton(
               onPressed: () => changepage(), child: const Text('Atrás')),
           if (answers2[5] != '')
-            ResultButton().RBUtton(size, true, context, answers2)
+            ResultButton().RBUtton(size, true, context, answers2, null)
         ],
       ),
     );

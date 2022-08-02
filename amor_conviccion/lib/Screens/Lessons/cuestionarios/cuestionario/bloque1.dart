@@ -47,7 +47,7 @@ class _CuestBloq1 extends State<CuestBloq1> {
         Padding(
           padding: EdgeInsets.only(bottom: size.height * 0.03),
           child: ResultButton()
-              .RBUtton(size, result(widget.puntos), context, answers),
+              .RBUtton(size, result(widget.puntos), context, answers, null),
         ),
       ],
     );

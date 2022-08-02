@@ -59,6 +59,9 @@ class DatabaseService {
           'completado': false,
           'puntos': 10,
         }
+      },
+      'Amor y Perdon': {
+        'cuestionario 2': {'completado': false, 'puntos': 5}
       }
     });
     return await puntuacion.doc(uid).set({

@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario2/bloque5.dart';
 import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,9 @@ class _Cuestionario2Screen extends State<Cuestionario2Screen> {
                   ? const Cuest2Bloq2()
                   : (lessonsModel.bloque == 3)
                       ? Cuest2Bloq3()
-                      : Container()),
+                      : (lessonsModel.bloque == 5)
+                          ? Cuest2Bloq5()
+                          : Container()),
         ));
   }
 }

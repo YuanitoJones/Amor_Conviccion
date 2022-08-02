@@ -25,7 +25,7 @@ class _TemperMembers extends State<TemperMembers> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
+    return Container(
       height: size.height,
       child: Stack(
         children: [

@@ -19,7 +19,7 @@ class LessonBlockWidget extends StatelessWidget {
     'Liderazgo',
     'Intimidad',
     'Anomia',
-    'Amor y perdón'
+    'Amor y Perdon'
   ];
 
   @override

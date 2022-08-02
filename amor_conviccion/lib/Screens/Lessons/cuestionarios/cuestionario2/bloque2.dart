@@ -2,10 +2,8 @@ import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/lines/unir_lineas.dart';
+import 'package:amor_conviccion/widgets/questionaire/results_button_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../widgets/questionaire/fail_widget.dart';
-import '../../../../widgets/questionaire/success_widget.dart';
 
 int puntos = 0; //calificacion inicial
 
@@ -101,38 +99,10 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                 SizedBox(
                   height: size.height * 0.065,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.25, 0, size.width * 0.25, 0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => (puntos >= 3)
-                                      ? SuccessScreen(
-                                          lessonsModel!.nombloq,
-                                          lessonsModel.bloque,
-                                          lessonsModel.nombre,
-                                          lessonsModel.completed,
-                                          answers,
-                                          lessonsModel.puntosl)
-                                      : const FailScreen()));
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      'Favor de llenar los campos obligatorios')));
-                        }
-                      },
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const <Widget>[
-                            Text('Siquiente'),
-                            Icon(Icons.arrow_forward_rounded)
-                          ]),
-                    ),
-                  ),
+                      padding: EdgeInsets.fromLTRB(
+                          size.width * 0.25, 0, size.width * 0.25, 0),
+                      child: ResultButton().RBUtton(
+                          size, result(puntos), context, answers, _formKey)),
                 ),
               ],
             )),
@@ -141,5 +111,12 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
         ),
       ],
     );
+  }
+
+  bool result(int puntos) {
+    if (puntos >= 3) {
+      return true;
+    }
+    return false;
   }
 }
