@@ -14,6 +14,7 @@ class LessonBlockWidget extends StatelessWidget {
     'noto_heartsuit',
     'noto_heartsuit'
   ];
+
   final List<String> bloqnom = [
     'Drogodependencia',
     'Liderazgo',
