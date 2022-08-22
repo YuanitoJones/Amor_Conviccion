@@ -61,6 +61,7 @@ class DatabaseService {
         }
       },
       'Amor y Perdon': {
+        'cuestionario': {'completado': false, 'puntos': 10},
         'cuestionario 2': {'completado': false, 'puntos': 5}
       }
     });

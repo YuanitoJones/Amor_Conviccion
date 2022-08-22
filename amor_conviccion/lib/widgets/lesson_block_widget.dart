@@ -8,11 +8,11 @@ class LessonBlockWidget extends StatelessWidget {
   final int index;
 
   final List<String> asset = [
-    'drogodependencia',
-    'mochila',
-    'noto_heartsuit',
-    'noto_heartsuit',
-    'noto_heartsuit'
+    'Drogodependencia',
+    'Liderazgo',
+    'Intimidad',
+    'Anomia',
+    'Amor_Perdon'
   ];
 
   final List<String> bloqnom = [
@@ -57,26 +57,32 @@ class LessonBlockWidget extends StatelessWidget {
                 builder: (context) =>
                     LessonSelectionScreen(index + 1, bloqnom[index]))),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: SizedBox(
+                  height: size.height * 0.08,
+                  child: Image.asset('assets/Icons/${asset[index]}.png')),
+            ),
             SizedBox(
-                height: size.height * 0.08,
-                child: Image.asset('assets/Icons/${asset[index]}.png')),
-            Column(
-              children: [
-                Text(
-                  bloqnom[index],
-                  style: TextStyle(
-                    fontSize: size.width * 0.05,
+              width: size.width * 0.5,
+              child: Column(
+                children: [
+                  Text(
+                    bloqnom[index],
+                    style: TextStyle(
+                      fontSize: size.width * 0.05,
+                    ),
                   ),
-                ),
-                Text(
-                  'Bloque #${index + 1}',
-                  style: TextStyle(
-                    fontSize: size.width * 0.035,
+                  Text(
+                    'Bloque #${index + 1}',
+                    style: TextStyle(
+                      fontSize: size.width * 0.035,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

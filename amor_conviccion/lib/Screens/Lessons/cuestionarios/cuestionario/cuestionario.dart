@@ -5,7 +5,7 @@ import 'package:amor_conviccion/Screens/Lessons/cuestionarios/cuestionario/bloqu
 import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:flutter/material.dart';
 
-import 'bloque5/bloque5.dart';
+import 'bloque5.dart';
 
 class CuestionarioScreen extends StatefulWidget {
   CuestionarioScreen({Key? key}) : super(key: key);
@@ -20,21 +20,27 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
     final lessonsModel =
         context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: SafeArea(
-              child: (lessonsModel!.bloque == 1)
-                  ? CuestBloq1()
-                  : (lessonsModel.bloque == 2)
-                      ? CuestBloq2()
-                      : (lessonsModel.bloque == 3)
-                          ? CuestBloq3()
-                          : (lessonsModel.bloque == 4)
-                              ? CuestBloq4()
-                              : (lessonsModel.bloque == 5)
-                                  ? CuestBloq5()
-                                  : Container()),
-        ));
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/background/standard.png'),
+              fit: BoxFit.cover)),
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: SafeArea(
+                child: (lessonsModel!.bloque == 1)
+                    ? CuestBloq1()
+                    : (lessonsModel.bloque == 2)
+                        ? CuestBloq2()
+                        : (lessonsModel.bloque == 3)
+                            ? CuestBloq3()
+                            : (lessonsModel.bloque == 4)
+                                ? const CuestBloq4()
+                                : (lessonsModel.bloque == 5)
+                                    ? const CuestBloq5()
+                                    : Container()),
+          )),
+    );
   }
 }

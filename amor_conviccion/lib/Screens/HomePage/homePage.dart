@@ -28,7 +28,12 @@ class _HomePage extends State<HomePage> {
     return DoubleBackToCloseApp(
         snackBar: const SnackBar(content: Text('Presione otra vez para salir')),
         child: Scaffold(
-          body: _widgetOptions.elementAt(_selectedIndex),
+          body: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/background/standard.png'),
+                      fit: BoxFit.cover)),
+              child: _widgetOptions.elementAt(_selectedIndex)),
           bottomNavigationBar: Container(
             decoration: const BoxDecoration(
               boxShadow: <BoxShadow>[

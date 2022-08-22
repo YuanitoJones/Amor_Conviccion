@@ -18,17 +18,23 @@ class _Cuestionario2Screen extends State<Cuestionario2Screen> {
     final lessonsModel =
         context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: SafeArea(
-              child: (lessonsModel!.bloque == 2)
-                  ? const Cuest2Bloq2()
-                  : (lessonsModel.bloque == 3)
-                      ? Cuest2Bloq3()
-                      : (lessonsModel.bloque == 5)
-                          ? Cuest2Bloq5()
-                          : Container()),
-        ));
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/background/standard.png'),
+              fit: BoxFit.cover)),
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: SafeArea(
+                child: (lessonsModel!.bloque == 2)
+                    ? const Cuest2Bloq2()
+                    : (lessonsModel.bloque == 3)
+                        ? Cuest2Bloq3()
+                        : (lessonsModel.bloque == 5)
+                            ? Cuest2Bloq5()
+                            : Container()),
+          )),
+    );
   }
 }

@@ -45,12 +45,12 @@ class _Cuest2Bloq5 extends State<Cuest2Bloq5> {
                   }),
                 ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.01, bottom: size.height * 0.02),
                 child: SizedBox(
-                    width: size.width * 0.5,
-                    height: size.height * 0.065,
-                    child: ResultButton()
-                        .RBUtton(size, true, context, answers, _formKey)),
+                  child: ResultButton().RBUtton(
+                      size, true, context, amorPerdon, answers, _formKey),
+                ),
               ),
             ],
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen(this.nombloq, this.bloque, this.nombre, this.flag,
-      this.answers, this.puntos,
+      this.questions, this.answers, this.puntos,
       {Key? key})
       : super(key: key);
 
@@ -11,6 +11,7 @@ class SuccessScreen extends StatelessWidget {
   final int bloque; //Bloque de la leccion
   final String nombre; //Nombre de la leccion
   final bool flag; // Ya completo el curso anteriormente
+  final List questions; //preguntas del cuestionario
   final List answers; //Respuestas del usuario
   final int puntos; //puntos del usuario
   @override
@@ -27,7 +28,7 @@ class SuccessScreen extends StatelessWidget {
                   update.updatepoints(puntos);
                   UpdateLesson lesson = UpdateLesson();
                   lesson.updateLessonCompleted(
-                      nombloq, bloque, nombre, answers);
+                      nombloq, bloque, nombre, questions, answers);
                 }
                 Navigator.pop(context);
                 Navigator.pop(context);
@@ -39,6 +40,7 @@ class SuccessScreen extends StatelessWidget {
                 color: const Color(0xFFFFFFFF),
                 child: Column(
                   children: [
+                    Text(questions.toString()),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Center(

@@ -102,7 +102,12 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                       padding: EdgeInsets.fromLTRB(
                           size.width * 0.25, 0, size.width * 0.25, 0),
                       child: ResultButton().RBUtton(
-                          size, result(puntos), context, answers, _formKey)),
+                          size,
+                          result(puntos),
+                          context,
+                          preguntas(bloque.liderazgo),
+                          answers,
+                          _formKey)),
                 ),
               ],
             )),
@@ -111,6 +116,14 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
         ),
       ],
     );
+  }
+
+  List preguntas(Map<int, List> mapa) {
+    List preguntas = List.generate(mapa.length, (index) => '');
+    for (int i = 0; i < mapa.length; i++) {
+      preguntas[i] = mapa[i]![0];
+    }
+    return preguntas;
   }
 
   bool result(int puntos) {

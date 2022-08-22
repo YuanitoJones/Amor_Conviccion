@@ -85,7 +85,8 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
                     answers: (val) => setState(() => answers[0] = val)),
                 WriteAnswer(true, preguntas[1], txtcontroller[1],
                     answers: (val) => setState(() => answers[1] = val)),
-                ResultButton().RBUtton(size, true, context, answers, null),
+                ResultButton()
+                    .RBUtton(size, true, context, preguntas, answers, null),
               ],
             ),
     );

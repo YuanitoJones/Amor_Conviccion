@@ -46,8 +46,8 @@ class _CuestBloq1 extends State<CuestBloq1> {
           ),
         Padding(
           padding: EdgeInsets.only(bottom: size.height * 0.03),
-          child: ResultButton()
-              .RBUtton(size, result(widget.puntos), context, answers, null),
+          child: ResultButton().RBUtton(size, result(widget.puntos), context,
+              preguntas(mapa), answers, null),
         ),
       ],
     );
@@ -58,5 +58,13 @@ class _CuestBloq1 extends State<CuestBloq1> {
       return true;
     }
     return false;
+  }
+
+  List preguntas(Map<int, List> mapa) {
+    List preguntas = List.generate(mapa.length, (index) => '');
+    for (int i = 0; i < mapa.length; i++) {
+      preguntas[i] = mapa[i]![0];
+    }
+    return preguntas;
   }
 }

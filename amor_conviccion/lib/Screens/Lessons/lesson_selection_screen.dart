@@ -15,82 +15,90 @@ class LessonSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: size.height * 0.2,
-            decoration: const BoxDecoration(
-              color: Color(0xFF42ADE2),
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/background/standard.png'),
+              fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: size.height * 0.2,
+              decoration: const BoxDecoration(
+                color: Color(0xFF42ADE2),
+              ),
             ),
-          ),
-          SafeArea(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('Lecciones1')
-                  .where('uid', isEqualTo: _user!.uid)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text('Opps! Algo salio mal'),
-                  );
-                } else {
-                  var document = snapshot.data!.docs[0];
-                  var info = document[nombloq];
-                  return Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(size.width * 0.1),
-                        child: Center(
-                          child: Text(
-                            nombloq,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.08,
-                              color: Colors.white,
+            SafeArea(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('Lecciones1')
+                    .where('uid', isEqualTo: _user!.uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Center(
+                      child: Text('Opps! Algo salio mal'),
+                    );
+                  } else {
+                    var document = snapshot.data!.docs[0];
+                    var info = document[nombloq];
+                    return Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(size.width * 0.1),
+                          child: Center(
+                            child: Text(
+                              nombloq,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: size.width * 0.08,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.1,
-                      ),
-                      for (int i = 0; i < info.keys.length; i += 2)
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createLessons(
-                                    size, info, info.keys.toList()[i], i + 1),
-                                if (i + 1 < info.keys.length)
-                                  createLessons(size, info,
-                                      info.keys.toList()[i + 1], i + 2),
-                              ],
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                              child: Divider(
-                                thickness: 2,
-                                indent: 15,
-                                color: Color(0xFFC9C9C9),
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          height: size.height * 0.1,
                         ),
-                    ],
-                  );
-                }
-              },
+                        for (int i = 0; i < info.keys.length; i += 2)
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  createLessons(
+                                      size, info, info.keys.toList()[i], i + 1),
+                                  if (i + 1 < info.keys.length)
+                                    createLessons(size, info,
+                                        info.keys.toList()[i + 1], i + 2),
+                                ],
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                child: Divider(
+                                  thickness: 2,
+                                  indent: 15,
+                                  color: Color(0xFFC9C9C9),
+                                ),
+                              ),
+                            ],
+                          ),
+                      ],
+                    );
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

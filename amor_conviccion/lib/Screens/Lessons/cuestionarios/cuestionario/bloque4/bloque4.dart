@@ -52,6 +52,9 @@ class _CuestBloq4 extends State<CuestBloq4> {
                               famTemper = valor;
                               famTemper[0] = temperAnswer;
                               famMembers = valor.length - 1;
+                              if (famMembers == 1) {
+                                flag = true;
+                              }
                             }),
                           )
                         : Stack(
@@ -60,7 +63,7 @@ class _CuestBloq4 extends State<CuestBloq4> {
                                 famMembers,
                                 cont,
                                 tempersCallBack: (String val) {
-                                  famTemper[cont + 1];
+                                  famTemper[cont + 1] = val;
                                 },
                                 child: (!flag)
                                     ? SizedBox(
@@ -82,9 +85,22 @@ class _CuestBloq4 extends State<CuestBloq4> {
                                             )),
                                       )
                                     : ResultButton().RBUtton(
-                                        size, true, context, famTemper, null),
+                                        size,
+                                        true,
+                                        context,
+                                        miembros(famMembers + 1),
+                                        famTemper,
+                                        null),
                               ),
                             ],
                           ))));
+  }
+
+  List miembros(int members) {
+    List miembros = List.generate(members, (index) => '');
+    for (int i = 0; i < miembros.length; i++) {
+      miembros[i] = 'Miembro ${i + 1}';
+    }
+    return miembros;
   }
 }

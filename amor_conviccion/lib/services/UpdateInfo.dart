@@ -46,15 +46,17 @@ class UpdateLesson {
     });
   }
 
-  Future updateLessonCompleted(
-      String nombloq, int bloque, String lesson, List answers) async {
+  Future updateLessonCompleted(String nombloq, int bloque, String lesson,
+      List questions, List answers) async {
     collectionr.doc(user!.email).get().then((DocumentSnapshot doc) {
       collectionr
           .doc(user!.email)
           .update(({
             '$nombloq.$lesson.completado': true,
             for (int i = 0; i < answers.length; i++)
-              '$nombloq.$lesson.respuestas.${i + 1}': answers[i]
+              '$nombloq.$lesson.respuestas.${i + 1}.pregunta': questions[i],
+            for (int i = 0; i < answers.length; i++)
+              '$nombloq.$lesson.respuestas.${i + 1}.respuesta': answers[i],
           }))
           .catchError((error) => print('Failed: $error'));
     });

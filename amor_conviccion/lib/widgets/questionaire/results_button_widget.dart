@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'fail_widget.dart';
 
 class ResultButton {
-  Widget RBUtton(Size size, bool resul, BuildContext context, List answers,
-      GlobalKey<FormState>? formKey) {
+  Widget RBUtton(Size size, bool resul, BuildContext context, List questions,
+      List answers, GlobalKey<FormState>? formKey) {
     final lessonsModel =
         context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
@@ -33,6 +33,7 @@ class ResultButton {
                             lessonsModel.bloque,
                             lessonsModel.nombre,
                             lessonsModel.completed,
+                            questions,
                             answers,
                             lessonsModel.puntosl)
                         : const FailScreen()));

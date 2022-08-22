@@ -58,7 +58,7 @@ class CuestionarioBloque {
 
   Map<int, List> liderazgo = {
     0: [
-      '¿Que es liderazgo',
+      '¿Que es liderazgo?',
       'Influencia, caracter, ejemplo',
       'Voluntad, esfuerzo, empatia',
       'Vision, tenacidad. solidaridad'
@@ -76,7 +76,7 @@ class CuestionarioBloque {
       'El caracter'
     ],
     3: [
-      '¿Cual es el mensaje central de la historia de Butch O\'Hare',
+      '¿Cual es el mensaje central de la historia de Butch O\'Hare?',
       'La voluntad',
       'El esfuerzo',
       'El caracter'

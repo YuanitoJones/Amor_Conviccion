@@ -36,205 +36,217 @@ class _LectureScreenState extends State<LectureScreen> {
     }
     late List? pagina = lectura[contador];
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF42ADE2),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(25), //-------------------------------------
-          ),
-        ),
-        leading: IconButton(
-          splashRadius: 28, //--------------------------------------------------
-          onPressed: () {
-            if (contador != 0) {
-              contador--;
-              pagina = lectura[contador];
-              setState(() {});
-            } else {
-              Navigator.pop(context);
-            }
-          },
-          icon: const Icon(
-            Icons.keyboard_backspace_rounded,
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => {},
-            child: Text(
-              pagina![0],
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: size.width *
-                    0.055, //------------------------------------------------
-              ),
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/background/standard.png'),
+              fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF42ADE2),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom:
+                  Radius.circular(25), //-------------------------------------
             ),
           ),
-        ],
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(20), //-----------------------------------
-        width: size.width,
-        child: Column(
-          children: [
-            Container(
-              // -------------------------------------------- Titulo y subtitulo
-              margin: const EdgeInsets.only(bottom: 20), //---------------------
-              child: Column(
-                children: [
-                  Text(
-                    pagina![1],
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: size.width *
-                          0.08, //------------------------------------------
-                    ),
-                  ),
-                  Text(
-                    'Lectura',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: size.width *
-                          0.06, //------------------------------------------------
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ),
+          leading: IconButton(
+            splashRadius:
+                28, //--------------------------------------------------
+            onPressed: () {
+              if (contador != 0) {
+                contador--;
+                pagina = lectura[contador];
+                setState(() {});
+              } else {
+                Navigator.pop(context);
+              }
+            },
+            icon: const Icon(
+              Icons.keyboard_backspace_rounded,
             ),
-            Container(
-              // ------------------------------------------------------- Lectura
-              margin: EdgeInsets.only(
-                  bottom: size.height * 0.03), //---------------------
-              padding: EdgeInsets.all(
-                  size.height * 0.03), //-----------------------------
-              width: size.width,
-              height: size.height *
-                  0.35, //---------------------------------------------------
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(233, 196, 106, 1.0),
-                borderRadius: BorderRadius.circular(25), //---------------------
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    spreadRadius: 0,
-                    blurRadius: 5,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: RawScrollbar(
-                  thumbVisibility: true,
-                  thumbColor: const Color(0xFF42ADE2),
-                  thickness: 1.5,
-                  child: SingleChildScrollView(
-                    child: Text(
-                      pagina![2],
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Comfortaa',
-                        fontSize: size.width * 0.045,
-                      ),
-                    ),
-                  ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => {},
+              child: Text(
+                pagina![0],
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: size.width *
+                      0.055, //------------------------------------------------
                 ),
               ),
             ),
-            Container(
-              // -------------------------------------------------------- Imagen
-              margin: const EdgeInsets.only(bottom: 20), //---------------------
-              child: Stack(
-                children: [
-                  Opacity(
-                      opacity: 0.2,
-                      child: Image.network(
-                        pagina![3],
+          ],
+        ),
+        body: Container(
+          padding:
+              const EdgeInsets.all(20), //-----------------------------------
+          width: size.width,
+          child: Column(
+            children: [
+              Container(
+                // -------------------------------------------- Titulo y subtitulo
+                margin:
+                    const EdgeInsets.only(bottom: 20), //---------------------
+                child: Column(
+                  children: [
+                    Text(
+                      pagina![1],
+                      style: TextStyle(
                         color: Colors.black,
-                        height: size.height * 0.2,
-                      )),
-                  ClipRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                      child: Image.network(
-                        pagina![3],
-                        height: size.height * 0.2,
+                        fontSize: size.width *
+                            0.08, //------------------------------------------
                       ),
                     ),
-                  )
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                (contador != 0)
-                    ? SizedBox(
-                        // ----------------------------------------------- Boton Siguiente
-                        width: size.width * 0.35,
-                        height: size.height * 0.065,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFF7E27),
-                            elevation: 4,
-                          ),
-                          onPressed: () {
-                            //Seccion dinamica de las lecturas
-                            if (contador != 0) {
-                              contador--;
-                              pagina = lectura[contador];
-                              setState(() {});
-                            }
-                          },
-                          child: Text(
-                            'Atrás',
-                            style: TextStyle(
-                              fontSize: size.width * 0.045,
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(),
-                Padding(
-                  padding: EdgeInsets.only(left: size.width * 0.06),
-                  child: SizedBox(
-                    // ----------------------------------------------- Boton Siguiente
-                    width: size.width * 0.35,
-                    height: size.height * 0.065,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFF7E27),
-                        elevation: 4,
+                    Text(
+                      'Lectura',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: size.width *
+                            0.06, //------------------------------------------------
+                        fontStyle: FontStyle.italic,
                       ),
-                      onPressed: () {
-                        //Seccion dinamica de las lecturas
-                        if (contador != lectura.length - 1) {
-                          contador++;
-                          pagina = lectura[contador];
-                          setState(() {});
-                        } else {
-                          if (!widget.flag) {
-                            UpdateLesson lesson = UpdateLesson();
-                            lesson.updateCompleted(
-                                widget.nombloq, widget.nombre);
-                          }
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                        }
-                      },
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                // ------------------------------------------------------- Lectura
+                margin: EdgeInsets.only(
+                    bottom: size.height * 0.03), //---------------------
+                padding: EdgeInsets.all(
+                    size.height * 0.03), //-----------------------------
+                width: size.width,
+                height: size.height *
+                    0.35, //---------------------------------------------------
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(233, 196, 106, 1.0),
+                  borderRadius:
+                      BorderRadius.circular(25), //---------------------
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.grey,
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: RawScrollbar(
+                    thumbVisibility: true,
+                    thumbColor: const Color(0xFF42ADE2),
+                    thickness: 1.5,
+                    child: SingleChildScrollView(
                       child: Text(
-                        pagina![4],
+                        pagina![2],
                         style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Comfortaa',
                           fontSize: size.width * 0.045,
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            )
-          ],
+              ),
+              Container(
+                // -------------------------------------------------------- Imagen
+                margin:
+                    const EdgeInsets.only(bottom: 20), //---------------------
+                child: Stack(
+                  children: [
+                    Opacity(
+                        opacity: 0.2,
+                        child: Image.network(
+                          pagina![3],
+                          color: Colors.black,
+                          height: size.height * 0.2,
+                        )),
+                    ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                        child: Image.network(
+                          pagina![3],
+                          height: size.height * 0.2,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  (contador != 0)
+                      ? SizedBox(
+                          // ----------------------------------------------- Boton Siguiente
+                          width: size.width * 0.35,
+                          height: size.height * 0.065,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF7E27),
+                              elevation: 4,
+                            ),
+                            onPressed: () {
+                              //Seccion dinamica de las lecturas
+                              if (contador != 0) {
+                                contador--;
+                                pagina = lectura[contador];
+                                setState(() {});
+                              }
+                            },
+                            child: Text(
+                              'Atrás',
+                              style: TextStyle(
+                                fontSize: size.width * 0.045,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.06),
+                    child: SizedBox(
+                      // ----------------------------------------------- Boton Siguiente
+                      width: size.width * 0.35,
+                      height: size.height * 0.065,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF7E27),
+                          elevation: 4,
+                        ),
+                        onPressed: () {
+                          //Seccion dinamica de las lecturas
+                          if (contador != lectura.length - 1) {
+                            contador++;
+                            pagina = lectura[contador];
+                            setState(() {});
+                          } else {
+                            if (!widget.flag) {
+                              UpdateLesson lesson = UpdateLesson();
+                              lesson.updateCompleted(
+                                  widget.nombloq, widget.nombre);
+                            }
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Text(
+                          pagina![4],
+                          style: TextStyle(
+                            fontSize: size.width * 0.045,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
