@@ -16,7 +16,7 @@ CuestionarioBloque preguntas = CuestionarioBloque();
 class _CuestBloq3 extends State<CuestBloq3> {
   CuestionarioBloque cuestionario = CuestionarioBloque();
   late var mapa = cuestionario.intimidad;
-  late List<String> answers2 = ['', '', '', '', '', ''];
+  late List<String> answers = ['', '', '', '', '', ''];
   late int page = 0;
 
   List<TextEditingController> txtcontroller =
@@ -74,7 +74,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
                       child: TextFormField(
                         controller: txtcontroller[index],
                         onChanged: (texto) {
-                          answers2[index] = texto;
+                          answers[index] = texto;
                         },
                         style: TextStyle(
                           color: Colors.black,
@@ -145,9 +145,9 @@ class _CuestBloq3 extends State<CuestBloq3> {
                   title: Text(value),
                   onChanged: (value) => setState(() {
                         selectedValue = value!;
-                        answers2[5] = value;
+                        answers[5] = value;
                         if (value == 'Otro. Explique') {
-                          answers2[5] = txtcontroller[5].text;
+                          answers[5] = txtcontroller[5].text;
                           flag = true;
                         }
                         if (value != 'Otro. Explique') flag = false;
@@ -159,13 +159,27 @@ class _CuestBloq3 extends State<CuestBloq3> {
               width: size.width * 0.8,
               child: TextFormField(
                 controller: txtcontroller[5],
-                onChanged: (text) => answers2[5] = text,
+                onChanged: (text) => answers[5] = text,
               ),
             ),
           ElevatedButton(
               onPressed: () => changepage(), child: const Text('Atrás')),
-          if (answers2[5] != '')
-            ResultButton().RBUtton(size, true, context, mapa, answers2, null)
+          if (answers[5] != '')
+            ResultButton().RBUtton(
+                size,
+                true,
+                context,
+                [
+                  'prioridad 1',
+                  'prioridad 2',
+                  'prioridad 3',
+                  'prioridad 4',
+                  'prioridad 5',
+                  '¿Qué estrategias utilizarías para enriquecer el tiempo de '
+                      'relacion con tus hijos?'
+                ],
+                answers,
+                null)
         ],
       ),
     );

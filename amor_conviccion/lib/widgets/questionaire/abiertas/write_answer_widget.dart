@@ -13,7 +13,7 @@ class WriteAnswer extends StatefulWidget {
   final String pregunta; //Pregunta de la leccion
   final textEditingController;
   @override
-  _WriteAnswer createState() => _WriteAnswer();
+  State<WriteAnswer> createState() => _WriteAnswer();
 }
 
 class _WriteAnswer extends State<WriteAnswer> {

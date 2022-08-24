@@ -1,4 +1,3 @@
-import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/lines/unir_lineas.dart';
@@ -22,16 +21,13 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
 
   final _formKey = GlobalKey<FormState>();
 
-  late List<String> answers = List.generate(7, (index) => '');
+  late List<String> answers = List.generate(6, (index) => '');
   late var opc = [1, 2, 1, 3];
   late bool flag = true;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    final lessonsModel =
-        context.dependOnInheritedWidgetOfExactType<LessonsModel>();
 
     return Column(
       children: [
@@ -67,7 +63,7 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                 opc[i],
                 false,
                 answersCallBack: (val) => setState(() => puntos += val),
-                answers: (val) => setState(() => answers[0] = val),
+                answers: (val) => setState(() => answers[i] = val),
                 descriptioncallback: (String val) {},
               ),
               Divider(
@@ -96,19 +92,8 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                 SizedBox(
                   height: size.height * 0.04,
                 ),
-                SizedBox(
-                  height: size.height * 0.065,
-                  child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          size.width * 0.25, 0, size.width * 0.25, 0),
-                      child: ResultButton().RBUtton(
-                          size,
-                          result(puntos),
-                          context,
-                          preguntas(bloque.liderazgo),
-                          answers,
-                          _formKey)),
-                ),
+                ResultButton().RBUtton(size, result(puntos), context,
+                    preguntas(bloque.liderazgo), answers, _formKey),
               ],
             )),
         SizedBox(

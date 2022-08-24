@@ -1,4 +1,3 @@
-import 'package:amor_conviccion/models/lessons_model.dart';
 import 'package:amor_conviccion/utils/cuestionarios.dart';
 import 'package:amor_conviccion/widgets/questionaire/abiertas/write_answer_widget.dart';
 import 'package:amor_conviccion/widgets/questionaire/results_button_widget.dart';
@@ -11,21 +10,17 @@ class Cuest2Bloq5 extends StatefulWidget {
 }
 
 class _Cuest2Bloq5 extends State<Cuest2Bloq5> {
-  var amorPerdon = CuestionarioBloque().amorYPerdon2;
+  final amorPerdon = CuestionarioBloque().amorYPerdon2;
   final _formKey = GlobalKey<FormState>();
+
+  List<TextEditingController> txtcontroller =
+      List.generate(6, (index) => TextEditingController());
+
+  late List<String> answers = List.generate(amorPerdon.length, (index) => '');
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    var lessonsModel =
-        context.dependOnInheritedWidgetOfExactType<LessonsModel>();
-
-    final List<TextEditingController> txtcontroller =
-        List.generate(amorPerdon.length, (index) => TextEditingController());
-
-    final List<String> answers =
-        List.generate(amorPerdon.length, (index) => '');
 
     return Center(
       child: SizedBox(

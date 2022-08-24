@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:amor_conviccion/services/UpdateInfo.dart';
 import 'package:amor_conviccion/utils/lecturas.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +11,7 @@ class LectureScreen extends StatefulWidget {
   final String nombloq;
   final String nombre;
   final int bloque;
+
   @override
   State<LectureScreen> createState() => _LectureScreenState();
 }
@@ -21,6 +20,14 @@ class _LectureScreenState extends State<LectureScreen> {
   MapLectura bloque = MapLectura();
   late Map lectura;
   late int contador = 0;
+
+  final List<String> asset = [
+    'Drogodependencia',
+    'Liderazgo',
+    'Intimidad',
+    'Anomia',
+    'Amor_Perdon'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +112,8 @@ class _LectureScreenState extends State<LectureScreen> {
                       'Lectura',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: size.width *
-                            0.06, //------------------------------------------------
+                        fontSize: size.width * 0.06,
+                        //------------------------------------------------
                         fontStyle: FontStyle.italic,
                       ),
                     ),
@@ -115,13 +122,13 @@ class _LectureScreenState extends State<LectureScreen> {
               ),
               Container(
                 // ------------------------------------------------------- Lectura
-                margin: EdgeInsets.only(
-                    bottom: size.height * 0.03), //---------------------
-                padding: EdgeInsets.all(
-                    size.height * 0.03), //-----------------------------
+                margin: EdgeInsets.only(bottom: size.height * 0.03),
+                //---------------------
+                padding: EdgeInsets.all(size.height * 0.03),
+                //-----------------------------
                 width: size.width,
-                height: size.height *
-                    0.35, //---------------------------------------------------
+                height: size.height * 0.35,
+                //---------------------------------------------------
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(233, 196, 106, 1.0),
                   borderRadius:
@@ -153,28 +160,15 @@ class _LectureScreenState extends State<LectureScreen> {
                 ),
               ),
               Container(
-                // -------------------------------------------------------- Imagen
+                height: size.height * 0.15,
                 margin:
                     const EdgeInsets.only(bottom: 20), //---------------------
-                child: Stack(
-                  children: [
-                    Opacity(
-                        opacity: 0.2,
-                        child: Image.network(
-                          pagina![3],
-                          color: Colors.black,
-                          height: size.height * 0.2,
-                        )),
-                    ClipRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                        child: Image.network(
-                          pagina![3],
-                          height: size.height * 0.2,
-                        ),
-                      ),
-                    )
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: SizedBox(
+                      height: size.height * 0.1,
+                      child: Image.asset(
+                          'assets/Icons/${asset[(widget.bloque == 1) ? 0 : (widget.bloque == 2) ? 1 : (widget.bloque == 3) ? 2 : (widget.bloque == 4) ? 3 : 4]}.png')),
                 ),
               ),
               Row(
