@@ -105,7 +105,8 @@ class _LineScreen extends State<LinesScreen> {
             width: size.width * 0.4,
             height: size.height * 0.17,
             decoration: BoxDecoration(
-              border: Border.all(width: 3, color: Colors.blue),
+              color: Colors.blue[300],
+              // border: Border.all(width: 3, color: Colors.blue),
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Center(
@@ -118,10 +119,10 @@ class _LineScreen extends State<LinesScreen> {
           ),
         ),
 
-        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(children: [
           for (int i = 0; i < (widget.questions!.length - 1); i++)
             Padding(
-                padding: const EdgeInsets.only(top: 20, right: 10, bottom: 20),
+                padding: const EdgeInsets.only(top: 10, right: 10, bottom: 10),
                 child: GestureDetector(
                   onTap: () {
                     if (widget.description) {
@@ -135,7 +136,7 @@ class _LineScreen extends State<LinesScreen> {
                       height: size.height * 0.11,
                       decoration: BoxDecoration(
                         border: Border.all(
-                            width: 3, color: const Color(0xFFFF7E27)),
+                            width: 3, color: const Color(0xFF87EDF1)),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       child: Center(

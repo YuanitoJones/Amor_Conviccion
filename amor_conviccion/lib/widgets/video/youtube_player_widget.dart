@@ -52,17 +52,12 @@ class _YtPlayer extends State<YtPlayer> {
                     ),
                     SizedBox(
                       height: size.height * 0.065,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            size.width * 0.25, 0, size.width * 0.25, 0),
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const <Widget>[
-                                Text('Terminar'),
-                                Icon(Icons.arrow_forward_rounded)
-                              ]),
+                      width: size.width * 0.5,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(
+                          'Siguiente',
+                          style: TextStyle(fontSize: size.width * 0.05),
                         ),
                       ),
                     )

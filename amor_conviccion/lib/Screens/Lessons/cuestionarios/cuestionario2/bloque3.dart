@@ -66,15 +66,16 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
                 SizedBox(
                   width: size.width * 0.45,
                   height: size.height * 0.06,
-                  child: ElevatedButton.icon(
-                      label: Text(
-                        'Siguiente',
-                        style: TextStyle(fontSize: size.width * 0.05),
-                      ),
-                      icon: const Icon(Icons.arrow_forward_rounded),
-                      onPressed: () => setState(() {
-                            widget.flag = !widget.flag;
-                          })),
+                  child: ElevatedButton(
+                      onPressed: () => setState(
+                            () {
+                              widget.flag = !widget.flag;
+                            },
+                          ),
+                      child: const Icon(
+                        Icons.arrow_forward_rounded,
+                        size: 30,
+                      )),
                 )
               ],
             )

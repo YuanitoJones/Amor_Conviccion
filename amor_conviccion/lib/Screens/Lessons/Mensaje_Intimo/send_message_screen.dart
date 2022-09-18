@@ -58,10 +58,8 @@ class SendMessage extends StatelessWidget {
             padding: EdgeInsets.only(bottom: size.height * 0.03),
             child: SizedBox(
               height: size.height * 0.065,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(
-                    size.width * 0.25, 0, size.width * 0.25, 0),
-                child: ElevatedButton(
+              width: size.width * 0.35,
+              child: ElevatedButton(
                   onPressed: () {
                     UpdateLesson lesson = UpdateLesson();
                     lesson.updateCompleted(
@@ -70,14 +68,10 @@ class SendMessage extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const <Widget>[
-                        Text('Siquiente'),
-                        Icon(Icons.arrow_forward_rounded)
-                      ]),
-                ),
-              ),
+                  child: const Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 35,
+                  )),
             ),
           ),
         ],

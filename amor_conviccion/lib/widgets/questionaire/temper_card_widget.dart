@@ -17,7 +17,7 @@ class TemperCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-        color: Colors.orange,
+        color: Colors.blue,
         child: Card(
             child: Material(
           color: Colors.white,

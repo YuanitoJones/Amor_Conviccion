@@ -42,7 +42,7 @@ class _UserInfoScreen extends State<UserInfoScreen>
                 children: [
                   Container(
                     width: double.infinity,
-                    height: size.height * 0.35,
+                    height: size.height * 0.32,
                     decoration: const BoxDecoration(
                         color: Color(0xFF42ADE2),
                         borderRadius: BorderRadius.all(Radius.circular(10))),

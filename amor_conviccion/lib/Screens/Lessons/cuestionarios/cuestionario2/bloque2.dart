@@ -66,8 +66,8 @@ class _Cuest2Bloq2 extends State<Cuest2Bloq2> {
                 answers: (val) => setState(() => answers[i] = val),
                 descriptioncallback: (String val) {},
               ),
-              Divider(
-                color: Colors.yellow[700],
+              const Divider(
+                color: Color(0xFFFCD010),
                 indent: 10,
                 thickness: 3,
               ),

@@ -13,7 +13,9 @@ class TemperMembers extends StatefulWidget {
   final Widget child;
   final int FamMembers;
   final int cont;
+  late bool modalOpen = true;
   final TempersCallBack tempersCallBack;
+  @override
   State<TemperMembers> createState() => _TemperMembers();
 }
 
@@ -27,40 +29,71 @@ class _TemperMembers extends State<TemperMembers> {
     Size size = MediaQuery.of(context).size;
     return Container(
       height: size.height,
+      color: widget.modalOpen ? Colors.black54 : Colors.transparent,
       child: Stack(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(size.width * 0.05,
-                    size.height * 0.03, size.width * 0.05, size.height * 0.03),
-                child: Text(
-                  'Selecciona el temperamento de cada integrante de tu familia',
-                  style: TextStyle(fontSize: size.width * 0.05),
+          if (widget.modalOpen)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        size.width * 0.05,
+                        size.height * 0.03,
+                        size.width * 0.05,
+                        size.height * 0.03),
+                    child: !widget.modalOpen
+                        ? Text(
+                            'Selecciona el temperamento de cada integrante de tu familia',
+                            style: TextStyle(fontSize: size.width * 0.05),
+                          )
+                        : Container(
+                            color: Colors.white,
+                            height: size.height * 0.12,
+                            width: size.width * 0.9,
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: CloseButton(
+                                        color: Colors.red,
+                                        onPressed: () => setState(() {
+                                              widget.modalOpen = false;
+                                            }))),
+                                Positioned(
+                                  width: size.width * 0.9,
+                                  bottom: 0,
+                                  child: Text(
+                                    "Para conocer más sobre las opciones, toque cada uno de los recuadros",
+                                    style:
+                                        TextStyle(fontSize: size.width * 0.05),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )
+                              ],
+                            ))),
+                LinesScreen(
+                  true,
+                  [
+                    'Miembro ${widget.cont + 1}',
+                    'Melancólico',
+                    'Sanguíneo',
+                    'Colérico',
+                    'Flemático'
+                  ],
+                  50,
+                  true,
+                  answers: (val) => setState(() => widget.tempersCallBack(val)),
+                  answersCallBack: (int val) {},
+                  descriptioncallback: (val) => setState(() {
+                    description = val;
+                    conheight = size.height * 0.3;
+                  }),
                 ),
-              ),
-              LinesScreen(
-                true,
-                [
-                  'Miembro ${widget.cont + 1}',
-                  'Melancólico',
-                  'Sanguíneo',
-                  'Colérico',
-                  'Flemático'
-                ],
-                50,
-                true,
-                answers: (val) => setState(() => widget.tempersCallBack(val)),
-                answersCallBack: (int val) {},
-                descriptioncallback: (val) => setState(() {
-                  description = val;
-                  conheight = size.height * 0.3;
-                }),
-              ),
-              widget.child
-            ],
-          ),
+                if (!widget.modalOpen) widget.child
+              ],
+            ),
           Align(
             alignment: Alignment.bottomCenter,
             child: AnimatedContainer(
@@ -71,7 +104,7 @@ class _TemperMembers extends State<TemperMembers> {
                     color: Colors.white,
                     border: Border.all(
                         style: BorderStyle.solid,
-                        color: Colors.orange,
+                        color: Colors.blue,
                         width: 2.5),
                     borderRadius: const BorderRadius.all(Radius.circular(10))),
                 child: Wrap(

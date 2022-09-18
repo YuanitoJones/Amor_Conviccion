@@ -116,7 +116,12 @@ class LessonSelectionScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           child: Text(
-            info.keys.toList()[lessonNumber - 1].toString(),
+            info.keys
+                    .toList()[lessonNumber - 1]
+                    .toString()
+                    .substring(0, 1)
+                    .toUpperCase() +
+                info.keys.toList()[lessonNumber - 1].toString().substring(1),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Comfortaa',

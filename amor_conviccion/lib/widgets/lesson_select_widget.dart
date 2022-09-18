@@ -43,8 +43,8 @@ class _LessonSelect extends State<LessonSelect> {
               boxShadow: [
                 BoxShadow(
                   color: (widget.flag)
-                      ? const Color(0xFF5cb85c)
-                      : const Color(0xFFEE4A4A),
+                      ? const Color(0xFF42ADE2)
+                      : const Color(0xFFFCD010),
                   spreadRadius: 3,
                   blurRadius: 10,
                 )
@@ -90,10 +90,10 @@ class _LessonSelect extends State<LessonSelect> {
   Icon lessonIcon(Size size, String texto) {
     return Icon(
         (widget.texto == 'lectura')
-            ? Icons.book
+            ? Icons.text_snippet_rounded
             : (widget.texto == 'cuestionario' ||
                     widget.texto == 'cuestionario 2')
-                ? Icons.account_circle
+                ? Icons.question_mark_rounded
                 : (widget.texto == 'video')
                     ? Icons.videocam
                     : (widget.texto == 'mensaje')

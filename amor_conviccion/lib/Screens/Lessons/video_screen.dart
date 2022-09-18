@@ -59,6 +59,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               height: size.height * 0.02,
@@ -78,12 +79,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                   }
                   Navigator.pop(context);
                 },
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const <Widget>[
-                      Text('Siquiente'),
-                      Icon(Icons.arrow_forward_rounded)
-                    ]),
+                child: Text('Terminar lección'),
               ),
             )
           ],

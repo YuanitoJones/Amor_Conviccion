@@ -38,7 +38,7 @@ class _CuestionarioScreen extends State<CuestionarioScreen> {
                             : (lessonsModel.bloque == 4)
                                 ? const CuestBloq4()
                                 : (lessonsModel.bloque == 5)
-                                    ? const CuestBloq5()
+                                    ? CuestBloq5()
                                     : Container()),
           )),
     );

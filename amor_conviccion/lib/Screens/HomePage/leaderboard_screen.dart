@@ -26,7 +26,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
       children: <Widget>[
         Container(
           width: double.infinity,
-          height: size.height * 0.35,
+          height: size.height * 0.32,
           decoration: const BoxDecoration(
               color: Color(0xFF42ADE2),
               borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -179,7 +179,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                             'nombre'),
                                                                     style: const TextStyle(
                                                                         color: Colors
-                                                                            .deepPurple,
+                                                                            .black,
                                                                         fontWeight:
                                                                             FontWeight.w500),
                                                                   ),

@@ -40,22 +40,35 @@ class BotonMensaje extends StatelessWidget {
           return SendMessage(4);
         }));
       },
-      child: Stack(
-        children: [
-          InkWell(
-            child: SizedBox(
-              width: size.width * 0.45,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(35.0),
-                child: Image.asset('assets/Icons/$img.jpg'),
+      child: Container(
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(35.0),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Color(0xFF42ADE2),
+                spreadRadius: 3,
+                blurRadius: 10,
+              )
+            ]),
+        child: Stack(
+          children: [
+            InkWell(
+              child: SizedBox(
+                width: size.width * 0.45,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(35.0),
+                  child: Image.asset('assets/Icons/$img.jpg'),
+                ),
               ),
             ),
-          ),
-          Positioned(
-              left: size.width * 0.04,
-              bottom: size.height * 0.005,
-              child: mainText(size))
-        ],
+            Positioned(
+                left: size.width * 0.04,
+                bottom: size.height * 0.005,
+                child: mainText(size))
+          ],
+        ),
       ),
     );
   }
@@ -84,7 +97,7 @@ class BotonMensaje extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: size.width * 0.052,
-        color: const Color(0xFFFF7E27),
+        color: const Color(0xFFFCD010),
       ),
     );
   }

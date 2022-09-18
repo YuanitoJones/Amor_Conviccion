@@ -3,11 +3,17 @@ class Assets {
   Assets._();
 
   static const String IconsAmorPerdon = 'assets/Icons/Amor_Perdon.png';
+  static const String IconsAmorPerdonn = 'assets/Icons/Amor_Perdonn.png';
   static const String IconsAnomia = 'assets/Icons/Anomia.png';
+  static const String IconsAnomiaa = 'assets/Icons/Anomiaa.png';
   static const String IconsDrogodependencia =
       'assets/Icons/Drogodependencia.png';
+  static const String IconsDrogodependenciaa =
+      'assets/Icons/Drogodependenciaa.png';
   static const String IconsIntimidad = 'assets/Icons/Intimidad.png';
+  static const String IconsIntimidadd = 'assets/Icons/Intimidadd.png';
   static const String IconsLiderazgo = 'assets/Icons/Liderazgo.png';
+  static const String IconsLiderazgoo = 'assets/Icons/Liderazgoo.png';
   static const String IconsMadreHija = 'assets/Icons/madre_hija.jpg';
   static const String IconsNotoHeartsuit = 'assets/Icons/noto_heartsuit.png';
   static const String IconsPadreHijo = 'assets/Icons/padre_hijo.jpg';

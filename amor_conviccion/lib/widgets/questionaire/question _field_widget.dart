@@ -95,7 +95,7 @@ class _QuestionField extends State<QuestionField> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: (answers[0] == 1)
                                           ? const Color(0xFF42ADE2)
-                                          : const Color(0xFF282828)),
+                                          : Colors.black54),
                                   onPressed: () =>
                                       changesize(size, 0, widget.points),
                                   child: Text(
@@ -117,7 +117,7 @@ class _QuestionField extends State<QuestionField> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: (answers[1] == 1)
                                           ? const Color(0xFF42ADE2)
-                                          : const Color(0xFF282828)),
+                                          : Colors.black54),
                                   onPressed: () =>
                                       changesize(size, 1, widget.points),
                                   child: Text(
@@ -137,7 +137,7 @@ class _QuestionField extends State<QuestionField> {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: (answers[2] == 1)
                                         ? const Color(0xFF42ADE2)
-                                        : const Color(0xFF282828)),
+                                        : Colors.black54),
                                 onPressed: () =>
                                     changesize(size, 2, widget.points),
                                 child: Text(

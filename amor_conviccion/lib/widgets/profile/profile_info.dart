@@ -172,17 +172,17 @@ class _Profile_Info extends State<ProfileInfo> {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(size.width * 0.75, size.height * 0.07),
                         primary: (widget.actionbutton)
-                            ? const Color(0xFFFF7E27)
-                            : Colors.amber,
+                            ? Colors.amber
+                            : const Color(0xFFFF7E27),
                         textStyle: TextStyle(fontSize: size.width * 0.05)),
                     child: (widget.actionbutton)
                         ? const Text(
                             'Editar Perfil',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           )
                         : const Text(
                             'Guardar',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.white),
                           ),
                   )
                 : const Center(

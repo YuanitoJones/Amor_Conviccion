@@ -5,7 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CuestBloq5 extends StatefulWidget {
-  const CuestBloq5({Key? key}) : super(key: key);
+  CuestBloq5({Key? key}) : super(key: key);
+
+  late bool modalOpen = true;
 
   @override
   _CuestBloq5State createState() => _CuestBloq5State();
@@ -19,7 +21,10 @@ class _CuestBloq5State extends State<CuestBloq5> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance.collection('Lecciones1').get(),
+        future: FirebaseFirestore.instance
+            .collection('Lecciones1')
+            .where('uid', isEqualTo: user!.uid)
+            .get(),
         builder: (context, snapshot) {
           var documents = (snapshot.data)?.docs;
           int famMembers = documents?[0].get('Anomia')['cuestionario']
@@ -29,57 +34,90 @@ class _CuestBloq5State extends State<CuestBloq5> {
               : 0;
           answers = List.generate(famMembers, (index) => '');
           return answers.isNotEmpty
-              ? Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          size.width * 0.05,
-                          size.height * 0.03,
-                          size.width * 0.05,
-                          size.height * 0.03),
-                      child: Text(
-                        'Por cada integrante de tu familia, selecciona su lenguaje del amor',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: size.width * 0.05),
+              ? Container(
+                  color: widget.modalOpen ? Colors.black54 : Colors.transparent,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.05,
+                            size.height * 0.03,
+                            size.width * 0.05,
+                            size.height * 0.045),
+                        child: !widget.modalOpen
+                            ? Text(
+                                'Por cada integrante de tu familia, selecciona el lenguaje del amor correspondiente',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: size.width * 0.05),
+                              )
+                            : Container(
+                                width: size.width * 0.9,
+                                height: size.height * 0.12,
+                                color: Colors.white,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                        top: 0,
+                                        right: 0,
+                                        child: CloseButton(
+                                          color: Colors.red,
+                                          onPressed: (() => {
+                                                setState(() =>
+                                                    {widget.modalOpen = false})
+                                              }),
+                                        )),
+                                    Positioned(
+                                        width: size.width * 0.9,
+                                        bottom: 0,
+                                        child: Text(
+                                          "Para conocer ms sobre opciones, toque cada uno de los recuadros",
+                                          style: TextStyle(
+                                              fontSize: size.width * 0.05),
+                                          textAlign: TextAlign.center,
+                                        ))
+                                  ],
+                                ),
+                              ),
                       ),
-                    ),
-                    for (int i = 0; i < famMembers; i++)
-                      Column(
-                        children: [
-                          LinesScreen(
-                            false,
-                            [
-                              (i == 0)
-                                  ? 'Miembro ${i + 1} (Tú)'
-                                  : 'Miembro ${i + 1}',
-                              'Palabras de Afirmación',
-                              'Tiempo de Calidad',
-                              'Regalos',
-                              'Actos de servicio',
-                              'Contacto físico'
-                            ],
-                            50,
-                            true,
-                            answersCallBack: (int val) {},
-                            answers: (String val) {
-                              answers[i] = val;
-                            },
-                            descriptioncallback: (String val) {},
-                          ),
-                          if (i < famMembers - 1)
-                            const Divider(
-                              thickness: 2,
-                              color: Colors.black,
-                            )
-                        ],
-                      ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: size.height * 0.01, bottom: size.height * 0.02),
-                      child: ResultButton().RBUtton(size, true, context,
-                          miembros(famMembers), answers, null),
-                    )
-                  ],
+                      for (int i = 0; i < famMembers; i++)
+                        Column(
+                          children: [
+                            LinesScreen(
+                              false,
+                              [
+                                (i == 0)
+                                    ? 'Miembro ${i + 1} (Tú)'
+                                    : 'Miembro ${i + 1}',
+                                'Palabras de Afirmación',
+                                'Tiempo de Calidad',
+                                'Regalos',
+                                'Actos de servicio',
+                                'Contacto físico'
+                              ],
+                              50,
+                              true,
+                              answersCallBack: (int val) {},
+                              answers: (String val) {
+                                answers[i] = val;
+                              },
+                              descriptioncallback: (String val) {},
+                            ),
+                            if (i < famMembers - 1)
+                              const Divider(
+                                thickness: 2,
+                                color: Colors.black,
+                              )
+                          ],
+                        ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.01,
+                            bottom: size.height * 0.02),
+                        child: ResultButton().RBUtton(size, true, context,
+                            miembros(famMembers), answers, null),
+                      )
+                    ],
+                  ),
                 )
               : SizedBox(
                   height: size.height,

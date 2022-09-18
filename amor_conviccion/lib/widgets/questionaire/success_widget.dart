@@ -40,7 +40,6 @@ class SuccessScreen extends StatelessWidget {
                 color: const Color(0xFFFFFFFF),
                 child: Column(
                   children: [
-                    Text(questions.toString()),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Center(

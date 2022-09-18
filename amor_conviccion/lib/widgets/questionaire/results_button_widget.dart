@@ -12,10 +12,8 @@ class ResultButton {
 
     return SizedBox(
       height: size.height * 0.065,
-      child: Padding(
-        padding:
-            EdgeInsets.fromLTRB(size.width * 0.25, 0, size.width * 0.25, 0),
-        child: ElevatedButton(
+      width: size.width * 0.35,
+      child: ElevatedButton(
           onPressed: () {
             if (formKey != null) {
               if (!formKey.currentState!.validate()) {
@@ -38,14 +36,10 @@ class ResultButton {
                             lessonsModel.puntosl)
                         : const FailScreen()));
           },
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const <Widget>[
-                Text('Siquiente'),
-                Icon(Icons.arrow_forward_rounded)
-              ]),
-        ),
-      ),
+          child: const Icon(
+            Icons.arrow_forward_rounded,
+            size: 40,
+          )),
     );
   }
 }

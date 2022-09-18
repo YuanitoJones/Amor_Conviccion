@@ -130,7 +130,7 @@ class _LectureScreenState extends State<LectureScreen> {
                 height: size.height * 0.35,
                 //---------------------------------------------------
                 decoration: BoxDecoration(
-                  color: const Color.fromRGBO(233, 196, 106, 1.0),
+                  color: const Color(0xFF87EDF1),
                   borderRadius:
                       BorderRadius.circular(25), //---------------------
                   boxShadow: const [
@@ -180,25 +180,23 @@ class _LectureScreenState extends State<LectureScreen> {
                           width: size.width * 0.35,
                           height: size.height * 0.065,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFFF7E27),
-                              elevation: 4,
-                            ),
-                            onPressed: () {
-                              //Seccion dinamica de las lecturas
-                              if (contador != 0) {
-                                contador--;
-                                pagina = lectura[contador];
-                                setState(() {});
-                              }
-                            },
-                            child: Text(
-                              'Atrás',
-                              style: TextStyle(
-                                fontSize: size.width * 0.045,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFfcd010),
+                                elevation: 4,
                               ),
-                            ),
-                          ),
+                              onPressed: () {
+                                //Seccion dinamica de las lecturas
+                                if (contador != 0) {
+                                  contador--;
+                                  pagina = lectura[contador];
+                                  setState(() {});
+                                }
+                              },
+                              child: const Icon(
+                                Icons.arrow_back_rounded,
+                                size: 30,
+                                color: Colors.black,
+                              )),
                         )
                       : Container(),
                   Padding(
@@ -208,33 +206,30 @@ class _LectureScreenState extends State<LectureScreen> {
                       width: size.width * 0.35,
                       height: size.height * 0.065,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFF7E27),
-                          elevation: 4,
-                        ),
-                        onPressed: () {
-                          //Seccion dinamica de las lecturas
-                          if (contador != lectura.length - 1) {
-                            contador++;
-                            pagina = lectura[contador];
-                            setState(() {});
-                          } else {
-                            if (!widget.flag) {
-                              UpdateLesson lesson = UpdateLesson();
-                              lesson.updateCompleted(
-                                  widget.nombloq, widget.nombre);
-                            }
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Text(
-                          pagina![4],
-                          style: TextStyle(
-                            fontSize: size.width * 0.045,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF42ADE2),
+                            elevation: 4,
                           ),
-                        ),
-                      ),
+                          onPressed: () {
+                            //Seccion dinamica de las lecturas
+                            if (contador != lectura.length - 1) {
+                              contador++;
+                              pagina = lectura[contador];
+                              setState(() {});
+                            } else {
+                              if (!widget.flag) {
+                                UpdateLesson lesson = UpdateLesson();
+                                lesson.updateCompleted(
+                                    widget.nombloq, widget.nombre);
+                              }
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward_rounded,
+                            size: 30,
+                          )),
                     ),
                   ),
                 ],

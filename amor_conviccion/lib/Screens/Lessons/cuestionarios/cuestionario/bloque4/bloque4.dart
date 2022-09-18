@@ -78,10 +78,9 @@ class _CuestBloq4 extends State<CuestBloq4> {
                                                 cont++;
                                               });
                                             },
-                                            child: Text(
-                                              'siguiente',
-                                              style: TextStyle(
-                                                  fontSize: size.width * 0.04),
+                                            child: const Icon(
+                                              Icons.arrow_forward_rounded,
+                                              size: 30,
                                             )),
                                       )
                                     : ResultButton().RBUtton(

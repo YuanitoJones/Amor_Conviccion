@@ -1,18 +1,25 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../Screens/Lessons/lesson_selection_screen.dart';
 
-class LessonBlockWidget extends StatelessWidget {
+class LessonBlockWidget extends StatefulWidget {
   LessonBlockWidget(this.index, {Key? key}) : super(key: key);
 
   final int index;
+  late Color lessonBorderColor = Colors.black;
+  @override
+  State<StatefulWidget> createState() => _LessonBlockWidget();
+}
 
+class _LessonBlockWidget extends State<LessonBlockWidget> {
   final List<String> asset = [
-    'Drogodependencia',
-    'Liderazgo',
-    'Intimidad',
-    'Anomia',
-    'Amor_Perdon'
+    'Drogodependenciaa',
+    'Liderazgoo',
+    'Intimidadd',
+    'Anomiaa',
+    'Amor_Perdonn'
   ];
 
   final List<String> bloqnom = [
@@ -28,7 +35,7 @@ class LessonBlockWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 4, color: const Color(0xFFFF7E27)),
+        border: Border.all(width: 4, color: widget.lessonBorderColor),
         borderRadius: BorderRadius.circular(20.0),
       ),
       margin: EdgeInsets.fromLTRB(
@@ -39,7 +46,7 @@ class LessonBlockWidget extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: const Color(0xFFfcd010),
           padding: EdgeInsets.fromLTRB(
             0,
             size.width * 0.08,
@@ -51,11 +58,21 @@ class LessonBlockWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    LessonSelectionScreen(index + 1, bloqnom[index]))),
+        onPressed: () => {
+          setState(() => {
+                widget.lessonBorderColor = Colors.green,
+              }),
+          Timer(const Duration(milliseconds: 180), () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => LessonSelectionScreen(
+                        widget.index + 1, bloqnom[widget.index])));
+            setState(() => {
+                  widget.lessonBorderColor = Colors.black,
+                });
+          })
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -63,20 +80,20 @@ class LessonBlockWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 30),
               child: SizedBox(
                   height: size.height * 0.08,
-                  child: Image.asset('assets/Icons/${asset[index]}.png')),
+                  child:
+                      Image.asset('assets/Icons/${asset[widget.index]}.png')),
             ),
             SizedBox(
               width: size.width * 0.5,
               child: Column(
                 children: [
                   Text(
-                    bloqnom[index],
+                    bloqnom[widget.index],
                     style: TextStyle(
-                      fontSize: size.width * 0.05,
-                    ),
+                        fontSize: size.width * 0.05, color: Colors.black),
                   ),
                   Text(
-                    'Bloque #${index + 1}',
+                    'Bloque #${widget.index + 1}',
                     style: TextStyle(
                       fontSize: size.width * 0.035,
                     ),
