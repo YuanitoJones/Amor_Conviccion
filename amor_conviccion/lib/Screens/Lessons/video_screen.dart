@@ -72,15 +72,17 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
               height: size.height * 0.07,
               width: size.width * 0.4,
               child: ElevatedButton(
-                onPressed: () {
-                  UpdateLesson lesson = UpdateLesson();
-                  if (!widget.flag) {
-                    lesson.updateCompleted(widget.nombloq, widget.nombre);
-                  }
-                  Navigator.pop(context);
-                },
-                child: Text('Terminar lección'),
-              ),
+                  onPressed: () {
+                    UpdateLesson lesson = UpdateLesson();
+                    if (!widget.flag) {
+                      lesson.updateCompleted(widget.nombloq, widget.nombre);
+                    }
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 30,
+                  )),
             )
           ],
         ),

@@ -39,7 +39,7 @@ class _CuestBloq2 extends State<CuestBloq2> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.6,
+              height: size.height * 0.65,
               child: ListView.builder(
                   itemCount: 3,
                   itemBuilder: (context, index) {
@@ -50,7 +50,8 @@ class _CuestBloq2 extends State<CuestBloq2> {
             SizedBox(
               height: size.height * 0.05,
             ),
-            ResultButton().RBUtton(size, true, context, lista, answers, null),
+            ResultButton()
+                .RBUtton(size, true, context, lista, answers, _formKey),
           ],
         ));
   }

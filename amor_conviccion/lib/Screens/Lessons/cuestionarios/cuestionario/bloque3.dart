@@ -46,6 +46,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
   }
 
   Widget part1(Size size) {
+    final _Finalkey = GlobalKey<FormState>();
     return Form(
         key: _formKey,
         child: Column(
@@ -61,40 +62,44 @@ class _CuestBloq3 extends State<CuestBloq3> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.75,
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          size.width * 0.05,
-                          size.height * 0.02,
-                          size.width * 0.05,
-                          size.height * 0.02),
-                      child: TextFormField(
-                        controller: txtcontroller[index],
-                        onChanged: (texto) {
-                          answers[index] = texto;
-                        },
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: size.width * 0.045,
-                        ),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: (value) => value != null && value.isEmpty
-                            ? 'No debe estar vacio'
-                            : null,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25)),
-                          counterText: "",
-                          filled: true,
-                          fillColor: const Color.fromRGBO(220, 220, 220, 1),
-                        ),
-                      ),
-                    );
-                  }),
-            ),
+                height: size.height * 0.75,
+                child: Form(
+                  key: _Finalkey,
+                  child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              size.width * 0.05,
+                              size.height * 0.02,
+                              size.width * 0.05,
+                              size.height * 0.02),
+                          child: TextFormField(
+                            controller: txtcontroller[index],
+                            onChanged: (texto) {
+                              answers[index] = texto;
+                            },
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: size.width * 0.045,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) => value != null && value.isEmpty
+                                ? 'No debe estar vacio'
+                                : null,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                              counterText: "",
+                              filled: true,
+                              fillColor: const Color.fromRGBO(242, 242, 242, 1),
+                              hintText: ('Prioridad ${index + 1}'),
+                            ),
+                          ),
+                        );
+                      }),
+                )),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: SizedBox(
@@ -111,9 +116,9 @@ class _CuestBloq3 extends State<CuestBloq3> {
                                     Text('Favor de llenar todos los campos')));
                       }
                     },
-                    child: Text(
-                      'Siguiente',
-                      style: TextStyle(fontSize: size.width * 0.045),
+                    child: const Icon(
+                      Icons.arrow_forward_rounded,
+                      size: 30,
                     )),
               ),
             )
@@ -163,7 +168,8 @@ class _CuestBloq3 extends State<CuestBloq3> {
               ),
             ),
           ElevatedButton(
-              onPressed: () => changepage(), child: const Text('Atrás')),
+              onPressed: () => changepage(),
+              child: const Icon(Icons.arrow_back_rounded, size: 30)),
           if (answers[5] != '')
             ResultButton().RBUtton(
                 size,

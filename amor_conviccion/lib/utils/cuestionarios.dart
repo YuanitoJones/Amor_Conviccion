@@ -189,6 +189,33 @@ class CuestionarioBloque {
     }
   };
 
+  Map<String, dynamic> amorYPerdon = {
+    "Palabras de afirmación": [
+      "Palabras de animo.",
+      "Palabras amables.",
+      "Cumplidos.",
+      "Elogios.",
+      "Palabras humildes."
+    ],
+    "Tiempo de calidad": [
+      "Hacer cosas juntos",
+      "Dar un paseo",
+      "Salir solos",
+      "Hablar mirandose a los ojos",
+      "Conversar sobre el dia"
+    ],
+    "Regalos": [
+      "Dar regalos aunque no sea fecha especial",
+      "Estar ahi cuando la pareja lo necesita",
+      "Dar pequeños detalles"
+    ],
+    "Actos de servicio": [
+      "Ayudar con las tareas del hogar",
+      "Tareas que realizas como acto de amor"
+    ],
+    "Contacto físico": ["Abrazos", "Caricias", "Tomarse de la mano"]
+  };
+
   List<String> amorYPerdon2 = [
     '¿Qué diferencia existe entre pedir perdón y pedir disculpas?',
     'En tu familia, ¿cómo practican el perdón?',

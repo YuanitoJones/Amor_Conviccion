@@ -32,68 +32,66 @@ class _TemperMembers extends State<TemperMembers> {
       color: widget.modalOpen ? Colors.black54 : Colors.transparent,
       child: Stack(
         children: [
-          if (widget.modalOpen)
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.05,
-                        size.height * 0.03,
-                        size.width * 0.05,
-                        size.height * 0.03),
-                    child: !widget.modalOpen
-                        ? Text(
-                            'Selecciona el temperamento de cada integrante de tu familia',
-                            style: TextStyle(fontSize: size.width * 0.05),
-                          )
-                        : Container(
-                            color: Colors.white,
-                            height: size.height * 0.12,
-                            width: size.width * 0.9,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: CloseButton(
-                                        color: Colors.red,
-                                        onPressed: () => setState(() {
-                                              widget.modalOpen = false;
-                                            }))),
-                                Positioned(
-                                  width: size.width * 0.9,
-                                  bottom: 0,
-                                  child: Text(
-                                    "Para conocer más sobre las opciones, toque cada uno de los recuadros",
-                                    style:
-                                        TextStyle(fontSize: size.width * 0.05),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                )
-                              ],
-                            ))),
-                LinesScreen(
-                  true,
-                  [
-                    'Miembro ${widget.cont + 1}',
-                    'Melancólico',
-                    'Sanguíneo',
-                    'Colérico',
-                    'Flemático'
-                  ],
-                  50,
-                  true,
-                  answers: (val) => setState(() => widget.tempersCallBack(val)),
-                  answersCallBack: (int val) {},
-                  descriptioncallback: (val) => setState(() {
-                    description = val;
-                    conheight = size.height * 0.3;
-                  }),
-                ),
-                if (!widget.modalOpen) widget.child
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      size.width * 0.05,
+                      size.height * 0.03,
+                      size.width * 0.05,
+                      size.height * 0.03),
+                  child: !widget.modalOpen
+                      ? Text(
+                          'Selecciona el temperamento de cada integrante de tu familia',
+                          style: TextStyle(fontSize: size.width * 0.05),
+                        )
+                      : Container(
+                          color: Colors.white,
+                          height: size.height * 0.12,
+                          width: size.width * 0.9,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: CloseButton(
+                                      color: Colors.red,
+                                      onPressed: () => setState(() {
+                                            widget.modalOpen = false;
+                                          }))),
+                              Positioned(
+                                width: size.width * 0.9,
+                                bottom: 0,
+                                child: Text(
+                                  "Para conocer más sobre las opciones, toque cada uno de los recuadros",
+                                  style: TextStyle(fontSize: size.width * 0.05),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ))),
+              LinesScreen(
+                true,
+                [
+                  'Miembro ${widget.cont + 1}',
+                  'Melancólico',
+                  'Sanguíneo',
+                  'Colérico',
+                  'Flemático'
+                ],
+                50,
+                true,
+                answers: (val) => setState(() => widget.tempersCallBack(val)),
+                answersCallBack: (int val) {},
+                descriptioncallback: (val) => setState(() {
+                  description = val;
+                  conheight = size.height * 0.3;
+                }),
+              ),
+              if (!widget.modalOpen) widget.child
+            ],
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: AnimatedContainer(

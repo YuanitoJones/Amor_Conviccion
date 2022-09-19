@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../utils/cuestionarios.dart';
+
 class CuestBloq5 extends StatefulWidget {
   CuestBloq5({Key? key}) : super(key: key);
 
@@ -15,8 +17,11 @@ class CuestBloq5 extends StatefulWidget {
 
 class _CuestBloq5State extends State<CuestBloq5> {
   final user = FirebaseAuth.instance.currentUser;
-
+  double conheight = 0;
   late List<String> answers;
+  final Map bloque = CuestionarioBloque().amorYPerdon;
+  late String description =
+      'Palabras de afirmación'; // Descripcion de los lenguajes del amor
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -83,13 +88,13 @@ class _CuestBloq5State extends State<CuestBloq5> {
                         Column(
                           children: [
                             LinesScreen(
-                              false,
+                              true,
                               [
                                 (i == 0)
                                     ? 'Miembro ${i + 1} (Tú)'
                                     : 'Miembro ${i + 1}',
-                                'Palabras de Afirmación',
-                                'Tiempo de Calidad',
+                                'Palabras de afirmación',
+                                'Tiempo de calidad',
                                 'Regalos',
                                 'Actos de servicio',
                                 'Contacto físico'
@@ -100,8 +105,81 @@ class _CuestBloq5State extends State<CuestBloq5> {
                               answers: (String val) {
                                 answers[i] = val;
                               },
-                              descriptioncallback: (String val) {},
+                              descriptioncallback: (val) => setState(() {
+                                description = val;
+                                conheight = 200;
+                              }),
                             ),
+                            // if (conheight != 0 && i != answers.length)
+                            AnimatedContainer(
+                                duration: const Duration(milliseconds: 200),
+                                width: double.infinity,
+                                height: conheight,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.blue,
+                                        width: 2.5),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                child: conheight != 0
+                                    ? Wrap(
+                                        children: [
+                                          Stack(
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.topRight,
+                                                child: CloseButton(
+                                                    color: Colors.red,
+                                                    onPressed: () =>
+                                                        setState(() {
+                                                          conheight = 0;
+                                                        })),
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.3,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Center(
+                                                      child: Text(
+                                                        description,
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                size.width *
+                                                                    0.06),
+                                                      ),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        for (int i = 0;
+                                                            i <
+                                                                bloque[description]
+                                                                    .length;
+                                                            i++)
+                                                          Text(
+                                                            bloque[description]
+                                                                [i],
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    size.width *
+                                                                        0.045),
+                                                          )
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      )
+                                    : Container()),
                             if (i < famMembers - 1)
                               const Divider(
                                 thickness: 2,
