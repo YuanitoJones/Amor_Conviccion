@@ -42,6 +42,9 @@ class DatabaseService {
         },
       },
       'Intimidad': {
+        'lectura': {
+          'completado': false,
+        },
         'mensaje': {
           'completado': false,
         },
@@ -55,12 +58,17 @@ class DatabaseService {
         }
       },
       'Anomia': {
+        'lectura': {'completado': false},
         'cuestionario': {
           'completado': false,
           'puntos': 10,
-        }
+        },
+        'cuestionario 2': {'completado': false, 'puntos': 5}
       },
       'Amor y Perdon': {
+        'lectura': {
+          'completado': false,
+        },
         'cuestionario': {'completado': false, 'puntos': 10},
         'cuestionario 2': {'completado': false, 'puntos': 5}
       }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'bloque2.dart';
 import 'bloque3.dart';
+import 'bloque4.dart';
 
 class Cuestionario2Screen extends StatefulWidget {
   const Cuestionario2Screen({Key? key}) : super(key: key);
@@ -31,9 +32,11 @@ class _Cuestionario2Screen extends State<Cuestionario2Screen> {
                     ? const Cuest2Bloq2()
                     : (lessonsModel.bloque == 3)
                         ? Cuest2Bloq3()
-                        : (lessonsModel.bloque == 5)
-                            ? Cuest2Bloq5()
-                            : Container()),
+                        : (lessonsModel.bloque == 4)
+                            ? Cuest2Bloq4()
+                            : (lessonsModel.bloque == 5)
+                                ? Cuest2Bloq5()
+                                : Container()),
           )),
     );
   }
