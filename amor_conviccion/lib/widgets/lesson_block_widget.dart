@@ -27,7 +27,7 @@ class _LessonBlockWidget extends State<LessonBlockWidget> {
     'Liderazgo',
     'Intimidad',
     'Anomia',
-    'Amor y Perdon'
+    'Amor y Perdón'
   ];
 
   @override

@@ -29,7 +29,7 @@ class _MainCuestionarioState extends State<MainCuestionario> {
         completed: widget.completed,
         puntosl: widget.puntosl,
         child: Scaffold(
-            body: (widget.nombre == 'cuestionario')
+            body: (widget.nombre == 'cuestionario 1')
                 ? CuestionarioScreen()
                 : const Cuestionario2Screen()));
   }

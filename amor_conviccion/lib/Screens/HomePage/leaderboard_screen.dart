@@ -18,10 +18,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
     Size size = MediaQuery.of(context).size;
 
     var r = TextStyle(color: Colors.black, fontSize: size.width * 0.07);
-    var q = TextStyle(
-        color: Colors.black,
-        fontSize: size.width * 0.045,
-        fontFamily: 'Comfortaa');
+    var q = TextStyle(color: Colors.black, fontSize: size.width * 0.045);
     return Stack(
       children: <Widget>[
         Container(
@@ -41,7 +38,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   margin: EdgeInsets.only(
                       left: size.width * 0.05, top: size.height * 0.005),
                   child: Text(
-                    'Tabla de lideres',
+                    'Tabla de líderes',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: size.width * 0.08,
@@ -51,7 +48,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                 padding: EdgeInsets.only(
                     left: size.width * 0.05, top: size.height * 0.03),
                 child: Text(
-                  'Tablero de clasificacion ',
+                  'Tablero de clasificación ',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -67,7 +64,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                           .get(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
-                          return const Text('Algo salio mal');
+                          return const Text('Algo salió mal');
                         } else if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(

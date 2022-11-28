@@ -10,7 +10,7 @@ class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
@@ -55,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     shadowColor: Colors.black,
                     elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.090),
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                     textStyle: TextStyle(
                       fontSize: size.width * 0.05,
                       fontWeight: FontWeight.bold,
@@ -89,10 +89,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     shadowColor: Colors.black,
                     elevation: 10.0,
                     fixedSize: Size(size.width * 0.80, size.height * 0.085),
-                    primary: const Color(0xFFFF7E27),
+                    backgroundColor: const Color(0xFFFF7E27),
                     textStyle: TextStyle(
                       fontSize: size.width * 0.05,
-                      fontFamily: 'Sora',
                       fontWeight: FontWeight.bold,
                     )),
                 child: Center(

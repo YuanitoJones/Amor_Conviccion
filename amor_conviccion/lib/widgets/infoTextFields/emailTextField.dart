@@ -20,7 +20,6 @@ class EmailTextField extends StatelessWidget {
           maxLength: 50,
           controller: txtcontroller,
           style: TextStyle(
-            fontFamily: 'Comfortaa',
             fontSize: size.width * 0.045,
           ),
           decoration: InputDecoration(

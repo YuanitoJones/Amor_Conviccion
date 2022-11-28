@@ -25,21 +25,7 @@ class Assets {
       'assets/fonts/ComfortaaRegular.ttf';
   static const String logosAdvertencia = 'assets/logos/advertencia.png';
   static const String logosCircularLogo = 'assets/logos/circular_logo.png';
-  static const String logosFirebaseLogo = 'assets/logos/firebase_logo.png';
   static const String logosGoogleLogo = 'assets/logos/google_logo.png';
   static const String logosLogo = 'assets/logos/logo.png';
   static const String logosPentagono = 'assets/logos/pentagono.png';
-  static const String logosPeterpan = 'assets/logos/peterpan.png';
-  static const String videosVideo1 = 'assets/videos/video1.mp4';
-  static const String videosVideo10 = 'assets/videos/video10.mp4';
-  static const String videosVideo11 = 'assets/videos/video11.mp4';
-  static const String videosVideo12 = 'assets/videos/video12.mp4';
-  static const String videosVideo2 = 'assets/videos/video2.mp4';
-  static const String videosVideo3 = 'assets/videos/video3.mp4';
-  static const String videosVideo4 = 'assets/videos/video4.mp4';
-  static const String videosVideo5 = 'assets/videos/video5.mp4';
-  static const String videosVideo6 = 'assets/videos/video6.mp4';
-  static const String videosVideo7 = 'assets/videos/video7.mp4';
-  static const String videosVideo8 = 'assets/videos/video8.mp4';
-  static const String videosVideo9 = 'assets/videos/video9.mp4';
 }

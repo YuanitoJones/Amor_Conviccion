@@ -44,7 +44,7 @@ class LessonSelectionScreen extends StatelessWidget {
                     );
                   } else if (snapshot.hasError) {
                     return const Center(
-                      child: Text('Opps! Algo salio mal'),
+                      child: Text('Opps! Algo salió mal'),
                     );
                   } else {
                     var document = snapshot.data!.docs[0];
@@ -124,7 +124,6 @@ class LessonSelectionScreen extends StatelessWidget {
                 info.keys.toList()[lessonNumber - 1].toString().substring(1),
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontFamily: 'Comfortaa',
               fontSize: size.width * 0.05,
             ),
           ),

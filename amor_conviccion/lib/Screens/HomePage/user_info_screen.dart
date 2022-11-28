@@ -35,7 +35,6 @@ class _UserInfoScreen extends State<UserInfoScreen>
             );
           } else {
             var documents = (snapshot.data!).docs;
-            print(documents[0]);
             return Scaffold(
               body: SingleChildScrollView(
                   child: Stack(

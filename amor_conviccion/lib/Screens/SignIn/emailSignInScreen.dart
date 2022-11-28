@@ -44,7 +44,7 @@ class _EmailSignIn extends State<EmailSignIn>
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text('Algo salio mal'),
+                  title: const Text('Algo salió mal'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[

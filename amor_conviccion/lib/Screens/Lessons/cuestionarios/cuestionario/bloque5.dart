@@ -32,10 +32,12 @@ class _CuestBloq5State extends State<CuestBloq5> {
             .get(),
         builder: (context, snapshot) {
           var documents = (snapshot.data)?.docs;
-          int famMembers = documents?[0].get('Anomia')['cuestionario']
+          int famMembers = documents?[0].get('Anomia')['cuestionario 1']
                       ['respuestas'] !=
                   null
-              ? documents![0].get('Anomia')['cuestionario']['respuestas'].length
+              ? documents![0]
+                  .get('Anomia')['cuestionario 1']['respuestas']
+                  .length
               : 0;
           answers = List.generate(famMembers, (index) => '');
           return answers.isNotEmpty
@@ -183,7 +185,7 @@ class _CuestBloq5State extends State<CuestBloq5> {
                             if (i < famMembers - 1)
                               const Divider(
                                 thickness: 2,
-                                color: Colors.black,
+                                color: Colors.amber,
                               )
                           ],
                         ),
@@ -191,8 +193,10 @@ class _CuestBloq5State extends State<CuestBloq5> {
                         padding: EdgeInsets.only(
                             top: size.height * 0.01,
                             bottom: size.height * 0.02),
-                        child: ResultButton().RBUtton(size, true, context,
-                            miembros(famMembers), answers, null),
+                        child: widget.modalOpen
+                            ? Container()
+                            : ResultButton().RBUtton(size, true, context,
+                                miembros(famMembers), answers, null),
                       )
                     ],
                   ),

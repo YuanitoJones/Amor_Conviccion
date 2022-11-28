@@ -37,7 +37,7 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
     'Responsabilidad',
     'Respeto',
     'Generosidad',
-    'Comunicacion',
+    'Comunicación',
     'Tolerancia',
     'Humildad',
     'Gratitud',
@@ -46,7 +46,7 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
     'En relación con tus hijos  y en una escala del 1 al 10 ¿Te consideras un padre con autoridad?',
     '¿Qué considera que es lo más importante para tener un hijo(a) exitoso(a)?'
   ];
-  late List answers = List.generate(11, (index) => 'false');
+  late List answers = List.generate(11, (index) => '');
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,7 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
   }
 
   int cont = 0;
+  late List keylist = widget.values.keys.toList();
   Widget part1(Size size) {
     return Column(
       children: [
@@ -81,8 +82,6 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
                 onChanged: (value) {
                   setState(() {
                     widget.values[key] = !widget.values[key]!;
-                    answers[cont] = widget.values[key];
-                    cont++;
                   });
                 },
               );
@@ -94,7 +93,11 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
           height: size.height * 0.075,
           color: Colors.blue,
           child: ElevatedButton(
-              onPressed: () => changepage(),
+              onPressed: () => ({
+                    for (int i = 0; i < keylist.length; i++)
+                      {answers[i] = widget.values[keylist[i]]},
+                    changepage()
+                  }),
               child: const Icon(
                 Icons.arrow_forward_rounded,
                 size: 30,

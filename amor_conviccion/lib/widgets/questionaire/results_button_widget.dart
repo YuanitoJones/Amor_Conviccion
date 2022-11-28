@@ -15,6 +15,7 @@ class ResultButton {
       width: size.width * 0.35,
       child: ElevatedButton(
           onPressed: () {
+            FocusScope.of(context).requestFocus(FocusNode());
             if (formKey != null) {
               if (!formKey.currentState!.validate()) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

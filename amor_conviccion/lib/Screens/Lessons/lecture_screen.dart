@@ -27,7 +27,7 @@ class _LectureScreenState extends State<LectureScreen> {
     'Liderazgo',
     'Intimidad',
     'Anomia',
-    'Amor_Perdon'
+    'Amor_Perdón'
   ];
 
   @override
@@ -161,7 +161,6 @@ class _LectureScreenState extends State<LectureScreen> {
                         pagina![2],
                         style: TextStyle(
                           color: Colors.black,
-                          fontFamily: 'Comfortaa',
                           fontSize: size.width * 0.045,
                         ),
                       ),

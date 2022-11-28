@@ -28,11 +28,10 @@ class OptionScreen extends StatelessWidget {
                   height: size.height * 0.1,
                 ),
                 Text(
-                  '¿A quien va dirigido el mensaje?',
+                  '¿A quién va dirigido el mensaje?',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: size.width * 0.05,
-                    fontFamily: 'Comfortaa',
                   ),
                 ),
                 SizedBox(

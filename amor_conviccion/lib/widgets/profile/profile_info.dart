@@ -28,7 +28,8 @@ class _Profile_Info extends State<ProfileInfo> {
       setState(() {
         if (_auth.currentUser?.providerData[0].providerId == "google.com") {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('No es posible editar correo'),
+            content:
+                Text('Cuentas iniciadas con Google no pueden cambiar correo'),
             duration: Duration(milliseconds: 2500),
           ));
         } else {

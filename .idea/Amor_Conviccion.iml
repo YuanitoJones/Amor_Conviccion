@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/share_plus_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/share_plus_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/share_plus_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/.dart_tool/flutter_gen/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/.dart_tool/flutter_gen/build" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/.dart_tool/flutter_gen/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/build" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/amor_conviccion/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

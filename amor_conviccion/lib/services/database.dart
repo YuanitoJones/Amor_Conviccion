@@ -14,19 +14,16 @@ class DatabaseService {
     await leccion.doc(email).set({
       'uid': uid,
       'Drogodependencia': {
-        'cuestionario': {
+        'cuestionario 1': {
           'completado': false,
           'puntos': 10,
-        },
-        'video': {
-          'completado': false,
         },
         'lectura': {
           'completado': false,
         }
       },
       'Liderazgo': {
-        'cuestionario': {
+        'cuestionario 1': {
           'completado': false,
           'puntos': 15,
         },
@@ -37,9 +34,6 @@ class DatabaseService {
         'lectura': {
           'completado': false,
         },
-        'video': {
-          'completado': false,
-        },
       },
       'Intimidad': {
         'lectura': {
@@ -48,7 +42,7 @@ class DatabaseService {
         'mensaje': {
           'completado': false,
         },
-        'cuestionario': {
+        'cuestionario 1': {
           'completado': false,
           'puntos': 5,
         },
@@ -59,17 +53,17 @@ class DatabaseService {
       },
       'Anomia': {
         'lectura': {'completado': false},
-        'cuestionario': {
+        'cuestionario 1': {
           'completado': false,
           'puntos': 10,
         },
         'cuestionario 2': {'completado': false, 'puntos': 5}
       },
-      'Amor y Perdon': {
+      'Amor y Perdón': {
         'lectura': {
           'completado': false,
         },
-        'cuestionario': {'completado': false, 'puntos': 10},
+        'cuestionario 1': {'completado': false, 'puntos': 10},
         'cuestionario 2': {'completado': false, 'puntos': 5}
       }
     });

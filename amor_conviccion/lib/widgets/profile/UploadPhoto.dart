@@ -32,9 +32,8 @@ class _Upload extends State<Upload> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      'No seleccionó ningun archivo',
-                      style: TextStyle(
-                          fontFamily: 'Comfortaa', fontSize: size.width * 0.04),
+                      'No seleccionó ningún archivo',
+                      style: TextStyle(fontSize: size.width * 0.04),
                     ),
                   ),
                 );

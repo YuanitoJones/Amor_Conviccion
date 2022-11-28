@@ -30,7 +30,7 @@ class MainLessons extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            'El Pentagono',
+                            'El Pentágono',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: size.width * 0.07,

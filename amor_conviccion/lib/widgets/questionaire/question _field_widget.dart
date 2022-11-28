@@ -67,17 +67,13 @@ class _QuestionField extends State<QuestionField> {
                   child: (flag)
                       ? Text(
                           question,
-                          style: TextStyle(
-                              fontSize: size.width * 0.041,
-                              fontFamily: 'Comfortaa'),
+                          style: TextStyle(fontSize: size.width * 0.041),
                         )
                       : Center(
                           child: Text(
                             question,
                             style: const TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Comfortaa',
-                                color: Colors.white),
+                                fontSize: 16, color: Colors.white),
                           ),
                         ),
                 ),
@@ -101,7 +97,6 @@ class _QuestionField extends State<QuestionField> {
                                   child: Text(
                                     opc1,
                                     style: TextStyle(
-                                        fontFamily: 'Comfortaa',
                                         fontSize: size.width * 0.0356),
                                   )),
                             ),
@@ -123,7 +118,6 @@ class _QuestionField extends State<QuestionField> {
                                   child: Text(
                                     opc2,
                                     style: TextStyle(
-                                        fontFamily: 'Comfortaa',
                                         fontSize: size.width * 0.0356),
                                   )),
                             ),
@@ -142,9 +136,8 @@ class _QuestionField extends State<QuestionField> {
                                     changesize(size, 2, widget.points),
                                 child: Text(
                                   opc3,
-                                  style: TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      fontSize: size.width * 0.0356),
+                                  style:
+                                      TextStyle(fontSize: size.width * 0.0356),
                                 )),
                           ),
                         ],

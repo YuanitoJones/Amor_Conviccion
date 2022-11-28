@@ -24,7 +24,7 @@ class CloseSessionButton extends StatelessWidget {
       },
       icon: const Icon(Icons.logout),
       label: const Text(
-        'Cerrar sesion',
+        'Cerrar sesión',
         style: TextStyle(fontFamily: 'Comfortaa'),
       ),
     );

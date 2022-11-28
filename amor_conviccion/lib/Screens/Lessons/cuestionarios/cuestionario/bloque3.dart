@@ -46,84 +46,85 @@ class _CuestBloq3 extends State<CuestBloq3> {
   }
 
   Widget part1(Size size) {
-    final _Finalkey = GlobalKey<FormState>();
-    return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Escriba por cada dedo de la mano sus prioridades',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: size.width * 0.05,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text(
+            'Escriba por cada dedo de la mano sus prioridades',
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: size.width * 0.05,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(
                 height: size.height * 0.75,
-                child: Form(
-                  key: _Finalkey,
-                  child: ListView.builder(
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.fromLTRB(
-                              size.width * 0.05,
-                              size.height * 0.02,
-                              size.width * 0.05,
-                              size.height * 0.02),
-                          child: TextFormField(
-                            controller: txtcontroller[index],
-                            onChanged: (texto) {
-                              answers[index] = texto;
-                            },
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: size.width * 0.045,
-                            ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) => value != null && value.isEmpty
-                                ? 'No debe estar vacio'
-                                : null,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25)),
-                              counterText: "",
-                              filled: true,
-                              fillColor: const Color.fromRGBO(242, 242, 242, 1),
-                              hintText: ('Prioridad ${index + 1}'),
-                            ),
+                child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size.width * 0.05,
+                            size.height * 0.02,
+                            size.width * 0.05,
+                            size.height * 0.02),
+                        child: TextFormField(
+                          controller: txtcontroller[index],
+                          onChanged: (texto) {
+                            answers[index] = texto;
+                          },
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: size.width * 0.045,
                           ),
-                        );
-                      }),
-                )),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: SizedBox(
-                width: size.width * 0.4,
-                height: size.height * 0.06,
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        changepage();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text('Favor de llenar todos los campos')));
-                      }
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward_rounded,
-                      size: 30,
-                    )),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) => value != null && value.isEmpty
+                              ? 'No debe estar vacio'
+                              : null,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25)),
+                            counterText: "",
+                            filled: true,
+                            fillColor: const Color.fromRGBO(242, 242, 242, 1),
+                            hintText: ('Prioridad ${index + 1}'),
+                          ),
+                        ),
+                      );
+                    }),
               ),
-            )
-          ],
-        ));
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SizedBox(
+                  width: size.width * 0.4,
+                  height: size.height * 0.06,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          changepage();
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Favor de llenar todos los campos')));
+                        }
+                      },
+                      child: const Icon(
+                        Icons.arrow_forward_rounded,
+                        size: 30,
+                      )),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget part2(Size size) {
@@ -182,7 +183,7 @@ class _CuestBloq3 extends State<CuestBloq3> {
                   'prioridad 4',
                   'prioridad 5',
                   '¿Qué estrategias utilizarías para enriquecer el tiempo de '
-                      'relacion con tus hijos?'
+                      'relación con tus hijos?'
                 ],
                 answers,
                 null)

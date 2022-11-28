@@ -1,7 +1,6 @@
 import 'package:amor_conviccion/Screens/Lessons/Mensaje_Intimo/option_screen.dart';
 import 'package:amor_conviccion/Screens/Lessons/cuestionarios/main_cuestionario.dart';
 import 'package:amor_conviccion/Screens/Lessons/lecture_screen.dart';
-import 'package:amor_conviccion/Screens/Lessons/video_screen.dart';
 import 'package:amor_conviccion/services/authentication.dart';
 import 'package:flutter/material.dart';
 
@@ -64,17 +63,13 @@ class _LessonSelect extends State<LessonSelect> {
                       builder: (context) => (widget.texto == 'lectura')
                           ? LectureScreen(widget.nombloq, widget.bloque,
                               widget.texto, widget.flag)
-                          : (widget.texto == 'cuestionario' ||
+                          : (widget.texto == 'cuestionario 1' ||
                                   widget.texto == 'cuestionario 2')
                               ? MainCuestionario(widget.nombloq, widget.bloque,
                                   widget.texto, widget.flag, widget.puntos)
-                              : (widget.texto == 'video')
-                                  ? VideoPlayerScreen(widget.nombloq,
-                                      widget.bloque, widget.texto, widget.flag)
-                                  : (widget.texto == 'mensaje')
-                                      ? OptionScreen(
-                                          widget.nombloq, widget.texto)
-                                      : const Authentication()));
+                              : (widget.texto == 'mensaje')
+                                  ? OptionScreen(widget.nombloq, widget.texto)
+                                  : const Authentication()));
             },
           ),
         ),
@@ -91,14 +86,12 @@ class _LessonSelect extends State<LessonSelect> {
     return Icon(
         (widget.texto == 'lectura')
             ? Icons.text_snippet_rounded
-            : (widget.texto == 'cuestionario' ||
+            : (widget.texto == 'cuestionario 1' ||
                     widget.texto == 'cuestionario 2')
                 ? Icons.question_mark_rounded
-                : (widget.texto == 'video')
-                    ? Icons.videocam
-                    : (widget.texto == 'mensaje')
-                        ? Icons.message
-                        : Icons.dangerous,
+                : (widget.texto == 'mensaje')
+                    ? Icons.message
+                    : Icons.dangerous,
         size: size.width * 0.18,
         color: Colors.blue);
   }

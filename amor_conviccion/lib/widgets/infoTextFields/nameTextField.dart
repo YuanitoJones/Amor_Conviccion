@@ -15,7 +15,7 @@ class NameTextField extends StatelessWidget {
           maxLength: 50,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => value != null && value.length < 3
-              ? 'Nombre de minimo 3 caracteres'
+              ? 'Nombre de mínimo 3 caracteres'
               : null,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),

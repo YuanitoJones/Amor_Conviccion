@@ -58,31 +58,31 @@ class CuestionarioBloque {
 
   Map<int, List> liderazgo = {
     0: [
-      '¿Que es liderazgo?',
-      'Influencia, caracter, ejemplo',
-      'Voluntad, esfuerzo, empatia',
-      'Vision, tenacidad. solidaridad'
+      '¿Qué es liderazgo?',
+      'Influencia, carácter, ejemplo',
+      'Voluntad, esfuerzo, empatía',
+      'Visión, tenacidad. solidaridad'
     ],
     1: [
-      '¿Cuales son las tres responsabilidades de un lider?',
+      '¿Cuáles son las tres responsabilidades de un líder?',
       'Cuidar de las personas',
-      'Crear identidad, vision y cultura',
+      'Crear identidad, visión y cultura',
       'Ayudar a los que necesitan'
     ],
     2: [
       '¿Cuál es el mensaje central de la historia del basquetbolista Irving Magic Jhonson?',
       'La influencia',
       'La voluntad',
-      'El caracter'
+      'El carácter'
     ],
     3: [
-      '¿Cual es el mensaje central de la historia de Butch O\'Hare?',
+      '¿Cuál es el mensaje central de la historia de Butch O\'Hare?',
       'La voluntad',
       'El esfuerzo',
-      'El caracter'
+      'El carácter'
     ],
     4: [
-      '¿Cual es la conducta que tienes que cambiar hoy para mejorar como padre de familia?'
+      '¿Cuál es la conducta que tienes que cambiar hoy para mejorar como padre de familia?'
     ],
     5: [
       'En una escala del 1 al 10, ¿Cómo calificas al liderazgo como cualidad en tu vida?'
@@ -96,7 +96,7 @@ class CuestionarioBloque {
   ];
 
   List<String> intimidad = [
-    'Mantener comunicacion diaria con ellos',
+    'Mantener comunicación diaria con ellos',
     'Interesarme por lo que hacen',
     'Acompañarlos en sus actividades cuando sea posible',
     'Tratar de estar siempre informado sobre lo que piensan y hacen',
