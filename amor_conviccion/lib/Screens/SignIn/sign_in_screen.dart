@@ -1,4 +1,5 @@
 import 'package:amor_conviccion/Screens/SignIn/email_login_screen.dart';
+import 'package:amor_conviccion/Screens/privacy_politics.dart';
 import 'package:amor_conviccion/services/googleSignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -140,6 +141,31 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                 ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.03),
+                child: Text(
+                  'Al crear una cuenta, estas aceptando nuestro',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black, fontSize: size.width * 0.035),
+                ),
+              ),
+              TextButton(
+                child: Center(
+                  child: Text(
+                    'Aviso de privacidad',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: size.width * 0.035),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PrivacyPolitics()));
+                },
               ),
             ],
           ),
