@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
    <application android:usesCleartextTraffic="true"
-        android:label="Amor y Conviccion"
+        android:label="Pentágono x Advertencia"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

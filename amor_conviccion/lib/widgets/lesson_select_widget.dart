@@ -60,7 +60,7 @@ class _LessonSelect extends State<LessonSelect> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => (widget.texto == 'lectura')
+                      builder: (context) => (widget.texto == '1lectura')
                           ? LectureScreen(widget.nombloq, widget.bloque,
                               widget.texto, widget.flag)
                           : (widget.texto == 'cuestionario 1' ||
@@ -84,7 +84,7 @@ class _LessonSelect extends State<LessonSelect> {
 
   Icon lessonIcon(Size size, String texto) {
     return Icon(
-        (widget.texto == 'lectura')
+        (widget.texto == '1lectura')
             ? Icons.text_snippet_rounded
             : (widget.texto == 'cuestionario 1' ||
                     widget.texto == 'cuestionario 2')

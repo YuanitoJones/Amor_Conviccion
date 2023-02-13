@@ -83,7 +83,7 @@ class _EmailSignIn extends State<EmailSignIn>
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
                 Image.asset(
-                  'assets/logos/logo.png',
+                  'assets/logos/advertencia.png',
                   width: size.width * 0.50,
                 ),
                 SizedBox(
