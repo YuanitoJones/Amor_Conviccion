@@ -36,19 +36,19 @@ class _LectureScreenState extends State<LectureScreen> {
 
     switch (widget.bloque) {
       case 1:
-        lectura = bloque.Drogodependencia;
+        lectura = bloque.drogodependencia;
         break;
       case 2:
-        lectura = bloque.Liderazgo;
+        lectura = bloque.liderazgo;
         break;
       case 3:
-        lectura = bloque.Intimidad;
+        lectura = bloque.intimidad;
         break;
       case 4:
-        lectura = bloque.Anomia;
+        lectura = bloque.anomia;
         break;
       case 5:
-        lectura = bloque.AmorPerdon;
+        lectura = bloque.amorPerdon;
         break;
     }
     late List? pagina = lectura[contador];

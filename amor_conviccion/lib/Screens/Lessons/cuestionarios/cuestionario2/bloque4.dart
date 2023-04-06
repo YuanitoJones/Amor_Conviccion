@@ -60,7 +60,7 @@ class _Cuest2Bloq4 extends State<Cuest2Bloq4> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Text(
             'Selecciona los valores que se practiquen en tu hogar',
             style: TextStyle(

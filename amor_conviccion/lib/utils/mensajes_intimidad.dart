@@ -1,5 +1,5 @@
 class MapMensajes {
-  Map<int, List> padres_hijos = {
+  Map<int, List> padresHijos = {
     0: [
       'Gracias por venir y cambiarme la vida, gracias por ser el motor que me '
           'empuja día a día.'
@@ -15,7 +15,7 @@ class MapMensajes {
     ]
   };
 
-  Map<int, List> padre_hijo = {
+  Map<int, List> padreHijo = {
     0: [
       'Hijo mío, eres mi presente, serás mi futuro y lo mejor que me ha pasado.'
     ],
@@ -29,7 +29,7 @@ class MapMensajes {
     ]
   };
 
-  Map<int, List> madre_hija = {
+  Map<int, List> madreHija = {
     0: [
       'Confianza es la habilidad de sentirte hermosa sin que nadie te lo diga. '
           'Se una mujer segura y sin complejos. Naciste para ser real, no '

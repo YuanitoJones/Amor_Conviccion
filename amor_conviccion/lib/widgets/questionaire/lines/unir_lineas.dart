@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'brush.dart';
 
-typedef intCallBack = void Function(int val);
-typedef answerlist = void Function(String val);
-typedef descallback = void Function(String val);
+typedef IntCallBack = void Function(int val);
+typedef Answerlist = void Function(String val);
+typedef Descallback = void Function(String val);
 
 class LinesScreen extends StatefulWidget {
   const LinesScreen(
@@ -16,9 +16,9 @@ class LinesScreen extends StatefulWidget {
       : super(key: key);
 
   final bool description; // Mostrar descripcion de campos
-  final descallback descriptioncallback;
-  final intCallBack answersCallBack;
-  final answerlist answers;
+  final Descallback descriptioncallback;
+  final IntCallBack answersCallBack;
+  final Answerlist answers;
   final List? questions; //Lista de pregunta e incisos
   final int points; //Representa la opcion correcta
   final bool anyAnswer; //Acepta cualquier respuesta
@@ -28,8 +28,8 @@ class LinesScreen extends StatefulWidget {
 }
 
 class _LineScreen extends State<LinesScreen> {
-  var start_offset = ValueNotifier(Offset.zero);
-  var end_offset = ValueNotifier(Offset.zero);
+  var startOffset = ValueNotifier(Offset.zero);
+  var endOffset = ValueNotifier(Offset.zero);
 
   late var key =
       List.generate(widget.questions!.length + 2, (index) => GlobalKey());
@@ -54,7 +54,7 @@ class _LineScreen extends State<LinesScreen> {
         ),
         //Create canvas
         child: CustomPaint(
-          foregroundPainter: Painter3(start_offset, end_offset),
+          foregroundPainter: Painter3(startOffset, endOffset),
           child: Column(
             children: [
               _buildItems(size),
@@ -86,18 +86,18 @@ class _LineScreen extends State<LinesScreen> {
             var y = box.localToGlobal(Offset.zero).dy -
                 globalY +
                 box.size.height * 0.5;
-            start_offset.value = Offset(x, y);
+            startOffset.value = Offset(x, y);
           },
           onDragEnd: (touch) {
             if (!flag) {
-              end_offset = ValueNotifier(Offset.zero);
+              endOffset = ValueNotifier(Offset.zero);
             }
             setState(() {});
           },
           onDragUpdate: (touch) {
             var x = touch.globalPosition.dx;
             var y = touch.globalPosition.dy - globalY;
-            end_offset.value = Offset(x, y);
+            endOffset.value = Offset(x, y);
             setState(() {});
           },
           child: Container(
@@ -161,7 +161,7 @@ class _LineScreen extends State<LinesScreen> {
                       var y = box.localToGlobal(Offset.zero).dy -
                           globalY +
                           box.size.height * 0.5;
-                      end_offset.value = Offset(x, y);
+                      endOffset.value = Offset(x, y);
                       setState(() {
                         widget.anyAnswer
                             ? result(

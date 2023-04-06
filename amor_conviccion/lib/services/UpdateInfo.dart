@@ -12,6 +12,7 @@ class ChangePicture {
         .doc(user.uid)
         .update({'imagen': url})
         .then((value) => user.updatePhotoURL(url))
+        // ignore: avoid_print
         .catchError((error) => print('Failed: $error'));
   }
 }
@@ -28,6 +29,7 @@ class UpdatePoints {
       collection
           .doc(user.uid)
           .update({'puntos': document['puntos'] + points}).catchError(
+              // ignore: avoid_print
               (error) => print('Failed: $error'));
     });
   }
@@ -42,6 +44,7 @@ class UpdateLesson {
       collectionr
           .doc(user!.email)
           .update(({'$bloque.$lesson.completado': true}))
+          // ignore: avoid_print
           .catchError((error) => print('Failed: $error'));
     });
   }
@@ -58,6 +61,7 @@ class UpdateLesson {
             for (int i = 0; i < answers.length; i++)
               '$nombloq.$lesson.respuestas.${i + 1}.respuesta': answers[i],
           }))
+          // ignore: avoid_print
           .catchError((error) => print('Failed: $error'));
     });
   }

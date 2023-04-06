@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class Cuest2Bloq5 extends StatefulWidget {
   const Cuest2Bloq5({Key? key}) : super(key: key);
 
+  @override
   State<Cuest2Bloq5> createState() => _Cuest2Bloq5();
 }
 

@@ -22,7 +22,7 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _keyForm = GlobalKey<FormState>();
+    final keyForm = GlobalKey<FormState>();
     return SizedBox(
       height: size.height,
       child: (!widget.flag)
@@ -81,7 +81,7 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
               ],
             )
           : Form(
-              key: _keyForm,
+              key: keyForm,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -90,7 +90,7 @@ class _Cuest2Bloq3 extends State<Cuest2Bloq3> {
                   WriteAnswer(true, preguntas[1], txtcontroller[1],
                       answers: (val) => setState(() => answers[1] = val)),
                   ResultButton().RBUtton(
-                      size, true, context, preguntas, answers, _keyForm),
+                      size, true, context, preguntas, answers, keyForm),
                 ],
               ),
             ),

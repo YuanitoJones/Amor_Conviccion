@@ -1,7 +1,7 @@
 import 'package:amor_conviccion/utils/cuestionarios.dart';
+import 'package:amor_conviccion/widgets/questionaire/question_field_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/questionaire/question _field_widget.dart';
 import '../../../../widgets/questionaire/results_button_widget.dart';
 
 class CuestBloq1 extends StatefulWidget {

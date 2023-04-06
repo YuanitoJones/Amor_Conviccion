@@ -72,6 +72,7 @@ class DatabaseService {
       'correo': email,
       'puntos': points,
       'imagen': url,
+      'nuevo':true
     });
   }
 
@@ -83,6 +84,11 @@ class DatabaseService {
         .collection('puntuacion')
         .doc(auth.uid)
         .update({'nombre': name, 'correo': email});
+  }
+
+  Future updateNew() async{
+    final auth = FirebaseAuth.instance.currentUser!;
+    return await FirebaseFirestore.instance.collection('puntuacion').doc(auth.uid).update({'nuevo': false});
   }
 
   //get stream

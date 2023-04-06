@@ -21,13 +21,13 @@ class SendMessage extends StatelessWidget {
 
     switch (opc) {
       case 1:
-        textos = mensajes.padres_hijos;
+        textos = mensajes.padresHijos;
         break;
       case 2:
-        textos = mensajes.padre_hijo;
+        textos = mensajes.padreHijo;
         break;
       case 3:
-        textos = mensajes.madre_hija;
+        textos = mensajes.madreHija;
         break;
     }
     late List? pagina;
