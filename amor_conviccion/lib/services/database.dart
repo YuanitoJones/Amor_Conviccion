@@ -14,15 +14,18 @@ class DatabaseService {
     await leccion.doc(email).set({
       'uid': uid,
       'Drogodependencia': {
+        '1lectura': {
+          'completado': false,
+        },
         'cuestionario 1': {
           'completado': false,
           'puntos': 10,
         },
-        'lectura': {
-          'completado': false,
-        }
       },
       'Liderazgo': {
+        '1lectura': {
+          'completado': false,
+        },
         'cuestionario 1': {
           'completado': false,
           'puntos': 15,
@@ -31,12 +34,9 @@ class DatabaseService {
           'completado': false,
           'puntos': 5,
         },
-        'lectura': {
-          'completado': false,
-        },
       },
       'Intimidad': {
-        'lectura': {
+        '1lectura': {
           'completado': false,
         },
         'mensaje': {
@@ -52,7 +52,7 @@ class DatabaseService {
         }
       },
       'Anomia': {
-        'lectura': {'completado': false},
+        '1lectura': {'completado': false},
         'cuestionario 1': {
           'completado': false,
           'puntos': 10,
@@ -60,7 +60,7 @@ class DatabaseService {
         'cuestionario 2': {'completado': false, 'puntos': 5}
       },
       'Amor y Perdón': {
-        'lectura': {
+        '1lectura': {
           'completado': false,
         },
         'cuestionario 1': {'completado': false, 'puntos': 10},
@@ -72,6 +72,7 @@ class DatabaseService {
       'correo': email,
       'puntos': points,
       'imagen': url,
+      'nuevo':true
     });
   }
 
@@ -83,6 +84,11 @@ class DatabaseService {
         .collection('puntuacion')
         .doc(auth.uid)
         .update({'nombre': name, 'correo': email});
+  }
+
+  Future updateNew() async{
+    final auth = FirebaseAuth.instance.currentUser!;
+    return await FirebaseFirestore.instance.collection('puntuacion').doc(auth.uid).update({'nuevo': false});
   }
 
   //get stream

@@ -1,5 +1,5 @@
 class MapLectura {
-  Map<int, List> Drogodependencia = {
+  Map<int, List> drogodependencia = {
     0: [
       '1/8',
       'Drogodependencia',
@@ -87,7 +87,7 @@ class MapLectura {
     ]
   };
 
-  Map<int, List> Liderazgo = {
+  Map<int, List> liderazgo = {
     0: [
       '1/3',
       'Liderazgo',
@@ -123,7 +123,7 @@ class MapLectura {
     ]
   };
 
-  Map<int, List> Intimidad = {
+  Map<int, List> intimidad = {
     0: [
       '1/7',
       'Intimidad',
@@ -187,7 +187,7 @@ class MapLectura {
     ]
   };
 
-  Map<int, List> Anomia = {
+  Map<int, List> anomia = {
     0: [
       '1/4',
       'Anomia',
@@ -227,7 +227,7 @@ class MapLectura {
     ]
   };
 
-  Map<int, List> AmorPerdon = {
+  Map<int, List> amorPerdon = {
     0: [
       '1/4',
       'Amor y perdón',

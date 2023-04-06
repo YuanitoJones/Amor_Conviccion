@@ -30,18 +30,14 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Image.asset(
-                        'assets/logos/logo.png',
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                    0, size.height * 0.035, 0, size.height * 0.075),
+                child: SizedBox(
+                  height: size.height * 0.35,
+                  child: Image.asset(
+                    'assets/logos/advertencia.png',
+                  ),
                 ),
               ),
               ElevatedButton(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-typedef answercallback = void Function(String val);
+typedef Answercallback = void Function(String val);
 
 class TemperCardWidget extends StatelessWidget {
-  final answercallback answers;
+  final Answercallback answers;
 
   const TemperCardWidget(this.temperamento, this.debilidades, this.fortalezas,
       {Key? key, required this.answers})
