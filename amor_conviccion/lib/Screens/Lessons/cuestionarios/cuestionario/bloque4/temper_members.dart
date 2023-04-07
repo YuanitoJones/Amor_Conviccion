@@ -87,6 +87,7 @@ class _TemperMembers extends State<TemperMembers> {
                 descriptioncallback: (val) => setState(() {
                   description = val;
                   conheight = size.height * 0.3;
+                  widget.modalOpen = false;
                 }),
               ),
               if (!widget.modalOpen) widget.child

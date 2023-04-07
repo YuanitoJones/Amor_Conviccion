@@ -1,3 +1,4 @@
+import 'package:amor_conviccion/Screens/HomePage/author_page.dart';
 import 'package:amor_conviccion/widgets/close_session_button.dart';
 import 'package:amor_conviccion/widgets/profile/UploadPhoto.dart';
 import 'package:amor_conviccion/widgets/profile/avatar.dart';
@@ -46,48 +47,50 @@ class _UserInfoScreen extends State<UserInfoScreen>
                         color: Color(0xFF42ADE2),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: size.height * 0.09,
-                                ),
-                                SizedBox(
-                                    width: size.width * 0.45,
-                                    height: size.height * 0.16,
-                                    child: Avatar(
-                                        photourl: documents[0].get('imagen'))),
-                                const Upload(),
-                              ],
-                            ),
-                            SizedBox(
-                              width: size.width * 0.4,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    0, 0, size.width * 0.07, 0),
+                  SafeArea(
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: const Icon(Icons.info),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AuthorPage())),
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                      width: size.width * 0.45,
+                                      height: size.height * 0.16,
+                                      child: Avatar(
+                                          photourl: documents[0].get('imagen'))),
+                                  const Upload(),
+                                ],
+                              ),
+                              SizedBox(
+                                width: size.width * 0.4,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          size.width * 0.05, 0, 0, 0),
-                                      child: Text(
-                                        'Puntos',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: size.height * 0.028,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                    Text(
+                                      'Puntos',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size.height * 0.028,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         SizedBox(
                                             width: size.width * 0.15,
@@ -105,27 +108,27 @@ class _UserInfoScreen extends State<UserInfoScreen>
                                     ),
                                   ],
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.035,
-                      ),
-                      ProfileInfo(
-                          nombre: documents[0].get('nombre'),
-                          correo: documents[0].get('correo')),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Container(
-                        color: const Color(0xFF42ADE2),
-                        width: size.width * 0.5,
-                        height: size.height * 0.06,
-                        child: CloseSessionButton(user),
-                      )
-                    ],
+                        SizedBox(
+                          height: size.height * 0.035,
+                        ),
+                        ProfileInfo(
+                            nombre: documents[0].get('nombre'),
+                            correo: documents[0].get('correo')),
+                        SizedBox(
+                          height: size.height * 0.02,
+                        ),
+                        Container(
+                          color: const Color(0xFF42ADE2),
+                          width: size.width * 0.5,
+                          height: size.height * 0.06,
+                          child: CloseSessionButton(user),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               )),

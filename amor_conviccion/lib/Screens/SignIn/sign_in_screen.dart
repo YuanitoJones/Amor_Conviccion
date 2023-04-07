@@ -27,144 +27,150 @@ class _SignInScreenState extends State<SignInScreen> {
             right: 16.0,
             bottom: 40.0,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    0, size.height * 0.035, 0, size.height * 0.075),
-                child: SizedBox(
-                  height: size.height * 0.35,
-                  child: Image.asset(
-                    'assets/logos/advertencia.png',
+          child: Column(mainAxisSize: MainAxisSize.max, children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  0, size.height * 0.035, 0, size.height * 0.075),
+              child: SizedBox(
+                height: size.height * 0.35,
+                child: Image.asset(
+                  'assets/logos/advertencia.png',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.googleLogin();
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  shadowColor: Colors.black,
+                  elevation: 10.0,
+                  fixedSize: Size(size.width * 0.80, size.height * 0.090),
+                  backgroundColor: Colors.red,
+                  textStyle: TextStyle(
+                    fontSize: size.width * 0.05,
+                    fontWeight: FontWeight.bold,
+                  )),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  FaIcon(
+                    FontAwesomeIcons.google,
+                    color: Colors.white,
                   ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  final provider =
-                      Provider.of<GoogleSignInProvider>(context, listen: false);
-                  provider.googleLogin();
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    shadowColor: Colors.black,
-                    elevation: 10.0,
-                    fixedSize: Size(size.width * 0.80, size.height * 0.090),
-                    backgroundColor: Colors.red,
-                    textStyle: TextStyle(
-                      fontSize: size.width * 0.05,
-                      fontWeight: FontWeight.bold,
-                    )),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    FaIcon(
-                      FontAwesomeIcons.google,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'Login con Google',
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.04,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EmailLogin()));
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    shadowColor: Colors.black,
-                    elevation: 10.0,
-                    fixedSize: Size(size.width * 0.80, size.height * 0.085),
-                    backgroundColor: const Color(0xFFFF7E27),
-                    textStyle: TextStyle(
-                      fontSize: size.width * 0.05,
-                      fontWeight: FontWeight.bold,
-                    )),
-                child: Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    FaIcon(
-                      FontAwesomeIcons.envelope,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'Login con correo',
-                    ),
-                  ],
-                )),
-              ),
-              SizedBox(
-                height: size.height * 0.015,
-              ),
-              const Divider(
-                thickness: 1,
-                color: Colors.black,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
                   Text(
-                    'No tienes una cuenta?',
-                    style: TextStyle(
-                        color: Colors.black, fontSize: size.width * 0.04),
-                  ),
-                  TextButton(
-                    child: Center(
-                      child: Text(
-                        'Registrate aqui!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: size.width * 0.04),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EmailSignIn()));
-                    },
+                    'Login con Google',
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.03),
-                child: Text(
-                  'Al crear una cuenta, estas aceptando nuestro',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black, fontSize: size.width * 0.035),
-                ),
-              ),
-              TextButton(
-                child: Center(
-                  child: Text(
-                    'Aviso de privacidad',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: size.width * 0.035),
+            ),
+            SizedBox(
+              height: size.height * 0.04,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EmailLogin()));
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  shadowColor: Colors.black,
+                  elevation: 10.0,
+                  fixedSize: Size(size.width * 0.80, size.height * 0.085),
+                  backgroundColor: const Color(0xFFFF7E27),
+                  textStyle: TextStyle(
+                    fontSize: size.width * 0.05,
+                    fontWeight: FontWeight.bold,
+                  )),
+              child: Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  FaIcon(
+                    FontAwesomeIcons.envelope,
+                    color: Colors.white,
                   ),
+                  Text(
+                    'Login con correo',
+                  ),
+                ],
+              )),
+            ),
+            SizedBox(
+              height: size.height * 0.015,
+            ),
+            const Divider(
+              thickness: 1,
+              color: Colors.black,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'No tienes una cuenta?',
+                  style: TextStyle(
+                      color: Colors.black, fontSize: size.width * 0.04),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PrivacyPolitics()));
-                },
+                TextButton(
+                  child: Center(
+                    child: Text(
+                      'Registrate aqui!',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: size.width * 0.04),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EmailSignIn()));
+                  },
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.03),
+              child: Text(
+                'Al crear una cuenta, estas aceptando nuestro',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black, fontSize: size.width * 0.035),
               ),
-            ],
-          ),
+            ),
+            TextButton(
+              child: Center(
+                child: Text(
+                  'Aviso de privacidad',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: size.width * 0.035),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PrivacyPolitics()));
+              },
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SizedBox(
+                height: size.height * 0.05,
+                child: Image.asset(
+                  'assets/logos/logo.png',
+                ),
+              ),
+            )
+          ]),
         ),
       ),
     );
