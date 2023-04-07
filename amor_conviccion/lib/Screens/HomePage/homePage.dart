@@ -2,7 +2,6 @@ import 'package:amor_conviccion/Screens/HomePage/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/lessons_main_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/new_entry_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/user_info_screen.dart';
-import 'package:amor_conviccion/services/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -82,7 +81,7 @@ class _HomePage extends State<HomePage> {
     Size size = MediaQuery.of(context).size;
     var _user = FirebaseAuth.instance.currentUser;
     return MaterialApp(
-      home: StreamBuilder<QuerySnapshot>(
+        home: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('puntuacion')
                 .where('correo', isEqualTo: _user!.email)
@@ -95,13 +94,12 @@ class _HomePage extends State<HomePage> {
                   child: CircularProgressIndicator(),
                 );
               } else {
-             var documents = (snapshot.data!).docs;
+                var documents = (snapshot.data!).docs;
                 if (documents[0].get('nuevo') == true) {
                   return const NewEntry();
                 }
                 return main(size);
               }
-            })
-    );
+            }));
   }
 }

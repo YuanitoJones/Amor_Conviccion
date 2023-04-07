@@ -24,7 +24,7 @@ class LinesScreen extends StatefulWidget {
   final bool anyAnswer; //Acepta cualquier respuesta
 
   @override
-  _LineScreen createState() => _LineScreen();
+  State<LinesScreen> createState() => _LineScreen();
 }
 
 class _LineScreen extends State<LinesScreen> {

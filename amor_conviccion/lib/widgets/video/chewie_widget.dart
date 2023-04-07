@@ -27,7 +27,10 @@ class _ChewieWidget extends State<ChewieWidget> {
         aspectRatio: 2 / 3,
         autoInitialize: true,
         autoPlay: false,
-        showControls: true);
+        showControls: true,
+        deviceOrientationsOnEnterFullScreen: [
+          DeviceOrientation.portraitUp
+        ]);
 
     chewiectrl.addListener(() {
       if (chewiectrl.isFullScreen) {
