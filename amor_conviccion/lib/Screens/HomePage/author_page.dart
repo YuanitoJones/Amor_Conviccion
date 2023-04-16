@@ -30,6 +30,7 @@ class AuthorPage extends StatelessWidget {
                     Center(
                       child: Text(
                           "Autor: Juan Alexandro Rentería Abril, ingeniero en sistemas computacionales",
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: size.width * 0.045)),
                     ),
                     Center(

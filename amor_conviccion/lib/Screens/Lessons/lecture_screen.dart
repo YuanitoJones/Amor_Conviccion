@@ -22,12 +22,11 @@ class _LectureScreenState extends State<LectureScreen> {
   late int contador = 0;
 
   final List<String> asset = [
-    '',
     'Drogodependencia',
     'Liderazgo',
     'Intimidad',
     'Anomia',
-    'Amor_Perdón'
+    'Amor_Perdon'
   ];
 
   @override
@@ -177,7 +176,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   child: SizedBox(
                       height: size.height * 0.1,
                       child: Image.asset(
-                          'assets/Icons/${asset[widget.bloque]}.png')),
+                          'assets/Icons/${asset[widget.bloque - 1]}.png')),
                 ),
               ),
               Row(
