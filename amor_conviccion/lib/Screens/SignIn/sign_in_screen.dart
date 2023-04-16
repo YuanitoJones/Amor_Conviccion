@@ -32,7 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
               padding: EdgeInsets.fromLTRB(
                   0, size.height * 0.035, 0, size.height * 0.075),
               child: SizedBox(
-                height: size.height * 0.35,
+                height: size.height * 0.32,
                 child: Image.asset(
                   'assets/logos/advertencia.png',
                 ),
@@ -137,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: size.height * 0.03),
+              padding: EdgeInsets.only(top: size.height * 0.02),
               child: Text(
                 'Al crear una cuenta, estas aceptando nuestro',
                 textAlign: TextAlign.center,

@@ -39,9 +39,9 @@ class _LessonBlockWidget extends State<LessonBlockWidget> {
         borderRadius: BorderRadius.circular(20.0),
       ),
       margin: EdgeInsets.fromLTRB(
-        size.width * 0.1,
+        size.width * 0.07,
         size.height * 0.03,
-        size.width * 0.1,
+        size.width * 0.07,
         0,
       ),
       child: ElevatedButton(

@@ -26,6 +26,7 @@ class _YtPlayer extends State<YtPlayer> {
     );
   }
 
+@override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -35,37 +36,43 @@ class _YtPlayer extends State<YtPlayer> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: YoutubePlayerBuilder(
-          player: YoutubePlayer(
-            controller: _controller,
-          ),
-          builder: (context, player) {
-            return OrientationBuilder(builder: (context, orientation) {
-              if (orientation == Orientation.landscape) {
-                return player;
-              } else {
-                return Column(
-                  children: [
-                    player,
-                    SizedBox(
-                      height: size.height * 0.1,
-                    ),
-                    SizedBox(
-                      height: size.height * 0.065,
-                      width: size.width * 0.5,
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          'Siguiente',
-                          style: TextStyle(fontSize: size.width * 0.05),
-                        ),
+      body: Container(
+        decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/background/standard.png'),
+                      fit: BoxFit.cover)),
+        child: YoutubePlayerBuilder(
+            player: YoutubePlayer(
+              controller: _controller,
+            ),
+            builder: (context, player) {
+              return OrientationBuilder(builder: (context, orientation) {
+                if (orientation == Orientation.landscape) {
+                  return player;
+                } else {
+                  return Column(
+                    children: [
+                      player,
+                      SizedBox(
+                        height: size.height * 0.1,
                       ),
-                    )
-                  ],
-                );
-              }
-            });
-          }),
+                      SizedBox(
+                        height: size.height * 0.065,
+                        width: size.width * 0.5,
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text(
+                            'Siguiente',
+                            style: TextStyle(fontSize: size.width * 0.05),
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                }
+              });
+            }),
+      ),
     );
   }
 }
