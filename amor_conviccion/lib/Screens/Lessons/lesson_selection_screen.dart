@@ -103,6 +103,15 @@ class LessonSelectionScreen extends StatelessWidget {
     );
   }
 
+  bool isNumber(text) {
+    try {
+      int.parse(text);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
   Widget createLessons(Size size, var info, String leccion, int lessonNumber) {
     return Column(
       children: [
@@ -116,12 +125,25 @@ class LessonSelectionScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           child: Text(
-            info.keys
+            !isNumber(info.keys
                     .toList()[lessonNumber - 1]
                     .toString()
-                    .substring(0, 1)
-                    .toUpperCase() +
-                info.keys.toList()[lessonNumber - 1].toString().substring(1),
+                    .substring(0, 1))
+                ? info.keys
+                        .toList()[lessonNumber - 1]
+                        .toString()
+                        .substring(0, 1)
+                        .toUpperCase() +
+                    info.keys.toList()[lessonNumber - 1].toString().substring(1)
+                : info.keys
+                        .toList()[lessonNumber - 1]
+                        .toString()
+                        .substring(1, 2)
+                        .toUpperCase() +
+                    info.keys
+                        .toList()[lessonNumber - 1]
+                        .toString()
+                        .substring(2),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: size.width * 0.05,

@@ -1,7 +1,10 @@
 import 'package:amor_conviccion/Screens/HomePage/leaderboard_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/lessons_main_screen.dart';
+import 'package:amor_conviccion/Screens/HomePage/new_entry_screen.dart';
 import 'package:amor_conviccion/Screens/HomePage/user_info_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,8 +79,27 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var _user = FirebaseAuth.instance.currentUser;
     return MaterialApp(
-      home: main(size),
-    );
+        home: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('puntuacion')
+                .where('correo', isEqualTo: _user!.email)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Algo salió mal');
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                var documents = (snapshot.data!).docs;
+                if (documents[0].get('nuevo') == true) {
+                  return const NewEntry();
+                }
+                return main(size);
+              }
+            }));
   }
 }

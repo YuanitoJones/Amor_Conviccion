@@ -22,12 +22,11 @@ class _LectureScreenState extends State<LectureScreen> {
   late int contador = 0;
 
   final List<String> asset = [
-    '',
     'Drogodependencia',
     'Liderazgo',
     'Intimidad',
     'Anomia',
-    'Amor_Perdón'
+    'Amor_Perdon'
   ];
 
   @override
@@ -36,19 +35,19 @@ class _LectureScreenState extends State<LectureScreen> {
 
     switch (widget.bloque) {
       case 1:
-        lectura = bloque.Drogodependencia;
+        lectura = bloque.drogodependencia;
         break;
       case 2:
-        lectura = bloque.Liderazgo;
+        lectura = bloque.liderazgo;
         break;
       case 3:
-        lectura = bloque.Intimidad;
+        lectura = bloque.intimidad;
         break;
       case 4:
-        lectura = bloque.Anomia;
+        lectura = bloque.anomia;
         break;
       case 5:
-        lectura = bloque.AmorPerdon;
+        lectura = bloque.amorPerdon;
         break;
     }
     late List? pagina = lectura[contador];
@@ -177,7 +176,7 @@ class _LectureScreenState extends State<LectureScreen> {
                   child: SizedBox(
                       height: size.height * 0.1,
                       child: Image.asset(
-                          'assets/Icons/${asset[widget.bloque]}.png')),
+                          'assets/Icons/${asset[widget.bloque - 1]}.png')),
                 ),
               ),
               Row(

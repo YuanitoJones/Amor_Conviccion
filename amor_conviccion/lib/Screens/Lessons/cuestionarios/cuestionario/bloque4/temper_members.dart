@@ -6,12 +6,12 @@ import '../../../../../widgets/questionaire/lines/unir_lineas.dart';
 typedef TempersCallBack = void Function(String val);
 
 class TemperMembers extends StatefulWidget {
-  TemperMembers(this.FamMembers, this.cont,
+  TemperMembers(this.famMembers, this.cont,
       {required this.tempersCallBack, required this.child, Key? key})
       : super(key: key);
 
   final Widget child;
-  final int FamMembers;
+  final int famMembers;
   final int cont;
   late bool modalOpen = true;
   final TempersCallBack tempersCallBack;
@@ -87,6 +87,7 @@ class _TemperMembers extends State<TemperMembers> {
                 descriptioncallback: (val) => setState(() {
                   description = val;
                   conheight = size.height * 0.3;
+                  widget.modalOpen = false;
                 }),
               ),
               if (!widget.modalOpen) widget.child

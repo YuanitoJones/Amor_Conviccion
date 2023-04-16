@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-typedef intCallBack = void Function(int val);
-typedef answerlist = void Function(String val);
+typedef IntCallBack = void Function(int val);
+typedef Answerlist = void Function(String val);
 
 class QuestionField extends StatefulWidget {
-  final intCallBack answersCallBack;
-  final answerlist answers;
+  final IntCallBack answersCallBack;
+  final Answerlist answers;
 
   const QuestionField(
     this.size,
@@ -22,7 +22,7 @@ class QuestionField extends StatefulWidget {
   final int points; // representa la opcion correcta
   final List? questions; //Lista de pregunta e incisos
   @override
-  _QuestionField createState() => _QuestionField();
+  State<QuestionField> createState() => _QuestionField();
 }
 
 class _QuestionField extends State<QuestionField> {
