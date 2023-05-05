@@ -52,7 +52,7 @@ class _NewEntry extends State<NewEntry> {
             Padding(
               padding: EdgeInsets.all(size.width * 0.07),
               child: Text(
-                "Bienvenido al programa Pentágono!",
+                "¡Bienvenido al programa Pentágono!",
                 style: TextStyle(fontSize: size.width * 0.05),
               ),
             ),
